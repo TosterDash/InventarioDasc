@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!--P5 LIBRARY-->
-	<script src="../libraries/p5.js"></script>
-	<script src="../libraries/p5.dom.js"></script>
-	<script src="../libraries/p5.sound.js"></script>
+	
 	<!-- /<script src="sketch.js"></script> -->
     <!--JQUERY SCRIPT REFRESCAR PAGINA-->
     <script
@@ -80,12 +78,13 @@
 
         </div>
         <!--CAJA DEL MAPA-->
-        <script src="editMapp.js"></script>
+        
         <div id="edit-map-box" class="edit-map-box">
             <div id="edit-map-container" class="edit-map-container">
             
             </div>
         </div>
+        <script src="editorMap.js"></script>
         
     </div>
 </body>
