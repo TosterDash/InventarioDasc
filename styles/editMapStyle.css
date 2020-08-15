@@ -1,0 +1,53 @@
+
+.master-box{
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+}
+
+.add-field-box{
+    width: 40%;
+    color: white;
+
+}
+
+form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-left: 20%;
+    margin-top: 5%;
+}
+
+input[type=text],select, input[type=submit]{
+    box-sizing: border-box;
+    color: #264653;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    padding: 5px;
+    width: 150%;
+    border: 2px solid #E9C46A;
+    border-radius: 6px;
+}
+
+input[type=submit]:hover{
+    border: 2px solid #F4A261;
+    background-color: rgba(244 , 162, 97, 0.8);
+}
+
+input[type=text]:hover, input[type=password]:hover{
+    border: 2px solid #F4A261;
+}
+.add-field-box select{
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+
+.edit-map-box{
+    width: 60%;
+}
+
+.edit-map-container{
+    width: 90%;height: 100vh;
+    margin: auto; 
+}

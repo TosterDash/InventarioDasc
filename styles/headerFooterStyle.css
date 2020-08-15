@@ -1,0 +1,56 @@
+body{
+    background-image: url(../resources/login_bg.png); 
+ }
+
+/*HEADER*/
+li{
+    list-style-type: none;
+}
+.header-footer-style{
+    background-color: #333E49;
+    display: flex;
+    flex-direction: row;
+}
+
+.header-logo{
+    width: 300px;
+}
+
+.navigation-menu-list{
+    margin-top: 50px;
+    font-size: 20px;
+    display: flex;
+    flex-direction: row;
+}
+  
+.menu-list{
+    margin-left: 50px;  
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+}
+
+.menu-list a:hover{
+    color: #E9C46A  
+    
+    ;
+}
+
+a:link, a:visited{
+    color: white;
+    cursor:pointer;
+  }
+
+
+.info-list{
+    text-align: left;
+}
+
+/*HEADER*/
+
+
+
+/*FOOTER*/
+
+
+/*FOOTER*/
