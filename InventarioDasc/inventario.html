@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css"/>
+        <title>Inventario</title>
+    </head>
+    <body>
+        <ul class="inv_list">
+            <li>CONSULTAR</li>
+            <li>AGREGAR</li>
+            <li>MODIFICAR</li>
+            <li>ELIMINAR</li>
+        </ul>
+        <div class="consult">
+            <label for="catalogue">Choose a car:</label>
+            <select name="catalogue" id="catalogue">
+                <option value="impresora">impresora</option>
+                <option value="computador">computador</option>
+                <option value="mercedes">Mercedes</option>
+            </select>
+            <table></table>
+        </div>
+        <div class="agregar">
+            <label for="catalogue">Choose a car:</label>
+            <select name="catalogue" id="catalogue">
+                <option value="impresora">impresora</option>
+                <option value="computador">computador</option>
+                <option value="mercedes">Mercedes</option>
+            </select>
+            <form>
+                <div>
+                    Nombre
+                    <input type="text" class="input" id="name">
+                    descripcion
+                    <input type="text" class="input" id="desc">
+                    responsable
+                    <input type="text" class="input" id="resp">
+                    ultimo mantenimiento
+                    <input type="datetime-local" class="input" id="lastMant">
+                    <input type="datetime-local" class="input" id="lastMant">
+                </div>
+            </form>
+        </div>
+    </body>
+</html>
