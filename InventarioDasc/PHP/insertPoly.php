@@ -1,22 +1,24 @@
 <?php
 	include("conexion.php");
 	$nombre = $_POST["nombre"];
-	$xy1 = $_POST["xy1"];
-	$xy2 = $_POST["xy2"];
-	$xy3 = $_POST["xy3"];
-	$xy4 = $_POST["xy4"];
+	$xyCoord = $_POST["xyCoord"];
 	$seleccionTipo = $_POST["seleccion"];
 	$plantaMap = $_POST["plantaMap"];
 	$edificioMap = $_POST["edificioMap"];
 
 
-	
 	switch ($seleccionTipo) {
 		case "edificio":
 			# code...
 				
-				$insertar = ("INSERT INTO edificio(Nombre,x1,y1,x2,y2,x3,y3,x4,y4) VALUES ('$nombre','$xy1[0]','$xy1[1]', '$xy2[0]', '$xy2[1]', '$xy3[0]', '$xy3[1]', '$xy4[0]', '$xy4[1]' )");
+				
+				
+				
+				$insertar = ("INSERT INTO edificio(Nombre,x1,y1,x2,y2,x3,y3,x4,y4) VALUES 
+				('$nombre','$xyCoord[0]','$xyCoord[1]', '$xyCoord[2]', '$xyCoord[3]', '$xyCoord[4]', '$xyCoord[5]', '$xyCoord[6]', '$xyCoord[7]')");
+				
 				$result = mysqli_query($conexion, $insertar);
+				
 				echo "El edificio se ha insertado correctamente";
 			break;
 		
