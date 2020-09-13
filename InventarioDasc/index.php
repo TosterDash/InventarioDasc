@@ -1,5 +1,6 @@
+
 <?php
-session_start();
+/*session_start();
 
 $nombre = $_SESSION['nombre'];
 
@@ -10,10 +11,9 @@ if(!isset($_SESSION['nombre']))
 	
 
 }
-
+*/
 
 ?>
-
 
 
 <!DOCTYPE html>
@@ -30,7 +30,15 @@ if(!isset($_SESSION['nombre']))
 </head>
 <body>
 	<div>
-	<img src="../resources/login_bg.png" alt="">
+		<button>
+			MAPA
+		</button>
+		<button>
+			INVENTARIO
+		</button>
+		<button>
+			PRESTAMOS
+		</button>
 	</div>
 </body>
 	
