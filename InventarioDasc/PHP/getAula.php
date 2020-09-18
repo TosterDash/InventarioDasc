@@ -1,6 +1,9 @@
 <?php
 	include("conexion.php");
+	$popo = 0;
+	if($popo == 0){
 
+	}
 	//hacer el query
 	$result = mysqli_query($conexion, "SELECT * FROM aula");
 
