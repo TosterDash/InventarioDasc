@@ -1,6 +1,6 @@
 <?php
 	include("conexion.php");
-	$nombre = $_POST["nombre"];
+	$nombre = $_POST["nombreMap"];
 	$xyCoord = $_POST["xyCoord"];
 	$seleccionTipo = $_POST["seleccion"];
 	$plantaMap = $_POST["plantaMap"];
