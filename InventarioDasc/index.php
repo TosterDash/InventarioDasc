@@ -1,5 +1,5 @@
 <?php
-session_start();
+/*session_start();
 
 $nombre = $_SESSION['nombre'];
 
@@ -10,7 +10,7 @@ if(!isset($_SESSION['nombre']))
 	
 
 }
-
+*/
 
 ?>
 
@@ -24,14 +24,18 @@ if(!isset($_SESSION['nombre']))
 
 	<!--SITE STYLE SHEETS-->
 	<link rel="stylesheet" href="../styles/normalize.css">
+	<link rel="stylesheet" href="../styles/indexStyle.css">
 	<title>INICIO</title>
 <head>
 	<?php include ('header.html');?>
 </head>
 <body>
-	<div>
-	<img src="../resources/login_bg.png" alt="">
+	<div class="start-icons">
+		<div>
+			<a href="map.php"><img src="../resources/Mapa_icono.png"></a>
+	 	<a href="inventario.html"><img src="../resources/Inventario_icono.png"></a>
+	 	<a href="index.php"><img src="../resources/Prestamo_icono.png"></a>
+	 	</div>
 	</div>
 </body>
-	
 </html>

@@ -34,22 +34,8 @@
             <!--FORM CON CAMPOS-->
             
             <form action="" class="add-field-box" id="form-edit">
-                    
-                    <div id="accion-combobox">
-                        <label for="">ACCIÓN</label>
-                            <select id="accion-select">
-                                <option value="">SELECCIONE UNA ACCIÓN</option>
-                                <option value="add">Agregar Edificio</option>
-                                <option value="delete">Eliminar Edificio</option>
-                                <option value="mod">Modificar Edificio</option>
-                            </select>
-                        
-                    </div>
-
-                    <div id="nombre-placeholder">
-                    <label id= "nombre-label" for="">NOMBRE</label>
-                    <input type="text" id="nombre-map" placeholder="Escriba un nombre para Edificio/Aula">
-                    </div>
+                    <label for="">NOMBRE</label>
+                    <input type="text" id="nombre-map" placeholder="Escriba un nombre">
 
                     <div id="tipo-combobox">
                     <!--comboboggs-->
@@ -65,6 +51,7 @@
                     <!--comboboggs-->
                     <label for="">PLANTA</label>
                     <select id="planta-select" placeholder="baja, alta">
+                        <option value="">SELECCIONE UNA OPCIÓN</option>
                         <option value="BAJA">BAJA</option>
                         <option value="ALTA">ALTA</option>
                     </select>
@@ -79,13 +66,12 @@
                         <option value="" >SELECCIONE UNA OPCIÓN</option>
                     </select>
                     </div>
-
-                    <label id= "descripcion-label" for="">Seleccione un poligono para eliminarlo</label>
-
                     <!--BOTON ACEPTAR-->
-                    <input type="submit" name="" id="boton-edificioPlanta" value="Insertar Poligono">
+                    <input type="submit" name="" id="boton-edificioPlanta" value="Aceptar">
 
-                    
+                    <div id="error-editMap">
+                        
+                    </div>
             </form> 
 
         </div>
@@ -102,5 +88,4 @@
         
     </div>
 </body>
-
 </html>
