@@ -1,3 +1,5 @@
+
+
 <html>
     <meta charset="utf-8">
     <link rel="stylesheet" href="../styles/normalize.css">
@@ -5,8 +7,7 @@
     <link rel="stylesheet" type="text/css" href="../styles/">
     <title>AÑADIR ARTICULO | Inventario</title>
 <head>
-
-<?php include ('header.html');?>
+    <?php include ('header.html');?>
 </head>
 
 <body>
