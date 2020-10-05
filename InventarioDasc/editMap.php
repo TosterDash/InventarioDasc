@@ -23,7 +23,7 @@
 	<!--SITE STYLE SHEETS-->
 	<link rel="stylesheet" href="../styles/normalize.css">
     <link rel="stylesheet" href="../styles/editMapStyle.css">
-    
+    <link rel="stylesheet" href="../styles/generalStyle.css">
     <title>AÑADIR AL MAPA</title>
     <?php include ('header.html');?>
 </head>

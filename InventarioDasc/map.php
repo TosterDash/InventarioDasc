@@ -42,6 +42,7 @@ describir cada método
 	<link rel="stylesheet" href="../styles/headerFooterStyle.css">
 	<link rel="stylesheet" href="../styles/normalize.css">
 	<link rel="stylesheet" href="../styles/mapPageStyle.css">
+	<link rel="stylesheet" href="../styles/generalStyle.css">
 	
 <head>
 	<?php include ('header.html');?>
