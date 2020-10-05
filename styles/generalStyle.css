@@ -1,0 +1,13 @@
+.link-button {
+	border: solid;
+	border-radius: 10px;
+	border-color: black;
+	padding: 0.5%;
+	width: 13%;
+	position: relative;
+	text-align: center;
+}
+
+a.link-button{
+	color: black;
+}

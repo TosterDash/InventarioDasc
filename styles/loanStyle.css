@@ -1,6 +1,30 @@
+
+.button-container{
+
+}
+
 .add-button{
-	background-color: blue;
-	position: absolute;
 	left: 80%;
-	top: 50%;
+	margin-top: 1%;
+}
+
+.loan-card{
+	display: flex;
+	flex-direction: row;
+}
+
+.single-loan{
+	background-color: rgb(150,200,156);
+	width: 30%;
+	border: solid;
+	border-radius: 10px;
+	border-color: black;
+	padding: 0.5%;
+	margin-left: 3%;
+	margin-top: 3%;
+}
+
+.header-card{
+	padding: 2%;
+	background-color: yellow;
 }

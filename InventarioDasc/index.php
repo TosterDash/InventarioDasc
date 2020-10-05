@@ -46,7 +46,7 @@ if(!isset($_SESSION['nombre']))
 		</ul>
 	</div>
 	<div class="btn-container" >
-			<a href="mapa.php"><img src="../resources/1x/mapa_icon.png"></a> 
+			<a href="map.php"><img src="../resources/1x/mapa_icon.png"></a> 
 			<a href="inventario-cons.php"><img src="../resources//1x/inven_icon.png"></a>
 			<a href="prestamo-cons.php"><img src="../resources//1x/prest_icon.png"></a>	
 		</div>	

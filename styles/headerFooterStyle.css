@@ -26,17 +26,10 @@ li{
     text-decoration: none;
 }
 
-.menu-list a:hover{
+a.menu-list:hover { 
     transition: all 0.2s ease-in-out;
     color: #E9C46A; 
-    margin: 2px 2px;
 }
-
-a:link, a:visited{
-    color: white;
-    cursor:pointer;
-  }
-
 
 .info-list{
     text-align: left;
