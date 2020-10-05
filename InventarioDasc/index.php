@@ -23,23 +23,12 @@ if(!isset($_SESSION['nombre']))
 	<?php include ('header.html');?>
 	<!--SITE STYLE SHEETS-->
 	<link rel="stylesheet" href="../styles/normalize.css">
+	<link rel="stylesheet" href="../styles/indexStyle.css">
 	<title>INICIO</title>
 <head>
 		
 </head>
 <body>
-<<<<<<< Updated upstream
-	<div>
-		<button>
-			MAPA
-		</button>
-		<button>
-			INVENTARIO
-		</button>
-		<button>
-			PRESTAMOS
-		</button>
-=======
 	<div class="slider">
 		<ul>
 			<li>
@@ -55,7 +44,6 @@ if(!isset($_SESSION['nombre']))
 			<img src="../resources/campus_mapa.jpg" alt="">
 			</li>
 		</ul>
->>>>>>> Stashed changes
 	</div>
 	<div class="btn-container" >
 			<a href="mapa.php"><img src="../resources/1x/mapa_icon.png"></a> 
@@ -63,9 +51,5 @@ if(!isset($_SESSION['nombre']))
 			<a href="prestamo-cons.php"><img src="../resources//1x/prest_icon.png"></a>	
 		</div>	
 </body>
-<<<<<<< Updated upstream
-	
 </html>
-=======
-</html>
->>>>>>> Stashed changes
+
