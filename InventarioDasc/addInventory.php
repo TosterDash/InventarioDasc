@@ -11,6 +11,7 @@
 </head>
 
 <body>
+<<<<<<< Updated upstream
     <div>
        <!-- <ul class="inv_list">
             <li>CONSULTAR</li>
@@ -29,6 +30,25 @@
             <table>
                 
             </table>
+=======
+    <h1 id="title">INVENTARIO</h1>
+
+    <div class="basic-form-container">
+        <div class="add-container">
+            <div class="form-container form-format">
+                <label>Selecciona categoría</label>
+                <select name="catalogue" id="catalogue">
+                    <option value="selecciona">--Selecciona--</option>
+                    <option value="impresora">Impresora</option>
+                    <option value="computador">Computador</option>
+                    <option value="cañon">Cañón</option>
+                </select>
+                <label>Nombre</label>
+                <input type="text" class="input" id="name">
+                <label>Descripción</label>
+                <input type="textarea" class="input" id="desc">
+            </div>
+>>>>>>> Stashed changes
         </div>
           <div class="agregar">
             <!-- <label for="catalogue">Choose a car:</label>
