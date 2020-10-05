@@ -19,22 +19,9 @@
                 <div id="header-card" class="header-card"> 
                 nombre carrera salon
                 </div>
-                <h1 id="loan-name"></h1>
-                <h1>Fecha y hora pedido</h1>
-                <h1 id="loan-date-enter"></h1>
-                <h1>Fecha y hora devolucion</h1>
-                <h1 id="loan-date-exit"></h1>
-                <button>Devolver</button>
-            </div>
-            <div class="single-loan">
-                <div id="header-card" class="header-card"> 
-                nombre carrera salon
-                </div>
-                <h1 id="loan-name"></h1>
-                <h1>Fecha y hora pedido</h1>
-                <h1 id="loan-date-enter"></h1>
-                <h1>Fecha y hora devolucion</h1>
-                <h1 id="loan-date-exit"></h1>
+                <h2>Fecha y hora pedido</h2>
+                <time datetime="2017-02-14"> w</time>
+                <h2>Fecha y hora devolucion</h2>
                 <button>Devolver</button>
             </div>
         </div>
