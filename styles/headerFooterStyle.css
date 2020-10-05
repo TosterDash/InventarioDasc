@@ -2,6 +2,8 @@ body{
     background-image: url(../resources/login_bg.png); 
  }
 
+
+
 /*HEADER*/
 li{
     list-style-type: none;
@@ -27,13 +29,12 @@ li{
     margin-left: 50px;  
     color: white;
     text-decoration: none;
-    transition: all 0.3s ease-in-out;
 }
 
 .menu-list a:hover{
-    color: #E9C46A  
-    
-    ;
+    transition: all 0.2s ease-in-out;
+    color: #E9C46A; 
+    margin: 2px 2px;
 }
 
 a:link, a:visited{
