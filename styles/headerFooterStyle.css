@@ -1,3 +1,6 @@
+body{
+    
+ }
 
 /*HEADER*/
 li{
@@ -24,12 +27,20 @@ li{
     margin-left: 50px;  
     color: white;
     text-decoration: none;
+    transition: all 0.3s ease-in-out;
 }
 
-a.menu-list:hover { 
-    transition: all 0.2s ease-in-out;
-    color: #E9C46A; 
+.menu-list a:hover{
+    color: #E9C46A  
+    
+    ;
 }
+
+a:link, a:visited{
+    color: white;
+    cursor:pointer;
+  }
+
 
 .info-list{
     text-align: left;

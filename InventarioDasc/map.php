@@ -42,7 +42,6 @@ describir cada método
 	<link rel="stylesheet" href="../styles/headerFooterStyle.css">
 	<link rel="stylesheet" href="../styles/normalize.css">
 	<link rel="stylesheet" href="../styles/mapPageStyle.css">
-	<link rel="stylesheet" href="../styles/generalStyle.css">
 	
 <head>
 	<?php include ('header.html');?>
@@ -62,11 +61,9 @@ describir cada método
 		<!--CAJA DEL MENÚ-->
 		<div class="info-box center-text" >
 			<h3>INFORMACIÓN</h3>
-			<select id="map-edificio" placeholder="En que edificio">
-                <option value="" >SELECCIONE UN EDIFICIO</option>
-			</select>
+			
 			<select id="map-piso" placeholder="En que piso">
-				<option value="" >SELECCIONE UN PISO</option>
+				
 				<option value="BAJA" >PLANTA BAJA</option>
 				<option value="ALTA" >PLANTA ALTA</option>
 			</select>
@@ -103,7 +100,7 @@ describir cada método
 		</div>
 	</div>
 </body>
-
-
-	<script src="sketchhh.js"></script>
+	<script src="JS/classEdificio.js"></script>
+	<script src="JS/classAula.js"></script>
+	<script src="JS/map.js"></script>
 </html>

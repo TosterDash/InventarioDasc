@@ -1,5 +1,5 @@
 <?php
-	session_start();
+	/*session_start();
 	error_reporting(0);
 
 	$nombre = $_SESSION['nombre'];
@@ -11,7 +11,7 @@
 		
 
 	}
-
+*/
 ?>
 
 
@@ -31,7 +31,6 @@
 	<!--SITE STYLE SHEETS-->
 	<link rel="stylesheet" href="../styles/login.css">
 	<link rel="stylesheet" href="../styles/normalize.css">
-	<link rel="stylesheet" href="../styles/generalStyle.css">
 <head>
 <?php include ('header.html');?>
 </head>

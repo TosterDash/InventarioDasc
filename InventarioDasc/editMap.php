@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <!--dawudnawiunawdi-->
     <!--P5 LIBRARY-->
 	
 	<!-- /<script src="sketch.js"></script> -->
@@ -23,7 +23,7 @@
 	<!--SITE STYLE SHEETS-->
 	<link rel="stylesheet" href="../styles/normalize.css">
     <link rel="stylesheet" href="../styles/editMapStyle.css">
-    <link rel="stylesheet" href="../styles/generalStyle.css">
+    
     <title>AÑADIR AL MAPA</title>
     <?php include ('header.html');?>
 </head>
@@ -32,12 +32,10 @@
         <!--CAJA DEL FORM-->
         <div class="add-field-box">
             <!--FORM CON CAMPOS-->
-            <p>
-                instrucciones 
-            </p>
+            
             <form action="" class="add-field-box" id="form-edit">
                     <label for="">NOMBRE</label>
-                    <input type="text" id="nombre-map" placeholder="edificio uNO">
+                    <input type="text" id="nombre-map" placeholder="Escriba un nombre">
 
                     <div id="tipo-combobox">
                     <!--comboboggs-->
@@ -84,7 +82,9 @@
             
             </div>
         </div>
-        <script src="editorMap.js"></script>
+        <script src="JS/classAula.js"></script>
+        <script src="JS/classEdificio.js"></script>
+        <script src="JS/editorMap.js"></script>
         
     </div>
 </body>

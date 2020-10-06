@@ -75,7 +75,6 @@ pre {
 
 a {
   background-color: transparent;
-  text-decoration: none;
 }
 
 /**
@@ -347,14 +346,4 @@ template {
 
 [hidden] {
   display: none;
-}
-
-
-/*============================SELF ADDED========================================*/
-
-ul, li{
-    margin: 0;
-    padding: 0;
-    color: black;
-    list-style-type: none;
 }
