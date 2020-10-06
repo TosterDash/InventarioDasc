@@ -11,8 +11,10 @@ var xyCoord = [];
 var polyArray = [];
 //Limite de poligonos por creacion
 var numSide = 4;
-//variable de prueba
-var numnumnumn = 1000;
+//Variable Accion para comprobar que se debe hacer en la base de datos add/delete/mod
+var action = "";
+//Variable para la interfaz del mapa para la creacion de poligonos
+var drawControl;
 
 //'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}'
 //'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>'
@@ -33,7 +35,7 @@ var numnumnumn = 1000;
     var drawnItems = new L.FeatureGroup();
     mapUabcs.addLayer(drawnItems);
 
-    var drawControl = new L.Control.Draw({
+    drawControl = new L.Control.Draw({
         edit: {
             featureGroup: drawnItems,
             poly:{
@@ -42,7 +44,8 @@ var numnumnumn = 1000;
         }
         
     });
-    mapUabcs.addControl(drawControl);
+    
+    
 
     //La creacion de poligonos y extraccion de coordenadas para ser procesadas
     mapUabcs.on(L.Draw.Event.CREATED, function (e){
@@ -63,13 +66,9 @@ var numnumnumn = 1000;
         console.log(polyArray[0][i]);
         var polyArrayC = Object.values(polyArray[0][i]);
         xyCoord[numC] = polyArrayC[0];
-        //console.log("Array uni: "+ xyCoord[numC]);
-        //console.log("Array bi: "+polyArrayC[0]);
         numC++;
 
         xyCoord[numC] = polyArrayC[1];
-        //console.log("Array uni: "+ xyCoord[numC]);
-        //console.log("Array bi: "+polyArrayC[1]);
         numC++;
        
        
@@ -85,16 +84,120 @@ getEdificios(mapUabcs);
 getAula(mapUabcs);
 //EMPIEZA LA EJECUCION DE JQUERY-----------------
 //Esconder las plantas y edificios mientras se selecciona una opcion
+$('#descripcion-label').hide();
 
+$('#nombre-placeholder').hide();
+$('#tipo-combobox').hide();
 
-	
 $('#edificio-combobox').hide();
 $('#planta-combobox').hide();
 
-$("#tipo-select").on('change',function(){
+$('#boton-edificioPlanta').hide();
+
+$("#accion-select").on('change',function() {
+    action = $('#accion-select').val();
+    var planta = $('#planta-select').val();
+    console.log(planta);
+    switch(action){
+        case "add":
+            for(var i=0; i< edificiosArray.length ; i++){
+                edificiosArray[i].deleteClickOnPoly();
+            }
+            for(var i=0; i< aulasArray.length ; i++){
+                aulasArray[i].deleteClickOnPoly();
+                aulasArray[i].removePolyAula(mapUabcs);
+            }
+            $('#boton-edificioPlanta').show();
+            $('#tipo-select').val("");
+            $('#descripcion-label').hide();
+            $('#planta-combobox').hide();
+            $('#nombre-placeholder').show();
+            $('#tipo-combobox').show();
+            mapUabcs.addControl(drawControl);
+        break;
+
+        case "delete":
+            
+            for(var i=0; i< edificiosArray.length ; i++){
+                edificiosArray[i].clickToDelete(i,edificiosArray);
+            }
+            for(var i=0; i< aulasArray.length ; i++){
+                aulasArray[i].clickToDelete(i,aulasArray);
+                aulasArray[i].showPolyAulaPlanta(planta,mapUabcs);
+            }
+            $('#boton-edificioPlanta').hide();
+            $('#nombre-placeholder').hide();
+            $('#tipo-combobox').hide();
+
+            $('#edificio-combobox').hide();
+            $('#planta-combobox').show();
+
+            $('#descripcion-label').show();
+
+            mapUabcs.removeControl(drawControl);
     
+        break;
+
+        case "mod":
+
+            mapUabcs.removeControl(drawControl);
+           
+        break;
+
+        default:
+            for(var i=0; i< edificiosArray.length ; i++){
+                edificiosArray[i].deleteClickOnPoly();
+            }
+            for(var i=0; i< aulasArray.length ; i++){
+                aulasArray[i].deleteClickOnPoly();
+            }
+            $('#boton-edificioPlanta').hide();
+            $('#tipo-select').val("");
+            $('#nombre-placeholder').hide();
+            $('#tipo-combobox').hide();
+
+            $('#edificio-combobox').hide();
+            $('#planta-combobox').hide();
+
+            $('#descripcion-label').hide();
+            mapUabcs.removeControl(drawControl);
+            
+        break;
+    }
+   
+})
+
+$("#planta-select").on('change',function () {
+    var planta = $('#planta-select').val();
+    for(var i = 0; i<aulasArray.length; i++){
+        aulasArray[i].showPolyAulaPlanta(planta,mapUabcs);
+    }
+})
+
+
+
+$("#tipo-select").on('change',function(){
+    var planta = $('#planta-select').val();
     var seleccion = $('#tipo-select').val();
-    verificarComboboxTipo(seleccion,0,"");
+    switch(seleccion){
+        case "edificio":
+            $('#edificio-combobox').hide();
+            $('#planta-combobox').hide();
+        break;
+
+        case "aula":
+            $('#edificio-combobox').show();
+            $('#planta-combobox').show();
+            for(var i = 0; i<aulasArray.length; i++){
+                aulasArray[i].showPolyAulaPlanta(planta,mapUabcs);
+            }
+        break;
+
+        default:
+            $('#edificio-combobox').hide();
+            $('#planta-combobox').hide();
+        break;
+    }
 
     
 
@@ -102,113 +205,69 @@ $("#tipo-select").on('change',function(){
 $("#boton-edificioPlanta").click(function(e){
     e.preventDefault();
     var seleccion = $('#tipo-select').val();
-    switch(seleccion){
-        case "edificio":
-            var nombreMap = $('#nombre-map').val();
-            //console.log(nombreMap);
-            if(polyArray.length != 0 ){
-                if(nombreMap==null || nombreMap==""){
-                    alert("El campo nombre del edificio esta vacio, favor de poner uno");
-                }else{
-                    verificarComboboxTipo(seleccion,1,nombreMap,xyCoord);
-                }
-            }else{
-                alert("No existe un poligono, favor de crear uno");
-            }
-            
-        break;
+    var nombreMap = $('#nombre-map').val();
+    var plantaMap = $('#planta-select').val();
+    var edificioMap = $('#edificio-select').val();
 
-        case "aula":
-            var nombreMap = $('#nombre-map').val();
-            var plantaMap = $('#planta-select').val();
-            var edificioMap = $('#edificio-select').val();
-            if(polyArray.lenght != 0){
-                
-                if(nombreMap==null || nombreMap==""){
-                    alert("El campo nombre del edificio esta vacio, favor de poner uno");
-                        
-                }else{
-                    if(plantaMap == ""){
-                        alert("Seleccione la planta del aula");
-                    }else{
-                        verificarComboboxTipo(seleccion,1,nombreMap,xyCoord,plantaMap,edificioMap);
-                    }
-                }
+    verificar(seleccion,nombreMap,plantaMap,edificioMap);
 
-                
-            }else{
-                alert("No existe un poligono, favor de crear uno");
-            }
-            
-        break;
-
-        default:
-            alert("Seleccione un el tipo de poligono");
-        break;
-    }
-    
 });
 
 
 //LISTA DE FUNCIONES-----------------------------
-function verificarComboboxTipo(seleccion,opcion,nombre,xyCoord,plantaMap,edificioMap){
-    switch(seleccion){
-        case "edificio":
-            switch(opcion){
-                case 0:
-                    $('#edificio-combobox').hide();
-                    $('#planta-combobox').hide();
-                break;
-
-                case 1:
-                    $.post('PHP/insertPoly.php',{nombre,seleccion,xyCoord} ,function(response){
-                           console.log(response);
-                           alert("Se ha insertado el edificio correctamente");
-                           $(location).attr('href','editMap.php');
-                      
-                     });
-                break;
+function verificar(seleccion,nombreMap,plantaMap,edificioMap){
+    switch(action){
+        case "add":
+            if(polyArray.length != 0){
+                if(nombreMap==null || nombreMap==""){
+                    alert("El campo nombre del edificio esta vacio, favor de poner uno");
+                }else{
+                    switch(seleccion){
+                        case "edificio":
+                            $.post('PHP/insertPoly.php',{nombreMap,seleccion,xyCoord} ,function(response){
+                                console.log(response);
+                                alert("Se ha insertado el edificio correctamente");
+                                $(location).attr('href','editMap.php');
+                           
+                          });
+            
+                        break;
+                
+                        case "aula":
+                            $.post('PHP/insertPoly.php',{seleccion,plantaMap,edificioMap,nombreMap,xyCoord} ,function(response){
+                                console.log(response);
+                                alert("Se ha insertado el aula correctamente");
+                                $(location).attr('href','editMap.php');
+                           
+                          });
+                            
+                        break;
+            
+                        default:
+                            alert("Favor de seleccionar un tipo Edificio/Aula");
+                        break;
+                
+                    }
+                }
+            }else{
+                alert("No existe un poligono, favor de crear uno");
             }
         break;
 
-        case "aula":
+        case "delete":
             
-            switch(opcion){
-                case 0:
-                    $('#edificio-combobox').show();
-                    $('#planta-combobox').show();
-                break;
+        break;
 
-                case 1:
-
-                    $.post('PHP/insertPoly.php',{seleccion,plantaMap,edificioMap,nombre,xyCoord} ,function(response){
-                           console.log(response);
-                           alert(response);
-                           $(location).attr('href','editMap.php');
-                      
-                     });
-                break;
-            }
-            
+        case "mod":
         break;
 
         default:
-            
-            switch(opcion){
-                case 0:
-                    $('#edificio-combobox').hide();
-                    $('#planta-combobox').hide();
-                break;
-
-                case 1:
-                    alert("");
-                break;
-            }
-            
-
+            alert("Seleccione una acción añadir/eliminar/modificar");
         break;
-
     }
+    
+
+  
 }
 
 
@@ -262,7 +321,7 @@ function getAula(mapUabcs) {
 			aula1.forEach(task => {	
 				
                 
-                aulasArray[cont] =  new Aula(`${task.Nombre}`,`${task.idPlanta}`,`${task.idEdificio}`,null); 
+                aulasArray[cont] =  new Aula(`${task.idAula}`,`${task.nombreAula}`,`${task.idPlanta}`,`${task.idEdificio}`,null); 
 
 
 			    aulaUabcs[cont] = [[`${task.x1}`, `${task.y1}`],
@@ -273,7 +332,7 @@ function getAula(mapUabcs) {
 				
 
 
-				aulasArray[cont].poly = L.polygon(aulaUabcs[cont] , {color: 'black'}).addTo(mapUabcs);
+				aulasArray[cont].poly = L.polygon(aulaUabcs[cont] , {color: 'black'});
 				
 	            
 	            

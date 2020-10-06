@@ -1,9 +1,6 @@
 <?php
 	include("conexion.php");
-	$popo = 0;
-	if($popo == 0){
-
-	}
+	
 	//hacer el query
 	$result = mysqli_query($conexion, "SELECT * FROM aula");
 
@@ -13,6 +10,7 @@
 	while ($row = mysqli_fetch_array($result)) {
    # code...
 	   $json[] = array(
+			'idAula' => $row['idAula'],
 	   		'idPlanta' => $row['idPlanta'],
 	   		'idEdificio' => $row['idEdificio'],
 		    'nombreAula' => $row['nombreAula'],
