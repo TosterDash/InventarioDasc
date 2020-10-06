@@ -1,13 +1,57 @@
+body{
+	font-family: verdana;
+	font-size: 5mm;
+}
+ 
 .link-button {
+	font-size: 5mm;
 	border: solid;
 	border-radius: 10px;
 	border-color: black;
 	padding: 0.5%;
-	width: 13%;
+	width: 15%;
 	position: relative;
 	text-align: center;
 }
 
 a.link-button{
 	color: black;
+}
+
+.cntrTitle{
+	text-align:center;
+}
+
+/*Styles for forms*/
+
+/*first div*/
+.basic-form-container{
+	display: flex;
+	flex-direction: row;
+}
+
+/*div where the form is*/
+.form-container{
+	display: flex;
+	flex-direction: column;
+}
+
+.submit-btns{
+	display: flex;
+	flex-direction: row;
+	margin-left: 40%;
+	margin-top: 5%;
+}
+
+
+.form-format label{
+	margin-top: 2%;
+}
+
+.form-format input, select{
+	margin-top: 4%;
+}
+
+.submit-btns {
+
 }
