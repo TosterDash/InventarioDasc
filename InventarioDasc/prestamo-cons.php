@@ -1,21 +1,27 @@
 <html>
     <head>
-        <link rel="stylesheet" href="../styles/normalize.css">
-        <link rel="stylesheet" href="../styles/inventario.css">
-        <title>Inventario</title>
+        <meta charset="utf-8">
         <?php include ('header.html');?>
+        <link rel="stylesheet" href="../styles/normalize.css">
+        <link rel="stylesheet" href="../styles/loanStyle.css">
+        <link rel="stylesheet" href="../styles/generalStyle.css">
+        <title>Prestamos</title>
     </head>
     <body>
-        <div>
-            <button>Agregar</button>
+        <h1>PRÉSTAMO</h1>
+        <div class="button-container">
+            <div class="add-button link-button">
+                <a class="" href="loanAdd.php">AÑADIR PRÉSTAMO</a>
+            </div>
         </div>
-        <div>
-            <div id="loan-card">
-                <h1 id="loan-name"></h1>
-                <h1>Fecha y hora pedido</h1>
-                <h1 id="loan-date-enter"></h1>
-                <h1>Fecha y hora devolucion</h1>
-                <h1 id="loan-date-exit"></h1>
+        <div id="loan-card" class="loan-card">
+            <div class="single-loan">
+                <div id="header-card" class="header-card"> 
+                nombre carrera salon
+                </div>
+                <h2>Fecha y hora pedido</h2>
+                <time datetime="2017-02-14"> w</time>
+                <h2>Fecha y hora devolucion</h2>
                 <button>Devolver</button>
             </div>
         </div>
