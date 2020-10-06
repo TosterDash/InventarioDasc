@@ -24,7 +24,6 @@ if(!isset($_SESSION['nombre']))
 	<!--SITE STYLE SHEETS-->
 	<link rel="stylesheet" href="../styles/normalize.css">
 	<link rel="stylesheet" href="../styles/indexStyle.css">
-	<link rel="stylesheet" href="../styles/generalStyle.css">
 	<title>INICIO</title>
 <head>
 		

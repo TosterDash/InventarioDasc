@@ -31,7 +31,6 @@
 	<!--SITE STYLE SHEETS-->
 	<link rel="stylesheet" href="../styles/login.css">
 	<link rel="stylesheet" href="../styles/normalize.css">
-	<link rel="stylesheet" href="../styles/generalStyle.css">
 <head>
 <?php include ('header.html');?>
 </head>

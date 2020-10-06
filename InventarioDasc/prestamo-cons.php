@@ -5,10 +5,10 @@
         <link rel="stylesheet" href="../styles/normalize.css">
         <link rel="stylesheet" href="../styles/loanStyle.css">
         <link rel="stylesheet" href="../styles/generalStyle.css">
-        <title>Prestamos</title>
+        
+        <title>Inventario</title>
     </head>
     <body>
-        <h1>PRÉSTAMO</h1>
         <div class="button-container">
             <div class="add-button link-button">
                 <a class="" href="loanAdd.php">AÑADIR PRÉSTAMO</a>

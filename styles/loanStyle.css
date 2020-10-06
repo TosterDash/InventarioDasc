@@ -35,5 +35,9 @@ b.header-card{
 
 }
 
-/* ********LOAN ADD******** */
-
+.form-loan{
+	display: flex;
+	flex-direction: column;
+	width: 20%;
+	margin-top: 2%;
+}
