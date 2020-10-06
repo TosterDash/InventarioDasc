@@ -1,0 +1,39 @@
+
+.button-container{
+
+}
+
+.add-button{
+	left: 80%;
+	margin-top: 1%;
+}
+
+.loan-card{
+	display: flex;
+	flex-direction: row;
+}
+
+.single-loan{
+	background-color: rgba(40,102,229,0.3);
+	width: 30%;
+	border: solid;
+	border-radius: 10px;
+	border-color: rgb(8,40,106);
+	border-color: black;
+	padding: 0.5%;
+	margin-left: 3%;
+	margin-top: 3%;
+}
+
+.header-card{
+	margin: auto;
+	padding: 2%;
+	background-color: rgba(40,102,229,0.5);
+}
+
+b.header-card{
+
+}
+
+/* ********LOAN ADD******** */
+
