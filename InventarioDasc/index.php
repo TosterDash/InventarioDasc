@@ -24,6 +24,7 @@ if(!isset($_SESSION['nombre']))
 	<!--SITE STYLE SHEETS-->
 	<link rel="stylesheet" href="../styles/normalize.css">
 	<link rel="stylesheet" href="../styles/indexStyle.css">
+	<link rel="stylesheet" href="../styles/hover.css">
 	<link rel="stylesheet" href="../styles/generalStyle.css">
 	<title>INICIO</title>
 <head>
@@ -47,9 +48,9 @@ if(!isset($_SESSION['nombre']))
 		</ul>
 	</div>
 	<div class="btn-container" >
-			<a href="map.php"><img src="../resources/1x/mapa_icon.png"></a> 
-			<a href="inventario.php"><img src="../resources//1x/inven_icon.png"></a>
-			<a href="prestamo-cons.php"><img src="../resources//1x/prest_icon.png"></a>	
+			<a class="hvr-float" href="map.php"><img src="../resources/1x/mapa_icon.png"></a> 
+			<a class="hvr-float" href="inventario.php"><img src="../resources/1x/inven_icon.png"></a>
+			<a class="hvr-float" href="prestamo-cons.php"><img src="../resources/1x/prest_icon.png"></a>	
 		</div>	
 </body>
 </html>
