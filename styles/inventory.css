@@ -1,20 +1,10 @@
-/*INVENTORY PAGE*/
-
-
-
-
-
-
-
-/*INVENTORY PAGE*/
-
-/*ADD INVENTORY PAGE*/
 #title{
     text-align: center;
 }
 
-.consult-box{
-
+.add-container{
+    width: 30%;
+    margin-left: 5%;
 }
 
 .header_list li{
