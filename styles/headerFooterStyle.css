@@ -43,7 +43,7 @@ a.menu-list:hover {
 }
 
 .pc-img{
-   display: block;
+   display: none;
   }
 
 .tablet-img{
@@ -54,6 +54,11 @@ a.menu-list:hover {
     .header-footer-style{
         height: 10vh;
     }   
+
+    .navigation-menu-list{
+        margin-top: 15px;
+        font-size: 6vw;
+    }
 
     .pc-image{
         display:none;
