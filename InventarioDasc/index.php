@@ -18,6 +18,7 @@ if(!isset($_SESSION['nombre']))
 <!DOCTYPE html>
 <html>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<?php include ('header.html');?>
@@ -46,23 +47,20 @@ if(!isset($_SESSION['nombre']))
 			<img src="../resources/campus_mapa.jpg" alt="">
 			</li>
 		</ul>
-		
+		<div class="menu">
+			<div class="btn-container">
+				<div class="menu-title hvr-float">
+					<a  href="map.php"><img src="../resources/1x/mapa_icon.png"><h2>MAPA</h2></a> 
+				</div>
+				<div class="menu-title hvr-float">
+					<a  href="inventario.php"><img src="../resources/1x/inven_icon.png"><h2>INVENTARIO</h2></a>
+				</div>
+				<div class="menu-title hvr-float">
+					<a  href="prestamo-cons.php"><img src="../resources/1x/prest_icon.png"><h2>PRÉSTAMOS</h2></a>
+				</div>				
+			</div>	
+		</div>
 	</div>
-
-	<div class="menu">
-		<div class="btn-container">
-			<div class="menu-title hvr-float">
-				<a  href="map.php"><img src="../resources/1x/mapa_icon.png"><h2>MAPA</h2></a> 
-			</div>
-			<div class="menu-title hvr-float">
-				<a  href="inventario.php"><img src="../resources/1x/inven_icon.png"><h2>INVENTARIO</h2></a>
-			</div>
-			<div class="menu-title hvr-float">
-				<a  href="prestamo-cons.php"><img src="../resources/1x/prest_icon.png"><h2>PRÉSTAMOS</h2></a>
-			</div>				
-		</div>	
-	</div>
-
 </body>
 </html>
 

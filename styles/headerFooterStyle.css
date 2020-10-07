@@ -1,16 +1,18 @@
 
 /*HEADER*/
-li{
+li.navigation-menu-list{
     list-style-type: none;
 }
 .header-footer-style{
     background-color: #333E49;
     display: flex;
     flex-direction: row;
+    height: 15vh;
+    width: 100%;
 }
 
 .header-logo{
-    width: 300px;
+    
 }
 
 .navigation-menu-list{
@@ -26,6 +28,11 @@ li{
     text-decoration: none;
 }
 
+a.menu-list{
+    font-family: 'Arial';
+    font-size: 1.5vw;
+}
+
 a.menu-list:hover { 
     transition: all 0.2s ease-in-out;
     color: #E9C46A; 
@@ -33,6 +40,32 @@ a.menu-list:hover {
 
 .info-list{
     text-align: left;
+}
+
+.pc-img{
+   display: block;
+  }
+
+.tablet-img{
+    display:none;
+}
+
+@media (max-width: 768px) and (min-width: 320px){
+    .header-footer-style{
+        height: 10vh;
+    }   
+
+    .pc-image{
+        display:none;
+    }
+
+    .tablet-img{
+        margin-left: 20%;
+        margin-top: 30%;
+        display:block;
+        width: 50px;
+        height: 50px;
+    }
 }
 
 /*HEADER*/

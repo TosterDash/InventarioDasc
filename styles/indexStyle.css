@@ -17,6 +17,7 @@ body{
 
 .slider {
 	width: 100%;
+	height: 100%;
 	margin: auto;
 	overflow: hidden;
 }
@@ -38,7 +39,8 @@ body{
 .img-slider img {
 	width: 100%;
 	height: 90%;
-	object-fit: cover;
+	max-width: none;
+	min-width: none;
 	filter: blur(3px);
 }
 
@@ -55,6 +57,10 @@ body{
 	top: 40%;
 }
 
+.menu-title img{
+	
+}
+
 
 @keyframes cambio {
 	0% {margin-left: 0;}
@@ -68,4 +74,15 @@ body{
 	
 	75% {margin-left: -300%;}
 	100% {margin-left: -300%;}
+}
+
+
+@media screen and (max-width:768px) and (min-width: 320px){
+	body {
+		font-size:2vw; // achicamos la fuente en pantallas pequeñas 
+	} 
+	.menu-title img{
+			width: 50%;
+			height: 50%;
+		}
 }

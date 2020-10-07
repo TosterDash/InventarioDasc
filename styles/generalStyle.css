@@ -1,6 +1,11 @@
 body{
 	font-family: 'Arial';
-	font-size: 5mm;
+	font-size: 1.5vw;
+	color: blue;
+}
+
+.header-footer-style{
+	
 }
  
 .link-button {
@@ -55,3 +60,4 @@ a.link-button{
 .submit-btns {
 
 }
+
