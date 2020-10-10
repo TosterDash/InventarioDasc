@@ -1,3 +1,4 @@
+
 <html>
     <head>
         <link rel="stylesheet" href="../styles/normalize.css">
@@ -7,39 +8,76 @@
     </head>
     <body>
         <div class="agregar">
-            <div>
-                <form>
+            <form action="?" method="post" id="inv-form">
+                <div>
                     <label for="inv-add-name">Nombre:</label><br>
                     <input type="text" id="inv-add-name" name="inv-add-name" value=""><br>
                     <label for="desc">Descripcion:</label><br>
                     <input type="text" id="inv-add-desc" name="inv-add-desc" value="">
-                </form>
-            </div>
-            <div>
-                <form>
-                    <label for="name">Tipo:</label><br>
+                </div>
+                <div>
+                <label for="name">Tipo:</label><br>
                     <select name="inv-add-catalogue" id="inv-add-catalogue">
                         <option value="impresora">impresora</option>
                         <option value="computador">computador</option>
                         <option value="mercedes">Mercedes</option>
                     </select>
-                    <input type="checkbox" id="inv-add-mant" value="Mantenimiento">
+                    <input type="checkbox" id="inv-add-mant" name="inv-add-mant" value="Mantenimiento">
                     <label for="name">Mantenimiento:</label><br>
-                    <input type="checkbox" id="inv-add-disp-mant" value="Mantenimiento">
+                    <input type="checkbox" id="inv-add-disp-prest" name="inv-add-disp-prest" value="Prestamo">
                     <label for="name">Disponible para prestamo:</label><br>
-                </form>
-            </div>
-            <div>
-                <form>
-                    <label for="name">Imagen del articulo:</label><br>
+                </div>
+                <div>
+                <label for="name">Imagen del articulo:</label><br>
                     <img src="" alt="">
                     <input type="file" name="item_file" id="item_file">
-                </form>
-            </div>
+                </div>
+            </form>
             <div>
                 <button id="inv-add-cancel">Cancelar</button>
-                <button id="inv-add-add">Agrear</button>
+                <button type="submit" form="inv-form" value="Agregar" id="inv-add-add">Agregar</button>
             </div>
         </div>
     </body>
+
+    <?php
+            if(isset($_POST["inv-add-name"])){
+                $nombre = $_POST["inv-add-name"];
+            }
+
+            if(isset($_POST["inv-add-desc"])){
+                $desc = $_POST["inv-add-desc"];
+            }
+
+            if(isset($_POST["inv-add-catalogue"])){
+                $tipo = $_POST["inv-add-catalogue"];
+            }
+            
+            if(isset($_POST['inv-add-mant'])){
+                //$stok is checked and value = 1
+                $mant = true;
+            }else{
+                //$stok is nog checked and value=0
+                $mant = false;
+            }
+
+            if(isset($_POST['inv-add-mant'])){
+                //$stok is checked and value = 1
+                $prest = true;
+            }else{
+                //$stok is nog checked and value=0
+                $prest = false;
+            }
+
+            $imagen = $_POST["item_file"];
+            
+        
+            
+           
+            
+           
+        
+    ?> 
+
+
 </html>
