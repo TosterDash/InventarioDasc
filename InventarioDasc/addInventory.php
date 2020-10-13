@@ -3,7 +3,6 @@
     <link rel="stylesheet" href="../styles/normalize.css">
     <link rel="stylesheet" href="../styles/inventory.css">
     <link rel="stylesheet" href="../styles/generalStyle.css">
-
     <title>AÑADIR ARTICULO | Inventario</title>
 <head>
 
@@ -28,13 +27,13 @@
                 <input type="text" class="input" id="desc">
             </div>
         </div>
-        <div>
-            <input type="checkbox" id="mant" name="mant" value="Mantenimiento">
+        <div class="add-container form-format">
+            <input type="checkbox" id="mantCB" name="mant" value="Mantenimiento" onclick="mantForm.style.display = this.checked ? 'block' : 'none';">
             <label for="name">Mantenimiento:</label><br>
-            <input type="checkbox" id="prest" name="prest" value="Prestamo">
+            <input type="checkbox" id="prestCB" name="prest" value="Prestamo">
             <label for="name">Disponible para prestamo:</label><br>
         </div>
-        <div class="add-container form-format">
+        <div class="add-container form-format mant" id="mantForm" >
             <div class="form-container">
                 <label>Responsable</label>
                 <input type="text" class="input" id="resp">
