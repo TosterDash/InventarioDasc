@@ -1,8 +1,17 @@
 <html>
     <meta charset="utf-8">
+
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.js"
+      integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+      crossorigin="anonymous">
+    </script>
+
     <link rel="stylesheet" href="../styles/normalize.css">
     <link rel="stylesheet" href="../styles/inventory.css">
     <link rel="stylesheet" href="../styles/generalStyle.css">
+    <script src="inventario/JS/addinventory.js"></script>
+    
     <title>AÑADIR ARTICULO | Inventario</title>
 <head>
 
@@ -12,7 +21,22 @@
 <body>
     <h1 id="title">INVENTARIO</h1>
     <div class="basic-form-container">
-        <div class="add-container">
+        <div class="add-container form-format selector">
+            <select name="tipoObjeto" id="tipoObjeto">
+                <option value="selecciona">--Selecciona--</option>
+                <option value="impresora">Equipo</option>
+                <option value="computador">Consumible</option>
+            </select>
+        </div>
+        <div class="add-container form-format cons">
+            <label>Nombre</label>
+            <input type="text" class="input" id="name">
+            <label>Descripción</label>
+            <input type="text" class="input" id="desc">
+            <label>Cantidad</label>
+            <input type="text" class="input" id="cant">
+        </div>
+        <div class="add-container equip">
             <div class="form-container form-format">
                 <label>Selecciona categoría</label>
                 <select name="catalogue" id="catalogue">
@@ -27,13 +51,13 @@
                 <input type="text" class="input" id="desc">
             </div>
         </div>
-        <div class="add-container form-format">
+        <div class="add-container form-format equip">
             <input type="checkbox" id="mantCB" name="mant" value="Mantenimiento" onclick="mantForm.style.display = this.checked ? 'block' : 'none';">
             <label for="name">Mantenimiento:</label><br>
             <input type="checkbox" id="prestCB" name="prest" value="Prestamo">
             <label for="name">Disponible para prestamo:</label><br>
         </div>
-        <div class="add-container form-format mant" id="mantForm" >
+        <div class="add-container form-format mant equip" id="mantForm" >
             <div class="form-container">
                 <label>Responsable</label>
                 <input type="text" class="input" id="resp">
@@ -52,7 +76,7 @@
             <button id="inv-add-cancel">Cancelar</button>
             <button value="Agregar" id="inv-add-add">Agregar</button>
         </div>
-    </div> 
+    </div>
 </body>
 
 <?php
@@ -93,6 +117,30 @@
 
     if(isset($_POST["item_file"])){
         $imagen = $_POST["item_file"];
+    }
+
+    function select(){
+        if($_POST['tipoObjeto']='Equipo'){
+            echo '<style type="text/css">
+                    .equip{
+                        display: block;
+                    }
+
+                    .cons{
+                        display: none;
+                    }
+                </style>';
+        }else if($_POST['tipoObjeto']='Consumible'){
+            echo '<style type="text/css">
+            .equip{
+                display: none;
+            }
+
+            .cons{
+                display: block;
+            }
+        </style>';
+        }
     }
 ?> 
 

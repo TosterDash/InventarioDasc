@@ -12,8 +12,8 @@ function tables(){
                     <th>syu</th>
                     <th>${task.lastMant}</th>
                     <th>${task.nextMant}</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
+                    <th><button>Edit</button></th>
+                    <th><button>Delete</button></th>
                 </tr>`
             })
         }

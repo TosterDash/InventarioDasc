@@ -25,7 +25,13 @@
     margin: 25px;
    
 }
+.equip{
+    display:none
+}
 
+.cons{
+    display: none
+}
 .mant{
     display: none;
 }
