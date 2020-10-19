@@ -19,7 +19,7 @@
                     <tr>
                         <th>Nombre</th>
                         <th>Descripcion</th>
-                        <th>Mantenimiento</th>
+                        <-- <th>Mantenimiento</th>
                         <th>Ultimo mantenimiento</th>
                         <th>Proximo mantenimiento</th>
                         <th>Edit</th>
