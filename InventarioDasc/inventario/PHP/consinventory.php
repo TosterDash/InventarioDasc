@@ -8,7 +8,7 @@
         $json []= array(
             'idObjeto' => $row['idObjeto'],
             'Nombre' => $row['Nombre'],
-            'descripcion' => $row['descripcion'],
+            'Descripcion' => $row['Descripcion'],
             'lastMant' => $row['lastMant'],
             'nextMant' => $row['nextMant'],
         );

@@ -1,6 +1,12 @@
 <html>
     <meta charset="utf-8">
 
+    
+    
+    <title>AÑADIR ARTICULO | Inventario</title>
+<head>
+
+<?php include ('header.html');?>
     <script
       src="https://code.jquery.com/jquery-3.5.1.js"
       integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
@@ -11,18 +17,13 @@
     <link rel="stylesheet" href="../styles/inventory.css">
     <link rel="stylesheet" href="../styles/generalStyle.css">
     <script src="inventario/JS/addinventory.js"></script>
-    
-    <title>AÑADIR ARTICULO | Inventario</title>
-<head>
-
-<?php include ('header.html');?>
 </head>
 
 <body>
     <h1 id="title">INVENTARIO</h1>
     <div class="basic-form-container">
         <div class="add-container form-format selector">
-            <select name="tipoObjeto" id="tipoObjeto">
+            <select id="tipoObjeto">
                 <option value="selecciona">--Selecciona--</option>
                 <option value="impresora">Equipo</option>
                 <option value="computador">Consumible</option>
@@ -30,11 +31,11 @@
         </div>
         <div class="add-container form-format cons">
             <label>Nombre</label>
-            <input type="text" class="input" id="name">
+            <input type="text" class="input" id="name-form">
             <label>Descripción</label>
-            <input type="text" class="input" id="desc">
+            <input type="text" class="input" id="desc-form">
             <label>Cantidad</label>
-            <input type="text" class="input" id="cant">
+            <input type="text" class="input" id="cant-form">
         </div>
         <div class="add-container equip">
             <div class="form-container form-format">
