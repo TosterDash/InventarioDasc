@@ -93,7 +93,7 @@
 
     if(isset($_POST["item_file"])){
         $imagen = $_POST["item_file"];
-    }        
+    }
 ?> 
 
 </html>

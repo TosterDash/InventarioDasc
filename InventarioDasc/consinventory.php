@@ -4,6 +4,7 @@
         <link rel="stylesheet" href="../styles/inventario.css">
         <title>Inventario</title>
         <?php include ('header.html');?>
+        
     </head>
     <body>
         <div id="inv-cons" class="consultar">
@@ -24,6 +25,7 @@
                         <th>Edit</th>
                         <th>Delete</th>
                     </tr>
+                    
                 </table>
             </div>
         </div>
