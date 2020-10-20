@@ -20,7 +20,7 @@
                 <input type="button" id="consult_group2" name="consult_group2" value="agrupar">
                 <input type="button" id="consult_add" name="consult_add" value="agregar">
             </div>
-            <div>
+            <div id="div-table">
                 <table id="cons-table">
                     <tr id="cons-tr-table">
                         <th>Nombre</th>

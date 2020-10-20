@@ -9,13 +9,32 @@ class tableButton{
         this.buttonMod = buttonMod;
     }
 
-    delete(tableRow,cont){
+    buttons(idObjeto,cont,editId,delId,tableId){
 
-        $("#boton-edificioPlanta").click(function(e){
-            e.preventDefault();
+        $("#"+delId).click(function(e){
+            var option = confirm("¿Seguro que desea eliminar el objeto "+tableRow[cont].Nombre+"?");
+            if(option){
+                
+                
+                $.post('inventario/PHP/deleteconsinventory.php',{idObjeto} ,function(response){
+                    console.log(tableId);
+                    $('#'+tableId).remove(); 
+               
+                });
+                
+                
+                
+            }
+           
+        });
+
+        $("#"+editId).click(function(e){
+            
+            console.log(tableRow[cont].Nombre);
            
         });
     }
+    
 }
 
 
@@ -35,9 +54,9 @@ function tables(){
             cons.forEach(task => {
                 tableRow[cont] = new tableButton(`${task.idObjeto}`,`${task.Nombre}`,`${task.descripcion}`,null,null);
                 
-                template = `<tr>
+                template = `<tr id=table${task.idObjeto}>
                             <th>${task.Nombre}</th>
-                            <th>${task.descripcion}</th>
+                            <th>${task.Descripcion}</th>
                             <th>syu</th>
                             <th>${task.lastMant}</th>
                             <th>${task.nextMant}</th>
@@ -45,12 +64,13 @@ function tables(){
                             <th><button id=delete${task.idObjeto}>Delete</button></th>
                             </tr>
                             `
+                tableId = "table"+tableRow[cont].idObjeto;
                 editId = "edit"+tableRow[cont].idObjeto;
                 delId = "delete"+tableRow[cont].idObjeto;
-                console.log(editId);
-                console.log(delId);
+                //console.log(editId);
+                //console.log(delId);
                 $('#cons-table').append(template);
-                tableRow[cont].delete();
+                tableRow[cont].buttons(tableRow[cont].idObjeto,cont,editId,delId,tableId);
                 cont++;
             })
         }
@@ -58,3 +78,5 @@ function tables(){
 
     });
 }
+
+tables();
