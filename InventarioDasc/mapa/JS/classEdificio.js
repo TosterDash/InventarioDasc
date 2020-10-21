@@ -34,7 +34,7 @@ class Edificio {
             if(option){
                 var idEdificio = edificiosArray[cont].idEdificio;
                 var op = "edificio";
-                $.post('PHP/deletePoly.php',{idEdificio,op} ,function(response){
+                $.post('mapa/PHP/deletePoly.php',{idEdificio,op} ,function(response){
                     console.log(response);
                     alert("Se ha eliminado el poligono correctamente");
                     $(location).attr('href','editMap.php');

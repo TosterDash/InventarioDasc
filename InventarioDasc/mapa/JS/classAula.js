@@ -37,7 +37,7 @@ class Aula{
             if(option){
                 var idAula = aulasArray[cont].idAula;
                 var op = "aula";
-                $.post('PHP/deletePoly.php',{idAula,op} ,function(response){
+                $.post('.../mapa/PHP/deletePoly.php',{idAula,op} ,function(response){
                     console.log(response);
                     alert("Se ha eliminado el poligono correctamente");
                     $(location).attr('href','editMap.php');

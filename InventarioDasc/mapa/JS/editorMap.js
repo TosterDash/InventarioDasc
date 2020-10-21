@@ -224,7 +224,7 @@ function verificar(seleccion,nombreMap,plantaMap,edificioMap){
                 }else{
                     switch(seleccion){
                         case "edificio":
-                            $.post('PHP/insertPoly.php',{nombreMap,seleccion,xyCoord} ,function(response){
+                            $.post('mapa/PHP/insertPoly.php',{nombreMap,seleccion,xyCoord} ,function(response){
                                 console.log(response);
                                 alert("Se ha insertado el edificio correctamente");
                                 $(location).attr('href','editMap.php');
@@ -234,7 +234,7 @@ function verificar(seleccion,nombreMap,plantaMap,edificioMap){
                         break;
                 
                         case "aula":
-                            $.post('PHP/insertPoly.php',{seleccion,plantaMap,edificioMap,nombreMap,xyCoord} ,function(response){
+                            $.post('mapa/PHP/insertPoly.php',{seleccion,plantaMap,edificioMap,nombreMap,xyCoord} ,function(response){
                                 console.log(response);
                                 alert("Se ha insertado el aula correctamente");
                                 $(location).attr('href','editMap.php');
@@ -274,7 +274,7 @@ function verificar(seleccion,nombreMap,plantaMap,edificioMap){
 function getEdificios(mapUabcs){
 	//Ajax traer datos de edificio, en cuanto se inicia este script se ejecuta este pedazo de codigo, haciendo que se guarden los edificios en un arreglo
 	$.ajax({
-		url: 'PHP/getEdificios.php',
+		url: 'mapa/PHP/getEdificios.php',
 		type: 'GET',
 		success: function(response){
 			
@@ -311,7 +311,7 @@ function getEdificios(mapUabcs){
 
 function getAula(mapUabcs) {
     $.ajax({
-		url: 'PHP/getAula.php',
+		url: 'mapa/PHP/getAula.php',
 		type: 'GET',
 		success: function(response){
 			

@@ -96,9 +96,9 @@
             
             </div>
         </div>
-        <script src="JS/classAula.js"></script>
-        <script src="JS/classEdificio.js"></script>
-        <script src="JS/editorMap.js"></script>
+        <script src="mapa/JS/classAula.js"></script>
+        <script src="mapa/JS/classEdificio.js"></script>
+        <script src="mapa/JS/editorMap.js"></script>
         
     </div>
 </body>
