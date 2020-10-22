@@ -1,6 +1,9 @@
 <?php 
     include ('conexion.php');
-    $result = mysqli_query($conexion, "SELECT * from objeto");
+
+    $cons = $_POST["cons"];
+
+    $result = mysqli_query($conexion, "SELECT * from objeto where Nombre LIKE '%$cons%' ");
 
     $json = array();
 

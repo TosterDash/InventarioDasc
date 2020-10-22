@@ -2,8 +2,11 @@
     <head>
         <link rel="stylesheet" href="../styles/normalize.css">
         <link rel="stylesheet" href="../styles/inventario.css">
+        <link rel="stylesheet" href="alertify/css/alertify.css">
         <title>Inventario</title>
         <?php include ('header.html');?>
+        
+        <script src="alertify/alertify.js"></script>
         <script src="Jquery/Jquery.js"></script>
         <script src="inventario/JS/consinventory.js"></script>
         
@@ -14,7 +17,8 @@
                 <input type="text" id="consult_search" name="consult_search">
                 <input type="button" id="consult_group1" name="consult_group1" value="agrupar">
                 <input type="button" id="consult_group2" name="consult_group2" value="agrupar">
-                <input type="button" id="button" name="consult_add" value="agregar">
+                <input type="button" id="consult_group3" name="consult_add" value="agregar">
+                
             </div>
             <div id="div-table">
                 <table id="cons-table">
