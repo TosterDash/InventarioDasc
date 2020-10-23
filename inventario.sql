@@ -2,10 +2,10 @@
 -- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 25-09-2020 a las 23:53:41
--- Versión del servidor: 10.4.13-MariaDB
--- Versión de PHP: 7.4.8
+-- Host: 127.0.0.1
+-- Generation Time: Oct 23, 2020 at 10:50 PM
+-- Server version: 10.4.14-MariaDB
+-- PHP Version: 7.4.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `inventario`
+-- Database: `inventario`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `aula`
+-- Table structure for table `aula`
 --
 
 CREATE TABLE `aula` (
@@ -43,7 +43,7 @@ CREATE TABLE `aula` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `aula`
+-- Dumping data for table `aula`
 --
 
 INSERT INTO `aula` (`idAula`, `idPlanta`, `idEdificio`, `nombreAula`, `x1`, `y1`, `x2`, `y2`, `x3`, `y3`, `x4`, `y4`) VALUES
@@ -59,7 +59,7 @@ INSERT INTO `aula` (`idAula`, `idPlanta`, `idEdificio`, `nombreAula`, `x1`, `y1`
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `aula_has_objeto`
+-- Table structure for table `aula_has_objeto`
 --
 
 CREATE TABLE `aula_has_objeto` (
@@ -71,7 +71,7 @@ CREATE TABLE `aula_has_objeto` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `edificio`
+-- Table structure for table `edificio`
 --
 
 CREATE TABLE `edificio` (
@@ -88,7 +88,7 @@ CREATE TABLE `edificio` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `edificio`
+-- Dumping data for table `edificio`
 --
 
 INSERT INTO `edificio` (`idEdificio`, `Nombre`, `x1`, `y1`, `x2`, `y2`, `x3`, `y3`, `x4`, `y4`) VALUES
@@ -98,7 +98,7 @@ INSERT INTO `edificio` (`idEdificio`, `Nombre`, `x1`, `y1`, `x2`, `y2`, `x3`, `y
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `objeto`
+-- Table structure for table `objeto`
 --
 
 CREATE TABLE `objeto` (
@@ -106,19 +106,31 @@ CREATE TABLE `objeto` (
   `Nombre` varchar(100) NOT NULL,
   `Descripcion` varchar(200) NOT NULL,
   `Cantidad` int(11) NOT NULL,
-  `lastMant` date NOT NULL,
-  `nextMant` date NOT NULL,
-  `mantResp` varchar(45) NOT NULL,
-  `idTipoCategoria` int(11) NOT NULL,
-  `idTipoEquipo` int(11) NOT NULL,
-  `idTipoHerramienta` int(11) NOT NULL,
-  `idTipoConsumible` int(11) NOT NULL
+  `lastMant` date DEFAULT NULL,
+  `nextMant` date DEFAULT NULL,
+  `mantResp` varchar(45) DEFAULT NULL,
+  `idTipoCategoria` int(11) DEFAULT NULL,
+  `idTipoEquipo` int(11) DEFAULT NULL,
+  `idTipoHerramienta` int(11) DEFAULT NULL,
+  `idTipoConsumible` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `objeto`
+--
+
+INSERT INTO `objeto` (`idObjeto`, `Nombre`, `Descripcion`, `Cantidad`, `lastMant`, `nextMant`, `mantResp`, `idTipoCategoria`, `idTipoEquipo`, `idTipoHerramienta`, `idTipoConsumible`) VALUES
+(35, 'aaaavvvaadata', 'aaaaa', 0, '0000-00-00', '0000-00-00', NULL, NULL, NULL, NULL, NULL),
+(36, 'dffffffffjjjjjjjj', 'jjjjjjjjjjjjjjjj', 0, '0000-00-00', '0000-00-00', NULL, NULL, NULL, NULL, NULL),
+(37, 'zzzzzzzzzzzaabbb', 'zzzzzzzzzzzzzzzzzzz', 0, '0000-00-00', '0000-00-00', NULL, NULL, NULL, NULL, NULL),
+(39, 'aaaaaaaaaasssssssss', 'dawdaw', 0, '0000-00-00', '0000-00-00', NULL, NULL, NULL, NULL, NULL),
+(40, 'bbbbbbbbbbbbb', 'bbbbbbbbbbb', 0, '0000-00-00', '0000-00-00', NULL, NULL, NULL, NULL, NULL),
+(41, 'cccccccccc', 'ccccccccccccccc', 0, '0000-00-00', '0000-00-00', NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `planta`
+-- Table structure for table `planta`
 --
 
 CREATE TABLE `planta` (
@@ -127,7 +139,7 @@ CREATE TABLE `planta` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `planta`
+-- Dumping data for table `planta`
 --
 
 INSERT INTO `planta` (`idPlanta`, `planta`) VALUES
@@ -137,7 +149,7 @@ INSERT INTO `planta` (`idPlanta`, `planta`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `prestamo`
+-- Table structure for table `prestamo`
 --
 
 CREATE TABLE `prestamo` (
@@ -150,7 +162,7 @@ CREATE TABLE `prestamo` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tipocategoria`
+-- Table structure for table `tipocategoria`
 --
 
 CREATE TABLE `tipocategoria` (
@@ -158,10 +170,17 @@ CREATE TABLE `tipocategoria` (
   `categoria` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `tipocategoria`
+--
+
+INSERT INTO `tipocategoria` (`idTipoCategoria`, `categoria`) VALUES
+(1, 'Herramienta');
+
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tipoconsumible`
+-- Table structure for table `tipoconsumible`
 --
 
 CREATE TABLE `tipoconsumible` (
@@ -169,10 +188,17 @@ CREATE TABLE `tipoconsumible` (
   `nombre` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `tipoconsumible`
+--
+
+INSERT INTO `tipoconsumible` (`idTipoConsumible`, `nombre`) VALUES
+(1, 'Tinta');
+
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tipoequipo`
+-- Table structure for table `tipoequipo`
 --
 
 CREATE TABLE `tipoequipo` (
@@ -183,7 +209,7 @@ CREATE TABLE `tipoequipo` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tipoherramienta`
+-- Table structure for table `tipoherramienta`
 --
 
 CREATE TABLE `tipoherramienta` (
@@ -194,7 +220,7 @@ CREATE TABLE `tipoherramienta` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `usuario`
+-- Table structure for table `usuario`
 --
 
 CREATE TABLE `usuario` (
@@ -204,18 +230,18 @@ CREATE TABLE `usuario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `usuario`
+-- Dumping data for table `usuario`
 --
 
 INSERT INTO `usuario` (`idUsuario`, `Nombre`, `Password`) VALUES
 (1, 'user', 'user');
 
 --
--- Índices para tablas volcadas
+-- Indexes for dumped tables
 --
 
 --
--- Indices de la tabla `aula`
+-- Indexes for table `aula`
 --
 ALTER TABLE `aula`
   ADD PRIMARY KEY (`idAula`),
@@ -223,7 +249,7 @@ ALTER TABLE `aula`
   ADD KEY `idEdificio` (`idEdificio`);
 
 --
--- Indices de la tabla `aula_has_objeto`
+-- Indexes for table `aula_has_objeto`
 --
 ALTER TABLE `aula_has_objeto`
   ADD PRIMARY KEY (`idAulaHasObjeto`),
@@ -231,13 +257,13 @@ ALTER TABLE `aula_has_objeto`
   ADD KEY `idObjeto` (`idObjeto`);
 
 --
--- Indices de la tabla `edificio`
+-- Indexes for table `edificio`
 --
 ALTER TABLE `edificio`
   ADD PRIMARY KEY (`idEdificio`);
 
 --
--- Indices de la tabla `objeto`
+-- Indexes for table `objeto`
 --
 ALTER TABLE `objeto`
   ADD PRIMARY KEY (`idObjeto`),
@@ -247,138 +273,138 @@ ALTER TABLE `objeto`
   ADD KEY `idTipoHerramienta` (`idTipoHerramienta`);
 
 --
--- Indices de la tabla `planta`
+-- Indexes for table `planta`
 --
 ALTER TABLE `planta`
   ADD PRIMARY KEY (`idPlanta`);
 
 --
--- Indices de la tabla `prestamo`
+-- Indexes for table `prestamo`
 --
 ALTER TABLE `prestamo`
   ADD PRIMARY KEY (`idPrestamo`),
   ADD KEY `idObjeto1` (`idObjeto`);
 
 --
--- Indices de la tabla `tipocategoria`
+-- Indexes for table `tipocategoria`
 --
 ALTER TABLE `tipocategoria`
   ADD PRIMARY KEY (`idTipoCategoria`);
 
 --
--- Indices de la tabla `tipoconsumible`
+-- Indexes for table `tipoconsumible`
 --
 ALTER TABLE `tipoconsumible`
   ADD PRIMARY KEY (`idTipoConsumible`);
 
 --
--- Indices de la tabla `tipoequipo`
+-- Indexes for table `tipoequipo`
 --
 ALTER TABLE `tipoequipo`
   ADD PRIMARY KEY (`idTipoEquipo`);
 
 --
--- Indices de la tabla `tipoherramienta`
+-- Indexes for table `tipoherramienta`
 --
 ALTER TABLE `tipoherramienta`
   ADD PRIMARY KEY (`idTipoHerramienta`);
 
 --
--- Indices de la tabla `usuario`
+-- Indexes for table `usuario`
 --
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`idUsuario`);
 
 --
--- AUTO_INCREMENT de las tablas volcadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de la tabla `aula`
+-- AUTO_INCREMENT for table `aula`
 --
 ALTER TABLE `aula`
   MODIFY `idAula` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
--- AUTO_INCREMENT de la tabla `aula_has_objeto`
+-- AUTO_INCREMENT for table `aula_has_objeto`
 --
 ALTER TABLE `aula_has_objeto`
   MODIFY `idAulaHasObjeto` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `edificio`
+-- AUTO_INCREMENT for table `edificio`
 --
 ALTER TABLE `edificio`
-  MODIFY `idEdificio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `idEdificio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
--- AUTO_INCREMENT de la tabla `objeto`
+-- AUTO_INCREMENT for table `objeto`
 --
 ALTER TABLE `objeto`
-  MODIFY `idObjeto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `idObjeto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
--- AUTO_INCREMENT de la tabla `planta`
+-- AUTO_INCREMENT for table `planta`
 --
 ALTER TABLE `planta`
   MODIFY `idPlanta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT de la tabla `prestamo`
+-- AUTO_INCREMENT for table `prestamo`
 --
 ALTER TABLE `prestamo`
   MODIFY `idPrestamo` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `tipocategoria`
+-- AUTO_INCREMENT for table `tipocategoria`
 --
 ALTER TABLE `tipocategoria`
-  MODIFY `idTipoCategoria` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idTipoCategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT de la tabla `tipoconsumible`
+-- AUTO_INCREMENT for table `tipoconsumible`
 --
 ALTER TABLE `tipoconsumible`
-  MODIFY `idTipoConsumible` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idTipoConsumible` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT de la tabla `tipoequipo`
+-- AUTO_INCREMENT for table `tipoequipo`
 --
 ALTER TABLE `tipoequipo`
   MODIFY `idTipoEquipo` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `tipoherramienta`
+-- AUTO_INCREMENT for table `tipoherramienta`
 --
 ALTER TABLE `tipoherramienta`
   MODIFY `idTipoHerramienta` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `usuario`
+-- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
   MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- Restricciones para tablas volcadas
+-- Constraints for dumped tables
 --
 
 --
--- Filtros para la tabla `aula`
+-- Constraints for table `aula`
 --
 ALTER TABLE `aula`
   ADD CONSTRAINT `idEdificio` FOREIGN KEY (`idEdificio`) REFERENCES `edificio` (`idEdificio`),
   ADD CONSTRAINT `idPlanta` FOREIGN KEY (`idPlanta`) REFERENCES `planta` (`idPlanta`);
 
 --
--- Filtros para la tabla `aula_has_objeto`
+-- Constraints for table `aula_has_objeto`
 --
 ALTER TABLE `aula_has_objeto`
   ADD CONSTRAINT `idAula` FOREIGN KEY (`idAula`) REFERENCES `aula` (`idAula`),
   ADD CONSTRAINT `idObjeto` FOREIGN KEY (`idObjeto`) REFERENCES `objeto` (`idObjeto`);
 
 --
--- Filtros para la tabla `objeto`
+-- Constraints for table `objeto`
 --
 ALTER TABLE `objeto`
   ADD CONSTRAINT `idTipoCategoria` FOREIGN KEY (`idTipoCategoria`) REFERENCES `tipocategoria` (`idTipoCategoria`),
@@ -387,13 +413,11 @@ ALTER TABLE `objeto`
   ADD CONSTRAINT `idTipoHerramienta` FOREIGN KEY (`idTipoHerramienta`) REFERENCES `tipoherramienta` (`idTipoHerramienta`);
 
 --
--- Filtros para la tabla `prestamo`
+-- Constraints for table `prestamo`
 --
 ALTER TABLE `prestamo`
   ADD CONSTRAINT `idObjeto1` FOREIGN KEY (`idObjeto`) REFERENCES `objeto` (`idObjeto`);
 COMMIT;
-
-
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
