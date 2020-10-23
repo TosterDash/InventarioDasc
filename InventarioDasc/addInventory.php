@@ -23,10 +23,10 @@
     <h1 id="title">INVENTARIO</h1>
     <div class="basic-form-container">
         <div class="add-container form-format selector">
-            <select id="tipoObjeto">
+            <select id="tipo_objeto">
                 <option value="selecciona">--Selecciona--</option>
-                <option value="impresora">Equipo</option>
-                <option value="computador">Consumible</option>
+                <option value="Equipo">Equipo</option>
+                <option value="Consumible">Consumible</option>
             </select>
         </div>
         <div class="add-container form-format cons">
@@ -53,7 +53,7 @@
             </div>
         </div>
         <div class="add-container form-format equip">
-            <input type="checkbox" id="mantCB" name="mant" value="Mantenimiento" onclick="mantForm.style.display = this.checked ? 'block' : 'none';">
+            <input type="checkbox" id="mantCB" name="mant" value=false>
             <label for="name">Mantenimiento:</label><br>
             <input type="checkbox" id="prestCB" name="prest" value="Prestamo">
             <label for="name">Disponible para prestamo:</label><br>
