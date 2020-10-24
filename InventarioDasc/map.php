@@ -48,15 +48,6 @@ describir cada método
 </head>
 <body>
 	<!--MENU Y BARRA DE BUSQUEDA-->
-	<div id="search-field-burger-menu" class="search-field-burger-menu">
-			<button id="burger-button" class="burger-button">
-				-
-			</button>
-			<div class="burger-menu">
-				dg
-			</div>
-	</div>
-	<div id="burger-menu-panel"></div>
 	<div class="master-box">
 		<!--CAJA DEL MENÚ-->
 		<div class="info-box center-text" >
