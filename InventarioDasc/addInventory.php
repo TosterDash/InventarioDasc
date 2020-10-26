@@ -31,11 +31,11 @@
         </div>
         <div class="add-container form-format cons">
             <label>Nombre</label>
-            <input type="text" class="input" id="name-form">
+            <input type="text" class="input" id="name-form-cons">
             <label>Descripción</label>
-            <input type="text" class="input" id="desc-form">
+            <input type="text" class="input" id="desc-form-cons">
             <label>Cantidad</label>
-            <input type="text" class="input" id="cant-form">
+            <input type="text" class="input" id="cant-form-cons">
         </div>
         <div class="add-container equip">
             <div class="form-container form-format">
@@ -47,9 +47,9 @@
                     <option value="cañon">Cañón</option>
                 </select>
                 <label>Nombre</label>
-                <input type="text" class="input" id="name">
+                <input type="text" class="input" id="name-form-equip">
                 <label>Descripción</label>
-                <input type="text" class="input" id="desc">
+                <input type="text" class="input" id="desc-form-equip">
             </div>
         </div>
         <div class="add-container form-format equip">
@@ -61,11 +61,11 @@
         <div class="add-container form-format mant equip" id="mantForm" >
             <div class="form-container">
                 <label>Responsable</label>
-                <input type="text" class="input" id="resp">
+                <input type="text" class="input" id="resp-form">
                 <label>Último mantenimiento</label>
-                <input type="datetime-local" class="input" id="lastMant" name="lastMant">
+                <input type="datetime-local" class="input" id="lastMant-form" name="lastMant">
                 <label>Siguiente mantenimiento</label>
-                <input type="datetime-local" class="input" id="nextMant", name="nextMant">
+                <input type="datetime-local" class="input" id="nextMant-form", name="nextMant">
             </div>
         </div>
         <div>
@@ -75,7 +75,7 @@
         </div>
         <div>
             <button id="inv-add-cancel">Cancelar</button>
-            <button value="Agregar" id="inv-add-add">Agregar</button>
+            <button value="Agregar" id="inv-add-btn">Agregar</button>
         </div>
     </div>
 </body>

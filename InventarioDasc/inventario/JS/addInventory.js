@@ -15,9 +15,28 @@ $(document).ready(function(){
     })
 
     $('#mantCB').on('change',function(){
-        console.log("ASD");
         mantForm.style.display = this.checked ? 'block' : 'none';
     });
+
+    $(document).on('click', '#inv-add-btn',function(){
+        var value = $('#tipo_objeto').val();
+
+        if(value ==  "Equipo"){
+            var category = $('#catalogue').val();
+            var name = $('#name-form-equip').val();
+            var desc = $('#desc-form-equip').val();
+            var resp = $('#resp-form').val();
+            var lastMant = $('#lastMant-form').val();
+            var nextMant = $('#nextMant-form').val();
+            $.post('inventario/PHP/addinventory.php',{value, category, name, desc, resp, lastMant, nextMant} ,function(response){});
+        }else if(value ==  "Consumible"){
+            var name = $('#name-form-equip').val();
+            var desc = $('#desc-form-equip').val();
+            var cant = $('#cant-form-cons').val();
+            $.post('inventario/PHP/addinventory.php',{value, name, desc, cant} ,function(response){});
+        }
+    })
+
 })
 
 
