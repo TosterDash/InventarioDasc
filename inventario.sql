@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 23, 2020 at 10:50 PM
+-- Generation Time: Oct 26, 2020 at 04:54 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -109,23 +109,20 @@ CREATE TABLE `objeto` (
   `lastMant` date DEFAULT NULL,
   `nextMant` date DEFAULT NULL,
   `mantResp` varchar(45) DEFAULT NULL,
-  `idTipoCategoria` int(11) DEFAULT NULL,
-  `idTipoEquipo` int(11) DEFAULT NULL,
-  `idTipoHerramienta` int(11) DEFAULT NULL,
-  `idTipoConsumible` int(11) DEFAULT NULL
+  `idTipoCategoria` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `objeto`
 --
 
-INSERT INTO `objeto` (`idObjeto`, `Nombre`, `Descripcion`, `Cantidad`, `lastMant`, `nextMant`, `mantResp`, `idTipoCategoria`, `idTipoEquipo`, `idTipoHerramienta`, `idTipoConsumible`) VALUES
-(35, 'aaaavvvaadata', 'aaaaa', 0, '0000-00-00', '0000-00-00', NULL, NULL, NULL, NULL, NULL),
-(36, 'dffffffffjjjjjjjj', 'jjjjjjjjjjjjjjjj', 0, '0000-00-00', '0000-00-00', NULL, NULL, NULL, NULL, NULL),
-(37, 'zzzzzzzzzzzaabbb', 'zzzzzzzzzzzzzzzzzzz', 0, '0000-00-00', '0000-00-00', NULL, NULL, NULL, NULL, NULL),
-(39, 'aaaaaaaaaasssssssss', 'dawdaw', 0, '0000-00-00', '0000-00-00', NULL, NULL, NULL, NULL, NULL),
-(40, 'bbbbbbbbbbbbb', 'bbbbbbbbbbb', 0, '0000-00-00', '0000-00-00', NULL, NULL, NULL, NULL, NULL),
-(41, 'cccccccccc', 'ccccccccccccccc', 0, '0000-00-00', '0000-00-00', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `objeto` (`idObjeto`, `Nombre`, `Descripcion`, `Cantidad`, `lastMant`, `nextMant`, `mantResp`, `idTipoCategoria`) VALUES
+(35, 'aaaavvvaadata', 'aaaaa', 0, '0000-00-00', '0000-00-00', NULL, NULL),
+(36, 'dffffffffjjjjjjjj', 'jjjjjjjjjjjjjjjj', 0, '0000-00-00', '0000-00-00', NULL, NULL),
+(37, 'zzzzzzzzzzzaabbb', 'zzzzzzzzzzzzzzzzzzz', 0, '0000-00-00', '0000-00-00', NULL, NULL),
+(39, 'aaaaaaaaaasssssssss', 'dawdaw', 0, '0000-00-00', '0000-00-00', NULL, NULL),
+(40, 'bbbbbbbbbbbbb', 'bbbbbbbbbbb', 0, '0000-00-00', '0000-00-00', NULL, NULL),
+(41, 'cccccccccc', 'ccccccccccccccc', 0, '0000-00-00', '0000-00-00', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -180,46 +177,6 @@ INSERT INTO `tipocategoria` (`idTipoCategoria`, `categoria`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tipoconsumible`
---
-
-CREATE TABLE `tipoconsumible` (
-  `idTipoConsumible` int(11) NOT NULL,
-  `nombre` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tipoconsumible`
---
-
-INSERT INTO `tipoconsumible` (`idTipoConsumible`, `nombre`) VALUES
-(1, 'Tinta');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tipoequipo`
---
-
-CREATE TABLE `tipoequipo` (
-  `idTipoEquipo` int(11) NOT NULL,
-  `nombre` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tipoherramienta`
---
-
-CREATE TABLE `tipoherramienta` (
-  `idTipoHerramienta` int(11) NOT NULL,
-  `nombre` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `usuario`
 --
 
@@ -267,10 +224,7 @@ ALTER TABLE `edificio`
 --
 ALTER TABLE `objeto`
   ADD PRIMARY KEY (`idObjeto`),
-  ADD KEY `idTipoCategoria` (`idTipoCategoria`),
-  ADD KEY `idTipoConsumible` (`idTipoConsumible`),
-  ADD KEY `idTipoEquipo` (`idTipoEquipo`),
-  ADD KEY `idTipoHerramienta` (`idTipoHerramienta`);
+  ADD KEY `idTipoCategoria` (`idTipoCategoria`);
 
 --
 -- Indexes for table `planta`
@@ -290,24 +244,6 @@ ALTER TABLE `prestamo`
 --
 ALTER TABLE `tipocategoria`
   ADD PRIMARY KEY (`idTipoCategoria`);
-
---
--- Indexes for table `tipoconsumible`
---
-ALTER TABLE `tipoconsumible`
-  ADD PRIMARY KEY (`idTipoConsumible`);
-
---
--- Indexes for table `tipoequipo`
---
-ALTER TABLE `tipoequipo`
-  ADD PRIMARY KEY (`idTipoEquipo`);
-
---
--- Indexes for table `tipoherramienta`
---
-ALTER TABLE `tipoherramienta`
-  ADD PRIMARY KEY (`idTipoHerramienta`);
 
 --
 -- Indexes for table `usuario`
@@ -362,24 +298,6 @@ ALTER TABLE `tipocategoria`
   MODIFY `idTipoCategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `tipoconsumible`
---
-ALTER TABLE `tipoconsumible`
-  MODIFY `idTipoConsumible` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `tipoequipo`
---
-ALTER TABLE `tipoequipo`
-  MODIFY `idTipoEquipo` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `tipoherramienta`
---
-ALTER TABLE `tipoherramienta`
-  MODIFY `idTipoHerramienta` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
@@ -407,10 +325,7 @@ ALTER TABLE `aula_has_objeto`
 -- Constraints for table `objeto`
 --
 ALTER TABLE `objeto`
-  ADD CONSTRAINT `idTipoCategoria` FOREIGN KEY (`idTipoCategoria`) REFERENCES `tipocategoria` (`idTipoCategoria`),
-  ADD CONSTRAINT `idTipoConsumible` FOREIGN KEY (`idTipoConsumible`) REFERENCES `tipoconsumible` (`idTipoConsumible`),
-  ADD CONSTRAINT `idTipoEquipo` FOREIGN KEY (`idTipoEquipo`) REFERENCES `tipoequipo` (`idTipoEquipo`),
-  ADD CONSTRAINT `idTipoHerramienta` FOREIGN KEY (`idTipoHerramienta`) REFERENCES `tipoherramienta` (`idTipoHerramienta`);
+  ADD CONSTRAINT `idTipoCategoria` FOREIGN KEY (`idTipoCategoria`) REFERENCES `tipocategoria` (`idTipoCategoria`);
 
 --
 -- Constraints for table `prestamo`
