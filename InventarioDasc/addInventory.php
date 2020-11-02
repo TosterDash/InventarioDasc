@@ -20,129 +20,66 @@
 </head>
 
 <body>
+     <!--Forma para agregar a inventario-->
     <h1 id="title">INVENTARIO</h1>
     <div class="basic-form-container">
         <div class="add-container form-format selector">
-            <select id="tipo_objeto">
+            <select id="tipo_objeto"><!--Combo box para definir si el objeto es equipo o Consumible-->
                 <option value="selecciona">--Selecciona--</option>
                 <option value="Equipo">Equipo</option>
                 <option value="Consumible">Consumible</option>
             </select>
         </div>
-        <div class="add-container form-format cons">
-            <label>Nombre</label>
+        <div class="add-container form-format cons"><!--Si el objeto es de tipo consumible-->
+            <label>Nombre</label><!--Nombre del objeto-->
             <input type="text" class="input" id="name-form-cons">
-            <label>Descripción</label>
+            <label>Descripción</label><!--Descripcion del objeto-->
             <input type="text" class="input" id="desc-form-cons">
-            <label>Cantidad</label>
+            <label>Cantidad</label><!--Cantidad del ojeto-->
             <input type="text" class="input" id="cant-form-cons">
         </div>
-        <div class="add-container equip">
+        <div class="add-container equip"><!--Si el objeto es de tipo equipo-->
             <div class="form-container form-format">
                 <label>Selecciona categoría</label>
-                <select name="catalogue" id="catalogue">
+                <select name="catalogue" id="catalogue"><!--Selecciona que tipo de equipo es-->
                     <option value="selecciona">--Selecciona--</option>
                     <option value="impresora">Impresora</option>
                     <option value="computador">Computador</option>
                     <option value="cañon">Cañón</option>
                 </select>
-                <label>Nombre</label>
+                <label>Nombre</label><!--Nombre del objeto-->
                 <input type="text" class="input" id="name-form-equip">
-                <label>Descripción</label>
+                <label>Descripción</label><!--Descripcion del objeto-->
                 <input type="text" class="input" id="desc-form-equip">
             </div>
         </div>
         <div class="add-container form-format equip">
             <input type="checkbox" id="mantCB" name="mant" value=false>
-            <label for="name">Mantenimiento:</label><br>
+            <label for="name">Mantenimiento:</label><br><!--Selecciona si requiere mantenimiento-->
             <input type="checkbox" id="prestCB" name="prest" value="Prestamo">
-            <label for="name">Disponible para prestamo:</label><br>
+            <label for="name">Disponible para prestamo:</label><br><!--Selecciona si puede ser prestado-->
         </div>
-        <div class="add-container form-format mant equip" id="mantForm" >
+        <div class="add-container form-format mant equip" id="mantForm" ><!--Si requiere mantenimiento-->
             <div class="form-container">
-                <label>Responsable</label>
+                <label>Responsable</label><!--Quien es el responsable del mantenimiento-->
                 <input type="text" class="input" id="resp-form">
-                <label>Último mantenimiento</label>
+                <label>Último mantenimiento</label><!--Cuando fue el ultimo (o primer) mantenimiento-->
                 <input type="datetime-local" class="input" id="lastMant-form" name="lastMant">
-                <label>Siguiente mantenimiento</label>
+                <label>Siguiente mantenimiento</label><!--Cuando sera el siguiente mantenimiento-->
                 <input type="datetime-local" class="input" id="nextMant-form", name="nextMant">
             </div>
         </div>
         <div>
             <label for="name">Imagen del articulo:</label><br>
-            <img src="" alt="">
+            <img src="" alt=""><!--Selecciona la imagen del articulo-->
             <input type="file" name="item_file" id="item_file">
         </div>
         <div>
-            <button id="inv-add-cancel">Cancelar</button>
-            <button value="Agregar" id="inv-add-btn">Agregar</button>
+            <button id="inv-add-cancel">Cancelar</button><!--Boton para cancelar la adicion del articulo-->
+            <button value="Agregar" id="inv-add-btn">Agregar</button><!--Boton para agregar el articulo-->
         </div>
     </div>
 </body>
 
-<?php
-     if(isset($_POST["name"])){
-        $nombre = $_POST["name"];
-    }
-
-    if(isset($_POST["desc"])){
-        $desc = $_POST["desc"];
-    }
-
-    if(isset($_POST["catalogue"])){
-        $tipo = $_POST["catalogue"];
-    }
-    
-    if(isset($_POST['mant'])){
-        $mant = true;
-    }else{
-        $mant = false;
-    }
-
-    if(isset($_POST['prest'])){
-        //$stok is checked and value = 1
-        $prest = true;
-
-    }else{
-        //$stok is nog checked and value=0
-        $prest = false;
-    }
-
-    if(isset($_POST["lastMant"])){
-        $lastMant = $_POST["lastMant"];
-    }
-
-    if(isset($_POST["nextMant"])){
-        $nextMant = $_POST["nextMant"];
-    }
-
-    if(isset($_POST["item_file"])){
-        $imagen = $_POST["item_file"];
-    }
-
-    function select(){
-        if($_POST['tipoObjeto']='Equipo'){
-            echo '<style type="text/css">
-                    .equip{
-                        display: block;
-                    }
-
-                    .cons{
-                        display: none;
-                    }
-                </style>';
-        }else if($_POST['tipoObjeto']='Consumible'){
-            echo '<style type="text/css">
-            .equip{
-                display: none;
-            }
-
-            .cons{
-                display: block;
-            }
-        </style>';
-        }
-    }
-?> 
 
 </html>

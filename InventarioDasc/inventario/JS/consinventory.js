@@ -1,6 +1,7 @@
 $(document).ready(function(){
     var tableRow = [];
     class tableClass{
+        //Declaracion de variables
         constructor(idObjeto,delId,editId,filaId,nombre,descripcion,nextMant,lastMant){
             this.idObjeto = idObjeto,
             this.delId = delId,
@@ -13,7 +14,7 @@ $(document).ready(function(){
             this.flagEdit = false;
         }   
 
-        deleteButton(){
+        deleteButton(){//Logica del boton delete
             var nombre = this.nombre;
             var filaId = this.filaId;
             var deleteId = this.delId;
@@ -31,7 +32,7 @@ $(document).ready(function(){
             
         }
 
-        editButton(){
+        editButton(){//Logica del boton edit
             var flagEdit = this.flagEdit;
             var nombre = this.nombre;
             var des = this.descripcion;

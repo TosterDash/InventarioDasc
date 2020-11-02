@@ -1,13 +1,14 @@
 <?php 
+    //Conectar a la base de datos
     include ('conexion.php');
 
     $cons = $_POST["cons"];
-
+    //Crear consulta
     $result = mysqli_query($conexion, "SELECT * from objeto where Nombre LIKE '%$cons%' ");
-
+    //Crear json
     $json = array();
-
-    while($row = mysqli_fetch_array($result)){
+    //Realizar consulta
+    while($row = mysqli_fetch_array($result)){//Mientras tu variable fila este dentro de la cantidad de registros de consulta
         $json []= array(
             'idObjeto' => $row['idObjeto'],
             'Nombre' => $row['Nombre'],

@@ -151,6 +151,8 @@ INSERT INTO `planta` (`idPlanta`, `planta`) VALUES
 
 CREATE TABLE `prestamo` (
   `idPrestamo` int(11) NOT NULL,
+  `edificio` varchar(45) NOT NULL,
+  `aula` varchar(45) NOT NULL,
   `exitDate` date NOT NULL,
   `returnDate` date NOT NULL,
   `idObjeto` int(11) NOT NULL
@@ -337,3 +339,4 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
