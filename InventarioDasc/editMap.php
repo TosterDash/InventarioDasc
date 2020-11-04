@@ -84,10 +84,7 @@
 
                     <!--BOTON ACEPTAR-->
                     <input type="submit" name="" id="boton-edificioPlanta" value="Insertar Poligono">
-
-                    
             </form> 
-
         </div>
         <!--CAJA DEL MAPA-->
         

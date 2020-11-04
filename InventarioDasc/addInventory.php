@@ -18,8 +18,7 @@
 
         <link rel="stylesheet" href="../styles/bootstrap.min.css">
         <link rel="stylesheet" href="../styles/normalize.css">
-        <link rel="stylesheet" href="../styles/inventory.css">
-        <link rel="stylesheet" href="../styles/generalStyle.css">
+        
         <link rel="stylesheet" href="alertify/css/alertify.css">
         <script src="alertify/alertify.js"></script>
         <script src="inventario/JS/addinventory.js"></script>
@@ -27,13 +26,13 @@
 
     <body>
         <form method="POST" id="formSend" enctype="multipart/form-data">
-        <div class="container d-flex justify-content-center">
+        <h1>AÑADIR INVENTARIO</h1>
+        <div class="container d-flex justify-content-center py-5">
                 <div class="row pr-5" id="col-1">
                     <div class="col-sm border">
                         <div id="col-1-content">
                             <label class="d-block">Tipo de clasificacion</label>
                             <select class="d-block form-control " name="col-1-combobox-category" id="col-1-combobox-clasification">
-                                
                             </select>
 
                             <label class="d-block">Tipo de producto</label>
@@ -90,7 +89,6 @@
 
                         </div>
                         
-                
                     </div>
                     <!-- TERCERA COLUMNA DE LA PAGINA -->
                     <div class="col-sm border">
