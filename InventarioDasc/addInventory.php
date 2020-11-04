@@ -17,8 +17,7 @@
         </script>
 
         <link rel="stylesheet" href="../styles/bootstrap.min.css">
-        <link rel="stylesheet" href="../styles/normalize.css">
-        
+        <link rel="stylesheet" href="../styles/normalize.css">        
         <link rel="stylesheet" href="alertify/css/alertify.css">
         <script src="alertify/alertify.js"></script>
         <script src="inventario/JS/addinventory.js"></script>
