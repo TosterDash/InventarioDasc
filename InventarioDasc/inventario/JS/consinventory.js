@@ -1,3 +1,4 @@
+/*
 $(document).ready(function(){
     var tableRow = [];
     class tableClass{
@@ -150,4 +151,203 @@ $(document).ready(function(){
 
 
 });
+*/
 
+$(document).ready(function(){
+    var rowArrayConsumible = [];
+    var rowArrayEquipo = [];
+    class rowTable{
+        constructor(idObjeto){
+            this.idObjeto = idObjeto;
+            //BOTON DELETE
+            $(document).on('click',"#delete"+idObjeto,function(){
+                console.log("boton delete: "+idObjeto);
+                var option = "delete";
+                $.ajax({
+                    url:"inventario/PHP/consinventory.php" ,
+                    type:"POST" ,
+                    data: {option,idObjeto},
+        
+                }).done(function(e){
+                    switch(e){
+        
+                        case "error":
+                            alertify.error("Error consInventory.PHP");
+                        break;
+        
+                        default:
+                            $('#fila'+idObjeto).remove();
+                            alertify.success("Se elimino la fila");
+                        break;
+                    }
+                }).fail(function(e){
+                    console.log("FALLO POST DE ELIMINAR ROW");
+                })
+            })
+            //BOTON EDITimg
+            $(document).on('click',"#editImg"+idObjeto,function(){
+                console.log("boton editImg: "+idObjeto);
+            })
+            //BOTON EDIT
+            $(document).on('click',"#edit"+idObjeto,function(){
+                console.log("boton edit: "+idObjeto);
+            })
+
+
+        }
+    }
+
+
+
+
+
+    //PRINCIPAL-----------------------------
+    $("#table-consumible").hide();
+    $("#table-equipo").hide();
+    getClasification();
+
+    $("#combobox-category").on('change',function(){
+        
+        switch($("#combobox-category").val()){
+            //1-EQUIPOS
+            case "1":
+                console.log("dawdaw");
+                getTableEquipo();
+            break;
+
+            case "2":
+            //2-CONSUMIBLES
+                console.log("dawdaw2");
+                getTableConsumible();
+            break;
+
+            default:
+                $("#table-consumible").hide();
+                $("#table-equipo").hide();
+            break;
+        }
+    })
+
+    //funciones----------------------------
+
+    function getClasification(){
+        //OPCION categoria PARA CATEGORIA
+        var option = "clasificacion";
+        //ajax para combobox clasificacion
+        $.ajax({
+            url:"inventario/PHP/consinventory.php" ,
+            type:"POST" ,
+            data: {option},
+
+        }).done(function(e){
+            switch(e){
+
+                case "error":
+                    alertify.error("Error consInventory.PHP-clasificacion");
+                break;
+
+                default:
+                    //console.log("succes");
+                    var category = JSON.parse(e);
+                    var template = `<option value="">--Mostrar por categoria--</option>`;
+                    category.forEach(task=>{
+                        template+= `<option value="${task.idClasificacion}">${task.clasificacion}</option>`
+                    })
+
+                    $("#combobox-category").html(template);
+                break;
+            }
+        }).fail(function(e){
+            console.log("FALLO POST DE GET CATEGORY");
+        })
+    }
+
+    function getTableConsumible(){
+        var option = "consumible";
+        $.ajax({
+            url: 'inventario/PHP/consinventory.php',
+            type: 'POST',
+            data: {option},
+            success: function(response){
+                var cons = JSON.parse(response);
+                console.log(cons);
+                var template = "";
+                var cont=0;
+                $("#table-equipo").hide();
+                $("#table-consumible").show();
+                cons.forEach(task =>{
+                    rowArrayConsumible[cont] = new rowTable(`${task.idObjeto}`);
+                    template += `<tr id="fila${task.idObjeto}">
+                                    <th><img height="70px" src="data:image/jpg;base64,${task.img}"/></th>
+                                    <th>${task.categoria}</th>
+                                    <th>${task.Nombre}</th>
+                                    <th>${task.Descripcion}</th>
+                                    <th>${task.Cantidad}</th>
+                                    <th>
+                                        <div class="btn-group btn-group-md">
+                                            <button type="button" class="btn btn-secondary" id="edit${task.idObjeto}">Editar</button>
+                                            <button type="button" class="btn btn-secondary" id="editImg${task.idObjeto}">Cambiar Imagen</button>
+                                            <button type="button" class="btn btn-danger" id="delete${task.idObjeto}">Eliminar</button>
+                                        </div>
+                                    </th>
+                                    
+                                </tr>`
+                            
+                    $('#tbody-consumible').html(template);
+                    
+                    
+
+                   
+                    
+                    
+                    cont++;
+                })
+            }
+        })
+    }
+
+    function getTableEquipo(){
+        var option = "equipo";
+        $.ajax({
+            url: 'inventario/PHP/consinventory.php',
+            type: 'POST',
+            data: {option},
+            success: function(response){
+                var cons = JSON.parse(response);
+                console.log(cons);
+                var template = "";
+                var cont=0;
+                $("#table-consumible").hide();
+                $("#table-equipo").show();
+                cons.forEach(task =>{
+                    rowArrayEquipo = new rowTable(`${task.idObjeto}`);
+                    template += `<tr id="fila${task.idObjeto}">
+                                    <th><img height="70px" src="data:image/jpg;base64,${task.img}"/></th>
+                                    <th>${task.categoria}</th>
+                                    <th>${task.Nombre}</th>
+                                    <th>${task.Descripcion}</th>
+                                    <th>${task.mantResp}</th>
+                                    <th>${task.lastMant}</th>
+                                    <th>${task.nextMant}</th>
+                                    <th>
+                                        <div class="btn-group btn-group-md">
+                                            <button type="button" class="btn btn-secondary" id="edit${task.idObjeto}">Editar</button>
+                                            <button type="button" class="btn btn-secondary" id="editImg${task.idObjeto}">Cambiar Imagen</button>
+                                            <button type="button" class="btn btn-danger" id="delete${task.idObjeto}">Eliminar</button>
+                                        </div>
+                                    </th>
+                                    
+                                </tr>`
+                    $('#tbody-equipo').html(template);
+                    
+                    
+
+                   
+                    
+                    
+                    cont++;
+                })
+            }
+        })
+    }
+});
