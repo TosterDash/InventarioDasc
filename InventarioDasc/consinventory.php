@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="../styles/bootstrap.min.css">
         <link rel="stylesheet" href="../styles/inventario.css">
         <link rel="stylesheet" href="alertify/css/alertify.css">
-        <title>Inventarioa</title>
+        <title>Inventario</title>
         <?php include ('header.html');?>
         
         

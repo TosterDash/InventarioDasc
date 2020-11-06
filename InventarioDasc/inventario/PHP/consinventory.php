@@ -86,6 +86,18 @@
             
         break;
 
+
+        //default siempre para las imagenes
+        default:
+            //Insertar imagen
+            $idObjeto = $_POST["idObjeto"];
+            $img = addslashes(file_get_contents($_FILES["img"]["tmp_name"]));
+            $mod = ("UPDATE objeto SET img = '$img' WHERE idObjeto = '$idObjeto'");
+            $result = mysqli_query($conexion,$mod);
+            
+            
+        break;
+
     }
 
 

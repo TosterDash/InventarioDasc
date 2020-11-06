@@ -191,37 +191,60 @@ $(document).ready(function(){
             })
             
             //flagEdit-para saber en que momento confirmar el edit
-            if(this.flagEdit){
-                switch(this.tipoEdit){
-                    case "editImg":
-
-                    break;
-
-                    default:
-                    break;
-                }
-
-            }else{
-                //ACCIONES EDITAR ------------------------------
+             //ACCIONES EDITAR ------------------------------
                 //imagen
                 $(document).on('click',"#editImg"+idObjeto,function(){
                     var templateImg = ` <form method="POST" id="formSend" enctype="multipart/form-data">
-                                        <input type="file" id="modImg`+idObjeto+`"></input>
-                                        <button type="submit" class="btn btn-success" id="confirmEdit`+idObjeto+`">Confirmar</button>
+                                        <input type="file" class="form-control-file" name="img"></input>
+                                        <button type="submit" class="btn btn-success" id="confirmEdit`+idObjeto+` name="confirmar">Confirmar</button>
                                         </form>`;
                     $("#img"+idObjeto).html(templateImg);
                     $("#option"+idObjeto).hide();
 
-                    flagEdit=true;
-                    tipoEdit = "editImg";
+                    $(document).on('submit',"#formSend",function(e){
+                        e.preventDefault();
+                        var form = document.querySelector('form');
+                        var formData = new FormData(form);
+                        formData.append("idObjeto",idObjeto);
+                        $.ajax({
+                            url: "inventario/PHP/consinventory.php",
+                            type: "POST",
+                            dataType: "HTML",
+                            data: formData,
+                            cache: false,
+                            contentType: false,
+                            processData: false
+                        }).done(function(img){
+                            alertify.success("Imagen Modificada");
+                            $("#option"+idObjeto).show();
+                            switch($("#combobox-category").val()){
+                                //1-EQUIPOS
+                                case "1":
+                                    
+                                    getTableEquipo();
+                                break;
+                    
+                                case "2":
+                                //2-CONSUMIBLES
+                                   
+                                    getTableConsumible();
+                                break;
+                    
+                            }
+                            
+                        });
+                    })
                 })
                 //producto
                 $(document).on('click',"#"+idObjeto,function(){
                     
                 })
                 //Nombre
-                $(document).on('click',"#"+idObjeto,function(){
-                    
+                $(document).on('click',"#nombre"+idObjeto,function(){
+                    var template = ` <input type="text" class="form-control" name="nom"></input>
+                                        <button type="submit" class="btn btn-success" id="confirmEdit`+idObjeto+` name="confirmar">Confirmar</button>`;
+                    $("#nombre"+idObjeto).html(template);
+                    $("#option"+idObjeto).hide();
                 })
                 //descripcion
                 $(document).on('click',"#"+idObjeto,function(){
@@ -243,10 +266,10 @@ $(document).ready(function(){
                 $(document).on('click',"#"+idObjeto,function(){
                     
                 })
-            }
-            
             
         }
+
+        
     }
 
 
@@ -282,6 +305,33 @@ $(document).ready(function(){
 
     //funciones----------------------------
 
+    function refresh(){
+    
+        $(document).off("submit",'#formSend');
+        for(var i = 0; i<rowArrayConsumible.length; i++){
+            $(document).off('click',"#delete"+rowArrayConsumible[i].idObjeto);
+            $(document).off('click',"#editImg"+rowArrayConsumible[i].idObjeto);
+            $(document).off('click',"#editProducto"+rowArrayConsumible[i].idObjeto);
+            $(document).off('click',"#editNombre"+rowArrayConsumible[i].idObjeto);
+            $(document).off('click',"#editDesc"+rowArrayConsumible[i].idObjeto);
+            $(document).off('click',"#editCant"+rowArrayConsumible[i].idObjeto);
+            $(document).off('click',"#editMantResp"+rowArrayConsumible[i].idObjeto);
+            $(document).off('click',"#editLastMant"+rowArrayConsumible[i].idObjeto);
+            $(document).off('click',"#editNextMant"+rowArrayConsumible[i].idObjeto);
+        }
+        for(var i = 0; i<rowArrayEquipo.length; i++){
+            $(document).off('click',"#delete"+rowArrayEquipo[i].idObjeto);
+            $(document).off('click',"#editImg"+rowArrayEquipo[i].idObjeto);
+            $(document).off('click',"#editProducto"+rowArrayEquipo[i].idObjeto);
+            $(document).off('click',"#editNombre"+rowArrayEquipo[i].idObjeto);
+            $(document).off('click',"#editDesc"+rowArrayEquipo[i].idObjeto);
+            $(document).off('click',"#editCant"+rowArrayEquipo[i].idObjeto);
+            $(document).off('click',"#editMantResp"+rowArrayEquipo[i].idObjeto);
+            $(document).off('click',"#editLastMant"+rowArrayEquipo[i].idObjeto);
+            $(document).off('click',"#editNextMant"+rowArrayEquipo[i].idObjeto);
+        }
+    }
+
     function getClasification(){
         //OPCION categoria PARA CATEGORIA
         var option = "clasificacion";
@@ -315,6 +365,7 @@ $(document).ready(function(){
     }
 
     function getTableConsumible(){
+        refresh();
         var option = "consumible";
         $.ajax({
             url: 'inventario/PHP/consinventory.php',
@@ -340,7 +391,7 @@ $(document).ready(function(){
                                             <button type="button" class="btn btn-danger" id="delete${task.idObjeto}">Eliminar</button>
                                             
                                             <div class="btn-group">
-                                                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" id="edit${task.idObjeto}">Editara</button>
+                                                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" id="edit${task.idObjeto}">Editar</button>
                                                 <div class="dropdown-menu">
                                                     <a class="dropdown-item" id="editImg${task.idObjeto}">Imagen</a>
                                                     <a class="dropdown-item" id="editProducto${task.idObjeto}">Producto</a>
@@ -368,6 +419,7 @@ $(document).ready(function(){
     }
 
     function getTableEquipo(){
+        refresh();
         var option = "equipo";
         $.ajax({
             url: 'inventario/PHP/consinventory.php',
@@ -381,22 +433,33 @@ $(document).ready(function(){
                 $("#table-consumible").hide();
                 $("#table-equipo").show();
                 cons.forEach(task =>{
-                    rowArrayEquipo[cont] = new rowTable(`${task.idObjeto}`);
+                    rowArrayEquipo[cont] = new rowTable(`${task.idObjeto}`,`${task.img}`);
                     template += `<tr id="fila${task.idObjeto}">
-                                    <th><img height="70px" src="data:image/jpg;base64,${task.img}"/></th>
-                                    <th>${task.categoria}</th>
-                                    <th>${task.Nombre}</th>
-                                    <th>${task.Descripcion}</th>
+                                    <th id="img${task.idObjeto}"><img height="70px" src="data:image/jpg;base64,${task.img}"/></th>
+                                    <th id="producto${task.idObjeto}">${task.categoria}</th>
+                                    <th id="nombre${task.idObjeto}">${task.Nombre}</th>
+                                    <th id="desc${task.idObjeto}">${task.Descripcion}</th>
                                     <th>${task.mantResp}</th>
                                     <th>${task.lastMant}</th>
                                     <th>${task.nextMant}</th>
-                                    <th>
-                                        <div class="btn-group btn-group-md">
-                                            <button type="button" class="btn btn-secondary" id="edit${task.idObjeto}">Editar</button>
-                                            <button type="button" class="btn btn-secondary" id="editImg${task.idObjeto}">Cambiar Imagen</button>
-                                            <button type="button" class="btn btn-danger" id="delete${task.idObjeto}">Eliminar</button>
-                                        </div>
-                                    </th>
+                                    <th id="option${task.idObjeto}">
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-danger" id="delete${task.idObjeto}">Eliminar</button>
+                                                
+                                                <div class="btn-group">
+                                                    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" id="edit${task.idObjeto}">Editar</button>
+                                                    <div class="dropdown-menu">
+                                                        <a class="dropdown-item" id="editImg${task.idObjeto}">Imagen</a>
+                                                        <a class="dropdown-item" id="editProducto${task.idObjeto}">Producto</a>
+                                                        <a class="dropdown-item" id="editNombre${task.idObjeto}">Nombre</a>
+                                                        <a class="dropdown-item" id="editDesc${task.idObjeto}">Descripcion</a>
+                                                        <a class="dropdown-item" id="editMantResp${task.idObjeto}">Responsable de mantenimiento</a>
+                                                        <a class="dropdown-item" id="editLastMant${task.idObjeto}">Ultimo mantenimiento</a>
+                                                        <a class="dropdown-item" id="editNextMant${task.idObjeto}">Siguiente mantenimiento</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </th>
                                     
                                 </tr>`
                     $('#tbody-equipo').html(template);
