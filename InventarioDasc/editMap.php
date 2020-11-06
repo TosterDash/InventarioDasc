@@ -9,16 +9,14 @@
 	<!-- /<script src="sketch.js"></script> -->
     <!--JQUERY SCRIPT REFRESCAR PAGINA-->
     <script
-      src="https://code.jquery.com/jquery-3.5.1.js"
-      integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-      crossorigin="anonymous">
+    src="Jquery/Jquery.js">
     </script>
-	
-	<!--MAP RESOURCES-->
-	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="crossorigin=""/>
-	<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="crossorigin=""></script>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.css"/>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.js"></script>
+    <script src="../styles/popper.js"></script>
+    <script src="../styles/bootstrap-4.5.3-dist/css/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../styles/bootstrap-4.5.3-dist/css/bootstrap.min.css">
+    <script 
+        src="../styles/bootstrap-4.5.3-dist/js/bootstrap.min.js">
+    </script>
     
 	<!--SITE STYLE SHEETS-->
 	<link rel="stylesheet" href="../styles/normalize.css">

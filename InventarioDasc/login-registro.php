@@ -22,12 +22,15 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--JQUERY SCRIPT REFRESCAR PAGINA-->
-	<script
-	  src="https://code.jquery.com/jquery-3.5.1.js"
-	  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-	  crossorigin="anonymous">
-	</script>
-
+    <script
+    src="Jquery/Jquery.js">
+    </script>
+    <script src="../styles/popper.js"></script>
+    <script src="../styles/bootstrap-4.5.3-dist/css/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../styles/bootstrap-4.5.3-dist/css/bootstrap.min.css">
+    <script 
+        src="../styles/bootstrap-4.5.3-dist/js/bootstrap.min.js">
+    </script>
 	<!--SITE STYLE SHEETS-->
 	<link rel="stylesheet" href="../styles/login.css">
 	<link rel="stylesheet" href="../styles/normalize.css">
