@@ -6,11 +6,14 @@
         <link rel="stylesheet" href="../styles/bootstrap.min.css">
         <link rel="stylesheet" href="../styles/inventario.css">
         <link rel="stylesheet" href="alertify/css/alertify.css">
-        <title>Inventario</title>
+        <title>Inventarioa</title>
         <?php include ('header.html');?>
+        
         
         <script src="alertify/alertify.js"></script>
         <script src="Jquery/Jquery.js"></script>
+        <script src="../styles/popper.js"></script>
+        <script src="../styles/bootstrap.min.js"></script>
         <script src="inventario/JS/consinventory.js"></script>
         
     </head>
@@ -18,7 +21,7 @@
         <div id="inv-cons" class="consultar"><!--Realizar la consulta-->
             <div><!--Barra de busqueda y filtros-->
                 <input type="text" id="consult_search" name="consult_search">
-                <select  name="combobox-category" id="combobox-category">
+                <select  class="" name="combobox-category" id="combobox-category">
                 </select>
                 
             

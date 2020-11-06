@@ -157,9 +157,14 @@ $(document).ready(function(){
     var rowArrayConsumible = [];
     var rowArrayEquipo = [];
     class rowTable{
-        constructor(idObjeto){
+        constructor(idObjeto, img){
             this.idObjeto = idObjeto;
-            //BOTON DELETE
+            this.img = img;
+            this.flagEdit = false;
+            //tipoEdit es para validar si es la imagen que se va a editar, ya que imagen se necesita otras cosas para procesarse
+            this.tipoEdit = "";
+            
+            //BOTON DELETE-----------------------------------
             $(document).on('click',"#delete"+idObjeto,function(){
                 console.log("boton delete: "+idObjeto);
                 var option = "delete";
@@ -184,16 +189,63 @@ $(document).ready(function(){
                     console.log("FALLO POST DE ELIMINAR ROW");
                 })
             })
-            //BOTON EDITimg
-            $(document).on('click',"#editImg"+idObjeto,function(){
-                console.log("boton editImg: "+idObjeto);
-            })
-            //BOTON EDIT
-            $(document).on('click',"#edit"+idObjeto,function(){
-                console.log("boton edit: "+idObjeto);
-            })
+            
+            //flagEdit-para saber en que momento confirmar el edit
+            if(this.flagEdit){
+                switch(this.tipoEdit){
+                    case "editImg":
 
+                    break;
 
+                    default:
+                    break;
+                }
+
+            }else{
+                //ACCIONES EDITAR ------------------------------
+                //imagen
+                $(document).on('click',"#editImg"+idObjeto,function(){
+                    var templateImg = ` <form method="POST" id="formSend" enctype="multipart/form-data">
+                                        <input type="file" id="modImg`+idObjeto+`"></input>
+                                        <button type="submit" class="btn btn-success" id="confirmEdit`+idObjeto+`">Confirmar</button>
+                                        </form>`;
+                    $("#img"+idObjeto).html(templateImg);
+                    $("#option"+idObjeto).hide();
+
+                    flagEdit=true;
+                    tipoEdit = "editImg";
+                })
+                //producto
+                $(document).on('click',"#"+idObjeto,function(){
+                    
+                })
+                //Nombre
+                $(document).on('click',"#"+idObjeto,function(){
+                    
+                })
+                //descripcion
+                $(document).on('click',"#"+idObjeto,function(){
+                    
+                })
+                //cantidad
+                $(document).on('click',"#"+idObjeto,function(){
+                    
+                })
+                //LastMant
+                $(document).on('click',"#"+idObjeto,function(){
+                    
+                })
+                //NextMant
+                $(document).on('click',"#"+idObjeto,function(){
+                    
+                })
+                //mantResp
+                $(document).on('click',"#"+idObjeto,function(){
+                    
+                })
+            }
+            
+            
         }
     }
 
@@ -243,7 +295,7 @@ $(document).ready(function(){
             switch(e){
 
                 case "error":
-                    alertify.error("Error consInventory.PHP-clasificacion");
+                    alertify.error("Error consInventory.PHP");
                 break;
 
                 default:
@@ -276,18 +328,27 @@ $(document).ready(function(){
                 $("#table-equipo").hide();
                 $("#table-consumible").show();
                 cons.forEach(task =>{
-                    rowArrayConsumible[cont] = new rowTable(`${task.idObjeto}`);
+                    rowArrayConsumible[cont] = new rowTable(`${task.idObjeto}`,`${task.img}`);
                     template += `<tr id="fila${task.idObjeto}">
-                                    <th><img height="70px" src="data:image/jpg;base64,${task.img}"/></th>
-                                    <th>${task.categoria}</th>
-                                    <th>${task.Nombre}</th>
-                                    <th>${task.Descripcion}</th>
-                                    <th>${task.Cantidad}</th>
-                                    <th>
-                                        <div class="btn-group btn-group-md">
-                                            <button type="button" class="btn btn-secondary" id="edit${task.idObjeto}">Editar</button>
-                                            <button type="button" class="btn btn-secondary" id="editImg${task.idObjeto}">Cambiar Imagen</button>
+                                    <th id="img${task.idObjeto}"><img height="70px" src="data:image/jpg;base64,${task.img}"/></th>
+                                    <th id="producto${task.idObjeto}">${task.categoria}</th>
+                                    <th id="nombre${task.idObjeto}">${task.Nombre}</th>
+                                    <th id="desc${task.idObjeto}">${task.Descripcion}</th>
+                                    <th id="cant${task.idObjeto}">${task.Cantidad}</th>
+                                    <th id="option${task.idObjeto}">
+                                        <div class="btn-group">
                                             <button type="button" class="btn btn-danger" id="delete${task.idObjeto}">Eliminar</button>
+                                            
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" id="edit${task.idObjeto}">Editara</button>
+                                                <div class="dropdown-menu">
+                                                    <a class="dropdown-item" id="editImg${task.idObjeto}">Imagen</a>
+                                                    <a class="dropdown-item" id="editProducto${task.idObjeto}">Producto</a>
+                                                    <a class="dropdown-item" id="editNombre${task.idObjeto}">Nombre</a>
+                                                    <a class="dropdown-item" id="editDesc${task.idObjeto}">Descripcion</a>
+                                                    <a class="dropdown-item" id="editCant${task.idObjeto}">Cantidad</a>
+                                                </div>
+                                            </div>
                                         </div>
                                     </th>
                                     
@@ -320,7 +381,7 @@ $(document).ready(function(){
                 $("#table-consumible").hide();
                 $("#table-equipo").show();
                 cons.forEach(task =>{
-                    rowArrayEquipo = new rowTable(`${task.idObjeto}`);
+                    rowArrayEquipo[cont] = new rowTable(`${task.idObjeto}`);
                     template += `<tr id="fila${task.idObjeto}">
                                     <th><img height="70px" src="data:image/jpg;base64,${task.img}"/></th>
                                     <th>${task.categoria}</th>
