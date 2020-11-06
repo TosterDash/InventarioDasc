@@ -1,8 +1,4 @@
 <html>
-    
-
-    
-    
     <title>AÑADIR ARTICULO | Inventario</title>
 <head>
 
