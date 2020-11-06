@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <?php include ('header.html');?>
     <!--P5 LIBRARY-->
 	
 	<!-- /<script src="sketch.js"></script> -->
@@ -23,7 +23,6 @@
     <link rel="stylesheet" href="../styles/editMapStyle.css">
     
     <title>AÑADIR AL MAPA</title>
-    <?php include ('header.html');?>
 </head>
 <body>
     <div class="master-box">

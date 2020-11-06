@@ -2,13 +2,12 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <?php include ('header.html');?>
         <link rel="stylesheet" href="../styles/normalize.css">
         <link rel="stylesheet" href="../styles/bootstrap.min.css">
         <link rel="stylesheet" href="../styles/inventario.css">
         <link rel="stylesheet" href="alertify/css/alertify.css">
         <title>Inventarioa</title>
-        <?php include ('header.html');?>
-        
         
         <script src="alertify/alertify.js"></script>
                <script

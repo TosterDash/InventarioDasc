@@ -18,6 +18,8 @@
 <html lang="en">
 <html>
 	<title>LOGIN|REGISTRO</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <?php include ('header.html');?>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -35,7 +37,6 @@
 	<link rel="stylesheet" href="../styles/login.css">
 	<link rel="stylesheet" href="../styles/normalize.css">
 <head>
-<?php include ('header.html');?>
 </head>
 
 <body>
