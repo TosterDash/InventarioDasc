@@ -7,13 +7,7 @@
         <link rel="stylesheet" href="../styles/bootstrap.min.css">
         <link rel="stylesheet" href="../styles/inventario.css">
         <link rel="stylesheet" href="alertify/css/alertify.css">
-<<<<<<< HEAD
-        <title>Inventario</title>
-        <?php include ('header.html');?>
-        
-=======
         <title>Inventarioa</title>
->>>>>>> 83c481d6a382085714c09d59032bce3d65be4aec
         
         <script src="alertify/alertify.js"></script>
                <script
