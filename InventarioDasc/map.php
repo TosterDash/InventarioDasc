@@ -23,7 +23,8 @@ describir cada método
 	<title>MAPA</title>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <?php include ('header.html');?>
 	<!--JQUERY SCRIPT REFRESCAR PAGINA-->
     <script
     src="Jquery/Jquery.js">
@@ -46,9 +47,7 @@ describir cada método
 	<link rel="stylesheet" href="../styles/headerFooterStyle.css">
 	<link rel="stylesheet" href="../styles/normalize.css">
 	<link rel="stylesheet" href="../styles/mapPageStyle.css">
-	
 <head>
-	<?php include ('header.html');?>
 </head>
 <body>
 	<!--MENU Y BARRA DE BUSQUEDA-->
