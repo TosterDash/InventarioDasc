@@ -76,6 +76,33 @@
             
         break;
 
+        case "updateFileEquipo":
+            //Crear consulta
+            $idObjeto = $_POST['idObjeto'];
+            $result = mysqli_query($conexion, "SELECT `objeto`.* , `tipocategoria`.`categoria` from objeto, tipocategoria where  `objeto`.`idTipoClasificacion` = 1 and `tipocategoria`.`idTipocategoria` = `objeto`.`idTipocategoria` and `objeto`.`idObjeto`= '$idObjeto' ");
+            if(!$result){
+                echo die("error");     
+            }else{
+                //Crear json
+                $json = array();
+                //Realizar consulta
+                while($row = mysqli_fetch_array($result)){//Mientras tu variable fila este dentro de la cantidad de registros de consulta
+                    $json []= array(
+                        'idObjeto' => $row['idObjeto'],
+                        'Nombre' => $row['Nombre'],
+                        'Descripcion' => $row['Descripcion'],
+                        'lastMant' => $row['lastMant'],
+                        'nextMant' => $row['nextMant'],
+                        'mantResp' => $row['mantResp'],
+                        'categoria' => $row['categoria'],
+                        'img' => base64_encode($row['img']),
+                    );
+                }
+                $jsonstring = json_encode($json);
+                echo $jsonstring;
+            }
+        break;
+
         case "delete":
             //Crear consulta delete
             $idObjeto = $_POST['idObjeto'];
@@ -86,6 +113,16 @@
             
         break;
 
+        case "editNombre":
+            $idObjeto = $_POST['idObjeto'];
+            $valEditNombre = $_POST['valEditNombre'];
+            $mod = ("UPDATE objeto SET Nombre = '$valEditNombre' WHERE idObjeto = '$idObjeto'");
+            $result = mysqli_query($conexion,$mod);
+            if(!$result){
+                echo die("error");
+            }
+        break;
+
 
         //default siempre para las imagenes
         default:
@@ -94,7 +131,9 @@
             $img = addslashes(file_get_contents($_FILES["img"]["tmp_name"]));
             $mod = ("UPDATE objeto SET img = '$img' WHERE idObjeto = '$idObjeto'");
             $result = mysqli_query($conexion,$mod);
-            
+            if(!$result){
+                echo die("error");
+            }
             
         break;
 
