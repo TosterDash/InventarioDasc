@@ -41,11 +41,10 @@ if(!isset($_SESSION['nombre']))
     <li data-target="#demo" data-slide-to="1"></li>
     <li data-target="#demo" data-slide-to="2"></li>
   </ul>
-
   <div>
   	<!-- The slideshow -->
-	  <div class="carousel-inner img-slider">
-	    <div class="carousel-item active">
+	  <div class="carousel-inner">
+	    <div class="carousel-item active img-slider">
 	      <img src="../resources/campus_mapa.jpg" alt="Campus UABCS">
 	    </div>
 	    <div class="carousel-item">
