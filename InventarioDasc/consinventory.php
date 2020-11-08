@@ -30,12 +30,18 @@
             <div>
                 <!--Barra de busqueda-->
                 <nav class="navbar ">
-                  <form class="form-inline" action="/action_page.php">
-                    <input class="form-control mr-sm-2" type="text" placeholder="Search">
-                    <button class="btn btn-success" type="submit">Search</button>
-                  </form>
+                  <div class="form-inline">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search" id="search">
+                    <button class="btn btn-success" type="button">Search</button>
+                  </div>
+                <label>Buscar por:</label>
+                <select class="" name="combobox-category" id="combobox-search">
+                    <option values="Nombre">Nombre</option>
+                    <option values="Descripcion">Descripción</option>
+                </select>
+                <label>Mostrar por:</label>
                 <select  class="" name="combobox-category" id="combobox-category">
-                    </select>
+                </select>
                 </nav>
                 <!--Barra de busqueda-->
                 

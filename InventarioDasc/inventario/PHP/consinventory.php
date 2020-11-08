@@ -218,6 +218,29 @@
             
         break;
 
+        case "search":
+            $option = $_POST['option'];
+            $buscarPor = $_POST['buscarPor'];
+            $stringSearch = $_POST['stringSearch'];
+            $select = ("SELECT `objeto`.`idObjeto` from objeto where `objeto`. `$buscarPor` LIKE '%$stringSearch%' ");
+            $result = mysqli_query($conexion,$select);
+            if(!$result){
+                echo die("error");
+            }else{
+                //Crear json
+                $json = array();
+                //Realizar consulta
+                while($row = mysqli_fetch_array($result)){//Mientras tu variable fila este dentro de la cantidad de registros de consulta
+                    $json []= array(
+                        'idObjeto' => $row['idObjeto'],
+                    );
+                }
+                $jsonstring = json_encode($json);
+                echo $jsonstring;
+            }
+
+        break;
+
 
         //default siempre para las imagenes
         default:

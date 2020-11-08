@@ -12,8 +12,7 @@ $(document).ready(function(){
     getTableEquipo(rutaAjax);
     getTableConsumible(rutaAjax);
     getComboboxCategory( "combobox-category",rutaAjax, optionComboboxClasificacion);
-    $("#table-consumible").hide();
-    $("#table-equipo").hide();
+
 
     $("#combobox-category").on('change',function(){
         
@@ -33,10 +32,14 @@ $(document).ready(function(){
             break;
 
             default:
-                $("#table-consumible").hide();
-                $("#table-equipo").hide();
+                $("#table-consumible").show();
+                $("#table-equipo").show();
             break;
         }
+    })
+
+    $("#search").on('keyup',function(){
+        search(rutaAjax);
     })
 
     //CLASES---------------------------
@@ -403,7 +406,7 @@ $(document).ready(function(){
                 default:
                     var jsonInfo = JSON.parse(e);
                    
-                    var template = `<option value="">--Mostrar por categoria--</option>`;
+                    var template = `<option value="">--seleccionar--</option>`;
 
                     jsonInfo.forEach(task=>{
                         
@@ -642,6 +645,49 @@ $(document).ready(function(){
                 })
             }
         })
+    }
+
+    function search(rutaAjax){
+        var option = "search";
+        var buscarPor = $("#combobox-search").val();
+        var stringSearch = $("#search").val();
+        console.log(stringSearch);
+
+        if(stringSearch==""){
+            for(var i = 0; i<rowTableEquipo.length; i++){
+                $("#fila"+rowTableEquipo[i].idObjeto).show();
+            }
+            for(var i = 0; i<rowTableConsumible.length; i++){
+                $("#fila"+rowTableConsumible[i].idObjeto).show();
+            }
+        }else{
+            for(var i = 0; i<rowTableEquipo.length; i++){
+                $("#fila"+rowTableEquipo[i].idObjeto).hide();
+            }
+            for(var i = 0; i<rowTableConsumible.length; i++){
+                $("#fila"+rowTableConsumible[i].idObjeto).hide();
+            }
+            $.ajax({
+                url: rutaAjax,
+                type: 'POST',
+                data: {option, buscarPor, stringSearch},
+                success: function(response){
+                    console.log(response);
+                    var cons = JSON.parse(response);
+                    
+                    
+                    cons.forEach(task =>{
+                        $("#fila"+task.idObjeto).show();
+                    })
+                }
+            })
+
+        }
+
+
+
+
+        
     }
 
 
