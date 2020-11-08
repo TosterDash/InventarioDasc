@@ -5,8 +5,9 @@
         <?php include ('header.html');?>
         <link rel="stylesheet" href="../styles/normalize.css">
         <link rel="stylesheet" href="../styles/bootstrap.min.css">
-        <link rel="stylesheet" href="../styles/inventario.css">
+        <link rel="stylesheet" href="../styles/inventory.css">
         <link rel="stylesheet" href="alertify/css/alertify.css">
+        <link rel="stylesheet" href="../styles/generalStyle.css">
         <title>Inventario</title>
         
         <script src="alertify/alertify.js"></script>
@@ -24,30 +25,34 @@
     </head>
 
     <body>
+        <h1 id="title" class="center-title">CONSULTAR INVENTARIO</h1>
         <div id="inv-cons" class="consultar"><!--Realizar la consulta-->
             
             <!--Barra de busqueda y filtros-->
             <div>
                 <!--Barra de busqueda-->
-                <nav class="navbar ">
-                  <div class="form-inline">
-                    <input class="form-control mr-sm-2" type="text" placeholder="Search" id="search">
-                    <button class="btn btn-success" type="button">Search</button>
-                  </div>
-                <label>Buscar por:</label>
-                <select class="" name="combobox-category" id="combobox-search">
-                    <option values="Nombre">Nombre</option>
-                    <option values="Descripcion">Descripción</option>
-                </select>
-                <label>Mostrar por:</label>
-                <select  class="" name="combobox-category" id="combobox-category">
-                </select>
+                <nav class="nav-style">
+                    <div>
+                        <label>Buscar por:</label>
+                        <select class="round-border" name="combobox-category" id="combobox-search">
+                            <option values="Nombre">Nombre</option>
+                            <option values="Descripcion">Descripción</option>
+                        </select>
+                    </div>
+                
+                <div class="form-inline">
+                    <img class="icon-size" src="../resources/icons/search_icon.png">
+                    <input  class="round-border" type="text" placeholder="Search" id="search">
+                </div>
+                <div>
+                    <label>Mostrar por:</label>
+                    <select  class="round-border" 
+                    name="combobox-category" id="combobox-category">
+                    </select>
+                </div>
+                
                 </nav>
                 <!--Barra de busqueda-->
-                
-                
-            
-                
             </div>
             <div id="div-table"><!--Tabla de consulta-->
                 <table id="table-consumible" class="table">

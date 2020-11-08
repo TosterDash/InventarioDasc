@@ -21,7 +21,7 @@
 </head>
 
 <body>
-    <h1 id="title">AÑADIR INVENTARIO</h1>
+    <h1 id="title" class="center-title">AÑADIR INVENTARIO</h1>
    <form method="POST" id="formSend" enctype="multipart/form-data">
     <div class="container d-flex justify-content-center py-5">
         <!-- PRIMERA COLUMNA DE LA PAGINA -->

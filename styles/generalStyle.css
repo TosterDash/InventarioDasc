@@ -15,19 +15,38 @@ a.link-button{
 	color: black;
 }
 
-.cntrTitle{
+.center-title{
 	text-align:center;
+	margin-top:2%;
+	margin-bottom:2%;
+}
+
+.round-border{
+	border-radius:8px;
+	border:1px solid #AAAAAA;
+	padding: 0.5%;
+}
+
+.transparent-btn{
+	background-color: transparent;
+	border-color: transparent;
+}
+
+.icon-size{
+	width: 32px;
+	height: 32px;
 }
 
 /*Styles for forms*/
 
 /*first div*/
+/*
 .basic-form-container{
 	display: flex;
 	flex-direction: row;
 }
 
-/*div where the form is*/
+div where the form is
 .form-container{
 	display: flex;
 	flex-direction: column;
@@ -52,3 +71,4 @@ a.link-button{
 .submit-btns {
 
 }
+*/

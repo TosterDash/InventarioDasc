@@ -17,4 +17,22 @@
     height: 50vh;
 }
 
+.nav-style{
+	position: relative;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	margin: 1% 0 1% 15%;
+	
+}
+
+.nav-style div{
+	width: 30%;
+}
+
+
+
+
+/*CONS INVENTORY PART*/
+
 
