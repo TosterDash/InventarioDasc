@@ -22,12 +22,23 @@
         <script src="inventario/JS/consinventory.js"></script>
         
     </head>
+
     <body>
         <div id="inv-cons" class="consultar"><!--Realizar la consulta-->
-            <div><!--Barra de busqueda y filtros-->
-                <input type="text" id="consult_search" name="consult_search">
+            
+            <!--Barra de busqueda y filtros-->
+            <div>
+                <!--Barra de busqueda-->
+                <nav class="navbar ">
+                  <form class="form-inline" action="/action_page.php">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                    <button class="btn btn-success" type="submit">Search</button>
+                  </form>
                 <select  class="" name="combobox-category" id="combobox-category">
-                </select>
+                    </select>
+                </nav>
+                <!--Barra de busqueda-->
+                
                 
             
                 

@@ -1,36 +1,20 @@
-#title{
-    text-align: center;
+/*.divex{
+    display: flex;
 }
 
-.add-container{
-    width: 30%;
-    margin-left: 5%;
+.row{
+    border-style: solid;
+    border-width: 5px;
+    flex:1;
 }
 
-.header_list li{
-    display: inline;
+.content-flex{
+    flex: 1;
+}
+*/
+
+.personalized-h{
+    height: 50vh;
 }
 
-.inv_list{
-    margin: 0 auto;
-    margin-right: 0;
-    margin-top: 20%;
-    padding: 0;
-    text-align: center;
-    vertical-align: middle;
-}
 
-.inv_list li{
-    display: inline;
-    margin: 25px;
-   
-}
-.equip{
-}
-
-.cons{
-}
-.mant{
-    display: none;
-}
-/*ADD INVENTORY PAGE*/
