@@ -5,9 +5,13 @@ $(document).ready(function(){
     rowTableConsumible = [];
     //ruta predeterminada para los POST o GET de consinventory.php
     var rutaAjax = "inventario/PHP/consinventory.php";
-
+    //opcion para obtener combobox al .php
+    var optionComboboxClasificacion = "clasificacion";
+    var optionComboboxProducto = "producto";
     //codigo principal-----------------
-    getComboboxCategory( "combobox-category",rutaAjax);
+    getTableEquipo(rutaAjax);
+    getTableConsumible(rutaAjax);
+    getComboboxCategory( "combobox-category",rutaAjax, optionComboboxClasificacion);
     $("#table-consumible").hide();
     $("#table-equipo").hide();
 
@@ -16,14 +20,16 @@ $(document).ready(function(){
         switch($("#combobox-category").val()){
             //1-EQUIPOS
             case "1":
-              
-                getTableEquipo(rutaAjax);
+                $("#table-consumible").hide();
+                $("#table-equipo").show();
+                
             break;
 
             case "2":
             //2-CONSUMIBLES
-               
-                getTableConsumible();
+                $("#table-consumible").show();
+                $("#table-equipo").hide();
+                
             break;
 
             default:
@@ -71,20 +77,20 @@ $(document).ready(function(){
             var idObjeto = this.idObjeto;
             $(document).on('click',"#editImg"+idObjeto,function(){
                 
-                var templateImg = ` <form method="POST" id="formSend" enctype="multipart/form-data">
+                var templateImg = ` <form method="POST" id="formSend`+idObjeto+`" enctype="multipart/form-data">
                                     <input type="file" class="form-control-file" name="img"></input>
                                     <button type="submit" class="btn btn-success" id="confirmEdit`+idObjeto+` name="confirmar">Confirmar</button>
                                     </form>`;
                 $("#img"+idObjeto).html(templateImg);
                 $("#option"+idObjeto).hide();
 
-                $(document).on('submit',"#formSend",function(e){
+                $(document).on('submit',"#formSend"+idObjeto,function(e){
                     e.preventDefault();
                     var form = document.querySelector('form');
                     var formData = new FormData(form);
                     formData.append("idObjeto",idObjeto);
                     $.ajax({
-                        url: "inventario/PHP/consinventory.php",
+                        url: rutaAjax,
                         type: "POST",
                         dataType: "HTML",
                         data: formData,
@@ -98,14 +104,14 @@ $(document).ready(function(){
                             //1-EQUIPOS
                             case "1":
                                 updateFileEquipo(rutaAjax,idObjeto);
-                                //getTableEquipo();
+                                
                                
                             break;
                 
                             case "2":
                             //2-CONSUMIBLES
-                               
-                                //getTableConsumible();
+                                updateFileConsumible(rutaAjax,idObjeto);
+                                
                             break;
                 
                         }
@@ -114,20 +120,257 @@ $(document).ready(function(){
                 })
             })
         }
-        editCategoria(){
+        editCategoria(rutaAjax){
+            var idObjeto = this.idObjeto;
+            $(document).on('click',"#editCategoria"+idObjeto,function(){
+                var template = ` <form method="POST" id="formSend`+idObjeto+`">
+                                    <select class="form-control-file" name="editInput" id="editInput"></select>
+                                    <button type="submit" class="btn btn-success" id="confirmEdit`+idObjeto+` name="confirmar">Confirmar</button>
+                                    </form>`;
+                $("#categoria"+idObjeto).html(template);
+                $("#option"+idObjeto).hide();
+                getComboboxCategory( "editInput",rutaAjax, optionComboboxProducto);
+                $(document).on('submit',"#formSend"+idObjeto,function(e){
+                    e.preventDefault();
+                    var form = document.querySelector('form');
+                    var formData = new FormData(form);
+                    formData.append("idObjeto",idObjeto);
+                    formData.append("option","editCategoria");
+                    $.ajax({
+                        url: rutaAjax,
+                        type: "POST",
+                        dataType: "HTML",
+                        data: formData,
+                        cache: false,
+                        contentType: false,
+                        processData: false
+                    }).done(function(img){
+                        alertify.success("Categoria Modificada");
+                        $("#option"+idObjeto).show();
+                        switch($("#combobox-category").val()){
+                            //1-EQUIPOS
+                            case "1":
+                                updateFileEquipo(rutaAjax,idObjeto);
+                               
+                               
+                            break;
+                
+                            case "2":
+                            //2-CONSUMIBLES
+                                updateFileConsumible(rutaAjax,idObjeto);
+                                
+                            break;
+                
+                        }
+                        
+                    });
+                })
+            })
+        }
+        editNombre(rutaAjax){
+            var idObjeto = this.idObjeto;
+            
+            $(document).on('click',"#editNombre"+idObjeto,function(){
+                console.log("-.-------------------------");
+                var template = ` <form method="POST" id="formSend`+idObjeto+`">
+                                    <input type="text" class="form-control-file" name="editInput" id="editInput" required></input>
+                                    <button type="submit" class="btn btn-success" id="confirmEdit`+idObjeto+` name="confirmar">Confirmar</button>
+                                    </form>`;
+                $("#nombre"+idObjeto).html(template);
+                $("#option"+idObjeto).hide();
+                $(document).on('submit',"#formSend"+idObjeto,function(e){
+                    e.preventDefault();
+                    var form = document.querySelector('form');
+                    var formData = new FormData(form);
+                    formData.append("idObjeto",idObjeto);
+                    formData.append("option","editNombre");
+                    $.ajax({
+                        url: rutaAjax,
+                        type: "POST",
+                        dataType: "HTML",
+                        data: formData,
+                        cache: false,
+                        contentType: false,
+                        processData: false
+                    }).done(function(img){
+                        alertify.success("Nombre Modificado");
+                        $("#option"+idObjeto).show();
+                        switch($("#combobox-category").val()){
+                            //1-EQUIPOS
+                            case "1":
+                                updateFileEquipo(rutaAjax,idObjeto);
+                                
+                               
+                            break;
+                
+                            case "2":
+                            //2-CONSUMIBLES
+                                updateFileConsumible(rutaAjax,idObjeto);
+                                
+                            break;
+                
+                        }
+                        
+                    });
+                })
+            })
             
         }
-        editNombre(){
-
+        editDescripcion(rutaAjax){
+            var idObjeto = this.idObjeto;
+            
+            $(document).on('click',"#editDescripcion"+idObjeto,function(){
+           
+                var template = ` <form method="POST" id="formSend`+idObjeto+`">
+                                    <input type="text" class="form-control-file" name="editInput" id="editInput" required></input>
+                                    <button type="submit" class="btn btn-success" id="confirmEdit`+idObjeto+` name="confirmar">Confirmar</button>
+                                    </form>`;
+                $("#descripcion"+idObjeto).html(template);
+                $("#option"+idObjeto).hide();
+                $(document).on('submit',"#formSend"+idObjeto,function(e){
+                    e.preventDefault();
+                    console.log("aaaaaaaaazzzz");
+                    var form = document.querySelector('form');
+                    var formData = new FormData(form);
+                    formData.append("idObjeto",idObjeto);
+                    formData.append("option","editDescripcion");
+                    $.ajax({
+                        url: rutaAjax,
+                        type: "POST",
+                        dataType: "HTML",
+                        data: formData,
+                        cache: false,
+                        contentType: false,
+                        processData: false
+                    }).done(function(img){
+                        alertify.success("Descripcion Modificada");
+                        $("#option"+idObjeto).show();
+                        switch($("#combobox-category").val()){
+                            //1-EQUIPOS
+                            case "1":
+                                updateFileEquipo(rutaAjax,idObjeto);
+                                
+                            break;
+                
+                            case "2":
+                            //2-CONSUMIBLES
+                                updateFileConsumible(rutaAjax,idObjeto);
+                                
+                            break;
+                
+                        }
+                        
+                    });
+                })
+            })
         }
-        editDescripcion(){
-
+        editCantidad(rutaAjax){
+            var idObjeto = this.idObjeto;
+            
+            $(document).on('click',"#editCantidad"+idObjeto,function(){
+           
+                var template = ` <form method="POST" id="formSend`+idObjeto+`">
+                                    <input type="number" class="form-control-file" name="editInput" id="editInput" required></input>
+                                    <button type="submit" class="btn btn-success" id="confirmEdit`+idObjeto+` name="confirmar">Confirmar</button>
+                                    </form>`;
+                $("#cantidad"+idObjeto).html(template);
+                $("#option"+idObjeto).hide();
+                $(document).on('submit',"#formSend"+idObjeto,function(e){
+                    e.preventDefault();
+                    
+                    var form = document.querySelector('form');
+                    var formData = new FormData(form);
+                    formData.append("idObjeto",idObjeto);
+                    formData.append("option","editCantidad");
+                    $.ajax({
+                        url: rutaAjax,
+                        type: "POST",
+                        dataType: "HTML",
+                        data: formData,
+                        cache: false,
+                        contentType: false,
+                        processData: false
+                    }).done(function(img){
+                        alertify.success("Cantidad Modificada");
+                        $("#option"+idObjeto).show();
+                        switch($("#combobox-category").val()){
+                            //1-EQUIPOS
+                            case "1":
+                                updateFileEquipo(rutaAjax,idObjeto);
+                                
+                            break;
+                
+                            case "2":
+                            //2-CONSUMIBLES
+                                updateFileConsumible(rutaAjax,idObjeto);
+                                
+                            break;
+                
+                        }
+                        
+                    });
+                })
+            })
         }
-        editCantidad(){
-
-        }
-        editMantenimiento(){
-
+        editMantenimiento(rutaAjax){
+            var idObjeto = this.idObjeto;
+            
+            $(document).on('click',"#editMantenimiento"+idObjeto,function(){
+                console.log("-.-------------------------");
+                var template = `<form method="POST" id="formSend`+idObjeto+`">
+                                    <input type="text" class="form-control-file" name="editInput" id="editInput" required></input>
+                                    <button type="submit" class="btn btn-success" id="confirmEdit`+idObjeto+` name="confirmar">Confirmar</button>
+                                </form>`;
+                $("#mantResp"+idObjeto).html(template);
+                template = `
+                            <input type="datetime-local" class="form-control-file" name="editInput2" id="editInput2" required></input>
+                            `;
+                $("#lastMant"+idObjeto).html(template);
+                template = `
+                            <input type="datetime-local" class="form-control-file" name="editInput3" id="editInput3" required></input>
+                            `;
+                $("#nextMant"+idObjeto).html(template);
+                $("#option"+idObjeto).hide();
+                $(document).on('submit',"#formSend"+idObjeto,function(e){
+                    
+                    e.preventDefault();
+                    var form = document.querySelector('form');
+                    var formData = new FormData(form);
+                    formData.append("idObjeto",idObjeto);
+                    formData.append("editInput2",$("#editInput2").val());
+                    formData.append("editInput3",$("#editInput3").val());
+                    formData.append("option","editMantenimiento");
+                    $.ajax({
+                        url: rutaAjax,
+                        type: "POST",
+                        dataType: "HTML",
+                        data: formData,
+                        cache: false,
+                        contentType: false,
+                        processData: false
+                    }).done(function(img){
+                        alertify.success("Mantenimiento Modificado");
+                        $("#option"+idObjeto).show();
+                        switch($("#combobox-category").val()){
+                            //1-EQUIPOS
+                            case "1":
+                                updateFileEquipo(rutaAjax,idObjeto);
+                                
+                               
+                            break;
+                
+                            case "2":
+                            //2-CONSUMIBLES
+                                updateFileConsumible(rutaAjax,idObjeto);
+                                
+                            break;
+                
+                        }
+                        
+                    });
+                    
+                })
+            })
         }
     }
 
@@ -137,12 +380,12 @@ $(document).ready(function(){
 
 
     //funciones------------------------
-    //vacia todos los botones del documento
-    //(ruta para hacer post) Obtener el valor de cualquier combobox, de preferencia los de categoria
-    function getComboboxCategory(idCombobox,rutaAjax){
+   
+    //(ruta para hacer post) Obtener valores de clasificacion y categoria en combobox
+    function getComboboxCategory(idCombobox,rutaAjax, option){
         var idCombobox = idCombobox;
         //OPCION categoria PARA CATEGORIA
-        var option = "clasificacion";
+        var option = option;
         //ajax para combobox clasificacion
         $.ajax({
             url: rutaAjax ,
@@ -150,18 +393,40 @@ $(document).ready(function(){
             data: {option},
 
         }).done(function(e){
+            
             switch(e){
                 case "error":
-                    alertify.error("Error consInventory.PHP-clasificacion");
+                    alertify.error("Error consInventory.PHP-combobox");
                 break;
 
+               
                 default:
-                    var category = JSON.parse(e);
+                    var jsonInfo = JSON.parse(e);
+                   
                     var template = `<option value="">--Mostrar por categoria--</option>`;
-                    category.forEach(task=>{
-                        template+= `<option value="${task.idClasificacion}">${task.clasificacion}</option>`
+
+                    jsonInfo.forEach(task=>{
+                        
+                        switch(task.option){
+                            case "clasificacion":
+                                template+= `<option value="${task.idClasificacion}">${task.clasificacion}</option>`;
+                            break;
+
+                            case "producto":
+                                template+= `<option value="${task.idCategoria}">${task.categoria}</option>`;
+                            break;
+
+                            default:
+                                
+                            break;
+                        }
+                        $("#"+idCombobox).html(template);
+
                     })
-                    $("#"+idCombobox).html(template);
+
+                    
+                    
+                   
                 break;
             }
         }).fail(function(e){
@@ -219,7 +484,57 @@ $(document).ready(function(){
                 })
             }
         })
-        $(document).off('submit',"#formSend");
+        $(document).off('submit',"#formSend"+idObjeto);
+    }
+
+    function updateFileConsumible(rutaAjax,idObjeto){
+        var option = "updateFileConsumible";
+        //deleteButtons(idObjeto);
+        $.ajax({
+            url: rutaAjax,
+            type: 'POST',
+            data: {option,idObjeto},
+            success: function(response){
+                var cons = JSON.parse(response);
+                var template = "";
+                
+                $("#table-consumible").show();
+                $("#table-equipo").hide();
+                cons.forEach(task =>{
+                    
+                    template = `
+                                    <th id="img${task.idObjeto}"><img height="70px" src="data:image/jpg;base64,${task.img}"/></th>
+                                    <th id="categoria${task.idObjeto}">${task.categoria}</th>
+                                    <th id="nombre${task.idObjeto}">${task.Nombre}</th>
+                                    <th id="descripcion${task.idObjeto}">${task.Descripcion}</th>
+                                    <th id="cantidad${task.idObjeto}">${task.cantidad}</th>
+                                    <th id="option${task.idObjeto}">
+                                        
+                                `
+                    $('#fila'+idObjeto).html(template);
+
+                    template = ` <div class="btn-group">
+                                    <button type="button" class="btn btn-danger" id="delete${task.idObjeto}">Eliminar</button>
+                                        
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" id="edit${task.idObjeto}">Editar</button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" id="editImg${task.idObjeto}">Imagen</a>
+                                            <a class="dropdown-item" id="editCategoria${task.idObjeto}">Producto</a>
+                                            <a class="dropdown-item" id="editNombre${task.idObjeto}">Nombre</a>
+                                            <a class="dropdown-item" id="editDescripcion${task.idObjeto}">Descripcion</a>
+                                            <a class="dropdown-item" id="editCantidad${task.idObjeto}">Cantidad</a>
+                                        
+                                        </div>
+                                    </div>
+                                </div>`
+                    $('#option'+idObjeto).html(template);
+                    
+            
+                })
+            }
+        })
+        $(document).off('submit',"#formSend"+idObjeto);
     }
 
     //(ruta para hacer post)
@@ -233,8 +548,7 @@ $(document).ready(function(){
                 var cons = JSON.parse(response);
                 var template = "";
                 var cont=0;
-                $("#table-consumible").hide();
-                $("#table-equipo").show();
+                
                 cons.forEach(task =>{
                     rowTableEquipo[cont] = new rowTable(`${task.idObjeto}`);
                     template += `<tr id="fila${task.idObjeto}">
@@ -267,6 +581,10 @@ $(document).ready(function(){
                                 </tr>`
                     rowTableEquipo[cont].deleteOption(rutaAjax);
                     rowTableEquipo[cont].editImg(rutaAjax);
+                    rowTableEquipo[cont].editCategoria(rutaAjax);
+                    rowTableEquipo[cont].editNombre(rutaAjax);
+                    rowTableEquipo[cont].editDescripcion(rutaAjax);
+                    rowTableEquipo[cont].editMantenimiento(rutaAjax);
                     $('#tbody-equipo').html(template);
                     cont++;
                 })
@@ -274,8 +592,56 @@ $(document).ready(function(){
         })
     }
 
-    function getTableConsumible(colConsumible){
-
+    function getTableConsumible(rutaAjax){
+        var option = "consumible";
+        $.ajax({
+            url: rutaAjax,
+            type: 'POST',
+            data: {option},
+            success: function(response){
+                var cons = JSON.parse(response);
+                var template = "";
+                var cont=0;
+                
+                cons.forEach(task =>{
+                    rowTableConsumible[cont] = new rowTable(`${task.idObjeto}`);
+                    template += `<tr id="fila${task.idObjeto}">
+                                   <div id="info${task.idObjeto}">
+                                    <th id="img${task.idObjeto}"><img height="70px" src="data:image/jpg;base64,${task.img}"/></th>
+                                    <th id="categoria${task.idObjeto}">${task.categoria}</th>
+                                    <th id="nombre${task.idObjeto}">${task.Nombre}</th>
+                                    <th id="descripcion${task.idObjeto}">${task.Descripcion}</th>
+                                    <th id="cantidad${task.idObjeto}">${task.Cantidad}</th>
+                                   </div>
+                                    <th id="option${task.idObjeto}">
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-danger" id="delete${task.idObjeto}">Eliminar</button>
+                                                
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" id="edit${task.idObjeto}">Editar</button>
+                                                <div class="dropdown-menu">
+                                                    <a class="dropdown-item" id="editImg${task.idObjeto}">Imagen</a>
+                                                    <a class="dropdown-item" id="editCategoria${task.idObjeto}">Producto</a>
+                                                    <a class="dropdown-item" id="editNombre${task.idObjeto}">Nombre</a>
+                                                    <a class="dropdown-item" id="editDescripcion${task.idObjeto}">Descripcion</a>
+                                                    <a class="dropdown-item" id="editCantidad${task.idObjeto}">cantidad</a>
+                                                
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </th>
+                                </tr>`
+                                rowTableConsumible[cont].deleteOption(rutaAjax);
+                                rowTableConsumible[cont].editImg(rutaAjax);
+                                rowTableConsumible[cont].editCategoria(rutaAjax);
+                                rowTableConsumible[cont].editNombre(rutaAjax);
+                                rowTableConsumible[cont].editDescripcion(rutaAjax);
+                                rowTableConsumible[cont].editCantidad(rutaAjax);
+                    $('#tbody-consumible').html(template);
+                    cont++;
+                })
+            }
+        })
     }
 
 
