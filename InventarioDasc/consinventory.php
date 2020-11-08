@@ -3,16 +3,8 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <?php include ('header.html');?>
-        <link rel="stylesheet" href="../styles/normalize.css">
-        <link rel="stylesheet" href="../styles/bootstrap.min.css">
-        <link rel="stylesheet" href="../styles/inventory.css">
-        <link rel="stylesheet" href="alertify/css/alertify.css">
-        <link rel="stylesheet" href="../styles/generalStyle.css">
-        <title>Inventario</title>
-        
-        <script src="alertify/alertify.js"></script>
-               <script
-        src="Jquery/Jquery.js">
+        <script
+            src="Jquery/Jquery.js">
         </script>
         <script src="../styles/popper.js"></script>
         <script src="../styles/bootstrap-4.5.3-dist/css/bootstrap.min.js"></script>
@@ -20,12 +12,20 @@
         <script 
             src="../styles/bootstrap-4.5.3-dist/js/bootstrap.min.js">
         </script>
+        <link rel="stylesheet" href="../styles/normalize.css">
+        <link rel="stylesheet" href="alertify/css/alertify.css">
+        <link rel="stylesheet" href="../styles/generalStyle.css">
+        <link rel="stylesheet" href="../styles/inventory.css">  
+    <script src="alertify/alertify.js"></script>
+        <title>CONSULTA | Inventario</title>
+        
+
         <script src="inventario/JS/consinventory.js"></script>
         
     </head>
 
     <body>
-        <h1 id="title" class="center-title">CONSULTAR INVENTARIO</h1>
+        <h1 id="" class="center-title">CONSULTAR INVENTARIO</h1>
         <div id="inv-cons" class="consultar"><!--Realizar la consulta-->
             
             <!--Barra de busqueda y filtros-->
@@ -42,7 +42,7 @@
                 
                 <div class="form-inline">
                     <img class="icon-size" src="../resources/icons/search_icon.png">
-                    <input  class="round-border" type="text" placeholder="Search" id="search">
+                    <input  class="round-border" type="text" placeholder="Buscar..." id="search">
                 </div>
                 <div>
                     <label>Mostrar por:</label>

@@ -23,8 +23,15 @@ a.link-button{
 
 .round-border{
 	border-radius:8px;
-	border:1px solid #AAAAAA;
+	border:1px solid #333E49;
 	padding: 0.5%;
+	width: 150px;
+}
+
+.round-border button{
+	width: 200px;
+	background-color: #333E49;
+	border-color: transparent;
 }
 
 .transparent-btn{

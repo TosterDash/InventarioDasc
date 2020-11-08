@@ -15,9 +15,11 @@
     </script>
     <link rel="stylesheet" href="../styles/normalize.css">
     <link rel="stylesheet" href="alertify/css/alertify.css">
+    <link rel="stylesheet" href="../styles/generalStyle.css">
+    <link rel="stylesheet" href="../styles/inventory.css">  
     <script src="alertify/alertify.js"></script>
     <script src="inventario/JS/addinventory.js"></script>
-    <link rel="stylesheet" href="../styles/inventory.css">   
+     
 </head>
 
 <body>
@@ -81,14 +83,11 @@
             <!-- TERCERA COLUMNA DE LA PAGINA -->
             </div>
         </div>
-        <div class="text-center py-5 ">
-            <button type="submit" class="btn btn-secondary" id="submit-objeto">Añadir Objeto</button>
+
+        <div class="">
+            <button type="submit" class="round-border" id="submit-objeto">Añadir Objeto</button>
         </div>
     </div>
     </form> 
-   
-     
 </body>
-
-
 </html>
