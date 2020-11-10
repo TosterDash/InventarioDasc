@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 10, 2020 at 02:33 AM
+-- Generation Time: Nov 10, 2020 at 02:46 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -107,6 +107,7 @@ CREATE TABLE `objeto` (
   `nombre` varchar(100) NOT NULL,
   `descripcion` varchar(200) NOT NULL,
   `cantidad` int(11) DEFAULT NULL,
+  `prestamo` tinyint(1) NOT NULL,
   `mantenimiento` tinyint(1) NOT NULL,
   `lastMant` datetime DEFAULT NULL,
   `nextMant` datetime DEFAULT NULL,
