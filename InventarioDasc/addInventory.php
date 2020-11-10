@@ -35,7 +35,8 @@
                         </select>
 
                         <label class="d-block">Tipo de producto</label>
-                        <select class="d-block form-control" name="col-1-combobox-product" id="col-1-combobox-product">
+                        <select class="d-block form-control" name="col-1-combobox-product" 
+                        id="col-1-combobox-product">
                         </select>
                         <div id="col-1-block-mant">
                             <div>
@@ -85,7 +86,7 @@
         </div>
 
         <div class="">
-            <button type="submit" class="round-border" id="submit-objeto">Añadir Objeto</button>
+            <button type="submit" class="" id="submit-objeto">Añadir Objeto</button>
         </div>
     </div>
     </form> 
