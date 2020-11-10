@@ -26,7 +26,8 @@
         break;
 
         case "producto":
-            $result = mysqli_query($conexion, "SELECT `tipocategoria`. * from `tipocategoria`");
+            $idClasificacion = $_POST["idClasificacion"];
+            $result = mysqli_query($conexion, "SELECT * from tipoproducto where idTipoClasificacion = '$idClasificacion' ");
 
             if(!$result){
                 echo die("error");     
@@ -35,8 +36,8 @@
                 while ($row = mysqli_fetch_array($result)) {
                     # code...
                     $json[] = array(
-                        'idCategoria' => $row['idTipoCategoria'],
-                        'categoria' => $row['categoria'],
+                        'idProducto' => $row['idTipoProducto'],
+                        'producto' => $row['producto'],
                         'option' => "producto"
                         
                     );
@@ -239,6 +240,51 @@
                 echo $jsonstring;
             }
 
+        break;
+
+        case "addInventory":
+            //mandar añadir objeto
+            $clasificacion = $_POST["col-1-combobox-category"];
+            $producto = $_POST["col-1-combobox-product"];
+            $nombre = $_POST["col-2-text-name"];
+            $desc = $_POST["col-2-text-desc"];
+            $checkboxMant = $_POST["checkboxMant"];
+            $checkboxPrestamo = $_POST["checkboxPrestamo"];
+
+            $respMant = $_POST["col-2-text-mantResp"];
+            $lastMant = $_POST["col-2-date-lastMant"];
+            $nextMant = $_POST["col-2-date-nextMant"];
+            $cant = $_POST["col-2-number-cant"];
+            $img = addslashes(file_get_contents($_FILES["item_file"]["tmp_name"]));
+            
+            switch($clasificacion){
+                //caso para Equipos
+                case "1":
+                    $insert = ("INSERT INTO objeto(idUabcs,nombre,descripcion,cantidad,prestamo,mantenimiento,lastMant,nextMant,mantResp,idTipoProducto,img)
+                    VALUES (null,'$nombre','$desc', null, '$checkboxPrestamo', '$checkboxMant', '$lastMant', '$nextMant', '$respMant','$producto', '$img') ");
+
+
+                    $result = mysqli_query($conexion, $insert);
+                    echo $result;    
+                break;
+                //caso para consumibles
+                case "2":
+                    $insert = ("INSERT INTO objeto(idUabcs,nombre,descripcion,cantidad,prestamo,mantenimiento,lastMant,nextMant,mantResp,idTipoProducto,img)
+                    VALUES (null,'$nombre','$desc', '$cant', null , null , null, null, null,'$producto', '$img') ");
+
+
+                    $result = mysqli_query($conexion, $insert);
+                    echo $result;
+                break;
+                //Error
+                default:
+                    echo die("error");
+                break;
+            }
+
+            
+
+            
         break;
 
 

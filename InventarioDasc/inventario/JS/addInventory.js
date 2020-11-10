@@ -1,33 +1,43 @@
 $(document).ready(function(){
+    var rutaAjax = "inventario/PHP/inventoryCons.php";
+    var optionComboboxClasificacion = "clasificacion";
+    var optionComboboxProducto = "producto";
     //console.log("dawdaw");
     //Ocultar elementos de la segunda columna
+    $("#col-1-block-producto").hide();
     $("#col-2-block-mant").hide();
     $("#col-2-block-cant").hide();
     $("#col-1-block-mant").hide();
     
-    getComboboxCol1();
+    getComboboxCategory("col-1-combobox-clasification",rutaAjax,optionComboboxClasificacion);
+    
 
     $("#col-1-combobox-clasification").on('change',function(){
        
         switch($("#col-1-combobox-clasification").val()){
             case "1":
-                
+                getComboboxCategory("col-1-combobox-product",rutaAjax,optionComboboxProducto, $("#col-1-combobox-clasification").val());
                 //quitar otros required
                 $("#col-2-number-cant").prop('required',false);
                 //--------------------------------------------
                 $("#col-2-number-cant").val("");
                 $("#col-2-block-cant").hide();
                 $("#col-1-block-mant").show();
+
+                $("#col-1-block-producto").show();
                 
             break;
 
             case "2":
+                getComboboxCategory("col-1-combobox-product",rutaAjax,optionComboboxProducto, $("#col-1-combobox-clasification").val());
                 //required a input cantidad
                 $("#col-2-number-cant").prop('required',true);
                 //quitar otros required
                 $("#col-2-text-mantResp").prop('required',false);
                 $("#col-2-date-lastMant").prop('required',false);
                 $("#col-2-date-nextMant").prop('required',false);
+
+                $("#col-1-block-producto").show();
 
                 //--------------------------------------------
                 $("#col-2-text-mantResp").val("");    
@@ -40,6 +50,7 @@ $(document).ready(function(){
             break;
 
             default:
+                $("#col-1-block-producto").hide();
                 //quitar otros required
                 $("#col-2-text-mantResp").prop('required',false);
                 $("#col-2-date-lastMant").prop('required',false);
@@ -87,9 +98,12 @@ $(document).ready(function(){
             if($("#col-1-combobox-product").val()!=""){
                 var form = document.querySelector('form');
                 var formData = new FormData(form);
+                formData.append("option","addInventory");
+                formData.append("checkboxMant",$('#col-1-checkbox-mant').prop('checked'));
+                formData.append("checkboxPrestamo",$('#col-1-checkbox-loan').prop('checked'));
                 
                 $.ajax({
-                    url: "inventario/PHP/addinventory.php",
+                    url: rutaAjax,
                     type: "POST",
                     dataType: "HTML",
                     data: formData,
@@ -116,71 +130,7 @@ $(document).ready(function(){
 
 
     //funciones---------------------------
-    function getComboboxCol1(){
-        //OPCION categoria PARA CATEGORIA
-        var option = "clasificacion";
-        //ajax para combobox clasificacion
-        $.ajax({
-            url:"inventario/PHP/addinventory.php" ,
-            type:"POST" ,
-            data: {option},
-
-        }).done(function(e){
-            //console.log(e);
-            switch(e){
-
-                case "error":
-                    alertify.error("Error addinventory.PHP-clasificacion");
-                break;
-
-                default:
-                    //console.log("succes");
-                    var category = JSON.parse(e);
-                    var template = `<option value="">--Seleccione--</option>`;
-                    category.forEach(task=>{
-                        template+= `<option value="${task.idClasificacion}">${task.clasificacion}</option>`
-                    })
-
-                    $("#col-1-combobox-clasification").html(template);
-                break;
-            }
-            
-        }).fail(function(e){
-            console.log("FALLO POST DE GET CATEGORY");
-        })
-
-        //ajax para combobox producto
-        option = "producto";
-        $.ajax({
-            url:"inventario/PHP/addinventory.php" ,
-            type:"POST" ,
-            data: {option},
-
-        }).done(function(e){
-            //console.log(e);
-            switch(e){
-
-                case "error":
-                    alertify.error("Error addinventory.PHP-producto");
-                break;
-
-                default:
-                    console.log("succes");
-                    var category = JSON.parse(e);
-                    var template = `<option value="">--Seleccione--</option>`;
-                    category.forEach(task=>{
-                        template+= `<option value="${task.idCategoria}">${task.categoria}</option>`
-                    })
-
-                    $("#col-1-combobox-product").html(template);
-                break;
-            }
-            
-        }).fail(function(e){
-            console.log("FALLO POST DE GET CATEGORY");
-        })
-
-    }
+    
 
     function vaciarCampos(){
 

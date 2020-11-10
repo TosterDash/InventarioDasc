@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="../styles/generalStyle.css">
     <link rel="stylesheet" href="../styles/inventory.css">  
     <script src="alertify/alertify.js"></script>
+    <script src="inventario/JS/inventoryFunction.js"></script>
     <script src="inventario/JS/addinventory.js"></script>
      
 </head>
@@ -33,17 +34,17 @@
                         <label class="d-block">Tipo de clasificacion</label>
                         <select class="d-block form-control " name="col-1-combobox-category" id="col-1-combobox-clasification">
                         </select>
-
-                        <label class="d-block">Tipo de producto</label>
-                        <select class="d-block form-control" name="col-1-combobox-product" 
-                        id="col-1-combobox-product">
-                        </select>
+                        <div id="col-1-block-producto">
+                            <label class="d-block">Tipo de producto</label>
+                            <select class="d-block form-control" name="col-1-combobox-product" id="col-1-combobox-product">
+                            </select>
+                        </div>
                         <div id="col-1-block-mant">
                             <div>
-                                <input type="checkbox" id="col-1-checkbox-mant">Mantenimiento</input>
+                                <input type="checkbox" name="col-1-checkbox-mant" id="col-1-checkbox-mant">Mantenimiento</input>
                             </div>
                             <div>
-                                <input type="checkbox" id="col-1-checkbox-loan">Disponible para prestamo</input>
+                                <input type="checkbox" name="col-1-checkbox-loan" id="col-1-checkbox-loan">Disponible para prestamo</input>
                             </div>
                         </div>
                         
