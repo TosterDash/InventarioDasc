@@ -7,17 +7,101 @@
 -getTableConsumible(url inventoryCons): obtener la tabla de consumible
 -search(url inventoryCons, opcion para seleccionar que buscar(entre nombre y descripcion),string del buscador): Funcionalidad de la barra de busqueda 
 
+>ESTRUCTURA PARA LA TABLA HTML-----------------------------------------
+
+<div id="inv-cons" class="consultar"><!--Realizar la consulta-->
+            
+            <!--Barra de busqueda y filtros-->
+            <div>
+                <!--Barra de busqueda-->
+                <nav class="nav-style">
+                    <div>
+                        <label>Buscar por:</label>
+                        <select class="round-border" name="combobox-category" id="combobox-search">
+                            <option values="Nombre">Nombre</option>
+                            <option values="Descripcion">Descripción</option>
+                        </select>
+                    </div>
+                
+                <div class="form-inline">
+                    <img class="icon-size" src="../resources/icons/search_icon.png">
+                    <input  class="round-border" type="text" placeholder="Buscar..." id="search">
+                </div>
+                <div>
+                    <label>Mostrar por:</label>
+                    <select  class="round-border" 
+                    name="combobox-category" id="combobox-category">
+                    </select>
+                </div>
+                
+                </nav>
+                <!--Barra de busqueda-->
+            </div>
+            <div id="div-table"><!--Tabla de consulta-->
+                <table id="table-consumible" class="table">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>Imagen</th>
+                            <th>Producto</th>
+                            <th>Nombre</th>
+                            <th>Descripcion</th>
+                            <th>Cantidad</th>
+                            <th></th>
+                            
+                        </tr>
+                    </thead>
+
+                    <tbody id="tbody-consumible">
+
+                    </tbody>
+                    
+                    
+                </table>
+                <table id="table-equipo" class="table">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>Imagen</th>
+                            <th>Producto</th>
+                            <th>Nombre</th>
+                            <th>Descripcion</th>
+                            <th>Responsable</th>
+                            <th>Ultimo mantenimiento</th>
+                            <th>Proximo mantenimiento</th>
+                            <th></th>
+                            
+                        </tr>
+                    </thead>
+                    
+                    <tbody id="tbody-equipo">
+
+                    </tbody>
+                    
+                </table>
+            </div>
+        </div>
+
 
 
 
 
 
 */
-
+//variables importantes para el funcionamiento de ciertos sectores
+var numNotification = 0;
+var dateMant = [];
+var rutaAjax = "inventario/PHP/inventoryCons.php";
 
 class rowTable{
-    constructor(idObjeto){
+    constructor(idObjeto,clasificacion){
         this.idObjeto = idObjeto;
+       
+        if(clasificacion=="null"){
+            this.clasificacion = "Consumible";
+           
+        }else{
+            this.clasificacion = "Equipo";
+            
+        }
     }
 
     deleteOption(rutaAjax){
@@ -49,6 +133,7 @@ class rowTable{
     editImg(rutaAjax){
         //imagen
         var idObjeto = this.idObjeto;
+        var clasificacion = this.clasificacion;
         $(document).on('click',"#editImg"+idObjeto,function(){
             
             var templateImg = ` <form method="POST" id="formSend`+idObjeto+`" enctype="multipart/form-data">
@@ -74,15 +159,16 @@ class rowTable{
                 }).done(function(img){
                     alertify.success("Imagen Modificada");
                     $("#option"+idObjeto).show();
-                    switch($("#combobox-category").val()){
+                    console.log(clasificacion);
+                    switch(clasificacion){
                         //1-EQUIPOS
-                        case "1":
+                        case "Equipo":
                             updateFileEquipo(rutaAjax,idObjeto);
                             
                            
                         break;
             
-                        case "2":
+                        case "Consumible":
                         //2-CONSUMIBLES
                             updateFileConsumible(rutaAjax,idObjeto);
                             
@@ -96,14 +182,27 @@ class rowTable{
     }
     editCategoria(rutaAjax){
         var idObjeto = this.idObjeto;
+        var clasificacion = this.clasificacion;
+        
         $(document).on('click',"#editCategoria"+idObjeto,function(){
             var template = ` <form method="POST" id="formSend`+idObjeto+`">
-                                <select class="form-control-file" name="editInput" id="editInput"></select>
-                                <button type="submit" class="btn btn-success" id="confirmEdit`+idObjeto+` name="confirmar">Confirmar</button>
+                                <select class="form-control-file" name="editInput`+idObjeto+`" id="editInput`+idObjeto+`"></select>
+                                <button type="submit" class="btn btn-success" id="confirmEdit`+idObjeto+` name="confirmar"`+idObjeto+`>Confirmar</button>
                                 </form>`;
             $("#categoria"+idObjeto).html(template);
             $("#option"+idObjeto).hide();
-            getComboboxCategory( "editInput",rutaAjax, optionComboboxProducto);
+           
+            switch(clasificacion){
+                case "Equipo":
+                    getComboboxCategory( "editInput"+idObjeto ,rutaAjax, "producto",1);
+                break;
+
+                case "Consumible":
+                    getComboboxCategory( "editInput"+idObjeto ,rutaAjax, "producto",2);
+                break;
+            }
+       
+            
             $(document).on('submit',"#formSend"+idObjeto,function(e){
                 e.preventDefault();
                 var form = document.querySelector('form');
@@ -119,17 +218,18 @@ class rowTable{
                     contentType: false,
                     processData: false
                 }).done(function(img){
+                    console.log(img);
                     alertify.success("Categoria Modificada");
                     $("#option"+idObjeto).show();
-                    switch($("#combobox-category").val()){
+                    switch(clasificacion){
                         //1-EQUIPOS
-                        case "1":
+                        case "Equipo":
                             updateFileEquipo(rutaAjax,idObjeto);
                            
                            
                         break;
             
-                        case "2":
+                        case "Consumible":
                         //2-CONSUMIBLES
                             updateFileConsumible(rutaAjax,idObjeto);
                             
@@ -143,7 +243,7 @@ class rowTable{
     }
     editNombre(rutaAjax){
         var idObjeto = this.idObjeto;
-        
+        var clasificacion = this.clasificacion;
         $(document).on('click',"#editNombre"+idObjeto,function(){
             console.log("-.-------------------------");
             var template = ` <form method="POST" id="formSend`+idObjeto+`">
@@ -169,15 +269,15 @@ class rowTable{
                 }).done(function(img){
                     alertify.success("Nombre Modificado");
                     $("#option"+idObjeto).show();
-                    switch($("#combobox-category").val()){
+                    switch(clasificacion){
                         //1-EQUIPOS
-                        case "1":
+                        case "Equipo":
                             updateFileEquipo(rutaAjax,idObjeto);
-                            
+                           
                            
                         break;
             
-                        case "2":
+                        case "Consumible":
                         //2-CONSUMIBLES
                             updateFileConsumible(rutaAjax,idObjeto);
                             
@@ -192,7 +292,7 @@ class rowTable{
     }
     editDescripcion(rutaAjax){
         var idObjeto = this.idObjeto;
-        
+        var clasificacion = this.clasificacion;
         $(document).on('click',"#editDescripcion"+idObjeto,function(){
        
             var template = ` <form method="POST" id="formSend`+idObjeto+`">
@@ -203,7 +303,6 @@ class rowTable{
             $("#option"+idObjeto).hide();
             $(document).on('submit',"#formSend"+idObjeto,function(e){
                 e.preventDefault();
-                console.log("aaaaaaaaazzzz");
                 var form = document.querySelector('form');
                 var formData = new FormData(form);
                 formData.append("idObjeto",idObjeto);
@@ -219,14 +318,15 @@ class rowTable{
                 }).done(function(img){
                     alertify.success("Descripcion Modificada");
                     $("#option"+idObjeto).show();
-                    switch($("#combobox-category").val()){
+                    switch(clasificacion){
                         //1-EQUIPOS
-                        case "1":
+                        case "Equipo":
                             updateFileEquipo(rutaAjax,idObjeto);
-                            
+                           
+                           
                         break;
             
-                        case "2":
+                        case "Consumible":
                         //2-CONSUMIBLES
                             updateFileConsumible(rutaAjax,idObjeto);
                             
@@ -240,7 +340,7 @@ class rowTable{
     }
     editCantidad(rutaAjax){
         var idObjeto = this.idObjeto;
-        
+        var clasificacion = this.clasificacion;
         $(document).on('click',"#editCantidad"+idObjeto,function(){
        
             var template = ` <form method="POST" id="formSend`+idObjeto+`">
@@ -267,14 +367,15 @@ class rowTable{
                 }).done(function(img){
                     alertify.success("Cantidad Modificada");
                     $("#option"+idObjeto).show();
-                    switch($("#combobox-category").val()){
+                    switch(clasificacion){
                         //1-EQUIPOS
-                        case "1":
+                        case "Equipo":
                             updateFileEquipo(rutaAjax,idObjeto);
-                            
+                           
+                           
                         break;
             
-                        case "2":
+                        case "Consumible":
                         //2-CONSUMIBLES
                             updateFileConsumible(rutaAjax,idObjeto);
                             
@@ -288,7 +389,7 @@ class rowTable{
     }
     editMantenimiento(rutaAjax){
         var idObjeto = this.idObjeto;
-        
+        var clasificacion = this.clasificacion;
         $(document).on('click',"#editMantenimiento"+idObjeto,function(){
             console.log("-.-------------------------");
             var template = `<form method="POST" id="formSend`+idObjeto+`">
@@ -325,15 +426,15 @@ class rowTable{
                 }).done(function(img){
                     alertify.success("Mantenimiento Modificado");
                     $("#option"+idObjeto).show();
-                    switch($("#combobox-category").val()){
+                    switch(clasificacion){
                         //1-EQUIPOS
-                        case "1":
+                        case "Equipo":
                             updateFileEquipo(rutaAjax,idObjeto);
-                            
+                           
                            
                         break;
             
-                        case "2":
+                        case "Consumible":
                         //2-CONSUMIBLES
                             updateFileConsumible(rutaAjax,idObjeto);
                             
@@ -353,7 +454,7 @@ class rowTable{
 
 
 
-//funciones------------------------
+//funciones de tablas------------------------
 
 //(ruta para hacer post) Obtener valores de clasificacion y categoria en combobox
 function getComboboxCategory(idCombobox,rutaAjax, option, idClasificacion){
@@ -367,7 +468,6 @@ function getComboboxCategory(idCombobox,rutaAjax, option, idClasificacion){
         data: {option,idClasificacion},
 
     }).done(function(e){
-       
         switch(e){
             case "error":
                 alertify.error("Error consInventory.PHP-combobox");
@@ -417,18 +517,17 @@ function updateFileEquipo(rutaAjax,idObjeto){
         type: 'POST',
         data: {option,idObjeto},
         success: function(response){
+            console.log(response);
             var cons = JSON.parse(response);
             var template = "";
             
-            $("#table-consumible").hide();
-            $("#table-equipo").show();
             cons.forEach(task =>{
                 
                 template = `
                                 <th id="img${task.idObjeto}"><img height="70px" src="data:image/jpg;base64,${task.img}"/></th>
-                                <th id="categoria${task.idObjeto}">${task.categoria}</th>
-                                <th id="nombre${task.idObjeto}">${task.Nombre}</th>
-                                <th id="descripcion${task.idObjeto}">${task.Descripcion}</th>
+                                <th id="categoria${task.idObjeto}">${task.producto}</th>
+                                <th id="nombre${task.idObjeto}">${task.nombre}</th>
+                                <th id="descripcion${task.idObjeto}">${task.descripcion}</th>
                                 <th id="mantResp${task.idObjeto}">${task.mantResp}</th>
                                 <th id="lastMant${task.idObjeto}">${task.lastMant}</th>
                                 <th id="nextMant${task.idObjeto}">${task.nextMant}</th>
@@ -469,18 +568,17 @@ function updateFileConsumible(rutaAjax,idObjeto){
         type: 'POST',
         data: {option,idObjeto},
         success: function(response){
+        
             var cons = JSON.parse(response);
             var template = "";
             
-            $("#table-consumible").show();
-            $("#table-equipo").hide();
             cons.forEach(task =>{
                 
                 template = `
                                 <th id="img${task.idObjeto}"><img height="70px" src="data:image/jpg;base64,${task.img}"/></th>
-                                <th id="categoria${task.idObjeto}">${task.categoria}</th>
-                                <th id="nombre${task.idObjeto}">${task.Nombre}</th>
-                                <th id="descripcion${task.idObjeto}">${task.Descripcion}</th>
+                                <th id="categoria${task.idObjeto}">${task.producto}</th>
+                                <th id="nombre${task.idObjeto}">${task.nombre}</th>
+                                <th id="descripcion${task.idObjeto}">${task.descripcion}</th>
                                 <th id="cantidad${task.idObjeto}">${task.cantidad}</th>
                                 <th id="option${task.idObjeto}">
                                     
@@ -511,8 +609,8 @@ function updateFileConsumible(rutaAjax,idObjeto){
     $(document).off('submit',"#formSend"+idObjeto);
 }
 
-//(ruta para hacer post)
-function getTableEquipo(rutaAjax){
+//(ruta para hacer post)FUNCIONES PRINCIPALES PARA TABLAS---------- 
+function getTableEquipo(rutaAjax,rowTableEquipo){
     var option = "equipo";
     $.ajax({
         url: rutaAjax,
@@ -523,14 +621,17 @@ function getTableEquipo(rutaAjax){
             var template = "";
             var cont=0;
             
+            
             cons.forEach(task =>{
-                rowTableEquipo[cont] = new rowTable(`${task.idObjeto}`);
+                
+            
+                rowTableEquipo[cont] = new rowTable(`${task.idObjeto}`,`${task.idUabcs}`);
                 template += `<tr id="fila${task.idObjeto}">
                                <div id="info${task.idObjeto}">
                                 <th id="img${task.idObjeto}"><img height="70px" src="data:image/jpg;base64,${task.img}"/></th>
-                                <th id="categoria${task.idObjeto}">${task.categoria}</th>
-                                <th id="nombre${task.idObjeto}">${task.Nombre}</th>
-                                <th id="descripcion${task.idObjeto}">${task.Descripcion}</th>
+                                <th id="categoria${task.idObjeto}">${task.producto}</th>
+                                <th id="nombre${task.idObjeto}">${task.nombre}</th>
+                                <th id="descripcion${task.idObjeto}">${task.descripcion}</th>
                                 <th id="mantResp${task.idObjeto}">${task.mantResp}</th>
                                 <th id="lastMant${task.idObjeto}">${task.lastMant}</th>
                                 <th id="nextMant${task.idObjeto}">${task.nextMant}</th>
@@ -561,31 +662,36 @@ function getTableEquipo(rutaAjax){
                 rowTableEquipo[cont].editMantenimiento(rutaAjax);
                 $('#tbody-equipo').html(template);
                 cont++;
+            
             })
+            
         }
     })
 }
 
-function getTableConsumible(rutaAjax){
+function getTableConsumible(rutaAjax,rowTableConsumible){
     var option = "consumible";
     $.ajax({
         url: rutaAjax,
         type: 'POST',
         data: {option},
         success: function(response){
+
             var cons = JSON.parse(response);
             var template = "";
             var cont=0;
             
             cons.forEach(task =>{
-                rowTableConsumible[cont] = new rowTable(`${task.idObjeto}`);
+                
+                rowTableConsumible[cont] = new rowTable(`${task.idObjeto}`,`${task.idUabcs}`);
+               
                 template += `<tr id="fila${task.idObjeto}">
                                <div id="info${task.idObjeto}">
                                 <th id="img${task.idObjeto}"><img height="70px" src="data:image/jpg;base64,${task.img}"/></th>
-                                <th id="categoria${task.idObjeto}">${task.categoria}</th>
-                                <th id="nombre${task.idObjeto}">${task.Nombre}</th>
-                                <th id="descripcion${task.idObjeto}">${task.Descripcion}</th>
-                                <th id="cantidad${task.idObjeto}">${task.Cantidad}</th>
+                                <th id="categoria${task.idObjeto}">${task.producto}</th>
+                                <th id="nombre${task.idObjeto}">${task.nombre}</th>
+                                <th id="descripcion${task.idObjeto}">${task.descripcion}</th>
+                                <th id="cantidad${task.idObjeto}">${task.cantidad}</th>
                                </div>
                                 <th id="option${task.idObjeto}">
                                     <div class="btn-group">
@@ -617,6 +723,10 @@ function getTableConsumible(rutaAjax){
         }
     })
 }
+
+
+//funciones para inputs
+
 
 function search(rutaAjax,buscarPor,stringSearch){
     var option = "search";
@@ -660,6 +770,70 @@ function search(rutaAjax,buscarPor,stringSearch){
 
     
 }
+
+
+//Funcion para obtener notificaciones y validar los objetos, fechas y prestamos
+function getNotification(){
+    
+    getDate();
+    
+    function actualizarFechas(){
+        console.log(dateMant.length);
+        var dateNow = new Date();
+            for(var i = 0;i<dateMant.length;i++){
+                if(dateNow.getTime()>=dateMant[i][3].getTime() && dateMant[i][4]==false){
+                    
+                    numNotification++;
+                }
+            }
+            $("#notification").html(`<a class="menu-list navigation-menu-listt" href="notificationBoard.php">
+                                        NOTIFICACIONES
+                                        <span class="badge">`+numNotification+`</span>
+                                    </a>`);
+        
+    }
+    setInterval(actualizarFechas, 60000); 
+
+   
+    
+}
+
+
+function getDate(){
+    var option = "getDate";
+    $.ajax({
+        url: rutaAjax,
+        type: 'POST',
+        data: {option},
+        success: function(response){
+            var cons = JSON.parse(response);
+            var cont = 0;
+            
+            cons.forEach(task =>{
+                dateMant[cont] = [`${task.idObjeto}`,`${task.mantResp}`,new Date(`${task.lastMant}`),new Date(`${task.nextMant}`),false];
+               
+                cont++;
+            })
+
+            var dateNow = new Date();
+            for(var i = 0;i<dateMant.length;i++){
+                if(dateNow.getTime()>=dateMant[i][3].getTime() && dateMant[i][4]==false){
+                    dateMant[i][4] = true;
+                    numNotification++;
+                }
+            }
+            $("#notification").html(`<a class="menu-list navigation-menu-listt" href="notificationBoard.php">
+                                        NOTIFICACIONES
+                                        <span class="badge">`+numNotification+`</span>
+                                    </a>`);
+
+        }
+        
+    })
+}
+
+
+
 
 
 

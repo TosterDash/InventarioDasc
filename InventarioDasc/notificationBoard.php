@@ -22,7 +22,27 @@
 <head>
 </head>
 <body>
+	<div id="div-table"><!--Tabla de consulta-->
+						
+					<table id="table-equipo" class="table">
+						<thead class="thead-light">
+							<tr>
+								<th>Equipo</th>
+								<th>Responsable</th>
+								<th>Fecha de hoy</th>
+								<th>Siguiente Mantenimiento</th>
+								
+								<th></th>
+								
+							</tr>
+						</thead>
+						
+						<tbody id="tbody-equipo">
 
+						</tbody>
+						
+					</table>
+	</div>
 </body>
 </html>
 

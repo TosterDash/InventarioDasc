@@ -9,6 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="../styles/bootstrap.min.css">
 
 	<script type="text/javascript" src="../styles/popper.js"></script>
+	<script type="text/javascript" src="inventario/JS/inventoryFunction.js"></script>
 
 	<link rel="stylesheet" href="../styles/headerFooterStyle.css">
 	<link rel="stylesheet" href="../styles/normalize.css">
@@ -67,11 +68,14 @@
 		    </div>
 		</div>
 	    <!--item de menu-->  
-	    <!--item de menu-->
-	    <div class="btn-group notification">
+		<!--item de menu-->
+		<script>
+			getNotification();
+		</script>
+	    <div class="btn-group notification" id="notification"><!-- div con identificador y la estructura de este div debe de ser intacta  -->
 		    <a class="menu-list navigation-menu-listt" href="notificationBoard.php">
 		    	NOTIFICACIONES
-  				<span class="badge">3</span>
+  				<span class="badge">0</span>
 		    </a>
 		</div>
 		<!--item de menu-->

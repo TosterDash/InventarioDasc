@@ -16,11 +16,13 @@
         <link rel="stylesheet" href="alertify/css/alertify.css">
         <link rel="stylesheet" href="../styles/generalStyle.css">
         <link rel="stylesheet" href="../styles/inventory.css">  
-    <script src="alertify/alertify.js"></script>
+        <script src="alertify/alertify.js"></script>
+        <script src="inventario/JS/inventoryFunction.js"></script>
+        <script src="inventario/JS/consinventory.js"></script>
         <title>CONSULTA | Inventario</title>
         
 
-        <script src="inventario/JS/consinventory.js"></script>
+        
         
     </head>
 
@@ -34,7 +36,7 @@
                 <nav class="nav-style">
                     <div>
                         <label>Buscar por:</label>
-                        <select class="round-border" name="combobox-category" id="combobox-search">
+                        <select class="round-border" name="combobox-search" id="combobox-search">
                             <option values="Nombre">Nombre</option>
                             <option values="Descripcion">Descripción</option>
                         </select>
@@ -58,7 +60,7 @@
                 <table id="table-consumible" class="table">
                     <thead class="thead-light">
                         <tr>
-                            <th>Imagen</th>
+                            <th>Consumible</th>
                             <th>Producto</th>
                             <th>Nombre</th>
                             <th>Descripcion</th>
@@ -77,7 +79,7 @@
                 <table id="table-equipo" class="table">
                     <thead class="thead-light">
                         <tr>
-                            <th>Imagen</th>
+                            <th>Equipo</th>
                             <th>Producto</th>
                             <th>Nombre</th>
                             <th>Descripcion</th>

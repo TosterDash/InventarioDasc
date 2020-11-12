@@ -52,7 +52,7 @@
         
         case "consumible":
             //Crear consulta
-            $result = mysqli_query($conexion, "SELECT `objeto`.* , `tipocategoria`.`categoria` from objeto, tipocategoria where `objeto`.`idTipoClasificacion` = 2 and `tipocategoria`.`idTipocategoria` = `objeto`.`idTipocategoria`");
+            $result = mysqli_query($conexion, "SELECT `objeto`.*,`tipoproducto`.`producto` from objeto,tipoproducto where `tipoproducto`.`idTipoClasificacion`=2 and `objeto`.`idTipoProducto`=`tipoproducto`.`idTipoProducto`");
             if(!$result){
                 echo die("error");     
             }else{
@@ -62,10 +62,11 @@
                 while($row = mysqli_fetch_array($result)){//Mientras tu variable fila este dentro de la cantidad de registros de consulta
                     $json []= array(
                         'idObjeto' => $row['idObjeto'],
-                        'Nombre' => $row['Nombre'],
-                        'Descripcion' => $row['Descripcion'],
-                        'Cantidad' => $row['Cantidad'],
-                        'categoria' => $row['categoria'],
+                        'idUabcs' => $row['idUabcs'],
+                        'nombre' => $row['nombre'],
+                        'descripcion' => $row['descripcion'],
+                        'cantidad' => $row['cantidad'],
+                        'producto' => $row['producto'],
                         'img' => base64_encode($row['img']),
                     );
                 }
@@ -77,7 +78,7 @@
 
         case "equipo":
             //Crear consulta
-            $result = mysqli_query($conexion, "SELECT `objeto`.* , `tipocategoria`.`categoria` from objeto, tipocategoria where `objeto`.`idTipoClasificacion` = 1 and `tipocategoria`.`idTipocategoria` = `objeto`.`idTipocategoria`");
+            $result = mysqli_query($conexion, "SELECT `objeto`.*,`tipoproducto`.`producto` from objeto,tipoproducto where `tipoproducto`.`idTipoClasificacion`=1 and `objeto`.`idTipoProducto`=`tipoproducto`.`idTipoProducto`");
             if(!$result){
                 echo die("error");     
             }else{
@@ -87,12 +88,15 @@
                 while($row = mysqli_fetch_array($result)){//Mientras tu variable fila este dentro de la cantidad de registros de consulta
                     $json []= array(
                         'idObjeto' => $row['idObjeto'],
-                        'Nombre' => $row['Nombre'],
-                        'Descripcion' => $row['Descripcion'],
+                        'idUabcs' => $row['idUabcs'],
+                        'nombre' => $row['nombre'],
+                        'descripcion' => $row['descripcion'],
+                        'prestamo' => $row['prestamo'],
+                        'mantenimiento' => $row['mantenimiento'],
                         'lastMant' => $row['lastMant'],
                         'nextMant' => $row['nextMant'],
                         'mantResp' => $row['mantResp'],
-                        'categoria' => $row['categoria'],
+                        'producto' => $row['producto'],
                         'img' => base64_encode($row['img']),
                     );
                 }
@@ -105,7 +109,7 @@
         case "updateFileEquipo":
             //Crear consulta
             $idObjeto = $_POST['idObjeto'];
-            $result = mysqli_query($conexion, "SELECT `objeto`.* , `tipocategoria`.`categoria` from objeto, tipocategoria where  `objeto`.`idTipoClasificacion` = 1 and `tipocategoria`.`idTipocategoria` = `objeto`.`idTipocategoria` and `objeto`.`idObjeto`= '$idObjeto' ");
+            $result = mysqli_query($conexion, "SELECT `objeto`.*,`tipoproducto`.`producto` from objeto,tipoproducto where `tipoproducto`.`idTipoClasificacion`=1 and `objeto`.`idTipoProducto`=`tipoproducto`.`idTipoProducto` and `objeto`.`idObjeto` = '$idObjeto' ");
             if(!$result){
                 echo die("error");     
             }else{
@@ -115,12 +119,14 @@
                 while($row = mysqli_fetch_array($result)){//Mientras tu variable fila este dentro de la cantidad de registros de consulta
                     $json []= array(
                         'idObjeto' => $row['idObjeto'],
-                        'Nombre' => $row['Nombre'],
-                        'Descripcion' => $row['Descripcion'],
+                        'nombre' => $row['nombre'],
+                        'descripcion' => $row['descripcion'],
+                        'prestamo' => $row['prestamo'],
+                        'mantenimiento' => $row['mantenimiento'],
                         'lastMant' => $row['lastMant'],
                         'nextMant' => $row['nextMant'],
                         'mantResp' => $row['mantResp'],
-                        'categoria' => $row['categoria'],
+                        'producto' => $row['producto'],
                         'img' => base64_encode($row['img']),
                     );
                 }
@@ -132,7 +138,7 @@
         case "updateFileConsumible":
             //Crear consulta
             $idObjeto = $_POST['idObjeto'];
-            $result = mysqli_query($conexion, "SELECT `objeto`.* , `tipocategoria`.`categoria` from objeto, tipocategoria where  `objeto`.`idTipoClasificacion` = 2 and `tipocategoria`.`idTipocategoria` = `objeto`.`idTipocategoria` and `objeto`.`idObjeto`= '$idObjeto' ");
+            $result = mysqli_query($conexion, "SELECT `objeto`.*,`tipoproducto`.`producto` from objeto,tipoproducto where `tipoproducto`.`idTipoClasificacion`=2 and `objeto`.`idTipoProducto`=`tipoproducto`.`idTipoProducto` and `objeto`.`idObjeto` = '$idObjeto' ");
             if(!$result){
                 echo die("error");     
             }else{
@@ -142,10 +148,10 @@
                 while($row = mysqli_fetch_array($result)){//Mientras tu variable fila este dentro de la cantidad de registros de consulta
                     $json []= array(
                         'idObjeto' => $row['idObjeto'],
-                        'Nombre' => $row['Nombre'],
-                        'Descripcion' => $row['Descripcion'],
-                        'cantidad' => $row['Cantidad'],
-                        'categoria' => $row['categoria'],
+                        'nombre' => $row['nombre'],
+                        'descripcion' => $row['descripcion'],
+                        'cantidad' => $row['cantidad'],
+                        'producto' => $row['producto'],
                         'img' => base64_encode($row['img']),
                     );
                 }
@@ -166,8 +172,8 @@
 
         case "editCategoria":
             $idObjeto = $_POST["idObjeto"];
-            $editInput = $_POST["editInput"];
-            $mod = ("UPDATE objeto SET idTipoCategoria = '$editInput' WHERE idObjeto = '$idObjeto'");
+            $editInput = $_POST["editInput".$idObjeto];
+            $mod = ("UPDATE objeto SET idTipoProducto = '$editInput' WHERE idObjeto = '$idObjeto'");
             $result = mysqli_query($conexion,$mod);
             if(!$result){
                 echo die("error");
@@ -178,7 +184,7 @@
         case "editNombre":
             $idObjeto = $_POST['idObjeto'];
             $editInput = $_POST['editInput'];
-            $mod = ("UPDATE objeto SET Nombre = '$editInput' WHERE idObjeto = '$idObjeto'");
+            $mod = ("UPDATE objeto SET nombre = '$editInput' WHERE idObjeto = '$idObjeto'");
             $result = mysqli_query($conexion,$mod);
             if(!$result){
                 echo die("error");
@@ -188,7 +194,7 @@
         case "editDescripcion":
             $idObjeto = $_POST['idObjeto'];
             $editInput = $_POST['editInput'];
-            $mod = ("UPDATE objeto SET Descripcion = '$editInput'  WHERE idObjeto = '$idObjeto'");
+            $mod = ("UPDATE objeto SET descripcion = '$editInput'  WHERE idObjeto = '$idObjeto'");
             $result = mysqli_query($conexion,$mod);
             if(!$result){
                 echo die("error");
@@ -198,7 +204,7 @@
         case "editCantidad":
             $idObjeto = $_POST['idObjeto'];
             $editInput = $_POST['editInput'];
-            $mod = ("UPDATE objeto SET Cantidad = '$editInput'  WHERE idObjeto = '$idObjeto'");
+            $mod = ("UPDATE objeto SET cantidad = '$editInput'  WHERE idObjeto = '$idObjeto'");
             $result = mysqli_query($conexion,$mod);
             if(!$result){
                 echo die("error");
@@ -211,7 +217,7 @@
             $editInput2 = $_POST['editInput2'];
             $editInput3 = $_POST['editInput3'];
            
-            $mod = ("UPDATE objeto SET lastMant = '$editInput2', nextMant = '$editInput3', mantResp = '$editInput' WHERE idObjeto = '$idObjeto'");
+            $mod = ("UPDATE objeto SET mantenimiento = 'true',lastMant = '$editInput2', nextMant = '$editInput3', mantResp = '$editInput' WHERE idObjeto = '$idObjeto'");
             $result = mysqli_query($conexion,$mod);
             if(!$result){
                 echo die("error");
@@ -261,7 +267,7 @@
                 //caso para Equipos
                 case "1":
                     $insert = ("INSERT INTO objeto(idUabcs,nombre,descripcion,cantidad,prestamo,mantenimiento,lastMant,nextMant,mantResp,idTipoProducto,img)
-                    VALUES (null,'$nombre','$desc', null, '$checkboxPrestamo', '$checkboxMant', '$lastMant', '$nextMant', '$respMant','$producto', '$img') ");
+                    VALUES ('UABCS-','$nombre','$desc', null, '$checkboxPrestamo', '$checkboxMant', '$lastMant', '$nextMant', '$respMant','$producto', '$img') ");
 
 
                     $result = mysqli_query($conexion, $insert);
@@ -285,6 +291,28 @@
             
 
             
+        break;
+
+        case "getDate":
+            $select = ("SELECT idObjeto,lastMant,nextMant,mantResp from objeto where mantenimiento = 'true'");
+            $result = mysqli_query($conexion, $select);
+            if(!$result){
+                echo die("error");
+            }else{
+                //Crear json
+                $json = array();
+                //Realizar consulta
+                while($row = mysqli_fetch_array($result)){//Mientras tu variable fila este dentro de la cantidad de registros de consulta
+                    $json []= array(
+                        'idObjeto' => $row['idObjeto'],
+                        'lastMant' => $row['lastMant'],
+                        'nextMant' => $row['nextMant'],
+                        'mantResp' => $row['mantResp'],
+                    );
+                }
+                $jsonstring = json_encode($json);
+                echo $jsonstring;
+            }
         break;
 
 
