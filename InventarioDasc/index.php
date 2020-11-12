@@ -29,6 +29,7 @@ if(!isset($_SESSION['nombre']))
 
 	<link rel="stylesheet" href="../styles/normalize.css">
 	<link rel="stylesheet" href="../styles/indexStyle.css">
+	<link rel="stylesheet" href="../styles/generalStyle.css">
 	<link rel="stylesheet" href="../styles/hover.css">
 	<title>INICIO</title>
 <head>
@@ -56,7 +57,7 @@ if(!isset($_SESSION['nombre']))
 	</div>
     <!-- The menu-->
   	<div class="menu">
-		<div class="btn-container">
+		<div id="btn-cont" class="btn-container">
 			<div class="menu-title hvr-float">
 				<a class="center-title" href="map.php"><img src="../resources/1x/mapa_icon.png"><h2>MAPA</h2></a> 
 			</div>

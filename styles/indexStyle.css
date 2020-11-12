@@ -19,41 +19,25 @@ body{
 .carousel-item> img {
   	width: 100%;
 	height: 630px;
-	filter: blur(3px);
+	
 }
 
 .menu{
 	width: 100%;
 	margin: auto;
-	display: flex;
-  	justify-content: center;
+  	float: left;
 }
 
 .btn-container{
-	flex-direction: row;
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
 	position: absolute;
 	top: 20%;
+  	background-color: rgba(0,0,0,0.4);
+  	
+	width: 100%;
+	padding: 2%;
 }
 
 
-/*Notification*/
-.notification {
-  color: white;
-  text-decoration: none;
-  position: relative;
-  display: inline-block;
-  border-radius: 2px;
-}
-
-.notification:hover {
-  
-}
-.notification .badge {
-  position: absolute;
-  top: -10px;
-  right: -10px;
-  padding: 5px 10px;
-  border-radius: 50%;
-  background-color: red;
-  color: white;
-}

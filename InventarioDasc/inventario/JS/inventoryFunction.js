@@ -782,20 +782,20 @@ function getNotification(){
         var dateNow = new Date();
             for(var i = 0;i<dateMant.length;i++){
                 if(dateNow.getTime()>=dateMant[i][3].getTime() && dateMant[i][4]==false){
+
                     
                     numNotification++;
                 }
             }
-            $("#notification").html(`<a class="menu-list navigation-menu-listt" href="notificationBoard.php">
+            $("#notification").html(`<a class="menu-list navigation-menu-listt dropdown-toggle" data-toggle="dropdown">
                                         NOTIFICACIONES
-                                        <span class="badge">`+numNotification+`</span>
-                                    </a>`);
+                                        <span class="badge">`+numNotification+`</span></a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="notificationBoard.php">MANTENIMIENTO (`+numNotification+`)</a>
+                                    </div>`);
         
     }
     setInterval(actualizarFechas, 60000); 
-
-   
-    
 }
 
 
@@ -822,11 +822,12 @@ function getDate(){
                     numNotification++;
                 }
             }
-            $("#notification").html(`<a class="menu-list navigation-menu-listt" href="notificationBoard.php">
+            $("#notification").html(`<a class="menu-list navigation-menu-listt dropdown-toggle" data-toggle="dropdown">
                                         NOTIFICACIONES
-                                        <span class="badge">`+numNotification+`</span>
-                                    </a>`);
-
+                                        <span class="badge">`+numNotification+`</span></a>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="notificationBoard.php">MANTENIMIENTO (`+numNotification+`)</a>
+                                        </div>`);
         }
         
     })

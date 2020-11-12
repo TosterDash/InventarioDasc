@@ -1,3 +1,6 @@
+body{
+	color: black;
+}
 .link-button {
 	font-size: 5mm;
 	border: solid;
@@ -7,6 +10,10 @@
 	width: 15%;
 	position: relative;
 	text-align: center;
+}
+
+h2{
+	color: white;
 }
 
 a.link-button{

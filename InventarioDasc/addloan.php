@@ -44,7 +44,7 @@
         
                 <!--Tabla donde puedes seleccionar todos los objetos que vas a pedir-->
             <div>
-                <h1>Selecciona todos los materiales que necesites</h1>
+                <label>Selecciona todos los materiales que necesites</label>
                 <div>cosa lista rara</div>
                 <div>
                     <!--Boton para cancelar el prestamo-->
