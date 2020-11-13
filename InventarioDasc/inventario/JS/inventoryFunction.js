@@ -95,7 +95,6 @@ var rutaAjax = "inventario/PHP/inventoryCons.php";
 class rowTable{
     constructor(idObjeto,clasificacion){
         this.idObjeto = idObjeto;
-       
         if(clasificacion=="null"){
             this.clasificacion = "Consumible";
            

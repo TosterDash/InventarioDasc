@@ -1,6 +1,40 @@
 <?php 
     //Conectar a la base de datos
     include ('conexion.php');
+
+    //Obtener datos para crear tabla 
+    //Crear consulta
+    $result = mysqli_query($conexion, "SELECT * from objeto where `prestamo` = `true`");
+    if(!$result){
+        echo die("error");     
+    }else{
+        //Crear json
+        $json = array();
+        //Realizar consulta
+        while($row = mysqli_fetch_array($result)){//Mientras tu variable fila este dentro de la cantidad de registros de consulta
+            $json []= array(
+                'idObjeto' => $row['idObjeto'],
+                'idUabcs' => $row['idUabcs'],
+                'nombre' => $row['nombre'],
+                'descripcion' => $row['descripcion'],
+                'prestamo' => $row['prestamo'],
+                'mantenimiento' => $row['mantenimiento'],
+                'lastMant' => $row['lastMant'],
+                'nextMant' => $row['nextMant'],
+                'mantResp' => $row['mantResp'],
+                'producto' => $row['producto'],
+                'img' => base64_encode($row['img']),
+            );
+        }
+        $jsonstring = json_encode($json);
+        echo $jsonstring;
+    }
+
+
+
+
+
+
     //Crear variables
     $building = $_POST["building"];
     $classroom = $_POST["clasroom"];
