@@ -730,12 +730,14 @@ function getTableNotification(){
     $.when(getDate()).done(function(){
         var template = "";
         for(var i = 0; i<dateMant.length; i++){
-            template += `<tr>
+            if(dateMant[i][4]==true){
+                template += `<tr>
                             <th>Mantenimiento</th>
                             <th>-------</th>
                             <th>Este articulo necesita mantenimiento desde: `+dateMant[i][3]+`</th>
                             <th><button>Eliminar</button></th>
                         </tr>`
+            }
         }
         $("#tbody-notification").html(template);
     })
@@ -810,7 +812,9 @@ function getNotification(){
         verificarPendientesMantenimiento(response);
         console.log(dateMant)
     })
+    //Validar notificaciones cada 60 segundos
     function actualizarFechas(){
+        getTableNotification();
         verificarPendientesMantenimiento();
         
     }
