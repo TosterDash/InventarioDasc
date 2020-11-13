@@ -87,7 +87,8 @@
 
 */
 //variables importantes para el funcionamiento de ciertos sectores
-var numNotification = 0;
+var totalNotification = 0;
+var notificationMantenimiento = 0;
 var dateMant = [];
 var rutaAjax = "inventario/PHP/inventoryCons.php";
 
@@ -724,8 +725,29 @@ function getTableConsumible(rutaAjax,rowTableConsumible){
     })
 }
 
+//Funciones para la pagina de notificaciones-----------------------------------------
 
-//funciones para inputs
+function getTableNotification(){
+    $.when(getDate()).done(function(){
+        var template = "";
+        for(var i = 0; i<dateMant.length; i++){
+            template += `<tr>
+                            <th>Mantenimiento</th>
+                            <th>-------</th>
+                            <th>Este articulo necesita mantenimiento desde: `+dateMant[i][3]+`</th>
+                            <th><button>Eliminar</button></th>
+                        </tr>`
+        }
+        $("#tbody-notification").html(template);
+    })
+    
+    
+}
+
+
+
+
+//funciones para inputs--------------------------------------------------------------
 
 
 function search(rutaAjax,buscarPor,stringSearch){
@@ -772,65 +794,55 @@ function search(rutaAjax,buscarPor,stringSearch){
 }
 
 
-//Funcion para obtener notificaciones y validar los objetos, fechas y prestamos
+//----------------------------------HEADER.HTML--------------------------------------------
+//funciones para las notificaciones de header.html
 function getNotification(){
-    
-    getDate();
-    
-    function actualizarFechas(){
-        console.log(dateMant.length);
-        var dateNow = new Date();
-            for(var i = 0;i<dateMant.length;i++){
-                if(dateNow.getTime()>=dateMant[i][3].getTime() && dateMant[i][4]==false){
+    var option = "getDate"
+    var getDateFun = getDate(option);
 
-                    
-                    numNotification++;
-                }
-            }
-            $("#notification").html(`<a class="menu-list navigation-menu-listt dropdown-toggle" data-toggle="dropdown">
-                                        NOTIFICACIONES
-                                        <span class="badge">`+numNotification+`</span></a>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="notificationBoard.php">MANTENIMIENTO (`+numNotification+`)</a>
-                                    </div>`);
+    $.when(getDateFun).done(function(response){
+        var cons = JSON.parse(response);
+        var cont = 0;
+            
+        cons.forEach(task =>{
+            dateMant[cont] = [`${task.idObjeto}`,`${task.mantResp}`,new Date(`${task.lastMant}`),new Date(`${task.nextMant}`),false];
+            cont++;
+        })
+        verificarPendientesMantenimiento(response);
+        console.log(dateMant)
+    })
+    function actualizarFechas(){
+        verificarPendientesMantenimiento();
         
     }
-    setInterval(actualizarFechas, 60000); 
+    setInterval(actualizarFechas, 60000);
+    
 }
 
-
-function getDate(){
-    var option = "getDate";
-    $.ajax({
-        url: rutaAjax,
-        type: 'POST',
-        data: {option},
-        success: function(response){
-            var cons = JSON.parse(response);
-            var cont = 0;
-            
-            cons.forEach(task =>{
-                dateMant[cont] = [`${task.idObjeto}`,`${task.mantResp}`,new Date(`${task.lastMant}`),new Date(`${task.nextMant}`),false];
-               
-                cont++;
-            })
-
+function verificarPendientesMantenimiento(){
+            console.log("adawdawdawdwaddwa");
             var dateNow = new Date();
             for(var i = 0;i<dateMant.length;i++){
                 if(dateNow.getTime()>=dateMant[i][3].getTime() && dateMant[i][4]==false){
                     dateMant[i][4] = true;
-                    numNotification++;
+                    notificationMantenimiento++;
+                    totalNotification++;
                 }
             }
+            
             $("#notification").html(`<a class="menu-list navigation-menu-listt dropdown-toggle" data-toggle="dropdown">
                                         NOTIFICACIONES
-                                        <span class="badge">`+numNotification+`</span></a>
-                                        <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="notificationBoard.php">MANTENIMIENTO (`+numNotification+`)</a>
-                                        </div>`);
-        }
-        
-    })
+                                        <span class="badge">`+totalNotification+`</span></a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="notificationBoard.php">MANTENIMIENTO (`+totalNotification+`)</a>
+                                    </div>`);
+            
+}
+
+
+function getDate(option){
+    return $.ajax({url: rutaAjax, type: 'POST',data:{option}})
+           
 }
 
 
