@@ -15,33 +15,39 @@
   	<script 
   		src="../styles/bootstrap-4.5.3-dist/js/bootstrap.min.js">
   	</script>
-
+	<script src="inventario/JS/notificationBoard.js"></script>
 	<link rel="stylesheet" href="../styles/normalize.css">
 	<link rel="stylesheet" href="../styles/hover.css">
-	<title>INICIO</title>
+	<title>NOTIFICACIONES | INVENTARIO</title>
 <head>
 </head>
 <body>
-	<div id="div-table"><!--Tabla de consulta-->
-						
-					<table id="table-equipo" class="table">
-						<thead class="thead-light">
-							<tr>
-								<th>Equipo</th>
-								<th>Responsable</th>
-								<th>Fecha de hoy</th>
-								<th>Siguiente Mantenimiento</th>
-								
-								<th></th>
-								
-							</tr>
-						</thead>
-						
-						<tbody id="tbody-equipo">
+	
+	<div>
+		<label>Mostrar:</label>
+		<select class="" name="" id="">
+			<option>Todos</option>
+			<option>Solo Mantenimiento por hacer</option>
+			<option>Solo Prestamos caducados</option>
+			<option>Solo Consumibles por agotar</option>
+		</select>
+	</div>
 
-						</tbody>
+
+	<div id="div-table"><!--Tabla de consulta-->
+		<table id="table-notification" class="table">
+			<thead class="thead-light">
+				<tr>
+					<th>Asunto</th>
+					<th>Articulo</th>
+					<th>Descripción del asunto</th>
+				</tr>
+			</thead>
+			<tbody id="tbody-notification">
+				
+			</tbody>
 						
-					</table>
+		</table>
 	</div>
 </body>
 </html>
