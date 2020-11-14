@@ -29,7 +29,7 @@
     <div class="container d-flex justify-content-center py-5">
         <!-- PRIMERA COLUMNA DE LA PAGINA -->
         <div class="row pr-5" id="col-1">
-                <div class="col-sm border">
+                <div class="col-sm border round-border">
                     <div id="col-1-content">
                         <label class="d-block">Tipo de clasificacion</label>
                         <select class="d-block form-control " name="col-1-combobox-category" id="col-1-combobox-clasification">
@@ -52,8 +52,8 @@
                 </div>
         <!-- PRIMERA COLUMNA DE LA PAGINA -->
         <!-- SEGUNDA COLUMNA DE LA PAGINA -->
-                <div class="col-sm border personalized-h">
-                    <div id = "col-2-content">
+                <div class="col-sm border personalized-h ">
+                    <div id = "col-2-content round-border">
                         <div id="col-2-block-name">
                             <label class="d-block">Nombre</label>
                             <input type="text" name="col-2-text-name" class="form-control d-block" id="col-2-text-name" required></input>

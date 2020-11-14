@@ -30,11 +30,6 @@
         echo $jsonstring;
     }
 
-
-
-
-
-
     //Crear variables
     $building = $_POST["building"];
     $classroom = $_POST["clasroom"];

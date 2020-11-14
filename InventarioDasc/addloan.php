@@ -26,7 +26,7 @@
         <!--Form para agregar a inventario-->
         <form enctype="multipart/form-data">
             <div class="loan-container">
-                <div class="loan-data float-left">
+                <div class="loan-data float-left round-border">
                     <label class="input-margin" >ID de alumno o maestro</label>
                     <input class="input-margin" type="number" value="">
                     <!--Edificio-->

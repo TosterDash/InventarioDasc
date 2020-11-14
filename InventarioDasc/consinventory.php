@@ -31,27 +31,25 @@
         <div id="inv-cons" class="consultar"><!--Realizar la consulta-->
             
             <!--Barra de busqueda y filtros-->
-            <div>
+            <div class="form-inline">
                 <!--Barra de busqueda-->
-                <nav class="nav-style">
+                <nav class="nav-style round-border">
                     <div>
                         <label>Buscar por:</label>
-                        <select class="round-border" name="combobox-search" id="combobox-search">
+                        <select  name="combobox-search" id="combobox-search">
                             <option values="Nombre">Nombre</option>
                             <option values="Descripcion">Descripción</option>
                         </select>
                     </div>
-                
-                <div class="form-inline">
-                    <img class="icon-size" src="../resources/icons/search_icon.png">
-                    <input  class="round-border" type="text" placeholder="Buscar..." id="search">
-                </div>
-                <div>
-                    <label>Mostrar por:</label>
-                    <select  class="round-border" 
-                    name="combobox-category" id="combobox-category">
-                    </select>
-                </div>
+                    <div >
+                        <img class="icon-size" src="../resources/icons/search_icon.png">
+                        <input type="text" placeholder="Buscar..." id="search">
+                    </div>
+                    <div>
+                        <label>Mostrar por:</label>
+                        <select name="combobox-category" id="combobox-category">
+                        </select>
+                    </div>
                 
                 </nav>
                 <!--Barra de busqueda-->

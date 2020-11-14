@@ -13,21 +13,12 @@
 }
 */
 
-.personalized-h{
-    height: 50vh;
-}
-
 .nav-style{
-	position: relative;
-	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
-	margin: 1% 0 1% 15%;
-	
+	float: left;
 }
 
-.nav-style div{
-	width: 30%;
+.nav-style div, nav{
+	width: 100%
 }
 
 

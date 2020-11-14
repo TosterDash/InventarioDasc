@@ -26,15 +26,18 @@ a.link-button{
 	margin-bottom:2%;
 }
 
-.round-border{
+/*STANDAR SHAPE PARA LAS SIGUIENTES ETIQUETAS*/
+/*inputs*/
+.round-border input, select{
 	border-radius:8px;
 	border:1px solid #333E49;
 	padding: 0.5%;
-	width: 150px;
+	width: 100%;
 }
 
+/*buttons*/
 .round-border button{
-	width: 200px;
+	width: 30%;
 	background-color: #333E49;
 	border-color: transparent;
 }
@@ -43,7 +46,7 @@ a.link-button{
 	background-color: transparent;
 	border-color: transparent;
 }
-
+/*icon*/
 .icon-size{
 	width: 32px;
 	height: 32px;
