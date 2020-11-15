@@ -71,7 +71,16 @@
 		<!--item de menu-->
 		<script>
 			$(document).ready(function(){
-				getNotification();
+				$.when(getDate("getDate")).done(function(respDate){
+					console.log(respDate);
+					getNotificationNum(respDate);
+					setInterval(actualizarFechas, 60000);
+
+					if(document.title == "NOTIFICACIONES | INVENTARIO"){
+						getTableNotification();
+					}
+
+				})
 			})
 			
 		</script>

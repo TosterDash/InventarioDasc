@@ -1,22 +1,23 @@
 $(document).ready(function(){
-    var rutaAjax = "inventario/PHP/inventoryCons.php";
-    var optionComboboxClasificacion = "clasificacion";
-    var optionComboboxProducto = "producto";
-    //console.log("dawdaw");
+  
+    //Invocar funciones-------------------------
     //Ocultar elementos de la segunda columna
     $("#col-1-block-producto").hide();
     $("#col-2-block-mant").hide();
     $("#col-2-block-cant").hide();
     $("#col-1-block-mant").hide();
     
-    getComboboxCategory("col-1-combobox-clasification",rutaAjax,optionComboboxClasificacion);
+    getCombobox("col-1-combobox-clasification","clasificacion");
     
 
+
+
+    //inicializar los eventos de botones
     $("#col-1-combobox-clasification").on('change',function(){
        
         switch($("#col-1-combobox-clasification").val()){
             case "1":
-                getComboboxCategory("col-1-combobox-product",rutaAjax,optionComboboxProducto, $("#col-1-combobox-clasification").val());
+                getCombobox("col-1-combobox-product","producto", $("#col-1-combobox-clasification").val());
                 //quitar otros required
                 $("#col-2-number-cant").prop('required',false);
                 //--------------------------------------------
@@ -29,7 +30,7 @@ $(document).ready(function(){
             break;
 
             case "2":
-                getComboboxCategory("col-1-combobox-product",rutaAjax,optionComboboxProducto, $("#col-1-combobox-clasification").val());
+                getCombobox("col-1-combobox-product","producto", $("#col-1-combobox-clasification").val());
                 //required a input cantidad
                 $("#col-2-number-cant").prop('required',true);
                 //quitar otros required

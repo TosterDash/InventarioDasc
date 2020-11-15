@@ -55,7 +55,28 @@
                 <!--Barra de busqueda-->
             </div>
             <div id="div-table"><!--Tabla de consulta-->
-                <table id="table-consumible" class="table">
+                <table id="table-equipo" class="table">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>Equipo</th>
+                            <th>ID Producto</th>
+                            <th>Producto</th>
+                            <th>Nombre</th>
+                            <th>Descripcion</th>
+                            <th>Responsable</th>
+                            <th>Ultimo mantenimiento</th>
+                            <th>Proximo mantenimiento</th>
+                            <th>Prestamo Disponible</th>
+                            <th></th>
+                            
+                        </tr>
+                    </thead>
+                    
+                    <tbody id="tbody-equipo">
+
+                    </tbody>
+
+                    <table id="table-consumible" class="table">
                     <thead class="thead-light">
                         <tr>
                             <th>Consumible</th>
@@ -74,24 +95,6 @@
                     
                     
                 </table>
-                <table id="table-equipo" class="table">
-                    <thead class="thead-light">
-                        <tr>
-                            <th>Equipo</th>
-                            <th>Producto</th>
-                            <th>Nombre</th>
-                            <th>Descripcion</th>
-                            <th>Responsable</th>
-                            <th>Ultimo mantenimiento</th>
-                            <th>Proximo mantenimiento</th>
-                            <th></th>
-                            
-                        </tr>
-                    </thead>
-                    
-                    <tbody id="tbody-equipo">
-
-                    </tbody>
                     
                 </table>
             </div>

@@ -39,7 +39,6 @@
 			<thead class="thead-light">
 				<tr>
 					<th>Asunto</th>
-					<th>Articulo</th>
 					<th>Descripción del asunto</th>
 				</tr>
 			</thead>

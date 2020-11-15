@@ -1,17 +1,18 @@
 
 
 $(document).ready(function(){
-    rowTableEquipo = [];
-    rowTableConsumible = [];
-    var optionComboboxClasificacion = "clasificacion";
-    var optionComboboxProducto = "producto";
-    var rutaAjax = "inventario/PHP/inventoryCons.php";
-    //codigo principal-----------------
-    getTableEquipo(rutaAjax,rowTableEquipo);
-    getTableConsumible(rutaAjax,rowTableConsumible);
-    getComboboxCategory( "combobox-category",rutaAjax, optionComboboxClasificacion);
+    var rowTableEquipo = [];
+    var rowTableConsumible = [];
+    //codigo principal-----------------Invocar funciones
+    
+    getCombobox("combobox-category","clasificacion")
+    getTableEquipo(rowTableEquipo);
 
+    //getTableEquipo(rutaAjax,rowTableEquipo);
+    //getTableConsumible(rutaAjax,rowTableConsumible);
+    //getComboboxCategory( "combobox-category",rutaAjax, optionComboboxClasificacion);
 
+    //iniciar los eventos
     $("#combobox-category").on('change',function(){
         
         switch($("#combobox-category").val()){

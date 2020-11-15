@@ -449,38 +449,24 @@ class rowTable{
     }
 }
 
-
-
-
-
-
-//funciones de tablas------------------------
-
-//(ruta para hacer post) Obtener valores de clasificacion y categoria en combobox
-function getComboboxCategory(idCombobox,rutaAjax, option, idClasificacion){
-    var idCombobox = idCombobox;
-    //OPCION categoria PARA CATEGORIA
-    var option = option;
-    //ajax para combobox clasificacion
+//id del combobox, tipo de consulta en PHP, (solo si el tipo de combobox es producto) id de clasificacion
+function getCombobox(idCombobox,tipoCombobox,tipoProducto){
+    var option = tipoCombobox;
     $.ajax({
         url: rutaAjax ,
         type:"POST" ,
-        data: {option,idClasificacion},
-
+        data: {option,tipoCombobox,tipoProducto},
     }).done(function(e){
+        console.log(e);
         switch(e){
             case "error":
-                alertify.error("Error consInventory.PHP-combobox");
+                alertify.error("Error al crear el Combobox");
             break;
 
-           
             default:
                 var jsonInfo = JSON.parse(e);
-               
                 var template = `<option value="">--seleccionar--</option>`;
-
                 jsonInfo.forEach(task=>{
-                    
                     switch(task.option){
                         case "clasificacion":
                             template+= `<option value="${task.idClasificacion}">${task.clasificacion}</option>`;
@@ -494,19 +480,23 @@ function getComboboxCategory(idCombobox,rutaAjax, option, idClasificacion){
                             
                         break;
                     }
-                    $("#"+idCombobox).html(template);
-
                 })
-
-                
-                
-               
+                $("#"+idCombobox).html(template);
             break;
         }
-    }).fail(function(e){
-        console.log("FALLO POST DE GET CATEGORY");
+    }).fail(function(){
+        alertify.error("Error de ruta en combobox")
     })
 }
+
+
+
+
+
+//funciones de tablas------------------------
+
+//(ruta para hacer post) Obtener valores de clasificacion y categoria en combobox
+
 
 function updateFileEquipo(rutaAjax,idObjeto){
     
@@ -610,7 +600,7 @@ function updateFileConsumible(rutaAjax,idObjeto){
 }
 
 //(ruta para hacer post)FUNCIONES PRINCIPALES PARA TABLAS---------- 
-function getTableEquipo(rutaAjax,rowTableEquipo){
+function getTableEquipo(rowTableEquipo){
     var option = "equipo";
     $.ajax({
         url: rutaAjax,
@@ -620,23 +610,33 @@ function getTableEquipo(rutaAjax,rowTableEquipo){
             var cons = JSON.parse(response);
             var template = "";
             var cont=0;
-            
-            
             cons.forEach(task =>{
-                
-            
                 rowTableEquipo[cont] = new rowTable(`${task.idObjeto}`,`${task.idUabcs}`);
                 template += `<tr id="fila${task.idObjeto}">
                                <div id="info${task.idObjeto}">
                                 <th id="img${task.idObjeto}"><img height="70px" src="data:image/jpg;base64,${task.img}"/></th>
-                                <th id="categoria${task.idObjeto}">${task.producto}</th>
+                                <th id="etiqueta${task.idObjeto}">${task.etiqueta}</th>
+                                <th id="producto${task.idObjeto}">${task.producto}</th>
                                 <th id="nombre${task.idObjeto}">${task.nombre}</th>
-                                <th id="descripcion${task.idObjeto}">${task.descripcion}</th>
-                                <th id="mantResp${task.idObjeto}">${task.mantResp}</th>
+                                <th id="descripcion${task.idObjeto}">${task.descripcion}</th>`;
+
+                if(`${task.mantenimiento}`=="true"){
+                    template += `<th id="mantResp${task.idObjeto}">${task.mantResp}</th>
                                 <th id="lastMant${task.idObjeto}">${task.lastMant}</th>
-                                <th id="nextMant${task.idObjeto}">${task.nextMant}</th>
-                               </div>
-                                <th id="option${task.idObjeto}">
+                                <th id="nextMant${task.idObjeto}">${task.nextMant}</th></div>`;
+                }else{
+                    template += `<th id="mantResp${task.idObjeto}">No hay responsable</th>
+                                <th id="lastMant${task.idObjeto}">No hay mantenimiento</th>
+                                <th id="nextMant${task.idObjeto}">No hay mantenimiento</th></div>`;
+                }
+                if(`${task.prestamo}`=="true"){
+                    template += `<th id="prestamo${task.idObjeto}"><input type="checkbox" id="prestamo${task.idObjeto}" checked disabled></th>`;
+    
+                }else{
+                    template += `<th id="prestamo${task.idObjeto}"><input type="checkbox" id="prestamo${task.idObjeto}" disabled></th>`;
+                
+                }
+                template += `<th id="option${task.idObjeto}">
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-danger" id="delete${task.idObjeto}">Eliminar</button>
                                             
@@ -653,7 +653,9 @@ function getTableEquipo(rutaAjax,rowTableEquipo){
                                         </div>
                                     </div>
                                 </th>
-                            </tr>`
+                            </tr>`;
+                                
+                                
                 rowTableEquipo[cont].deleteOption(rutaAjax);
                 rowTableEquipo[cont].editImg(rutaAjax);
                 rowTableEquipo[cont].editCategoria(rutaAjax);
@@ -736,7 +738,7 @@ function getTableNotification(){
                             <th>-------</th>
                             <th>Este articulo necesita mantenimiento desde: `+dateMant[i][3]+`</th>
                             <th><button>Eliminar</button></th>
-                        </tr>`
+                            </tr>`
             }
         }
         $("#tbody-notification").html(template);
@@ -796,56 +798,79 @@ function search(rutaAjax,buscarPor,stringSearch){
 
 
 //----------------------------------HEADER.HTML--------------------------------------------
-//funciones para las notificaciones de header.html
-function getNotification(){
-    var option = "getDate"
-    var getDateFun = getDate(option);
 
-    $.when(getDateFun).done(function(response){
-        var cons = JSON.parse(response);
-        var cont = 0;
-            
-        cons.forEach(task =>{
-            dateMant[cont] = [`${task.idObjeto}`,`${task.mantResp}`,new Date(`${task.lastMant}`),new Date(`${task.nextMant}`),false];
-            cont++;
-        })
-        verificarPendientesMantenimiento(response);
-        console.log(dateMant)
+function getTableNotification(){
+    var option = ""
+    $.when(getDate(option)).done(function(){
+        var template = "";
+        for(var i = 0; i<dateMant.length; i++){
+            if(dateMant[i][6]==true){
+                        template += `<tr id="fila`+dateMant[i][0]+`">
+                            <th>`+dateMant[i][7]+`</th>
+                            <th>`+dateMant[i][1]+`: El producto `+dateMant[i][2]+` necesita mantenimiento desde `+dateMant[i][4]+` por el responsable `+dateMant[i][5]+`</th>
+                            <th><button type="button" class="btn btn-success" id="notifDelete`+dateMant[i][0]+`">Hecho</button></th>
+                        </tr>`
+            }
+        }
+        $("#tbody-notification").html(template);
     })
-    //Validar notificaciones cada 60 segundos
-    function actualizarFechas(){
-        getTableNotification();
-        verificarPendientesMantenimiento();
-        
-    }
-    setInterval(actualizarFechas, 60000);
-    
 }
 
-function verificarPendientesMantenimiento(){
-            console.log("adawdawdawdwaddwa");
-            var dateNow = new Date();
-            for(var i = 0;i<dateMant.length;i++){
-                if(dateNow.getTime()>=dateMant[i][3].getTime() && dateMant[i][4]==false){
-                    dateMant[i][4] = true;
-                    notificationMantenimiento++;
-                    totalNotification++;
-                }
-            }
+function actualizarFechas(){
+    
+    var dateNow = new Date();
+    for(var i = 0;i<dateMant.length; i++){
+        if(dateNow.getTime()>=dateMant[i][4].getTime() && dateMant[i][6]==false){
+            dateMant[i][6] = true;
+            notificationMantenimiento++;
+            totalNotification++;
             
-            $("#notification").html(`<a class="menu-list navigation-menu-listt dropdown-toggle" data-toggle="dropdown">
+        }
+        
+    }
+    $("#notification").html(`<a class="menu-list navigation-menu-listt dropdown-toggle" data-toggle="dropdown">
                                         NOTIFICACIONES
                                         <span class="badge">`+totalNotification+`</span></a>
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" href="notificationBoard.php">MANTENIMIENTO (`+totalNotification+`)</a>
                                     </div>`);
-            
 }
+
+function getNotificationNum(response){
+    var cons = JSON.parse(response);
+    var cont = 0;
+    var dateNow = new Date();
+    cons.forEach(task =>{
+        dateMant[cont] = [`${task.idObjeto}`,`${task.etiquetaOcantidad}`,`${task.producto}`,new Date(`${task.lastMant}`),new Date(`${task.nextMant}`),`${task.mantResp}`,false, `${task.tipoNotificacion}`];
+        if(dateNow.getTime()>=dateMant[cont][4].getTime() && dateMant[cont][6]==false){
+            dateMant[cont][6] = true;
+            notificationMantenimiento++;
+            totalNotification++;
+        }
+        cont++;
+    })
+    $("#notification").html(`<a class="menu-list navigation-menu-listt dropdown-toggle" data-toggle="dropdown">
+                                        NOTIFICACIONES
+                                        <span class="badge">`+totalNotification+`</span></a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="notificationBoard.php">MANTENIMIENTO (`+totalNotification+`)</a>
+                                    </div>`);
+       
+}
+
 
 
 function getDate(option){
     return $.ajax({url: rutaAjax, type: 'POST',data:{option}})
            
+}
+
+function getPrestamoDate(){
+
+}
+
+function getConsumibleCant(){
+
 }
 
 

@@ -26,8 +26,9 @@
         break;
 
         case "producto":
-            $idClasificacion = $_POST["idClasificacion"];
-            $result = mysqli_query($conexion, "SELECT * from tipoproducto where idTipoClasificacion = '$idClasificacion' ");
+            $tipoProducto = $_POST["tipoProducto"];
+            $result = mysqli_query($conexion, "SELECT `tipoproducto`.`idTipoProducto`,`tipoproducto`.`producto` from tipoproducto 
+                                    where `tipoproducto`.`idTipoClasificacion` = '$tipoProducto' ");
 
             if(!$result){
                 echo die("error");     
@@ -78,7 +79,7 @@
 
         case "equipo":
             //Crear consulta
-            $result = mysqli_query($conexion, "SELECT `objeto`.*,`tipoproducto`.`producto` from objeto,tipoproducto where `tipoproducto`.`idTipoClasificacion`=1 and `objeto`.`idTipoProducto`=`tipoproducto`.`idTipoProducto`");
+            $result = mysqli_query($conexion, "SELECT `objeto`.*, concat(`objeto`.`idUabcs`, `objeto`.`idObjeto`) as etiqueta,`tipoproducto`.`producto` from objeto,tipoproducto where `tipoproducto`.`idTipoClasificacion`=1 and `objeto`.`idTipoProducto`=`tipoproducto`.`idTipoProducto`");
             if(!$result){
                 echo die("error");     
             }else{
@@ -89,6 +90,7 @@
                     $json []= array(
                         'idObjeto' => $row['idObjeto'],
                         'idUabcs' => $row['idUabcs'],
+                        'etiqueta' => $row['etiqueta'],
                         'nombre' => $row['nombre'],
                         'descripcion' => $row['descripcion'],
                         'prestamo' => $row['prestamo'],
@@ -294,7 +296,8 @@
         break;
 
         case "getDate":
-            $select = ("SELECT idObjeto,lastMant,nextMant,mantResp from objeto where mantenimiento = 'true'");
+            $select = ("SELECT `objeto`.`idObjeto`, concat(objeto.idUabcs, objeto.idObjeto) as etiqueta  ,`objeto`.`lastMant`,`objeto`.`nextMant`,`objeto`.`mantResp`,`tipoproducto`.`producto` 
+                        from objeto, tipoproducto where `objeto`.`mantenimiento` = 'true' and `tipoproducto`.`idTipoProducto`=`objeto`.idTipoProducto");
             $result = mysqli_query($conexion, $select);
             if(!$result){
                 echo die("error");
@@ -305,9 +308,12 @@
                 while($row = mysqli_fetch_array($result)){//Mientras tu variable fila este dentro de la cantidad de registros de consulta
                     $json []= array(
                         'idObjeto' => $row['idObjeto'],
+                        'etiquetaOcantidad' => $row['etiqueta'],
+                        'producto' => $row['producto'],
                         'lastMant' => $row['lastMant'],
                         'nextMant' => $row['nextMant'],
                         'mantResp' => $row['mantResp'],
+                        'tipoNotificacion' => "mantenimiento",
                     );
                 }
                 $jsonstring = json_encode($json);
