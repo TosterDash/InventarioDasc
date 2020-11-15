@@ -7,6 +7,7 @@ $(document).ready(function(){
     
     getCombobox("combobox-category","clasificacion")
     getTableEquipo(rowTableEquipo);
+    getTableConsumible(rowTableConsumible);
 
     //getTableEquipo(rutaAjax,rowTableEquipo);
     //getTableConsumible(rutaAjax,rowTableConsumible);

@@ -111,7 +111,7 @@
         case "updateFileEquipo":
             //Crear consulta
             $idObjeto = $_POST['idObjeto'];
-            $result = mysqli_query($conexion, "SELECT `objeto`.*,`tipoproducto`.`producto` from objeto,tipoproducto where `tipoproducto`.`idTipoClasificacion`=1 and `objeto`.`idTipoProducto`=`tipoproducto`.`idTipoProducto` and `objeto`.`idObjeto` = '$idObjeto' ");
+            $result = mysqli_query($conexion, "SELECT `objeto`.*, concat(`objeto`.`idUabcs`, `objeto`.`idObjeto`) as etiqueta,`tipoproducto`.`producto` from objeto,tipoproducto where `tipoproducto`.`idTipoClasificacion`=1 and `objeto`.`idTipoProducto`=`tipoproducto`.`idTipoProducto` and `objeto`.`idObjeto`='$idObjeto'");
             if(!$result){
                 echo die("error");     
             }else{
@@ -121,6 +121,8 @@
                 while($row = mysqli_fetch_array($result)){//Mientras tu variable fila este dentro de la cantidad de registros de consulta
                     $json []= array(
                         'idObjeto' => $row['idObjeto'],
+                        'idUabcs' => $row['idUabcs'],
+                        'etiqueta' => $row['etiqueta'],
                         'nombre' => $row['nombre'],
                         'descripcion' => $row['descripcion'],
                         'prestamo' => $row['prestamo'],
@@ -191,6 +193,7 @@
             if(!$result){
                 echo die("error");
             }
+            echo $result;
         break;
 
         case "editDescripcion":

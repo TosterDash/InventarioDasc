@@ -104,7 +104,7 @@ class rowTable{
         }
     }
 
-    deleteOption(rutaAjax){
+    deleteOption(){
         var idObjeto = this.idObjeto;
         //BOTON DELETE-----------------------------------
         $(document).on('click',"#delete"+idObjeto,function(){
@@ -117,7 +117,7 @@ class rowTable{
             }).done(function(e){
                 switch(e){
                     case "error":
-                        alertify.error("Error consInventory.PHP");
+                        alertify.error("Error de consulta");
                     break;
     
                     default:
@@ -126,11 +126,11 @@ class rowTable{
                     break;
                 }
             }).fail(function(e){
-                console.log("FALLO POST DE ELIMINAR ROW");
+                alertify.error("Error en la ruta");
             })
         })
     }
-    editImg(rutaAjax){
+    editImg(){
         //imagen
         var idObjeto = this.idObjeto;
         var clasificacion = this.clasificacion;
@@ -156,21 +156,21 @@ class rowTable{
                     cache: false,
                     contentType: false,
                     processData: false
-                }).done(function(img){
+                }).done(function(){
                     alertify.success("Imagen Modificada");
                     $("#option"+idObjeto).show();
                     console.log(clasificacion);
                     switch(clasificacion){
                         //1-EQUIPOS
                         case "Equipo":
-                            updateFileEquipo(rutaAjax,idObjeto);
+                            updateFileEquipo(idObjeto);
                             
                            
                         break;
             
                         case "Consumible":
                         //2-CONSUMIBLES
-                            updateFileConsumible(rutaAjax,idObjeto);
+                            updateFileConsumible(idObjeto);
                             
                         break;
             
@@ -180,7 +180,7 @@ class rowTable{
             })
         })
     }
-    editCategoria(rutaAjax){
+    editCategoria(/*pendiente*/){
         var idObjeto = this.idObjeto;
         var clasificacion = this.clasificacion;
         
@@ -241,7 +241,7 @@ class rowTable{
             })
         })
     }
-    editNombre(rutaAjax){
+    editNombre(){
         var idObjeto = this.idObjeto;
         var clasificacion = this.clasificacion;
         $(document).on('click',"#editNombre"+idObjeto,function(){
@@ -267,19 +267,20 @@ class rowTable{
                     contentType: false,
                     processData: false
                 }).done(function(img){
+                    console.log(img)
                     alertify.success("Nombre Modificado");
                     $("#option"+idObjeto).show();
                     switch(clasificacion){
                         //1-EQUIPOS
                         case "Equipo":
-                            updateFileEquipo(rutaAjax,idObjeto);
+                            updateFileEquipo(idObjeto);
                            
                            
                         break;
             
                         case "Consumible":
                         //2-CONSUMIBLES
-                            updateFileConsumible(rutaAjax,idObjeto);
+                            updateFileConsumible(idObjeto);
                             
                         break;
             
@@ -290,7 +291,7 @@ class rowTable{
         })
         
     }
-    editDescripcion(rutaAjax){
+    editDescripcion(){
         var idObjeto = this.idObjeto;
         var clasificacion = this.clasificacion;
         $(document).on('click',"#editDescripcion"+idObjeto,function(){
@@ -321,14 +322,14 @@ class rowTable{
                     switch(clasificacion){
                         //1-EQUIPOS
                         case "Equipo":
-                            updateFileEquipo(rutaAjax,idObjeto);
+                            updateFileEquipo(idObjeto);
                            
                            
                         break;
             
                         case "Consumible":
                         //2-CONSUMIBLES
-                            updateFileConsumible(rutaAjax,idObjeto);
+                            updateFileConsumible(idObjeto);
                             
                         break;
             
@@ -338,7 +339,7 @@ class rowTable{
             })
         })
     }
-    editCantidad(rutaAjax){
+    editCantidad(/*pendiente*/){
         var idObjeto = this.idObjeto;
         var clasificacion = this.clasificacion;
         $(document).on('click',"#editCantidad"+idObjeto,function(){
@@ -387,7 +388,7 @@ class rowTable{
             })
         })
     }
-    editMantenimiento(rutaAjax){
+    editMantenimiento(/*funciona, pero hay que cambiar cosas de fechas y parametros*/){
         var idObjeto = this.idObjeto;
         var clasificacion = this.clasificacion;
         $(document).on('click',"#editMantenimiento"+idObjeto,function(){
@@ -429,14 +430,14 @@ class rowTable{
                     switch(clasificacion){
                         //1-EQUIPOS
                         case "Equipo":
-                            updateFileEquipo(rutaAjax,idObjeto);
+                            updateFileEquipo(idObjeto);
                            
                            
                         break;
             
                         case "Consumible":
                         //2-CONSUMIBLES
-                            updateFileConsumible(rutaAjax,idObjeto);
+                            updateFileConsumible(idObjeto);
                             
                         break;
             
@@ -498,7 +499,7 @@ function getCombobox(idCombobox,tipoCombobox,tipoProducto){
 //(ruta para hacer post) Obtener valores de clasificacion y categoria en combobox
 
 
-function updateFileEquipo(rutaAjax,idObjeto){
+function updateFileEquipo(idObjeto){
     
     var option = "updateFileEquipo";
     //deleteButtons(idObjeto);
@@ -514,34 +515,52 @@ function updateFileEquipo(rutaAjax,idObjeto){
             cons.forEach(task =>{
                 
                 template = `
-                                <th id="img${task.idObjeto}"><img height="70px" src="data:image/jpg;base64,${task.img}"/></th>
-                                <th id="categoria${task.idObjeto}">${task.producto}</th>
-                                <th id="nombre${task.idObjeto}">${task.nombre}</th>
-                                <th id="descripcion${task.idObjeto}">${task.descripcion}</th>
-                                <th id="mantResp${task.idObjeto}">${task.mantResp}</th>
-                                <th id="lastMant${task.idObjeto}">${task.lastMant}</th>
-                                <th id="nextMant${task.idObjeto}">${task.nextMant}</th>
-                                <th id="option${task.idObjeto}">
-                                    
-                            `
+                            <th id="img${task.idObjeto}"><img height="70px" src="data:image/jpg;base64,${task.img}"/></th>
+                            <th id="etiqueta${task.idObjeto}">${task.etiqueta}</th>
+                            <th id="producto${task.idObjeto}">${task.producto}</th>
+                            <th id="nombre${task.idObjeto}">${task.nombre}</th>
+                            <th id="descripcion${task.idObjeto}">${task.descripcion}</th>`
+
+                            if(`${task.mantenimiento}`=="true"){
+                                template += `<th id="mantResp${task.idObjeto}">${task.mantResp}</th>
+                                            <th id="lastMant${task.idObjeto}">${task.lastMant}</th>
+                                            <th id="nextMant${task.idObjeto}">${task.nextMant}</th>`;
+                            }else{
+                                template += `<th id="mantResp${task.idObjeto}">No hay responsable</th>
+                                            <th id="lastMant${task.idObjeto}">No hay mantenimiento</th>
+                                            <th id="nextMant${task.idObjeto}">No hay mantenimiento</th>`;
+                            }
+                            if(`${task.prestamo}`=="true"){
+                                template += `<th id="prestamo${task.idObjeto}"><input type="checkbox" id="prestamo${task.idObjeto}" checked disabled></th>`;
+                
+                            }else{
+                                template += `<th id="prestamo${task.idObjeto}"><input type="checkbox" id="prestamo${task.idObjeto}" disabled></th>`;
+                            
+                            }
+
+                            template += `<th id="option${task.idObjeto}">
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-danger" id="delete${task.idObjeto}">Eliminar</button>
+                                                    
+                                                <div class="btn-group">
+                                                    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" id="edit${task.idObjeto}">Editar</button>
+                                                    <div class="dropdown-menu">
+                                                        <a class="dropdown-item" id="editImg${task.idObjeto}">Imagen</a>
+                                                        <a class="dropdown-item" id="editProducto${task.idObjeto}">Producto</a>
+                                                        <a class="dropdown-item" id="editNombre${task.idObjeto}">Nombre</a>
+                                                        <a class="dropdown-item" id="editDescripcion${task.idObjeto}">Descripcion</a>
+                                                        <a class="dropdown-item" id="editMantenimiento${task.idObjeto}">mantenimiento</a>
+                                                    
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </th>
+                                    `;
+                
+                
                 $('#fila'+idObjeto).html(template);
 
-                template = ` <div class="btn-group">
-                                <button type="button" class="btn btn-danger" id="delete${task.idObjeto}">Eliminar</button>
-                                    
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" id="edit${task.idObjeto}">Editar</button>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" id="editImg${task.idObjeto}">Imagen</a>
-                                        <a class="dropdown-item" id="editCategoria${task.idObjeto}">Producto</a>
-                                        <a class="dropdown-item" id="editNombre${task.idObjeto}">Nombre</a>
-                                        <a class="dropdown-item" id="editDescripcion${task.idObjeto}">Descripcion</a>
-                                        <a class="dropdown-item" id="editMantenimiento${task.idObjeto}">mantenimiento</a>
-                                    
-                                    </div>
-                                </div>
-                            </div>`
-                $('#option'+idObjeto).html(template);
+               
                 
         
             })
@@ -550,7 +569,7 @@ function updateFileEquipo(rutaAjax,idObjeto){
     $(document).off('submit',"#formSend"+idObjeto);
 }
 
-function updateFileConsumible(rutaAjax,idObjeto){
+function updateFileConsumible(/*pendiente*/){
     var option = "updateFileConsumible";
     //deleteButtons(idObjeto);
     $.ajax({
@@ -613,7 +632,6 @@ function getTableEquipo(rowTableEquipo){
             cons.forEach(task =>{
                 rowTableEquipo[cont] = new rowTable(`${task.idObjeto}`,`${task.idUabcs}`);
                 template += `<tr id="fila${task.idObjeto}">
-                               <div id="info${task.idObjeto}">
                                 <th id="img${task.idObjeto}"><img height="70px" src="data:image/jpg;base64,${task.img}"/></th>
                                 <th id="etiqueta${task.idObjeto}">${task.etiqueta}</th>
                                 <th id="producto${task.idObjeto}">${task.producto}</th>
@@ -623,11 +641,11 @@ function getTableEquipo(rowTableEquipo){
                 if(`${task.mantenimiento}`=="true"){
                     template += `<th id="mantResp${task.idObjeto}">${task.mantResp}</th>
                                 <th id="lastMant${task.idObjeto}">${task.lastMant}</th>
-                                <th id="nextMant${task.idObjeto}">${task.nextMant}</th></div>`;
+                                <th id="nextMant${task.idObjeto}">${task.nextMant}</th>`;
                 }else{
                     template += `<th id="mantResp${task.idObjeto}">No hay responsable</th>
                                 <th id="lastMant${task.idObjeto}">No hay mantenimiento</th>
-                                <th id="nextMant${task.idObjeto}">No hay mantenimiento</th></div>`;
+                                <th id="nextMant${task.idObjeto}">No hay mantenimiento</th>`;
                 }
                 if(`${task.prestamo}`=="true"){
                     template += `<th id="prestamo${task.idObjeto}"><input type="checkbox" id="prestamo${task.idObjeto}" checked disabled></th>`;
@@ -636,6 +654,7 @@ function getTableEquipo(rowTableEquipo){
                     template += `<th id="prestamo${task.idObjeto}"><input type="checkbox" id="prestamo${task.idObjeto}" disabled></th>`;
                 
                 }
+                
                 template += `<th id="option${task.idObjeto}">
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-danger" id="delete${task.idObjeto}">Eliminar</button>
@@ -644,7 +663,7 @@ function getTableEquipo(rowTableEquipo){
                                             <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" id="edit${task.idObjeto}">Editar</button>
                                             <div class="dropdown-menu">
                                                 <a class="dropdown-item" id="editImg${task.idObjeto}">Imagen</a>
-                                                <a class="dropdown-item" id="editCategoria${task.idObjeto}">Producto</a>
+                                                <a class="dropdown-item" id="editProducto${task.idObjeto}">Producto</a>
                                                 <a class="dropdown-item" id="editNombre${task.idObjeto}">Nombre</a>
                                                 <a class="dropdown-item" id="editDescripcion${task.idObjeto}">Descripcion</a>
                                                 <a class="dropdown-item" id="editMantenimiento${task.idObjeto}">mantenimiento</a>
@@ -656,12 +675,12 @@ function getTableEquipo(rowTableEquipo){
                             </tr>`;
                                 
                                 
-                rowTableEquipo[cont].deleteOption(rutaAjax);
-                rowTableEquipo[cont].editImg(rutaAjax);
-                rowTableEquipo[cont].editCategoria(rutaAjax);
-                rowTableEquipo[cont].editNombre(rutaAjax);
-                rowTableEquipo[cont].editDescripcion(rutaAjax);
-                rowTableEquipo[cont].editMantenimiento(rutaAjax);
+                rowTableEquipo[cont].deleteOption();
+                rowTableEquipo[cont].editImg();
+                rowTableEquipo[cont].editCategoria();
+                rowTableEquipo[cont].editNombre();
+                rowTableEquipo[cont].editDescripcion();
+                rowTableEquipo[cont].editMantenimiento();
                 $('#tbody-equipo').html(template);
                 cont++;
             
@@ -671,7 +690,7 @@ function getTableEquipo(rowTableEquipo){
     })
 }
 
-function getTableConsumible(rutaAjax,rowTableConsumible){
+function getTableConsumible(rowTableConsumible){
     var option = "consumible";
     $.ajax({
         url: rutaAjax,
@@ -690,7 +709,7 @@ function getTableConsumible(rutaAjax,rowTableConsumible){
                 template += `<tr id="fila${task.idObjeto}">
                                <div id="info${task.idObjeto}">
                                 <th id="img${task.idObjeto}"><img height="70px" src="data:image/jpg;base64,${task.img}"/></th>
-                                <th id="categoria${task.idObjeto}">${task.producto}</th>
+                                <th id="producto${task.idObjeto}">${task.producto}</th>
                                 <th id="nombre${task.idObjeto}">${task.nombre}</th>
                                 <th id="descripcion${task.idObjeto}">${task.descripcion}</th>
                                 <th id="cantidad${task.idObjeto}">${task.cantidad}</th>
@@ -703,7 +722,7 @@ function getTableConsumible(rutaAjax,rowTableConsumible){
                                             <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" id="edit${task.idObjeto}">Editar</button>
                                             <div class="dropdown-menu">
                                                 <a class="dropdown-item" id="editImg${task.idObjeto}">Imagen</a>
-                                                <a class="dropdown-item" id="editCategoria${task.idObjeto}">Producto</a>
+                                                <a class="dropdown-item" id="editProducto${task.idObjeto}">Producto</a>
                                                 <a class="dropdown-item" id="editNombre${task.idObjeto}">Nombre</a>
                                                 <a class="dropdown-item" id="editDescripcion${task.idObjeto}">Descripcion</a>
                                                 <a class="dropdown-item" id="editCantidad${task.idObjeto}">cantidad</a>
