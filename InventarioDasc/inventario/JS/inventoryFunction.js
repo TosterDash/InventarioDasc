@@ -87,6 +87,8 @@
 
 */
 //variables importantes para el funcionamiento de ciertos sectores
+var rowTableEquipo = [];
+var rowTableConsumible = [];
 var totalNotification = 0;
 var notificationMantenimiento = 0;
 var dateMant = [];
@@ -136,7 +138,9 @@ class rowTable{
                                 <button type="submit" class="btn btn-success" id="confirmEdit`+idObjeto+` name="confirmar">Confirmar</button>
                                 </form>`;
             $("#img"+idObjeto).html(templateImg);
-            $("#option"+idObjeto).hide();
+
+            optionsEquipo("hide");
+            optionsConsumible("hide");
 
             $(document).on('submit',"#formSend"+idObjeto,function(e){
                 e.preventDefault();
@@ -175,7 +179,7 @@ class rowTable{
             })
         })
     }
-    editProducto(/*pendiente*/){
+    editProducto(){
         var idObjeto = this.idObjeto;
         var clasificacion = this.clasificacion;
         var idTipoClasificacion = this.idTipoClasificacion;
@@ -185,7 +189,8 @@ class rowTable{
                                 <button type="submit" class="btn btn-success" id="confirmEdit`+idObjeto+` name="confirmar"`+idObjeto+`>Confirmar</button>
                                 </form>`;
             $("#producto"+idObjeto).html(template);
-            $("#option"+idObjeto).hide();
+            optionsEquipo("hide");
+            optionsConsumible("hide");
            
             switch(clasificacion){
                 case "Equipo":
@@ -246,7 +251,8 @@ class rowTable{
                                 <button type="submit" class="btn btn-success" id="confirmEdit`+idObjeto+` name="confirmar">Confirmar</button>
                                 </form>`;
             $("#nombre"+idObjeto).html(template);
-            $("#option"+idObjeto).hide();
+            optionsEquipo("hide");
+            optionsConsumible("hide");
             $(document).on('submit',"#formSend"+idObjeto,function(e){
                 e.preventDefault();
                 var form = document.querySelector('form');
@@ -296,7 +302,8 @@ class rowTable{
                                 <button type="submit" class="btn btn-success" id="confirmEdit`+idObjeto+` name="confirmar">Confirmar</button>
                                 </form>`;
             $("#descripcion"+idObjeto).html(template);
-            $("#option"+idObjeto).hide();
+            optionsEquipo("hide");
+            optionsConsumible("hide");
             $(document).on('submit',"#formSend"+idObjeto,function(e){
                 e.preventDefault();
                 var form = document.querySelector('form');
@@ -334,7 +341,7 @@ class rowTable{
             })
         })
     }
-    editCantidad(/*pendiente*/){
+    editCantidad(){
         var idObjeto = this.idObjeto;
         var clasificacion = this.clasificacion;
         $(document).on('click',"#editCantidad"+idObjeto,function(){
@@ -344,7 +351,8 @@ class rowTable{
                                 <button type="submit" class="btn btn-success" id="confirmEdit`+idObjeto+` name="confirmar">Confirmar</button>
                                 </form>`;
             $("#cantidad"+idObjeto).html(template);
-            $("#option"+idObjeto).hide();
+            optionsEquipo("hide");
+            optionsConsumible("hide");
             $(document).on('submit',"#formSend"+idObjeto,function(e){
                 e.preventDefault();
                 
@@ -402,10 +410,8 @@ class rowTable{
                         <input type="datetime-local" class="form-control-file" name="editInput3" id="editInput3" required></input>
                         `;
             $("#nextMant"+idObjeto).html(template);
-            $("#option"+idObjeto).hide();
-
-            
-            
+            optionsEquipo("hide");
+            optionsConsumible("hide");
             $(document).on('submit',"#formSend"+idObjeto,function(e){
                 console.log($("#editInput2").val());
                 e.preventDefault();
@@ -490,7 +496,8 @@ class rowTable{
             <button type="submit" class="btn btn-success" id="confirmEdit`+idObjeto+` name="confirmar">Confirmar</button>
             </form>`;
             $("#prestamo"+idObjeto).html(template);
-            $("#option"+idObjeto).hide();
+            optionsEquipo("hide");
+            optionsConsumible("hide");
             $(document).on('submit',"#formSend"+idObjeto,function(e){
                 e.preventDefault();
                 var isChecked;
@@ -640,6 +647,8 @@ function updateFileEquipo(idObjeto){
     })
     $(document).off('submit',"#formSend"+idObjeto);
     $(document).off('click',"#cancelEdit"+idObjeto);
+    optionsEquipo("show");
+    optionsConsumible("show");
 }
 
 function updateFileConsumible(idObjeto){
@@ -687,10 +696,46 @@ function updateFileConsumible(idObjeto){
     })
     $(document).off('submit',"#formSend"+idObjeto);
     $(document).off('click',"#cancelEdit"+idObjeto);
+    optionsEquipo("show");
+    optionsConsumible("show");
+}
+
+function optionsEquipo(option){
+    switch(option){
+        case "show":
+            for(var i = 0; i<rowTableEquipo.length; i ++){
+                $("#option"+rowTableEquipo[i].idObjeto).show();
+            }
+        break;
+
+        case "hide":
+            for(var i = 0; i<rowTableEquipo.length; i ++){
+                $("#option"+rowTableEquipo[i].idObjeto).hide();
+            }
+        break;
+    }
+    
+}
+
+function optionsConsumible(option){
+    switch(option){
+        case "show":
+            for(var i = 0; i<rowTableConsumible.length; i ++){
+                $("#option"+rowTableConsumible[i].idObjeto).show();
+            }
+        break;
+
+        case "hide":
+            for(var i = 0; i<rowTableConsumible.length; i ++){
+                $("#option"+rowTableConsumible[i].idObjeto).hide();
+            }
+        break;
+    }
+    
 }
 
 //(ruta para hacer post)FUNCIONES PRINCIPALES PARA TABLAS---------- 
-function getTableEquipo(rowTableEquipo){
+function getTableEquipo(){
     var option = "equipo";
     $.ajax({
         url: rutaAjax,
@@ -763,7 +808,7 @@ function getTableEquipo(rowTableEquipo){
     })
 }
 
-function getTableConsumible(rowTableConsumible){
+function getTableConsumible(){
     var option = "consumible";
     $.ajax({
         url: rutaAjax,
