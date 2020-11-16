@@ -24,7 +24,7 @@
     <body>
         <h1 class="center-title" >AÑADIR PRÉSTAMO</h1>
         <!--Form para agregar a inventario-->
-        <form enctype="multipart/form-data">
+        <form id="loan-add-form">
             <div class="loan-container">
                 <div class="loan-data float-left round-border">
                     <label class="input-margin" >ID de alumno o maestro</label>
@@ -46,20 +46,16 @@
                     <label class="input-margin" >Fecha salida</label>
                     <input class="input-margin" id="loan-add-datetime" type="datetime-local">
                     <label class="input-margin" >Fecha retorno</label>
-                    <input class="input-margin" id="loan-add-datetime" type="datetime-local">
+                    <input class="input-margin" id="loan-add-datetime-return" type="datetime-local">
                 </div>
             
                 <!--Tabla donde puedes seleccionar todos los objetos que vas a pedir-->
                 <div class="float-left">
                     <label>Selecciona todos los materiales que necesites</label>
-                    <table class="">
+                    <table id="loan-table" class="">
+                        <tbody id="loan-tbody"></tbody>
                         <!--fila-->
-                        <tr class="table-row">
-                            <th>
-                                <input type="checkbox" name="articleCheck">
-                                <label>ARTICULO</label>
-                            </th>
-                        </tr>
+                        
 
                     </table>
                     <div>

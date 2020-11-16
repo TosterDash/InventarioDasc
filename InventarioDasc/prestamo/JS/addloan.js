@@ -1,10 +1,9 @@
 $(document).ready(function(){
     //Crear tabla de objetos
-    var option = "equipo";
+    var rutaAjax = "prestamo/PHP/addloanDB.php";
     $.ajax({
         url: rutaAjax,
-        type: 'POST',
-        data: {option},
+        type: 'GET',
         success: function(response){
             var cons = JSON.parse(response);
             var template = "";
@@ -12,31 +11,17 @@ $(document).ready(function(){
             
             
             cons.forEach(task =>{
-                
-            
-                rowTableEquipo[cont] = new rowTable(`${task.idObjeto}`,`${task.idUabcs}`);
-                template += `<tr id="fila${task.idObjeto}">
-                               <div id="info${task.idObjeto}">
-                                <th id="img${task.idObjeto}"><img height="70px" src="data:image/jpg;base64,${task.img}"/></th>
-                                <th id="nombre${task.idObjeto}">${task.nombre}</th>
-                               </div>
-                                <th id="option${task.idObjeto}">
-                                    <div class="btn-group">
-                                    <input type="checkbox">
-                                    </div>
+                template += `<tr class="table-row">
+                                <th>
+                                    <td class="loan-cb"><input id="loan-add-cell" type="checkbox" name="articleCheck"><td>
+                                    <td class="loan-id"><label>${task.idObjeto}</label><td>
+                                    <td class="loan-obj"><label>${task.nombre}</label><td>
                                 </th>
                             </tr>`
-                rowTableEquipo[cont].deleteOption(rutaAjax);
-                rowTableEquipo[cont].editImg(rutaAjax);
-                rowTableEquipo[cont].editCategoria(rutaAjax);
-                rowTableEquipo[cont].editNombre(rutaAjax);
-                rowTableEquipo[cont].editDescripcion(rutaAjax);
-                rowTableEquipo[cont].editMantenimiento(rutaAjax);
-                $('#tbody-equipo').html(template);
                 cont++;
             
             })
-            
+            $("#loan-tbody").html(template)
         }
     })
 
@@ -45,11 +30,30 @@ $(document).ready(function(){
         var building = $('#loan-add-edif').val();
         var clasroom = $('#loan-add-clasroo').val();
         var exitDate = $('#loan-add-datetime').val();
-        var returnDate = $('#loan-add-datetime').val();
-        returnDate.setDate(returnDate.getDate()+15);
-        //Se debe convertir en arreglo que reciba la tabla de objetos
-        var objeto = $('#loan-add-datetime').val();
+        var returnDate = $('#loan-add-datetime-return').val();
+        var objects = [];
+        
+        var rows = $("#loan-tbody").find("tr");
+        for(i=0; i<rows.length; i++){
+            var cbCell = $(rows[i]).find(".loan-cb > input");
+            var cells = $(rows[i]).find(".loan-id").text();
+           
+            var checkbox = cbCell[0].checked
+            if (cbCell[0].checked){
+                console.log(cells[0])
+                objects.push(cells[0]);
+            }
+            
+        }
+        console.log(objects)
+        
+        
 
-    })
+    });
 
-})
+    $(document).on("submit", "#loan-add-form", function(e){
+        e.preventDefault();
+    });
+    
+    
+});
