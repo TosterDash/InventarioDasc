@@ -26,9 +26,9 @@
         break;
 
         case "producto":
-            $tipoProducto = $_POST["tipoProducto"];
+            $idTipoClasificacion = $_POST["idTipoClasificacion"];
             $result = mysqli_query($conexion, "SELECT `tipoproducto`.`idTipoProducto`,`tipoproducto`.`producto` from tipoproducto 
-                                    where `tipoproducto`.`idTipoClasificacion` = '$tipoProducto' ");
+                                    where `tipoproducto`.`idTipoClasificacion` = '$idTipoClasificacion' ");
 
             if(!$result){
                 echo die("error");     
@@ -217,17 +217,43 @@
         break;
 
         case "editMantenimiento":
+            $optionMantenimiento = $_POST['optionMantenimiento'];
             $idObjeto = $_POST['idObjeto'];
             $editInput = $_POST['editInput'];
             $editInput2 = $_POST['editInput2'];
             $editInput3 = $_POST['editInput3'];
-           
-            $mod = ("UPDATE objeto SET mantenimiento = 'true',lastMant = '$editInput2', nextMant = '$editInput3', mantResp = '$editInput' WHERE idObjeto = '$idObjeto'");
-            $result = mysqli_query($conexion,$mod);
-            if(!$result){
-                echo die("error");
+    
+            switch($optionMantenimiento){
+                case "editMantenimiento":
+                    $mod = ("UPDATE objeto SET mantenimiento = 'true',lastMant = '$editInput2', nextMant = '$editInput3', mantResp = '$editInput' WHERE idObjeto = '$idObjeto'");
+                    $result = mysqli_query($conexion,$mod);
+                    if(!$result){
+                        echo die("error");
+                    }
+                break;
+
+                case "cancelMantenimiento":
+                    $mod = ("UPDATE objeto SET mantenimiento = 'false',lastMant = '$editInput2', nextMant = '$editInput3', mantResp = '$editInput' WHERE idObjeto = '$idObjeto'");
+                    $result = mysqli_query($conexion,$mod);
+                    if(!$result){
+                        echo die("error");
+                    }
+                break;
             }
+
+
+           
             
+        break;
+        
+        case "editPrestamo":
+            $idObjeto = $_POST['idObjeto'];
+            $isChecked = $_POST['isChecked'];
+            $mod = ("UPDATE objeto SET prestamo = '$isChecked' WHERE idObjeto = '$idObjeto'");
+                    $result = mysqli_query($conexion,$mod);
+                    if(!$result){
+                        echo die("error");
+                    }
         break;
 
         case "search":

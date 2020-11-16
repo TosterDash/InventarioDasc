@@ -93,15 +93,10 @@ var dateMant = [];
 var rutaAjax = "inventario/PHP/inventoryCons.php";
 
 class rowTable{
-    constructor(idObjeto,clasificacion){
+    constructor(idObjeto,clasificacion,idTipoClasificacion){
         this.idObjeto = idObjeto;
-        if(clasificacion=="null"){
-            this.clasificacion = "Consumible";
-           
-        }else{
-            this.clasificacion = "Equipo";
-            
-        }
+        this.clasificacion = clasificacion;
+        this.idTipoClasificacion = idTipoClasificacion;
     }
 
     deleteOption(){
@@ -180,25 +175,25 @@ class rowTable{
             })
         })
     }
-    editCategoria(/*pendiente*/){
+    editProducto(/*pendiente*/){
         var idObjeto = this.idObjeto;
         var clasificacion = this.clasificacion;
-        
-        $(document).on('click',"#editCategoria"+idObjeto,function(){
+        var idTipoClasificacion = this.idTipoClasificacion;
+        $(document).on('click',"#editProducto"+idObjeto,function(){
             var template = ` <form method="POST" id="formSend`+idObjeto+`">
                                 <select class="form-control-file" name="editInput`+idObjeto+`" id="editInput`+idObjeto+`"></select>
                                 <button type="submit" class="btn btn-success" id="confirmEdit`+idObjeto+` name="confirmar"`+idObjeto+`>Confirmar</button>
                                 </form>`;
-            $("#categoria"+idObjeto).html(template);
+            $("#producto"+idObjeto).html(template);
             $("#option"+idObjeto).hide();
            
             switch(clasificacion){
                 case "Equipo":
-                    getComboboxCategory( "editInput"+idObjeto ,rutaAjax, "producto",1);
+                    getCombobox( "editInput"+idObjeto , "producto",idTipoClasificacion);
                 break;
 
                 case "Consumible":
-                    getComboboxCategory( "editInput"+idObjeto ,rutaAjax, "producto",2);
+                    getCombobox( "editInput"+idObjeto , "producto",idTipoClasificacion);
                 break;
             }
        
@@ -219,19 +214,19 @@ class rowTable{
                     processData: false
                 }).done(function(img){
                     console.log(img);
-                    alertify.success("Categoria Modificada");
+                    alertify.success("Producto Modificado");
                     $("#option"+idObjeto).show();
                     switch(clasificacion){
                         //1-EQUIPOS
                         case "Equipo":
-                            updateFileEquipo(rutaAjax,idObjeto);
+                            updateFileEquipo(idObjeto);
                            
                            
                         break;
             
                         case "Consumible":
                         //2-CONSUMIBLES
-                            updateFileConsumible(rutaAjax,idObjeto);
+                            updateFileConsumible(idObjeto);
                             
                         break;
             
@@ -266,8 +261,8 @@ class rowTable{
                     cache: false,
                     contentType: false,
                     processData: false
-                }).done(function(img){
-                    console.log(img)
+                }).done(function(){
+                    
                     alertify.success("Nombre Modificado");
                     $("#option"+idObjeto).show();
                     switch(clasificacion){
@@ -371,14 +366,14 @@ class rowTable{
                     switch(clasificacion){
                         //1-EQUIPOS
                         case "Equipo":
-                            updateFileEquipo(rutaAjax,idObjeto);
+                            updateFileEquipo(idObjeto);
                            
                            
                         break;
             
                         case "Consumible":
                         //2-CONSUMIBLES
-                            updateFileConsumible(rutaAjax,idObjeto);
+                            updateFileConsumible(idObjeto);
                             
                         break;
             
@@ -388,14 +383,15 @@ class rowTable{
             })
         })
     }
-    editMantenimiento(/*funciona, pero hay que cambiar cosas de fechas y parametros*/){
+    editMantenimiento(){
         var idObjeto = this.idObjeto;
         var clasificacion = this.clasificacion;
         $(document).on('click',"#editMantenimiento"+idObjeto,function(){
             console.log("-.-------------------------");
             var template = `<form method="POST" id="formSend`+idObjeto+`">
                                 <input type="text" class="form-control-file" name="editInput" id="editInput" required></input>
-                                <button type="submit" class="btn btn-success" id="confirmEdit`+idObjeto+` name="confirmar">Confirmar</button>
+                                <button type="submit" class="btn btn-success" id="confirmEdit`+idObjeto+`" name="confirmar">Confirmar</button>
+                                <button type="button" class="btn btn-danger" id="cancelEdit`+idObjeto+`">Dejar sin mantenimiento</button>
                             </form>`;
             $("#mantResp"+idObjeto).html(template);
             template = `
@@ -407,25 +403,110 @@ class rowTable{
                         `;
             $("#nextMant"+idObjeto).html(template);
             $("#option"+idObjeto).hide();
+
+            
+            
             $(document).on('submit',"#formSend"+idObjeto,function(e){
-                
+                console.log($("#editInput2").val());
                 e.preventDefault();
-                var form = document.querySelector('form');
-                var formData = new FormData(form);
-                formData.append("idObjeto",idObjeto);
-                formData.append("editInput2",$("#editInput2").val());
-                formData.append("editInput3",$("#editInput3").val());
-                formData.append("option","editMantenimiento");
+                if($("#editInput2").val()=="" || $("#editInput3").val()==""){
+                    alertify.warning("Algunos campos de mantenimiento estan vacios");
+                }else{
+                    var form = document.querySelector('form');
+                    var formData = new FormData(form);
+                    formData.append("idObjeto",idObjeto);
+                    formData.append("editInput2",$("#editInput2").val());
+                    formData.append("editInput3",$("#editInput3").val());
+                    formData.append("option","editMantenimiento");
+                    formData.append("optionMantenimiento","editMantenimiento");
+                    $.ajax({
+                        url: rutaAjax,
+                        type: "POST",
+                        dataType: "HTML",
+                        data: formData,
+                        cache: false,
+                        contentType: false,
+                        processData: false
+                    }).done(function(){
+                        alertify.success("Mantenimiento Modificado");
+                        $("#option"+idObjeto).show();
+                        switch(clasificacion){
+                            //1-EQUIPOS
+                            case "Equipo":
+                                updateFileEquipo(idObjeto);
+                            break;
+                
+                            case "Consumible":
+                            //2-CONSUMIBLES
+                                updateFileConsumible(idObjeto);
+                            break;
+                        }
+                        
+                    });
+                }
+            })//fin de evento submit
+
+            $(document).on('click',"#cancelEdit"+idObjeto,function(){
+                var option = "editMantenimiento";
+                $("#editInput2").val("")
+                $("#editInput2").val("")
+                $("#editInput2").val("")
+                var editInput2 = $("#editInput2").val()
+                var editInput3 =$("#editInput2").val()
+                var editInput =$("#editInput2").val()
+                var optionMantenimiento = "cancelMantenimiento";
                 $.ajax({
                     url: rutaAjax,
                     type: "POST",
-                    dataType: "HTML",
-                    data: formData,
-                    cache: false,
-                    contentType: false,
-                    processData: false
-                }).done(function(img){
-                    alertify.success("Mantenimiento Modificado");
+                    data: {idObjeto,optionMantenimiento,editInput2,editInput3,editInput,option},
+                }).done(function(e){
+                    console.log(e);
+                    alertify.success("Se ha dejado sin mantenimiento");
+                    $("#option"+idObjeto).show();
+                    switch(clasificacion){
+                        //1-EQUIPOS
+                        case "Equipo":
+                            updateFileEquipo(idObjeto);
+                        break;
+            
+                        case "Consumible":
+                        //2-CONSUMIBLES
+                            updateFileConsumible(idObjeto);
+                        break;
+                    }
+                    
+                });
+            })
+            
+        })
+    }
+    editPrestamo(){
+        
+        var idObjeto = this.idObjeto;
+        var clasificacion = this.clasificacion;
+        $(document).on('click',"#editPrestamo"+idObjeto,function(){
+            var template = ` <form method="POST" id="formSend`+idObjeto+`">
+            <input type="checkbox" class="form-control-file" name="editInput" id="editInput"></input>
+            <button type="submit" class="btn btn-success" id="confirmEdit`+idObjeto+` name="confirmar">Confirmar</button>
+            </form>`;
+            $("#prestamo"+idObjeto).html(template);
+            $("#option"+idObjeto).hide();
+            $(document).on('submit',"#formSend"+idObjeto,function(e){
+                e.preventDefault();
+                var isChecked;
+                var option ="editPrestamo";
+                if($("#editInput").prop('checked')){
+                    console.log("true");
+                    isChecked ="true";
+                }else{
+                    isChecked="false";
+                }
+                $.ajax({
+                    url: rutaAjax,
+                    type: "POST",
+                    data: {idObjeto,isChecked,option},
+                }).done(function(){
+                    alertify.success("Disponibilidad Modificada");
                     $("#option"+idObjeto).show();
                     switch(clasificacion){
                         //1-EQUIPOS
@@ -444,19 +525,19 @@ class rowTable{
                     }
                     
                 });
-                
             })
         })
     }
+
 }
 
 //id del combobox, tipo de consulta en PHP, (solo si el tipo de combobox es producto) id de clasificacion
-function getCombobox(idCombobox,tipoCombobox,tipoProducto){
+function getCombobox(idCombobox,tipoCombobox,idTipoClasificacion){
     var option = tipoCombobox;
     $.ajax({
         url: rutaAjax ,
         type:"POST" ,
-        data: {option,tipoCombobox,tipoProducto},
+        data: {option,tipoCombobox,idTipoClasificacion},
     }).done(function(e){
         console.log(e);
         switch(e){
@@ -489,11 +570,6 @@ function getCombobox(idCombobox,tipoCombobox,tipoProducto){
         alertify.error("Error de ruta en combobox")
     })
 }
-
-
-
-
-
 //funciones de tablas------------------------
 
 //(ruta para hacer post) Obtener valores de clasificacion y categoria en combobox
@@ -559,17 +635,14 @@ function updateFileEquipo(idObjeto){
                 
                 
                 $('#fila'+idObjeto).html(template);
-
-               
-                
-        
             })
         }
     })
     $(document).off('submit',"#formSend"+idObjeto);
+    $(document).off('click',"#cancelEdit"+idObjeto);
 }
 
-function updateFileConsumible(/*pendiente*/){
+function updateFileConsumible(idObjeto){
     var option = "updateFileConsumible";
     //deleteButtons(idObjeto);
     $.ajax({
@@ -583,39 +656,37 @@ function updateFileConsumible(/*pendiente*/){
             
             cons.forEach(task =>{
                 
-                template = `
-                                <th id="img${task.idObjeto}"><img height="70px" src="data:image/jpg;base64,${task.img}"/></th>
-                                <th id="categoria${task.idObjeto}">${task.producto}</th>
+                template = `<th id="img${task.idObjeto}"><img height="70px" src="data:image/jpg;base64,${task.img}"/></th>
+                                <th id="producto${task.idObjeto}">${task.producto}</th>
                                 <th id="nombre${task.idObjeto}">${task.nombre}</th>
                                 <th id="descripcion${task.idObjeto}">${task.descripcion}</th>
                                 <th id="cantidad${task.idObjeto}">${task.cantidad}</th>
+                            
                                 <th id="option${task.idObjeto}">
-                                    
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-danger" id="delete${task.idObjeto}">Eliminar</button>
+                                            
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" id="edit${task.idObjeto}">Editar</button>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" id="editImg${task.idObjeto}">Imagen</a>
+                                                <a class="dropdown-item" id="editProducto${task.idObjeto}">Producto</a>
+                                                <a class="dropdown-item" id="editNombre${task.idObjeto}">Nombre</a>
+                                                <a class="dropdown-item" id="editDescripcion${task.idObjeto}">Descripcion</a>
+                                                <a class="dropdown-item" id="editCantidad${task.idObjeto}">cantidad</a>
+                                            
+                                            </div>
+                                        </div>
+                                    </div>
+                                </th>
                             `
                 $('#fila'+idObjeto).html(template);
 
-                template = ` <div class="btn-group">
-                                <button type="button" class="btn btn-danger" id="delete${task.idObjeto}">Eliminar</button>
-                                    
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" id="edit${task.idObjeto}">Editar</button>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" id="editImg${task.idObjeto}">Imagen</a>
-                                        <a class="dropdown-item" id="editCategoria${task.idObjeto}">Producto</a>
-                                        <a class="dropdown-item" id="editNombre${task.idObjeto}">Nombre</a>
-                                        <a class="dropdown-item" id="editDescripcion${task.idObjeto}">Descripcion</a>
-                                        <a class="dropdown-item" id="editCantidad${task.idObjeto}">Cantidad</a>
-                                    
-                                    </div>
-                                </div>
-                            </div>`
-                $('#option'+idObjeto).html(template);
-                
-        
             })
         }
     })
     $(document).off('submit',"#formSend"+idObjeto);
+    $(document).off('click',"#cancelEdit"+idObjeto);
 }
 
 //(ruta para hacer post)FUNCIONES PRINCIPALES PARA TABLAS---------- 
@@ -630,7 +701,7 @@ function getTableEquipo(rowTableEquipo){
             var template = "";
             var cont=0;
             cons.forEach(task =>{
-                rowTableEquipo[cont] = new rowTable(`${task.idObjeto}`,`${task.idUabcs}`);
+                rowTableEquipo[cont] = new rowTable(`${task.idObjeto}`,"Equipo",1);
                 template += `<tr id="fila${task.idObjeto}">
                                 <th id="img${task.idObjeto}"><img height="70px" src="data:image/jpg;base64,${task.img}"/></th>
                                 <th id="etiqueta${task.idObjeto}">${task.etiqueta}</th>
@@ -667,6 +738,7 @@ function getTableEquipo(rowTableEquipo){
                                                 <a class="dropdown-item" id="editNombre${task.idObjeto}">Nombre</a>
                                                 <a class="dropdown-item" id="editDescripcion${task.idObjeto}">Descripcion</a>
                                                 <a class="dropdown-item" id="editMantenimiento${task.idObjeto}">mantenimiento</a>
+                                                <a class="dropdown-item" id="editPrestamo${task.idObjeto}">Disponibilidad de prestamo</a>
                                             
                                             </div>
                                         </div>
@@ -677,10 +749,11 @@ function getTableEquipo(rowTableEquipo){
                                 
                 rowTableEquipo[cont].deleteOption();
                 rowTableEquipo[cont].editImg();
-                rowTableEquipo[cont].editCategoria();
+                rowTableEquipo[cont].editProducto();
                 rowTableEquipo[cont].editNombre();
                 rowTableEquipo[cont].editDescripcion();
                 rowTableEquipo[cont].editMantenimiento();
+                rowTableEquipo[cont].editPrestamo();
                 $('#tbody-equipo').html(template);
                 cont++;
             
@@ -704,16 +777,16 @@ function getTableConsumible(rowTableConsumible){
             
             cons.forEach(task =>{
                 
-                rowTableConsumible[cont] = new rowTable(`${task.idObjeto}`,`${task.idUabcs}`);
+                rowTableConsumible[cont] = new rowTable(`${task.idObjeto}`,"Consumible",2);
                
                 template += `<tr id="fila${task.idObjeto}">
-                               <div id="info${task.idObjeto}">
+                               
                                 <th id="img${task.idObjeto}"><img height="70px" src="data:image/jpg;base64,${task.img}"/></th>
                                 <th id="producto${task.idObjeto}">${task.producto}</th>
                                 <th id="nombre${task.idObjeto}">${task.nombre}</th>
                                 <th id="descripcion${task.idObjeto}">${task.descripcion}</th>
                                 <th id="cantidad${task.idObjeto}">${task.cantidad}</th>
-                               </div>
+                              
                                 <th id="option${task.idObjeto}">
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-danger" id="delete${task.idObjeto}">Eliminar</button>
@@ -732,12 +805,12 @@ function getTableConsumible(rowTableConsumible){
                                     </div>
                                 </th>
                             </tr>`
-                            rowTableConsumible[cont].deleteOption(rutaAjax);
-                            rowTableConsumible[cont].editImg(rutaAjax);
-                            rowTableConsumible[cont].editCategoria(rutaAjax);
-                            rowTableConsumible[cont].editNombre(rutaAjax);
-                            rowTableConsumible[cont].editDescripcion(rutaAjax);
-                            rowTableConsumible[cont].editCantidad(rutaAjax);
+                            rowTableConsumible[cont].deleteOption();
+                            rowTableConsumible[cont].editImg();
+                            rowTableConsumible[cont].editProducto();
+                            rowTableConsumible[cont].editNombre();
+                            rowTableConsumible[cont].editDescripcion();
+                            rowTableConsumible[cont].editCantidad();
                 $('#tbody-consumible').html(template);
                 cont++;
             })
