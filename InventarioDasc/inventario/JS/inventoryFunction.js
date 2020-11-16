@@ -1,89 +1,4 @@
 /*DOCUMENTACION DE ESTE SCRIPT
--clase rowTable(id del objeto): clase para las filas de tablas producto y categoria
--getComboboxCategory(nombre del combobox,url de inventoryCons,nombre de la opcion para el switch de inventoryCons, la id de clasificacion (opcional para poner el combobox producto))
--updateFileEquipo(url de inventoryCons,id del objeto): actualizar las filas de tablas para equipo
--updateFileConsumible(url inventoryCons, id del objeto): actualizar las filas de la tabla consumible
--getTableEquipo(url inventoryCons): obtener la tabla de equipo
--getTableConsumible(url inventoryCons): obtener la tabla de consumible
--search(url inventoryCons, opcion para seleccionar que buscar(entre nombre y descripcion),string del buscador): Funcionalidad de la barra de busqueda 
-
->ESTRUCTURA PARA LA TABLA HTML-----------------------------------------
-
-<div id="inv-cons" class="consultar"><!--Realizar la consulta-->
-            
-            <!--Barra de busqueda y filtros-->
-            <div>
-                <!--Barra de busqueda-->
-                <nav class="nav-style">
-                    <div>
-                        <label>Buscar por:</label>
-                        <select class="round-border" name="combobox-category" id="combobox-search">
-                            <option values="Nombre">Nombre</option>
-                            <option values="Descripcion">Descripción</option>
-                        </select>
-                    </div>
-                
-                <div class="form-inline">
-                    <img class="icon-size" src="../resources/icons/search_icon.png">
-                    <input  class="round-border" type="text" placeholder="Buscar..." id="search">
-                </div>
-                <div>
-                    <label>Mostrar por:</label>
-                    <select  class="round-border" 
-                    name="combobox-category" id="combobox-category">
-                    </select>
-                </div>
-                
-                </nav>
-                <!--Barra de busqueda-->
-            </div>
-            <div id="div-table"><!--Tabla de consulta-->
-                <table id="table-consumible" class="table">
-                    <thead class="thead-light">
-                        <tr>
-                            <th>Imagen</th>
-                            <th>Producto</th>
-                            <th>Nombre</th>
-                            <th>Descripcion</th>
-                            <th>Cantidad</th>
-                            <th></th>
-                            
-                        </tr>
-                    </thead>
-
-                    <tbody id="tbody-consumible">
-
-                    </tbody>
-                    
-                    
-                </table>
-                <table id="table-equipo" class="table">
-                    <thead class="thead-light">
-                        <tr>
-                            <th>Imagen</th>
-                            <th>Producto</th>
-                            <th>Nombre</th>
-                            <th>Descripcion</th>
-                            <th>Responsable</th>
-                            <th>Ultimo mantenimiento</th>
-                            <th>Proximo mantenimiento</th>
-                            <th></th>
-                            
-                        </tr>
-                    </thead>
-                    
-                    <tbody id="tbody-equipo">
-
-                    </tbody>
-                    
-                </table>
-            </div>
-        </div>
-
-
-
-
-
 
 */
 //variables importantes para el funcionamiento de ciertos sectores
@@ -633,7 +548,7 @@ function updateFileEquipo(idObjeto){
                                                         <a class="dropdown-item" id="editNombre${task.idObjeto}">Nombre</a>
                                                         <a class="dropdown-item" id="editDescripcion${task.idObjeto}">Descripcion</a>
                                                         <a class="dropdown-item" id="editMantenimiento${task.idObjeto}">mantenimiento</a>
-                                                    
+                                                        <a class="dropdown-item" id="editPrestamo${task.idObjeto}">Disponibilidad de prestamo</a>
                                                     </div>
                                                 </div>
                                             </div>
