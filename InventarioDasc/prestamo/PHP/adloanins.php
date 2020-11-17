@@ -1,4 +1,5 @@
 <?php
+    include ('../../baseConexion/conexion.php');
     //Crear variables
     $building = $_POST["building"];
     $classroom = $_POST["clasroom"];
@@ -15,9 +16,9 @@
        //consultar la tabla de objetos donde el id del objeto sea igual al id en la posicion i del arreglo
         $idobjeto = mysqli_query($conexion, "SELECT idobjeto from objeto where idObjeto LIKE '%$objetos[i]%'");
         //consulta la tabla prestamo para obtener el registro que se acaba de crear
-        //COMO HAGO ESTO?
-        $idprestamo = mysqli_query($conexion, "SELECT idprestamo from prestamo where Nombre LIKE '%$objetos[i]%' ");
+        $idprestamo = mysqli_query($conexion, "SELECT TOP 1 idPrestamo from prestamo ORDER by idPrestamo DESC");
         //$insert=("INSERT INTO objeto_has_prestamo (idobjeto, idprestamo)
+        $insert=("INSERT INTO objeto (edificio, aula, exitDate, returnDate) VALUES ('$building', '$classroom', '$exitDate','$returnDate')")
     }
     
     //Insertar a la base de datos
