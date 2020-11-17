@@ -34,11 +34,13 @@
             <!-- PRIMERA COLUMNA DE LA PAGINA -->
             <div class="disp-flexCol row-form add-col-size" id="col-1-content" >
                 <label class="">Tipo de clasificacion</label>
-                <select class="" name="col-1-combobox-category" id="col-1-combobox-clasification">
+                <select class="" name="col-1-combobox-category" id="col-1-combobox-clasification">  
                 </select>
-                    <label class="">Tipo de producto</label>
-                <select class="" name="col-1-combobox-product" id="col-1-combobox-product">
-                </select>
+                <div id="col-1-block-producto">
+                <label class="">Tipo de producto</label>
+                    <select class="" name="col-1-combobox-product" id="col-1-combobox-product">
+                    </select>
+                </div>
                 <div id="col-1-block-mant">
                     <input type="checkbox" name="col-1-checkbox-mant" id="col-1-checkbox-mant">Mantenimiento</input>
                     <input type="checkbox" name="col-1-checkbox-loan" id="col-1-checkbox-loan">Disponible para prestamo</input>
@@ -56,10 +58,7 @@
                 <div id="col-2-block-mant">
                     <label class="">Responsable del mantenimiento</label>
                     <input type="text" name="col-2-text-mantResp"  class="" id="col-2-text-mantResp"></input>
-                    <label class="">Último mantenimiento</label>
-                    <input type="datetime-local" name="col-2-date-lastMant" 
-                    id="col-2-date-lastMant"></input>
-                    <label class="d-block">Siguiente mantenimiento</label>
+                    <label class="d-block">Fecha de Mantenimiento</label>
                     <input type="datetime-local" name="col-2-date-nextMant" class="" id="col-2-date-nextMant"></input>
                 </div>
                 <div id="col-2-block-cant">

@@ -318,52 +318,50 @@ class rowTable{
                             </form>`;
             $("#mantResp"+idObjeto).html(template);
             template = `
-                        <input type="datetime-local" class="form-control-file" name="editInput2" id="editInput2" required></input>
-                        `;
-            $("#lastMant"+idObjeto).html(template);
-            template = `
                         <input type="datetime-local" class="form-control-file" name="editInput3" id="editInput3" required></input>
                         `;
             $("#nextMant"+idObjeto).html(template);
             optionsEquipo("hide");
             optionsConsumible("hide");
             $(document).on('submit',"#formSend"+idObjeto,function(e){
-                console.log($("#editInput2").val());
                 e.preventDefault();
-                if($("#editInput2").val()=="" || $("#editInput3").val()==""){
-                    alertify.warning("Algunos campos de mantenimiento estan vacios");
+                if(validarFecha($("#editInput3").val())){
+                    if($("#editInput3").val()==""){
+                        alertify.warning("El campo fecha de mantenimiento esta vacio");
+                    }else{
+                        var form = document.querySelector('form');
+                        var formData = new FormData(form);
+                        formData.append("idObjeto",idObjeto);
+                        formData.append("editInput3",$("#editInput3").val());
+                        formData.append("option","editMantenimiento");
+                        formData.append("optionMantenimiento","editMantenimiento");
+                        $.ajax({
+                            url: rutaAjax,
+                            type: "POST",
+                            dataType: "HTML",
+                            data: formData,
+                            cache: false,
+                            contentType: false,
+                            processData: false
+                        }).done(function(){
+                            alertify.success("Mantenimiento Modificado");
+                            $("#option"+idObjeto).show();
+                            switch(clasificacion){
+                                //1-EQUIPOS
+                                case "Equipo":
+                                    updateFileEquipo(idObjeto);
+                                break;
+                    
+                                case "Consumible":
+                                //2-CONSUMIBLES
+                                    updateFileConsumible(idObjeto);
+                                break;
+                            }
+                            
+                        });
+                    }
                 }else{
-                    var form = document.querySelector('form');
-                    var formData = new FormData(form);
-                    formData.append("idObjeto",idObjeto);
-                    formData.append("editInput2",$("#editInput2").val());
-                    formData.append("editInput3",$("#editInput3").val());
-                    formData.append("option","editMantenimiento");
-                    formData.append("optionMantenimiento","editMantenimiento");
-                    $.ajax({
-                        url: rutaAjax,
-                        type: "POST",
-                        dataType: "HTML",
-                        data: formData,
-                        cache: false,
-                        contentType: false,
-                        processData: false
-                    }).done(function(){
-                        alertify.success("Mantenimiento Modificado");
-                        $("#option"+idObjeto).show();
-                        switch(clasificacion){
-                            //1-EQUIPOS
-                            case "Equipo":
-                                updateFileEquipo(idObjeto);
-                            break;
-                
-                            case "Consumible":
-                            //2-CONSUMIBLES
-                                updateFileConsumible(idObjeto);
-                            break;
-                        }
-                        
-                    });
+                    alertify.warning("La fecha del mantenimiento tiene que ser mayor a la fecha actual");
                 }
             })//fin de evento submit
 
@@ -520,14 +518,31 @@ function updateFileEquipo(idObjeto){
                             <th id="descripcion${task.idObjeto}">${task.descripcion}</th>`
 
                             if(`${task.mantenimiento}`=="true"){
-                                template += `<th id="mantResp${task.idObjeto}">${task.mantResp}</th>
-                                            <th id="lastMant${task.idObjeto}">${task.lastMant}</th>
-                                            <th id="nextMant${task.idObjeto}">${task.nextMant}</th>`;
+                                if(`${task.mantResp}`==""){
+                                    template += `<th id="mantResp${task.idObjeto}">No hay responsable</th>`
+                                }else{
+                                    template += `<th id="mantResp${task.idObjeto}">${task.mantResp}</th>`
+                                }
+                                if(`${task.lastMant}`=="0000-00-00 00:00:00" || `${task.lastMant}`=="" || `${task.lastMant}`== null){
+                                    template += `<th id="lastMant${task.idObjeto}">No hay fecha</th>`
+                                }else{
+                                    template += `<th id="lastMant${task.idObjeto}">${task.lastMant}</th>`
+                                }
+                                if(`${task.nextMant}`=="0000-00-00 00:00:00" || `${task.nextMant}`=="" || `${task.nextMant}`== null){
+                                    template += `<th id="nextMant${task.idObjeto}">No hay fecha</th>`
+                                }else{
+                                    template += `<th id="nextMant${task.idObjeto}">${task.nextMant}</th>`
+                                }
                             }else{
-                                template += `<th id="mantResp${task.idObjeto}">No hay responsable</th>
-                                            <th id="lastMant${task.idObjeto}">No hay mantenimiento</th>
-                                            <th id="nextMant${task.idObjeto}">No hay mantenimiento</th>`;
+                                template += `<th id="mantResp${task.idObjeto}">No hay mantenimiento</th>`;
+                                if(`${task.lastMant}`=="0000-00-00 00:00:00" || `${task.lastMant}`=="" || `${task.lastMant}`== null){
+                                    template += `<th id="lastMant${task.idObjeto}">No hay fecha</th>`
+                                }else{
+                                    template += `<th id="lastMant${task.idObjeto}">${task.lastMant}</th>`
+                                }
+                                template += `<th id="nextMant${task.idObjeto}">No hay mantenimiento</th>`;
                             }
+                            //prestamo IF
                             if(`${task.prestamo}`=="true"){
                                 template += `<th id="prestamo${task.idObjeto}"><input type="checkbox" id="prestamo${task.idObjeto}" checked disabled></th>`;
                 
@@ -668,16 +683,32 @@ function getTableEquipo(){
                                 <th id="producto${task.idObjeto}">${task.producto}</th>
                                 <th id="nombre${task.idObjeto}">${task.nombre}</th>
                                 <th id="descripcion${task.idObjeto}">${task.descripcion}</th>`;
-
                 if(`${task.mantenimiento}`=="true"){
-                    template += `<th id="mantResp${task.idObjeto}">${task.mantResp}</th>
-                                <th id="lastMant${task.idObjeto}">${task.lastMant}</th>
-                                <th id="nextMant${task.idObjeto}">${task.nextMant}</th>`;
+                    if(`${task.mantResp}`==""){
+                        template += `<th id="mantResp${task.idObjeto}">No hay responsable</th>`
+                    }else{
+                        template += `<th id="mantResp${task.idObjeto}">${task.mantResp}</th>`
+                    }
+                    if(`${task.lastMant}`=="0000-00-00 00:00:00" || `${task.lastMant}`=="" || `${task.lastMant}`== null){
+                        template += `<th id="lastMant${task.idObjeto}">No hay fecha</th>`
+                    }else{
+                        template += `<th id="lastMant${task.idObjeto}">${task.lastMant}</th>`
+                    }
+                    if(`${task.nextMant}`=="0000-00-00 00:00:00" || `${task.nextMant}`=="" || `${task.nextMant}`== null){
+                        template += `<th id="nextMant${task.idObjeto}">No hay fecha</th>`
+                    }else{
+                        template += `<th id="nextMant${task.idObjeto}">${task.nextMant}</th>`
+                    }
                 }else{
-                    template += `<th id="mantResp${task.idObjeto}">No hay responsable</th>
-                                <th id="lastMant${task.idObjeto}">No hay mantenimiento</th>
-                                <th id="nextMant${task.idObjeto}">No hay mantenimiento</th>`;
+                    template += `<th id="mantResp${task.idObjeto}">No hay mantenimiento</th>`;
+                    if(`${task.lastMant}`=="0000-00-00 00:00:00" || `${task.lastMant}`=="" || `${task.lastMant}`== null){
+                        template += `<th id="lastMant${task.idObjeto}">No hay fecha</th>`
+                    }else{
+                        template += `<th id="lastMant${task.idObjeto}">${task.lastMant}</th>`
+                    }
+                    template += `<th id="nextMant${task.idObjeto}">No hay mantenimiento</th>`;
                 }
+                
                 if(`${task.prestamo}`=="true"){
                     template += `<th id="prestamo${task.idObjeto}"><input type="checkbox" id="prestamo${task.idObjeto}" checked disabled></th>`;
     
@@ -797,6 +828,18 @@ function getTableNotification(){
     })
     
     
+}
+
+//Validaciones-----------------------------------------------------------------------
+//funcion para verificar si una fecha se pasa o no de la fecha actual
+function validarFecha(nextMant){
+    var valDate = new Date (nextMant);
+    var dateNow = new Date();
+    if(valDate.getTime()>dateNow.getTime()){
+        return true;
+    }else{
+        return false;
+    }
 }
 
 

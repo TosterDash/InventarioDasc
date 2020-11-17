@@ -35,14 +35,12 @@ $(document).ready(function(){
                 $("#col-2-number-cant").prop('required',true);
                 //quitar otros required
                 $("#col-2-text-mantResp").prop('required',false);
-                $("#col-2-date-lastMant").prop('required',false);
                 $("#col-2-date-nextMant").prop('required',false);
 
                 $("#col-1-block-producto").show();
 
                 //--------------------------------------------
                 $("#col-2-text-mantResp").val("");    
-                $("#col-2-date-lastMant").val("");    
                 $("#col-2-date-nextMant").val("");
                 $('#col-1-checkbox-mant').prop('checked', false);
                 $("#col-2-block-cant").show();
@@ -54,14 +52,12 @@ $(document).ready(function(){
                 $("#col-1-block-producto").hide();
                 //quitar otros required
                 $("#col-2-text-mantResp").prop('required',false);
-                $("#col-2-date-lastMant").prop('required',false);
                 $("#col-2-date-nextMant").prop('required',false);
 
                 $("#col-2-number-cant").prop('required',false);
                 //--------------------------------------------
                 $("#col-2-number-cant").val("");
-                $("#col-2-text-mantResp").val("");    
-                $("#col-2-date-lastMant").val("");    
+                $("#col-2-text-mantResp").val("");     
                 $("#col-2-date-nextMant").val("");
                 $('#col-1-checkbox-mant').prop('checked', false);
                 $("#col-2-block-mant").hide();
@@ -75,18 +71,15 @@ $(document).ready(function(){
         if($('#col-1-checkbox-mant').prop('checked')==true){
             //required a los inputs de mantenimiento
             $("#col-2-text-mantResp").prop('required',true);
-            $("#col-2-date-lastMant").prop('required',true);
             $("#col-2-date-nextMant").prop('required',true);
             $("#col-2-block-mant").show();
         }else{
             //quitar required a los inputs
             //required a los inputs de mantenimiento
             $("#col-2-text-mantResp").prop('required',false);
-            $("#col-2-date-lastMant").prop('required',false);
             $("#col-2-date-nextMant").prop('required',false);
 
-            $("#col-2-text-mantResp").val("");    
-            $("#col-2-date-lastMant").val("");    
+            $("#col-2-text-mantResp").val("");       
             $("#col-2-date-nextMant").val("");
             $("#col-2-block-mant").hide();
         }
@@ -97,6 +90,31 @@ $(document).ready(function(){
         if($("#col-1-combobox-clasification").val()!=""){
             
             if($("#col-1-combobox-product").val()!=""){
+                if($('#col-1-checkbox-mant').prop('checked')==true){
+                    if(validarFecha( $("#col-2-date-nextMant").val())==true){
+                        addObjeto();
+                    }else{
+                        alertify.warning("La fecha de mantenimiento tiene que ser mayor a la fecha actual");
+                    }
+                }else{
+                    addObjeto();
+                }
+                
+            }else{
+                alertify.warning("No hay un producto seleccionado");
+            }
+        }else{
+            alertify.warning("No hay una clasificacion seleccionada");
+        }
+    });
+
+
+
+
+
+    //funciones---------------------------
+
+    function addObjeto(){
                 var form = document.querySelector('form');
                 var formData = new FormData(form);
                 formData.append("option","addInventory");
@@ -118,19 +136,7 @@ $(document).ready(function(){
                         
                         
                 });
-            }else{
-                alertify.warning("No hay un producto seleccionado");
-            }
-        }else{
-            alertify.warning("No hay una clasificacion seleccionada");
-        }
-    });
-
-
-
-
-
-    //funciones---------------------------
+    }
     
 
     function vaciarCampos(){

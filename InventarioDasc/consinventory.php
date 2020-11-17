@@ -16,8 +16,8 @@
         <link rel="stylesheet" href="alertify/css/alertify.css">
         <link rel="stylesheet" href="../styles/generalStyle.css">
         <link rel="stylesheet" href="../styles/inventory.css">  
-        <script src="alertify/alertify.js"></script>
-        <script src="inventario/JS/inventoryFunction.js"></script>
+        
+    
         <script src="inventario/JS/consinventory.js"></script>
         <title>CONSULTA | Inventario</title>
         
@@ -61,8 +61,8 @@
                                 <th>Nombre</th>
                                 <th>Descripcion</th>
                                 <th>Responsable</th>
-                                <th>Ultimo mantenimiento</th>
-                                <th>Proximo mantenimiento</th>
+                                <th>Ultimo mantenimiento (año/mes/dia)</th>
+                                <th>Proximo mantenimiento (año/mes/dia)</th>
                                 <th>Prestamo Disponible</th>
                                 <th></th>
                                 

@@ -220,12 +220,11 @@
             $optionMantenimiento = $_POST['optionMantenimiento'];
             $idObjeto = $_POST['idObjeto'];
             $editInput = $_POST['editInput'];
-            $editInput2 = $_POST['editInput2'];
             $editInput3 = $_POST['editInput3'];
     
             switch($optionMantenimiento){
                 case "editMantenimiento":
-                    $mod = ("UPDATE objeto SET mantenimiento = 'true',lastMant = '$editInput2', nextMant = '$editInput3', mantResp = '$editInput' WHERE idObjeto = '$idObjeto'");
+                    $mod = ("UPDATE objeto SET mantenimiento = 'true', nextMant = '$editInput3', mantResp = '$editInput' WHERE idObjeto = '$idObjeto'");
                     $result = mysqli_query($conexion,$mod);
                     if(!$result){
                         echo die("error");
@@ -233,7 +232,7 @@
                 break;
 
                 case "cancelMantenimiento":
-                    $mod = ("UPDATE objeto SET mantenimiento = 'false',lastMant = '$editInput2', nextMant = '$editInput3', mantResp = '$editInput' WHERE idObjeto = '$idObjeto'");
+                    $mod = ("UPDATE objeto SET mantenimiento = 'false', nextMant = '', mantResp = '$editInput' WHERE idObjeto = '$idObjeto'");
                     $result = mysqli_query($conexion,$mod);
                     if(!$result){
                         echo die("error");
@@ -289,7 +288,6 @@
             $checkboxPrestamo = $_POST["checkboxPrestamo"];
 
             $respMant = $_POST["col-2-text-mantResp"];
-            $lastMant = $_POST["col-2-date-lastMant"];
             $nextMant = $_POST["col-2-date-nextMant"];
             $cant = $_POST["col-2-number-cant"];
             $img = addslashes(file_get_contents($_FILES["item_file"]["tmp_name"]));
@@ -298,7 +296,7 @@
                 //caso para Equipos
                 case "1":
                     $insert = ("INSERT INTO objeto(idUabcs,nombre,descripcion,cantidad,prestamo,mantenimiento,lastMant,nextMant,mantResp,idTipoProducto,img)
-                    VALUES ('UABCS-','$nombre','$desc', null, '$checkboxPrestamo', '$checkboxMant', '$lastMant', '$nextMant', '$respMant','$producto', '$img') ");
+                    VALUES ('UABCS-','$nombre','$desc', null, '$checkboxPrestamo', '$checkboxMant', '', '$nextMant', '$respMant','$producto', '$img') ");
 
 
                     $result = mysqli_query($conexion, $insert);
