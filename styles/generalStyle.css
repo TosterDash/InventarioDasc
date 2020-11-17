@@ -1,6 +1,7 @@
 body{
 	color: black;
 }
+
 .link-button {
 	font-size: 5mm;
 	border: solid;
@@ -12,34 +13,67 @@ body{
 	text-align: center;
 }
 
-h2{
-	color: white;
-}
-
-a.link-button{
-	color: black;
-}
-
 .center-title{
 	text-align:center;
 	margin-top:2%;
 	margin-bottom:2%;
 }
 
-/*STANDAR SHAPE PARA LAS SIGUIENTES ETIQUETAS*/
-/*inputs*/
-.round-border input, select{
-	border-radius:8px;
-	border:1px solid #333E49;
-	padding: 0.5%;
+.disp-flexCol{
+	display: flex;
+	flex-direction: column;
+}
+
+.auto-margin{
+	margin-left: 12%;
 	width: 100%;
 }
 
+.a-to-btn{
+	display: block;
+    width: 8%;
+    background: white;
+    padding: 0.3%;
+    text-align: center;
+    border-radius: 5px;
+    color: black;
+    border: 1px solid;
+}
+
+/*STANDAR SHAPE PARA LAS SIGUIENTES ETIQUETAS*/
+/*inputs*/
+input {
+	border-radius:8px;
+	border:1px solid #333E49;
+	padding: 2.5%;
+	width: 100%;
+}
+
+
+select {
+	border-radius:8px;
+	border:1px solid #333E49;
+	padding: 1.9%;
+	width: 100%;
+}
+
+label{
+	margin-bottom: 1%;
+}
+
 /*buttons*/
-.round-border button{
-	width: 30%;
-	background-color: #333E49;
-	border-color: transparent;
+button{
+	border-radius:8px;
+	border:1px solid #333E49;
+	padding: 0.7%;
+	text-align: center;
+	width: 20%;
+	margin-left: 10%;
+}
+
+.reset-btn{
+	width: 6%;
+	padding: 0.3%;	
 }
 
 .transparent-btn{
@@ -54,36 +88,15 @@ a.link-button{
 
 /*Styles for forms*/
 
-/*first div*/
-/*
-.basic-form-container{
-	display: flex;
-	flex-direction: row;
-}
-
-div where the form is
-.form-container{
-	display: flex;
-	flex-direction: column;
-}
-
-.submit-btns{
-	display: flex;
-	flex-direction: row;
-	margin-left: 40%;
+.row-form{
+	float: left;
+	margin-left: 5%;
 	margin-top: 5%;
-}
-
-
-.form-format label{
-	margin-top: 2%;
-}
-
-.form-format input, select{
-	margin-top: 4%;
-}
-
-.submit-btns {
 
 }
-*/
+
+.button-form{
+	margin-top: 5%;
+	width: 100%;
+}
+

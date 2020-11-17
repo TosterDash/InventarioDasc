@@ -21,11 +21,7 @@
         <script src="inventario/JS/consinventory.js"></script>
         <title>CONSULTA | Inventario</title>
         
-
-        
-        
     </head>
-
     <body>
         <h1 id="" class="center-title">CONSULTAR INVENTARIO</h1>
         <div id="inv-cons" class="consultar"><!--Realizar la consulta-->
