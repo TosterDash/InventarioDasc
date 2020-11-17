@@ -1,27 +1,13 @@
-/*.divex{
-    display: flex;
+/*ADD INVENTORY*/
+
+.col-size{
+	width: 25%;
 }
 
-.row{
-    border-style: solid;
-    border-width: 5px;
-    flex:1;
+.pic-input{
+	border-radius:0px;
+	border:transparent;
 }
-
-.content-flex{
-    flex: 1;
-}
-*/
-
-.nav-style{
-	float: left;
-}
-
-.nav-style div, nav{
-	width: 100%
-}
-
-
 
 
 /*CONS INVENTORY PART*/
