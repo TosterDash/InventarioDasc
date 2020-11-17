@@ -1,7 +1,7 @@
 /*ADD INVENTORY*/
 
-.col-size{
-	width: 25%;
+.add-col-size{
+	width: 29%;
 }
 
 .pic-input{
@@ -10,6 +10,13 @@
 }
 
 
+
 /*CONS INVENTORY PART*/
 
+.cons-col-size{
+	width: 28%;
+}
 
+.cons-nav-bar{
+	margin-bottom: 2%;
+}

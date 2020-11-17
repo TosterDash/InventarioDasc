@@ -24,6 +24,11 @@ body{
 	flex-direction: column;
 }
 
+.disp-flexRow{
+	display: flex;
+	flex-direction: row;
+}
+
 .auto-margin{
 	margin-left: 12%;
 	width: 100%;
@@ -90,13 +95,16 @@ button{
 
 .row-form{
 	float: left;
-	margin-left: 5%;
-	margin-top: 5%;
-
+	margin-left: 4%;
+	margin-top: 3%;
 }
 
 .button-form{
 	margin-top: 5%;
 	width: 100%;
+}
+
+.background{
+	background: blue;
 }
 

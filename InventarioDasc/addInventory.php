@@ -27,12 +27,12 @@
 <body>
     <h1 id="title" class="center-title">AÑADIR INVENTARIO</h1>
 <form class="disp-flexCol" method="POST" id="formSend" enctype="multipart/form-data">
-    <div class="">
-        <!--<input class="reset-btn" type="reset" value="reiniciar">-->
-        <a class="a-to-btn" href="consinventory.php">Volver</a>
+    <div>
+        <!--<input class="reset-btn" type="reset" value="reiniciar">
+        <a class="a-to-btn" href="consinventory.php">Volver</a>-->
         <div id="col-1">
             <!-- PRIMERA COLUMNA DE LA PAGINA -->
-            <div class="disp-flexCol row-form col-size" id="col-1-content" >
+            <div class="disp-flexCol row-form add-col-size" id="col-1-content" >
                 <label class="">Tipo de clasificacion</label>
                 <select class="" name="col-1-combobox-category" id="col-1-combobox-clasification">
                 </select>
@@ -46,7 +46,7 @@
             </div>
             <!-- PRIMERA COLUMNA DE LA PAGINA -->
             <!-- SEGUNDA COLUMNA DE LA PAGINA -->
-            <div class="disp-flexCol row-form col-size" id="col-2-content round-border">
+            <div class="disp-flexCol row-form add-col-size" id="col-2-content round-border">
                     <label class="">Nombre del producto</label>
                     <input type="text" name="col-2-text-name" class="" id="col-2-text-name" required></input>
 
@@ -69,7 +69,7 @@
             </div>
             <!-- SEGUNDA COLUMNA DE LA PAGINA -->
             <!-- TERCERA COLUMNA DE LA PAGINA -->
-            <div class="disp-flexCol row-form col-size">
+            <div class="disp-flexCol row-form add-col-size">
                 <div id="col-3-content">  
                     <label for="myfile">Selecciona una imagen</label>
                     <input class="pic-input" type="file" class="" name="item_file" id="item_file" require></input>

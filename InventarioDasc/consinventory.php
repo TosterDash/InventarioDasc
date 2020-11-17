@@ -24,76 +24,73 @@
     </head>
     <body>
         <h1 id="" class="center-title">CONSULTAR INVENTARIO</h1>
-        <div id="inv-cons" class="consultar"><!--Realizar la consulta-->
-            
+        <!--Realizar la consulta-->
+        
             <!--Barra de busqueda y filtros-->
-            <div class="form-inline">
                 <!--Barra de busqueda-->
-                <nav class="nav-style round-border">
-                    <div>
+                <div class="disp-flexRow cons-nav-bar">
+                    <div class="row-form cons-col-size"> 
                         <label>Buscar por:</label>
                         <select  name="combobox-search" id="combobox-search">
                             <option values="Nombre">Nombre</option>
                             <option values="Descripcion">Descripción</option>
                         </select>
+                    </div >
+                    <div class="row-form cons-col-size">
+                        <label>Buscar:</label>
+                        <div class="disp-flexRow">
+                            <img class="icon-size" src="../resources/icons/search_icon.png">
+                            <input type="text" placeholder="Buscar..." id="search">
+                        </div>
                     </div>
-                    <div >
-                        <img class="icon-size" src="../resources/icons/search_icon.png">
-                        <input type="text" placeholder="Buscar..." id="search">
-                    </div>
-                    <div>
+                    <div class=" row-form cons-col-size">
                         <label>Mostrar por:</label>
                         <select name="combobox-category" id="combobox-category">
                         </select>
                     </div>
-                
-                </nav>
+                </div>
                 <!--Barra de busqueda-->
-            </div>
-            <div id="div-table"><!--Tabla de consulta-->
-                <table id="table-equipo" class="table">
-                    <thead class="thead-light">
-                        <tr>
-                            <th>Equipo</th>
-                            <th>ID Producto</th>
-                            <th>Producto</th>
-                            <th>Nombre</th>
-                            <th>Descripcion</th>
-                            <th>Responsable</th>
-                            <th>Ultimo mantenimiento</th>
-                            <th>Proximo mantenimiento</th>
-                            <th>Prestamo Disponible</th>
-                            <th></th>
-                            
-                        </tr>
-                    </thead>
-                    
-                    <tbody id="tbody-equipo">
+        <div id="inv-cons" class="consultar">
+             <div id="div-table"><!--Tabla de consulta-->
+                    <table id="table-equipo" class="table">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>Equipo</th>
+                                <th>ID Producto</th>
+                                <th>Producto</th>
+                                <th>Nombre</th>
+                                <th>Descripcion</th>
+                                <th>Responsable</th>
+                                <th>Ultimo mantenimiento</th>
+                                <th>Proximo mantenimiento</th>
+                                <th>Prestamo Disponible</th>
+                                <th></th>
+                                
+                            </tr>
+                        </thead>
+                        
+                        <tbody id="tbody-equipo">
 
-                    </tbody>
-
+                        </tbody>
+                    </table>
                     <table id="table-consumible" class="table">
-                    <thead class="thead-light">
-                        <tr>
-                            <th>Consumible</th>
-                            <th>Producto</th>
-                            <th>Nombre</th>
-                            <th>Descripcion</th>
-                            <th>Cantidad</th>
-                            <th></th>
-                            
-                        </tr>
-                    </thead>
-
-                    <tbody id="tbody-consumible">
-
-                    </tbody>
-                    
-                    
-                </table>
-                    
-                </table>
+                        <thead class="thead-light">
+                            <tr>
+                                <th>Consumible</th>
+                                <th>Producto</th>
+                                <th>Nombre</th>
+                                <th>Descripcion</th>
+                                <th>Cantidad</th>
+                                <th></th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody id="tbody-consumible">
+                        </tbody>
+                    </table>
+                
             </div>
+
         </div>
     </body>
 </html>
