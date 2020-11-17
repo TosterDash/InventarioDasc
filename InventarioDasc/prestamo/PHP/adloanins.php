@@ -18,7 +18,7 @@
         //consulta la tabla prestamo para obtener el registro que se acaba de crear
         $idprestamo = mysqli_query($conexion, "SELECT TOP 1 idPrestamo from prestamo ORDER by idPrestamo DESC");
         //$insert=("INSERT INTO objeto_has_prestamo (idobjeto, idprestamo)
-        $insert=("INSERT INTO objeto (edificio, aula, exitDate, returnDate) VALUES ('$building', '$classroom', '$exitDate','$returnDate')")
+        $insert=("INSERT INTO objeto_has_prestamo (idprestamo, idobjeto) VALUES ('$idprestamo', '$idobjeto')")
     }
     
     //Insertar a la base de datos
