@@ -46,55 +46,48 @@ describir cada método
 	<!--SITE STYLE SHEETS-->
 	<link rel="stylesheet" href="../styles/headerFooterStyle.css">
 	<link rel="stylesheet" href="../styles/normalize.css">
-	<link rel="stylesheet" href="../styles/mapPageStyle.css">
+	<link rel="stylesheet" href="../styles/generalStyle.css">
+	<link rel="stylesheet" href="../styles/mapStyle.css">
 <head>
 </head>
 <body>
 	<!--MENU Y BARRA DE BUSQUEDA-->
-	<div class="master-box">
+	<div>
+		<!--CAJA DEL MAPA-->
+		<div class="background row-form cons-col" id="map-box" class="center-text map-box">
+			<h3>EDIFICIO</h3>
+			<div id="map-container" class="map-container">
+			<img src="../resources/mapa.png">
+			<script src="JS/classEdificio.js"></script>
+			<script src="JS/classAula.js"></script>
+			<script src="JS/map.js"></script>	
+			</div>
+		</div>
 		<!--CAJA DEL MENÚ-->
-		<div class="info-box center-text" >
-			<h3>INFORMACIÓN</h3>
-			
-			<select id="map-piso" placeholder="En que piso">
-				
+		<div class="row-form cons-col">
+			<select id="map-piso" placeholder="Planta">
 				<option value="BAJA" >PLANTA BAJA</option>
 				<option value="ALTA" >PLANTA ALTA</option>
 			</select>
-			
-				<div id="display-info-box" class="display-info-box ">
-				  <!--tr= filas, td=columnas td=???-->
-				  <!--PRODUCTO UNICO-->
-				<table id="info-table" class="info-table">
-					<thead>
-              			<tr>
-                			<td>Nombre</td>
-                			<td>Marca</td>
-                			<td>Modelo</td>
-                			<td>Mantenimiento</td>
-                			<td>Descripcion</td>
-              			</tr>
-            		</thead>
-            		<tbody id="info-row"></tbody>
-					
-					
-				</table>
-				<br>
-				
-			  	</div>
-		</div>
-
-		<!--CAJA DEL MAPA-->
-		<div id="map-box" class="center-text map-box">
-			<h3>EDIFICIO</h3>
-			<div id="map-container" class="map-container">
-				
+			<div id="display-info-box" class="display-info-box">
+			  <!--tr= filas, td=columnas td=???-->
+			  <!--PRODUCTO UNICO-->
+			<table id="info-table" class="info-table">
+				<thead>
+          			<tr>
+            			<td>Nombre</td>
+            			<td>Marca</td>
+            			<td>Modelo</td>
+            			<td>Mantenimiento</td>
+            			<td>Descripcion</td>
+          			</tr>
+        		</thead>
+        		<tbody id="info-row"></tbody>
+			</table>
 			</div>
-	
 		</div>
+		
 	</div>
 </body>
-	<script src="JS/classEdificio.js"></script>
-	<script src="JS/classAula.js"></script>
-	<script src="JS/map.js"></script>
+	
 </html>

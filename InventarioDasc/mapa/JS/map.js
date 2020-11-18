@@ -65,9 +65,6 @@ function getEdificios(mapUabcs){
                 
                 edificiosArray[cont].functionClick(cont,edificiosArray,aulasArray,mapUabcs);
                 
-
-                
-	            
 	            cont++;
 	            
 	        });

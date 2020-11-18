@@ -15,7 +15,7 @@
         <link rel="stylesheet" href="../styles/normalize.css">
         <link rel="stylesheet" href="alertify/css/alertify.css">
         <link rel="stylesheet" href="../styles/generalStyle.css">
-        <link rel="stylesheet" href="../styles/inventory.css">  
+        <link rel="stylesheet" href="../styles/inventoryStyle.css">  
         
     
         <script src="inventario/JS/consinventory.js"></script>

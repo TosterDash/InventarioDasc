@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="../styles/normalize.css">
     <link rel="stylesheet" href="alertify/css/alertify.css">
     <link rel="stylesheet" href="../styles/generalStyle.css">
-    <link rel="stylesheet" href="../styles/inventory.css">
+    <link rel="stylesheet" href="../styles/inventoryStyle.css">
 
     <script src="alertify/alertify.js"></script>
     <script src="inventario/JS/inventoryFunction.js"></script>
