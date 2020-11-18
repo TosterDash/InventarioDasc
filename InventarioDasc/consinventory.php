@@ -13,7 +13,7 @@
             src="../styles/bootstrap-4.5.3-dist/js/bootstrap.min.js">
         </script>
         <link rel="stylesheet" href="../styles/normalize.css">
-        <link rel="stylesheet" href="alertify/css/alertify.css">
+        
         <link rel="stylesheet" href="../styles/generalStyle.css">
         <link rel="stylesheet" href="../styles/inventoryStyle.css">  
         

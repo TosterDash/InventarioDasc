@@ -255,6 +255,16 @@
                     }
         break;
 
+        case "mantenimientoHecho":
+            $idObjeto = $_POST["idObjeto"];
+            $lastMant = $_POST["lastMant"];
+            $mod = ("UPDATE objeto SET mantenimiento = 'false',lastMant = '$lastMant', nextMant = '' WHERE idObjeto = '$idObjeto'");
+            $result = mysqli_query($conexion,$mod);
+            if(!$result){
+                echo die("error");
+            }
+        break;
+
         case "search":
             $option = $_POST['option'];
             $buscarPor = $_POST['buscarPor'];
@@ -322,6 +332,8 @@
             
         break;
 
+        
+
         case "getDate":
             $select = ("SELECT `objeto`.`idObjeto`, concat(objeto.idUabcs, objeto.idObjeto) as etiqueta  ,`objeto`.`lastMant`,`objeto`.`nextMant`,`objeto`.`mantResp`,`tipoproducto`.`producto` 
                         from objeto, tipoproducto where `objeto`.`mantenimiento` = 'true' and `tipoproducto`.`idTipoProducto`=`objeto`.idTipoProducto");
@@ -335,7 +347,7 @@
                 while($row = mysqli_fetch_array($result)){//Mientras tu variable fila este dentro de la cantidad de registros de consulta
                     $json []= array(
                         'idObjeto' => $row['idObjeto'],
-                        'etiquetaOcantidad' => $row['etiqueta'],
+                        'etiqueta' => $row['etiqueta'],
                         'producto' => $row['producto'],
                         'lastMant' => $row['lastMant'],
                         'nextMant' => $row['nextMant'],

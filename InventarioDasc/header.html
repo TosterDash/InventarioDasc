@@ -13,6 +13,7 @@
 	<link rel="stylesheet" href="../styles/normalize.css">
 	<link rel="stylesheet" href="../styles/headerFooterStyle.css">
 	<link rel="stylesheet" href="../styles/generalStyle.css">
+	<link rel="stylesheet" href="alertify/css/alertify.css">
 	<script src="alertify/alertify.js"></script>
 	
 
@@ -72,14 +73,9 @@
 		<!--item de menu-->
 		<script>
 			$(document).ready(function(){
-				$.when(getDate("getDate")).done(function(respDate){
-					console.log(respDate);
+				$.when(getDate()).done(function(respDate){
 					getNotificationNum(respDate);
 					setInterval(actualizarFechas, 60000);
-
-					if(document.title == "NOTIFICACIONES | INVENTARIO"){
-						getTableNotification();
-					}
 
 				})
 			})

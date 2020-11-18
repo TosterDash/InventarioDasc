@@ -20,7 +20,6 @@
     <link rel="stylesheet" href="../styles/inventoryStyle.css">
 
     <script src="alertify/alertify.js"></script>
-    <script src="inventario/JS/inventoryFunction.js"></script>
     <script src="inventario/JS/addinventory.js"></script>
 </head>
 

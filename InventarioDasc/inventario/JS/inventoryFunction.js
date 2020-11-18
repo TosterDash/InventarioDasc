@@ -2,12 +2,58 @@
 
 */
 //variables importantes para el funcionamiento de ciertos sectores
+//arreglos para las tablas de consinventory
 var rowTableEquipo = [];
 var rowTableConsumible = [];
+//arreglos para la tabla notificaciones
+var rowTableNotification = [];
+//numero de notificaciones en la barra de notificaciones
 var totalNotification = 0;
-var notificationMantenimiento = 0;
-var dateMant = [];
+//ruta para hacer consultas
 var rutaAjax = "inventario/PHP/inventoryCons.php";
+//-------------------------------------------------------------------------------------------------------
+//CLASES-------------------------------------------------------------------------------------------------
+
+class rowNotification{
+    constructor(idObjeto,etiqueta,producto,nextMant,mantResp,tipoNotificacion){
+        this.idObjeto = idObjeto;
+        this.etiqueta = etiqueta;
+        this.producto = producto;
+        this.nextMant = nextMant;
+        this.mantResp = mantResp;
+        this.tipoNotificacion = tipoNotificacion;
+        this.template = "";
+    }
+    generateRow(){
+        this.template = `<tr id="fila`+this.idObjeto+`">
+                        <th>`+this.tipoNotificacion+`</th>
+                        <th>`+this.etiqueta+`: El producto `+this.producto+` necesita mantenimiento desde `+this.nextMant+` por el responsable `+this.mantResp+`</th>
+                        <th><button type="button" class="btn btn-success" id="notifDelete`+this.idObjeto+`">Hecho</button></th>
+                        </tr>`
+        
+    }
+
+    optionHecho(){
+        var idObjeto = this.idObjeto
+        var tipoNotificacion = this.tipoNotificacion;
+        var nextMant = this.nextMant;
+        var etiqueta = this.etiqueta;
+        $(document).on('click',"#notifDelete"+idObjeto,function(){
+            console.log(idObjeto);
+            switch(tipoNotificacion){
+                case "mantenimiento":
+                    mantenimientoHecho(idObjeto,nextMant);
+                    actualizarFechas();
+                    $("#fila"+idObjeto).remove();
+                    alertify.success(etiqueta+": Mantenimiento realizado!");
+                    $(document).off('click',"#notifDelete"+idObjeto);
+                    
+                break;
+            }
+        });
+    }
+}
+
 
 class rowTable{
     constructor(idObjeto,clasificacion,idTipoClasificacion){
@@ -811,24 +857,7 @@ function getTableConsumible(){
 
 //Funciones para la pagina de notificaciones-----------------------------------------
 
-function getTableNotification(){
-    $.when(getDate()).done(function(){
-        var template = "";
-        for(var i = 0; i<dateMant.length; i++){
-            if(dateMant[i][4]==true){
-                template += `<tr>
-                            <th>Mantenimiento</th>
-                            <th>-------</th>
-                            <th>Este articulo necesita mantenimiento desde: `+dateMant[i][3]+`</th>
-                            <th><button>Eliminar</button></th>
-                            </tr>`
-            }
-        }
-        $("#tbody-notification").html(template);
-    })
-    
-    
-}
+
 
 //Validaciones-----------------------------------------------------------------------
 //funcion para verificar si una fecha se pasa o no de la fecha actual
@@ -894,68 +923,71 @@ function search(rutaAjax,buscarPor,stringSearch){
 
 //----------------------------------HEADER.HTML--------------------------------------------
 
-function getTableNotification(){
-    var option = ""
-    $.when(getDate(option)).done(function(){
-        var template = "";
-        for(var i = 0; i<dateMant.length; i++){
-            if(dateMant[i][6]==true){
-                        template += `<tr id="fila`+dateMant[i][0]+`">
-                            <th>`+dateMant[i][7]+`</th>
-                            <th>`+dateMant[i][1]+`: El producto `+dateMant[i][2]+` necesita mantenimiento desde `+dateMant[i][4]+` por el responsable `+dateMant[i][5]+`</th>
-                            <th><button type="button" class="btn btn-success" id="notifDelete`+dateMant[i][0]+`">Hecho</button></th>
-                        </tr>`
-            }
+function getTableNotification(responseDate){
+    var template="";
+    var date = JSON.parse(responseDate);
+    var cont = 0;
+    var dateNow = new Date();
+    date.forEach(task=>{
+        var nextMant = new Date(task.nextMant);
+        if(dateNow.getTime()>=nextMant.getTime()){
+            $(document).off('click',"#notifDelete"+task.idObjeto);
+            rowTableNotification[cont] = new rowNotification(`${task.idObjeto}`,`${task.etiqueta}`,`${task.producto}`,`${task.nextMant}`,`${task.mantResp}`,`${task.tipoNotificacion}`);
+            rowTableNotification[cont].generateRow();
+            rowTableNotification[cont].optionHecho();
+            template += rowTableNotification[cont].template;
         }
-        $("#tbody-notification").html(template);
+        
+        cont++;
     })
+    $("#tbody-notification").html(template);
 }
 
 function actualizarFechas(){
-    
-    var dateNow = new Date();
-    for(var i = 0;i<dateMant.length; i++){
-        if(dateNow.getTime()>=dateMant[i][4].getTime() && dateMant[i][6]==false){
-            dateMant[i][6] = true;
-            notificationMantenimiento++;
-            totalNotification++;
-            
+    $.when(getDate()).done(function(responseDate){
+        getNotificationNum(responseDate);
+        if(document.title=="NOTIFICACIONES | INVENTARIO"){
+            getTableNotification(responseDate);
         }
-        
-    }
-    $("#notification").html(`<a class="menu-list navigation-menu-listt dropdown-toggle" data-toggle="dropdown">
-                                        NOTIFICACIONES
-                                        <span class="badge">`+totalNotification+`</span></a>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="notificationBoard.php">MANTENIMIENTO (`+totalNotification+`)</a>
-                                    </div>`);
+    })
+    
+    
 }
+    
+    
 
 function getNotificationNum(response){
-    var cons = JSON.parse(response);
-    var cont = 0;
-    var dateNow = new Date();
-    cons.forEach(task =>{
-        dateMant[cont] = [`${task.idObjeto}`,`${task.etiquetaOcantidad}`,`${task.producto}`,new Date(`${task.lastMant}`),new Date(`${task.nextMant}`),`${task.mantResp}`,false, `${task.tipoNotificacion}`];
-        if(dateNow.getTime()>=dateMant[cont][4].getTime() && dateMant[cont][6]==false){
-            dateMant[cont][6] = true;
-            notificationMantenimiento++;
-            totalNotification++;
-        }
-        cont++;
-    })
+    var totalNotification = getMantenimientoToDo(response);
     $("#notification").html(`<a class="menu-list navigation-menu-listt dropdown-toggle" data-toggle="dropdown">
                                         NOTIFICACIONES
                                         <span class="badge">`+totalNotification+`</span></a>
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" href="notificationBoard.php">MANTENIMIENTO (`+totalNotification+`)</a>
                                     </div>`);
+                                    
        
 }
+//funciones get para saber que se necesita hacer (ligadas a getNotificationNUM)
+function getMantenimientoToDo(response){
+    var cons = JSON.parse(response);
+    var cont = 0;
+    var notificationMantenimiento=0;
+    var dateNow = new Date();
+    var dateMant = [];
+    cons.forEach(task =>{
+        dateMant[cont] = new Date(`${task.nextMant}`);
+        if(dateNow.getTime()>=dateMant[cont].getTime()){
+            notificationMantenimiento++;
+        }
+        cont++;
 
+    })
+    return notificationMantenimiento;
+}
 
-
-function getDate(option){
+//funciones get
+function getDate(){
+    var option = "getDate";
     return $.ajax({url: rutaAjax, type: 'POST',data:{option}})
            
 }
@@ -966,6 +998,12 @@ function getPrestamoDate(){
 
 function getConsumibleCant(){
 
+}
+
+//funciones POST table notificaciones
+function mantenimientoHecho(idObjeto,lastMant){
+    var option = "mantenimientoHecho";
+    $.ajax({url: rutaAjax, type: 'POST',data:{idObjeto,option,lastMant}});
 }
 
 
