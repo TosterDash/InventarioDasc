@@ -151,11 +151,22 @@ INSERT INTO `planta` (`idPlanta`, `planta`) VALUES
 
 CREATE TABLE `prestamo` (
   `idPrestamo` int(11) NOT NULL,
+  `building` varchar(100) NOT NULL,
+  `classroom` varchar(100) NOT NULL,
   `exitDate` date NOT NULL,
-  `returnDate` date NOT NULL,
-  `idObjeto` int(11) NOT NULL
+  `returnDate` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `prestamo_has_objeto`
+--
+CREATE TABLE `prestamo_has_objeto` (
+  `idPrestamoHasObjeto` int(11) NOT NULL,
+  `idPrestamo` int(11) NOT NULL,
+  `idObjeto` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 -- --------------------------------------------------------
 
 --
@@ -367,6 +378,13 @@ ALTER TABLE `objeto`
 --
 ALTER TABLE `tipoproducto`
   ADD CONSTRAINT `idTipoClasificacion` FOREIGN KEY (`idTipoClasificacion`) REFERENCES `tipoclasificacion` (`idTipoClasificacion`);
+COMMIT;
+
+-- Constraints for table `prestamo_has_objeto`
+--
+ALTER TABLE `prestamo_has_objeto`
+  ADD CONSTRAINT `idPrestamo` FOREIGN KEY (`idPrestamo`) REFERENCES `prestamo` (`idPrestamo`),
+  ADD CONSTRAINT `idObjeto` FOREIGN KEY (`idObjeto`) REFERENCES `objeto` (`idObjeto`);;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
