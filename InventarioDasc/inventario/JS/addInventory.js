@@ -6,6 +6,7 @@ $(document).ready(function(){
     $("#col-2-block-mant").hide();
     $("#col-2-block-cant").hide();
     $("#col-1-block-mant").hide();
+    $("#btn-producto-confirmar").hide();
     
     getCombobox("col-1-combobox-clasification","clasificacion");
     
@@ -84,6 +85,30 @@ $(document).ready(function(){
             $("#col-2-block-mant").hide();
         }
     });
+
+    $("#btn-producto-add").on('click',function(){
+
+    })
+    $("#btn-producto-delete").on('click',function(){
+        var productVal = $("#col-1-combobox-product").val()
+        if(productVal!=""){
+            var option = "deleteProducto";
+            $.ajax({
+                url: rutaAjax,
+                type: "POST",
+                data: {option,productVal},
+            }).done(function(e){
+                console.log(e);
+            })
+        }else{
+            alertify.warning("Seleccione algun producto si va a eliminar");
+        }
+    })
+    $("#btn-producto-confirm").on('click',function(){
+        
+    })
+
+
 
     $("#formSend").on("submit",function(e){
         e.preventDefault();

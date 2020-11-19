@@ -36,9 +36,19 @@
                 <select class="" name="col-1-combobox-category" id="col-1-combobox-clasification">  
                 </select>
                 <div id="col-1-block-producto">
-                <label class="">Tipo de producto</label>
-                    <select class="" name="col-1-combobox-product" id="col-1-combobox-product">
-                    </select>
+                    <label class="">Tipo de producto</label>
+                    <div class="input-group mb-3">
+                        <select class="" name="col-1-combobox-product" id="col-1-combobox-product">
+                        </select>
+                        <div class="input-group-append">
+                            <button class="btn btn-success" type="button" id="btn-producto-add" value="add">Añadir</button>
+                            <button class="btn btn-danger" type="button" id="btn-producto-delete" value="delete">Eliminar</button>
+                        </div>
+                        
+                    </div>
+                    <button class="btn btn-success" type="button" id="btn-producto-confirmar" value="confirm-add">Añadir producto</button>
+                    
+
                 </div>
                 <div id="col-1-block-mant">
                     <input type="checkbox" name="col-1-checkbox-mant" id="col-1-checkbox-mant">Mantenimiento</input>
@@ -53,6 +63,7 @@
 
                     <label class="">Descripción del producto</label>
                     <input type="text" name="col-2-text-desc" class="" id="col-2-text-desc" required></input>
+                    
 
                 <div id="col-2-block-mant">
                     <label class="">Responsable del mantenimiento</label>

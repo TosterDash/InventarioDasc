@@ -42,12 +42,11 @@ class rowNotification{
             console.log(idObjeto);
             switch(tipoNotificacion){
                 case "mantenimiento":
-                    mantenimientoHecho(idObjeto,nextMant);
-                    actualizarFechas();
-                    $("#fila"+idObjeto).remove();
-                    alertify.success(etiqueta+": Mantenimiento realizado!");
-                    $(document).off('click',"#notifDelete"+idObjeto);
+                    $.when(mantenimientoHecho(idObjeto,nextMant)).done(function(){
+                        actualizarFechas();
+                        alertify.success(etiqueta+": Mantenimiento realizado!");
                     
+                    })
                 break;
             }
         });

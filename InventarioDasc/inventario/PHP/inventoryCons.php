@@ -332,6 +332,15 @@
             
         break;
 
+        case "deleteProducto":
+            $productVal = $_POST["productVal"];
+            $result = mysqli_query($conexion,"DELETE FROM tipoproducto WHERE idTipoProducto = '$productVal' ");
+            echo $result;
+            if(!$result){
+                //echo die("error");
+            }
+        break;
+
         
 
         case "getDate":
