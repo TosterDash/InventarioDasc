@@ -38,9 +38,12 @@
                 <div id="col-1-block-producto">
                     <label class="">Tipo de producto</label>
                     <div class="input-group mb-3">
-                        <select class="" name="col-1-combobox-product" id="col-1-combobox-product">
-                        </select>
-                        <div class="input-group-append">
+                        <div id="product-input">
+                            <select class="" name="col-1-combobox-product" id="col-1-combobox-product">
+                            </select>
+                        </div>
+                        
+                        <div class="input-group-append" id="buttons-option-product">
                             <button class="btn btn-success" type="button" id="btn-producto-add" value="add">Añadir</button>
                             <button class="btn btn-danger" type="button" id="btn-producto-delete" value="delete">Eliminar</button>
                         </div>
@@ -89,7 +92,7 @@
     </div>
     <div class="button-form">
         <div class="auto-margin">
-            <button type="" class="" id="">Cancelar</button>
+            <button type="" class="" id="cancel-objeto">Cancelar</button>
             <button type="submit" class="" id="submit-objeto">Añadir Objeto</button>
         </div>
     </div>

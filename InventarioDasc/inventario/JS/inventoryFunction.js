@@ -876,11 +876,11 @@ function validarFecha(nextMant){
 //funciones para inputs--------------------------------------------------------------
 
 
-function search(rutaAjax,buscarPor,stringSearch){
+function search(buscarPor,stringSearch){
     var option = "search";
     var buscarPor = buscarPor;
     var stringSearch = stringSearch;
-    console.log(stringSearch);
+    console.log(buscarPor);
 
     if(stringSearch==""){
         for(var i = 0; i<rowTableEquipo.length; i++){

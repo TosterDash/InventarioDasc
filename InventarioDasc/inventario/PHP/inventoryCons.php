@@ -334,8 +334,21 @@
 
         case "deleteProducto":
             $productVal = $_POST["productVal"];
+            $result = mysqli_query($conexion,"DELETE FROM objeto WHERE idTipoProducto = '$productVal' ");
+            if(!$result){
+                //echo die("error");
+            }
             $result = mysqli_query($conexion,"DELETE FROM tipoproducto WHERE idTipoProducto = '$productVal' ");
-            echo $result;
+            if(!$result){
+                //echo die("error");
+            }
+            
+        break;
+
+        case "addProducto":
+            $productVal = $_POST["productVal"];
+            $clasificacionVal = $_POST["clasificacionVal"];
+            $result = mysqli_query($conexion,"INSERT INTO tipoproducto(producto,idTipoClasificacion) VALUES ('$productVal','$clasificacionVal') ");
             if(!$result){
                 //echo die("error");
             }

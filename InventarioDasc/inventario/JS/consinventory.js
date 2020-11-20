@@ -38,7 +38,9 @@ $(document).ready(function(){
     })
 
     $("#search").on('keyup',function(){
-        search(rutaAjax);
+        var buscarPor = $("#combobox-search").val()
+        var stringSearch = $("#search").val() 
+        search(buscarPor,stringSearch);
     })
 
     

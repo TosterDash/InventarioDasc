@@ -32,8 +32,8 @@
                     <div class="row-form cons-col-size"> 
                         <label>Buscar por:</label>
                         <select  name="combobox-search" id="combobox-search">
-                            <option values="Nombre">Nombre</option>
-                            <option values="Descripcion">Descripción</option>
+                            <option values="nombre">nombre</option>
+                            <option values="descripcion">descripcion</option>
                         </select>
                     </div >
                     <div class="row-form cons-col-size">

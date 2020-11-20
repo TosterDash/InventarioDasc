@@ -87,7 +87,12 @@ $(document).ready(function(){
     });
 
     $("#btn-producto-add").on('click',function(){
-
+        var template ="";
+        template += `<input type="text" id="input-text-producto"></input>`;
+        $("#product-input").html(template);
+        $("#buttons-option-product").hide();
+        $("#btn-producto-confirmar").show();
+        $("#cancel-objeto,#submit-objeto").prop("disabled", true);
     })
     $("#btn-producto-delete").on('click',function(){
         var productVal = $("#col-1-combobox-product").val()
@@ -98,14 +103,55 @@ $(document).ready(function(){
                 type: "POST",
                 data: {option,productVal},
             }).done(function(e){
-                console.log(e);
+                var clasificacionVal = $("#col-1-combobox-clasification").val();
+                switch(clasificacionVal){
+                    //equipo
+                    case "1":
+                        getCombobox("col-1-combobox-product","producto", clasificacionVal)
+                    break;
+                    //consumible
+                    case "2":
+                        getCombobox("col-1-combobox-product","producto", clasificacionVal)
+                    break;
+               }
+               alertify.success("Se ha eliminado el producto");
             })
         }else{
             alertify.warning("Seleccione algun producto si va a eliminar");
         }
     })
-    $("#btn-producto-confirm").on('click',function(){
-        
+    $("#btn-producto-confirmar").on('click',function(){
+        var option ="addProducto";
+        var clasificacionVal = $("#col-1-combobox-clasification").val();
+        var productVal = $("#input-text-producto").val()
+        if(productVal != ""){
+            var template ="";
+            template += `<select class="" name="col-1-combobox-product" id="col-1-combobox-product"></select>`;
+            $("#product-input").html(template);
+            $("#buttons-option-product").show();
+            $("#btn-producto-confirmar").hide();
+            $("#btn-producto-confirmar").val("");
+            $("#cancel-objeto,#submit-objeto").prop("disabled", false);
+            $.ajax({
+                url: rutaAjax,
+                type: "POST",
+                data: {option,productVal,clasificacionVal},
+            }).done(function(){
+               switch(clasificacionVal){
+                    //equipo
+                    case "1":
+                        getCombobox("col-1-combobox-product","producto", clasificacionVal)
+                    break;
+                    //consumible
+                    case "2":
+                        getCombobox("col-1-combobox-product","producto", clasificacionVal)
+                    break;
+                }
+                alertify.success("Se añadio el producto");
+            })
+        }else{
+            alertify.warning("Campo vacio en producto");
+        }
     })
 
 
