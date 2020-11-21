@@ -37,11 +37,11 @@ $(document).ready(function(){
         for(i=0; i<rows.length; i++){
             var cbCell = $(rows[i]).find(".loan-cb > input");
             var cells = $(rows[i]).find(".loan-id").text();
-           
+           console.log(cells)
             var checkbox = cbCell[0].checked
             if (cbCell[0].checked){
-                console.log(cells[0])
-                objects.push(cells[0]);
+                console.log(cells)
+                objects.push(cells);
             }
             
         }
