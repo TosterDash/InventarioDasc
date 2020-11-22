@@ -1,6 +1,7 @@
 $(document).ready(function(){
     //Crear tabla de objetos
     var rutaAjax = "prestamo/PHP/addloanDB.php";
+    var rutaAddLoanIns = "prestamo/PHP/adloanins.php";
     $.ajax({
         url: rutaAjax,
         type: 'GET',
@@ -28,7 +29,7 @@ $(document).ready(function(){
 
     $(document).on('click', '#loan-add-add',function(){
         var building = $('#loan-add-edif').val();
-        var clasroom = $('#loan-add-clasroo').val();
+        var classroom = $('#loan-add-clasroom').val();
         var exitDate = $('#loan-add-datetime').val();
         var returnDate = $('#loan-add-datetime-return').val();
         var objects = [];
@@ -45,11 +46,11 @@ $(document).ready(function(){
             
         }
         
-        var rutaAjax = "prestamo/PHP/addloanDB.php";
+        
     $.ajax({
-        url: rutaAjax,
+        url: rutaAddLoanIns,
         type: 'POST',
-        data: {building, clasroom, exitDate, returnDate, objects},
+        data: {building, classroom, exitDate, returnDate, objects},
         success: function(response){
             console.log(response);
         }
