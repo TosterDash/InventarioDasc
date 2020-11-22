@@ -32,13 +32,11 @@
                     <!--Edificio-->
                     <label class="input-margin" >Edificio</label>
                     <select class="input-margin" name="loan-add-edif" id="loan-add-edif">
-                        <option value="Macro">Macro</option>
-                        <option value="DASC">Dasc</option>
                     </select>
                     <!--Salon-->
                     <label class="input-margin" >Salón</label>
                     <select class="input-margin" name="loan-add-clasroom" id="loan-add-clasroom">
-                        <option value="CS1">CS1</option>
+                        
                         <option value="CS2">CS2</option>
                         <option value="CS3">CS3</option>
                     </select>
