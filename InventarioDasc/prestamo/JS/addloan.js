@@ -37,7 +37,6 @@ $(document).ready(function(){
         for(i=0; i<rows.length; i++){
             var cbCell = $(rows[i]).find(".loan-cb > input");
             var cells = $(rows[i]).find(".loan-id").text();
-           console.log(cells)
             var checkbox = cbCell[0].checked
             if (cbCell[0].checked){
                 console.log(cells)
@@ -45,9 +44,16 @@ $(document).ready(function(){
             }
             
         }
-        console.log(objects)
         
-        
+        var rutaAjax = "prestamo/PHP/addloanDB.php";
+    $.ajax({
+        url: rutaAjax,
+        type: 'POST',
+        data: {building, clasroom, exitDate, returnDate, objects},
+        success: function(response){
+            console.log(response);
+        }
+    })
 
     });
 
@@ -55,5 +61,6 @@ $(document).ready(function(){
         e.preventDefault();
     });
     
+
     
 });
