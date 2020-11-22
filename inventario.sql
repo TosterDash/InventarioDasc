@@ -273,6 +273,13 @@ ALTER TABLE `planta`
 ALTER TABLE `prestamo`
   ADD PRIMARY KEY (`idPrestamo`);
 
+
+-- Indexes for table `prestamo_has_objeto`
+--
+ALTER TABLE `prestamo_has_objeto`
+  ADD PRIMARY KEY (`idPrestamoHasObjeto`);
+
+--
 --
 -- Indexes for table `tipoclasificacion`
 --
@@ -331,6 +338,12 @@ ALTER TABLE `planta`
 --
 ALTER TABLE `prestamo`
   MODIFY `idPrestamo` int(11) NOT NULL AUTO_INCREMENT;
+
+
+-- AUTO_INCREMENT for table `prestamo_has_objeto`
+--
+ALTER TABLE `prestamo_has_objeto`
+  MODIFY `idPrestamoHasObjeto` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tipoclasificacion`
