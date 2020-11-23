@@ -29,6 +29,11 @@ body{
 	flex-direction: row;
 }
 
+.disp-flexWarp{
+	display: flex;
+	flex-wrap: wrap;
+}
+
 .auto-margin{
 	margin-left: 12%;
 	width: 100%;

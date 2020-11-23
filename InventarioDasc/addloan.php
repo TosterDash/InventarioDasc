@@ -25,18 +25,21 @@
         <h1 class="center-title" >AÑADIR PRÉSTAMO</h1>
         <!--Form para agregar a inventario-->
         <form id="loan-add-form">
-            <div class="loan-container">
-                <div class="loan-data float-left round-border">
+            <div class="loan-container disp-flexRow">
+                
+                <div class="disp-flexCol row-form round-border">
                     <label class="input-margin" >ID de alumno o maestro</label>
                     <input class="input-margin" type="number" value="">
                     <!--Edificio-->
-                    <label class="input-margin" >Edificio</label>
                     <select class="input-margin" name="loan-add-edif" id="loan-add-edif">
                         <option value=>Selecciona una opcion</option>
                     </select>
                     <!--Salon-->
                     <label class="input-margin" >Salón</label>
                     <select class="input-margin" name="loan-add-clasroom" id="loan-add-clasroom">
+                        
+                        <option value="CS2">CS2</option>
+                        <option value="CS3">CS3</option>
                     </select>
                     <!--Fecha del prestamo-->
                     <label class="input-margin" >Fecha salida</label>
@@ -46,21 +49,20 @@
                 </div>
             
                 <!--Tabla donde puedes seleccionar todos los objetos que vas a pedir-->
-                <div class="float-left">
+                <div class="">
                     <label>Selecciona todos los materiales que necesites</label>
                     <table id="loan-table" class="">
                         <tbody id="loan-tbody"></tbody>
                         <!--fila-->
-                        
-
                     </table>
                     <div>
                         <!--Boton para cancelar el prestamo-->
-                        <a href="consloan.php" class="button">Cancelar</a>
+                        <a href="consloan.php" class="a-to-btn">Cancelar</a>
                         <!--Boton para agregar el prestamo-->
                         <button id="loan-add-add"> Agregar</button>
                     </div>
                 </div> 
+
             </div>
         </form> 
     </body>

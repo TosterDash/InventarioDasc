@@ -3,9 +3,14 @@
 
 }
 
-.add-button{
-	left: 80%;
-	margin-top: 1%;
+.divider-hoz{
+    width:100%;
+    border:1px solid rgba(4,4,4,0.2);
+}
+
+.divider-ver{
+    height:30vh;
+    border:1px solid rgba(4,4,4,0.2);
 }
 
 .loan-card{
@@ -14,26 +19,60 @@
 }
 
 .single-loan{
-	background-color: rgba(40,102,229,0.3);
-	width: 30%;
-	border: solid;
+	width: 40%;
+	margin:5%;
+	padding: 1%;
+	border: 1px solid black;
+	border-radius: 10px;	
+}
+
+.loan-head{
+	background-color: grey;
 	border-radius: 10px;
-	border-color: rgb(8,40,106);
-	border-color: black;
-	padding: 0.5%;
-	margin-left: 3%;
-	margin-top: 3%;
+	padding: 3%;
 }
 
-.header-card{
-	margin: auto;
-	padding: 2%;
-	background-color: rgba(40,102,229,0.5);
+.loan-body{
+	width: 100%;
+	display: inline-block;
 }
 
-b.header-card{
+.loan-info{
+	width: 50%;
+	display: inline-block;
+}
+
+.loan-info label{
+
+	margin-bottom: 5%;
+}
+
+.label-clas{
+	color: black;
+}
+
+.label-answ{
+	color: blue;
+}
+
+.loan-table{
+	width: 50%;
+	display: inline-block;
+	margin-left: 5%;
+}
+
+.loan-tabl tr{
 
 }
+
+.labs{
+	width: 100%;
+}
+
+.loan-foot{
+
+}
+
 
 /* ********LOAN ADD******** */
 
@@ -41,35 +80,8 @@ b.header-card{
 	
 }
 
-.loan-data{
-	display: flex;
-	flex-direction: column;
-
-}
-
-.float-left{
-	float: left;
-	margin-left: 15%;
-	margin-top: 5%;
-}
-
-.input-margin{
-	margin-bottom: 2%;
-}
-
-table{
-	width: 100%;
-}
 
 .table-row{
 	border: 1px solid black;
 }
 
-a.button {
-    -webkit-appearance: button;
-    -moz-appearance: button;
-    appearance: button;
-
-    text-decoration: none;
-    color: initial;
-}
