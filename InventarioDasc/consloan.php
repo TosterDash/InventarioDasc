@@ -24,7 +24,6 @@
 
     </head>
     <body>
-
         <h1 class="center-title">PRÉSTAMO</h1>
 
         <div id="card-container" class="disp-flexWarp">

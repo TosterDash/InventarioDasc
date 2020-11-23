@@ -5,18 +5,6 @@ $(document).ready(function(){
     var rutaCB2 = "prestamo/PHP/addloanCB2.php";
     var rutaAddLoanIns = "prestamo/PHP/adloanins.php"
     
-
-    //Guardar variable option
-    /*var option = "table";
-    $.ajax({
-        url: rutaOption,
-        type: 'POST',
-        data: {option},
-        success: function(response){
-            console.log(response);
-        }
-
-    })*/
     var option = "table";
     $.ajax({
         url: rutaAjax,

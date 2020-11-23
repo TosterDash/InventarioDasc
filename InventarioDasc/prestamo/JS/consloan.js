@@ -1,6 +1,23 @@
 
 $(document).ready(function(){
-  $("button").click(function(){
-    $("#card-container").html("<h1>ASHE UN0</h1>");
-  });
-});
+  var rutaAjax = "prestamo/PHP/consloan.php";
+
+  $.ajax({
+    url: rutaAjax,
+    type: 'GET',
+    data: {option},
+    success: function(response){
+        console.log(response)
+        var cons = JSON.parse(response);
+        var template = "";
+        var cont=0;
+
+        cons.forEach(task =>{
+            template += ``
+            cont++;
+        
+        })
+        $("#loan-tbody").html(template)
+    }
+  })
+})
