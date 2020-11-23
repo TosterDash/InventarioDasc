@@ -17,12 +17,13 @@ $(document).ready(function(){
         }
 
     })*/
-
+    var option = "table";
     $.ajax({
         url: rutaAjax,
         type: 'GET',
+        data: {option},
         success: function(response){
-            
+            console.log(response)
             var cons = JSON.parse(response);
             var template = "";
             var cont=0;
@@ -42,49 +43,61 @@ $(document).ready(function(){
         }
     })
     
-    $.ajax({
-        url: rutaCB1,
-        type: 'GET',
-        success: function(response){  
-        console.log(response)
-            var cons = JSON.parse(response);
-            var template = "";
-            var cont=0;
+    var option = "CB1";
+        $.ajax({
+            url: rutaAjax,
+            type: 'GET',
+            data: {option},
+            success: function(response){  
+            console.log(response)
+                var cons = JSON.parse(response);
+                var template = "";
+                var cont=0;
+                
             
+                cons.forEach(task =>{
+                    template += `<option value="${task.Nombre}">${task.Nombre}</option>`
+                    cont++;
             
-            cons.forEach(task =>{
-                template += `<option value="${task.Nombre}">${task.Nombre}</option>`
-                cont++;
-            
-            })
-            $("#loan-add-edif").html(template)
+                })
+                $("#loan-add-edif").html(template)
         }
     })
-    
-    $.ajax({
-        url: rutaCB2,
-        type: 'GET',
-        success: function(response){
-            var cons = JSON.parse(response);
-            var template = "";
-            var cont=0;
-            
-            
-            cons.forEach(task =>{
-                template += `<option value="${task.nombreAula}">${task.nombreAula}</option>`
-                cont++;
-            
-            })
-            $("#loan-add-clasroom").html(template)
-        }
-    })
-
-    
-
 
     //Evento on change cb edificio
     $(document).on('change', '#loan-add-edif',function(){
+        var option = "CB2";
         var building = $('#loan-add-edif').val();
+        $.ajax({
+            url: rutaAjax,
+            type: 'GET',
+            data: {option, building},
+            success: function(response){
+                console.log(response)
+                var cons = JSON.parse(response);
+                var template = "";
+                var cont=0;                        
+                cons.forEach(task =>{
+                    template += `<option value="${task.nombreAula}">${task.nombreAula}</option>`
+                    cont++;
+                
+                })
+                $("#loan-add-clasroom").html(template)
+            }
+        })
+
+        
+    
+    
+    
+    
+
+
+    
+
+        
+
+        
     });
 
     //Evento on click agregar
