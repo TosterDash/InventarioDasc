@@ -152,8 +152,8 @@ INSERT INTO `planta` (`idPlanta`, `planta`) VALUES
 
 CREATE TABLE `prestamo` (
   `idPrestamo` int(11) NOT NULL,
-  `building` varchar(100) NOT NULL,
-  `classroom` varchar(100) NOT NULL,
+  `idEdificio` int(11) NOT NULL,
+  `idAula` int(11) NOT NULL,
   `exitDate` date NOT NULL,
   `returnDate` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -391,6 +391,13 @@ ALTER TABLE `objeto`
 --
 ALTER TABLE `tipoproducto`
   ADD CONSTRAINT `idTipoClasificacion` FOREIGN KEY (`idTipoClasificacion`) REFERENCES `tipoclasificacion` (`idTipoClasificacion`);
+COMMIT;
+
+-- Constraints for table `prestamo`
+--
+ALTER TABLE `prestamo`
+  ADD CONSTRAINT `prestamo_idEdificio` FOREIGN KEY (`idEdificio`) REFERENCES `edificio` (`idEdificio`),
+  ADD CONSTRAINT `prestamo_idAula` FOREIGN KEY (`idAula`) REFERENCES `aula` (`idAula`);
 COMMIT;
 
 -- Constraints for table `prestamo_has_objeto`

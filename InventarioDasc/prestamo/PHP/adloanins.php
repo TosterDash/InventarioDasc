@@ -28,7 +28,7 @@
         echo "error";
     }
    
-    $result = mysqli_query($conexion, "INSERT INTO prestamo (building,classroom,exitDate,returnDate) VALUES ('$idbld','$idcls','$exitDate','$returnDate')");
+    $result = mysqli_query($conexion, "INSERT INTO prestamo (idEdificio,idAula,exitDate,returnDate) VALUES ('$idbld','$idcls','$exitDate','$returnDate')");
     //Insertar a la base de datos
     $result = mysqli_query($conexion, "SELECT idPrestamo FROM prestamo ORDER BY idPrestamo DESC LIMIT 1");
     
