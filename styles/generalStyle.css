@@ -2,6 +2,9 @@ body{
 	color: black;
 }
 
+a { color: inherit; } 
+a:hover  { color: white; } 
+
 .link-button {
 	font-size: 5mm;
 	border: solid;
@@ -68,7 +71,7 @@ select {
 }
 
 label{
-	margin-bottom: 1%;
+	margin-bottom: 3%;
 }
 
 /*buttons*/

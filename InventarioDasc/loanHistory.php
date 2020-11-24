@@ -20,15 +20,15 @@
         <link rel="stylesheet" href="../styles/loanStyle.css">
         <link rel="stylesheet" href="../styles/generalStyle.css">
         
-        <title>Prestamos</title>
+        <title>Historial de préstamos</title>
 
     </head>
     <body>
-        <h1 class="center-title">PRÉSTAMO</h1>
+        <h1 class="center-title">HISTORIAL DE PRÉSTAMOS</h1>
 
-        <nav>
-            <label>préstamos actuales</label>
-            <a href="loanHistory.php">registro de prestamos</a>
+        <nav class="history-nav">
+            <a href="consloan.php">préstamos actuales<a/>
+            <label >registro de prestamos</label>
         </nav>
 
         <div id="card-container" class="disp-flexWarp">

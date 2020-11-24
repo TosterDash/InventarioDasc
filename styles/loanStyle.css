@@ -1,6 +1,25 @@
 
-.button-container{
+/* ********LOAN CONS******** */
 
+body{
+	
+}
+
+.background-img{
+	background-image: url('../resources/campus_mapa.jpg');
+
+	background-repeat: no-repeat, repeat;
+	background-size: cover;
+}
+
+.form-background{
+	background-color: white;
+	border: 1px solid white;
+	border-radius: 10px;
+	width: 70%;
+	margin-left: 15%;
+	padding: 1%;
+	margin-top: 5%;
 }
 
 .divider-hoz{
@@ -27,7 +46,7 @@
 }
 
 .loan-head{
-	background-color: grey;
+	background-color: rgba(179, 208, 255,0.5);
 	border-radius: 10px;
 	padding: 3%;
 }
@@ -80,8 +99,36 @@
 	
 }
 
+.loan-add-form{
+
+}
+
+.loan-container{
+	background-color: white;
+	padding: 3%;
+}
+
+.loan-size{
+	width: 50%;
+}
+
+.table-scroll{
+	overflow-y: scroll;
+	max-height: 300px;
+}
 
 .table-row{
 	border: 1px solid black;
 }
 
+.addloan-btn{
+	margin-left: 20%;
+}
+
+
+
+/* ********LOAN HISTORY******** */
+
+.history-nav{
+	margin-top: 3%;
+}

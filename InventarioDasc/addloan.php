@@ -21,48 +21,49 @@
     </script>
     <title></title>
 </head>
-    <body>
-        <h1 class="center-title" >AÑADIR PRÉSTAMO</h1>
+    <body class="background-img">
+        
         <!--Form para agregar a inventario-->
         <form id="loan-add-form">
-            <div class="loan-container disp-flexRow">
-                
-                <div class="disp-flexCol row-form round-border">
-                    <label class="input-margin" >ID de alumno o maestro</label>
-                    <input class="input-margin" type="number" value="">
-                    <!--Edificio-->
-                    <select class="input-margin" name="loan-add-edif" id="loan-add-edif">
-                        <option value=>Selecciona una opcion</option>
-                    </select>
-                    <!--Salon-->
-                    <label class="input-margin" >Salón</label>
-                    <select class="input-margin" name="loan-add-clasroom" id="loan-add-clasroom">
-                        
-                        <option value="CS2">CS2</option>
-                        <option value="CS3">CS3</option>
-                    </select>
-                    <!--Fecha del prestamo-->
-                    <label class="input-margin" >Fecha salida</label>
-                    <input class="input-margin" id="loan-add-datetime" type="datetime-local">
-                    <label class="input-margin" >Fecha retorno</label>
-                    <input class="input-margin" id="loan-add-datetime-return" type="datetime-local">
-                </div>
-            
-                <!--Tabla donde puedes seleccionar todos los objetos que vas a pedir-->
-                <div class="">
-                    <label>Selecciona todos los materiales que necesites</label>
-                    <table id="loan-table" class="">
-                        <tbody id="loan-tbody"></tbody>
-                        <!--fila-->
-                    </table>
-                    <div>
-                        <!--Boton para cancelar el prestamo-->
-                        <a href="consloan.php" class="a-to-btn">Cancelar</a>
-                        <!--Boton para agregar el prestamo-->
-                        <button id="loan-add-add"> Agregar</button>
+            <div class="form-background">
+                <h1 class="center-title" >AÑADIR PRÉSTAMO</h1>
+                <hr class="divider-hor">
+                <div class="loan-container disp-flexRow">          
+                    <div class="disp-flexCol row-form round-border">
+                        <label class="" >Identificador</label>
+                        <input class="" type="number" value="">
+                        <!--Edificio-->
+                        <label class="input-margin" >Edificio</label>
+                        <select class="input-margin" name="loan-add-edif" id="loan-add-edif">
+                            <option value=>Selecciona una opcion</option>
+                        </select>
+                        <!--Salon-->
+                        <label class="input-margin" >Salón</label>
+                        <select class="input-margin" name="loan-add-clasroom" id="loan-add-clasroom">
+                        </select>
+                        <!--Fecha del prestamo-->
+                        <label class="input-margin" >Fecha salida</label>
+                        <input class="input-margin" id="loan-add-datetime" type="datetime-local">
+                        <label class="input-margin" >Fecha retorno</label>
+                        <input class="input-margin" id="loan-add-datetime-return" type="datetime-local">
                     </div>
-                </div> 
-
+                
+                    <!--Tabla donde puedes seleccionar todos los objetos que vas a pedir-->
+                    <div class="disp-flexCol row-form  table-scroll">
+                        <label>Selecciona los materiales a prestar</label>
+                        <table id="loan-table" class="">
+                            <tbody id="loan-tbody"></tbody>
+                            <!--fila-->
+                        </table>
+                        <p>ESTE TEXTO ES SOLO PARA VER SI JALA BIEN EL SCROLL OWO stie, est a fermentum consequat, nunc eros scelerisque quam, non lacinia lacus lorem non odio. Nulla sit amet iaculis magna, id iaculis ipsum. Nullam tincidunt tempor venenatis. In ut laoreet sapien. Vivamus sed urna eu nisi facilisis scelerisque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent congue mauris nisl, quis tincidunt arcu rhoncus et. Nam scelerisque tincidunt erat eu faucibus. Donec in eros id risus porttitor accumsan nec id ante.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vel magna vitae lacus mattis euismod nec a felis. Vestibulum pretium ex sapien, in maximus lectus auctor sed. Ut lectus orci, mattis non nibh quis, consequat sodales risus. Sed molestie, est a fermentum consequat, nunc eros scelerisque quam, non lacinia lacus lorem non odio. Nulla sit amet iaculis magna, id iaculis ipsum. Nullam tincidunt tempor venenatis. In ut laoreet sapien. Vivamus sed urna eu nisi facilisis scelerisque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent congue mauris nisl, quis tincidunt arcu rhoncus et. Nam scelerisque tincidunt erat eu faucibus. Donec in eros id risus porttitor accumsan nec id ante.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vel magna vitae lacus mattis euismod nec a felis. Vestibulum pretium ex sapien, in maximus lectus auctor sed. Ut lectus orci, mattis non nibh quis, consequat sodales risus. Sed molestie, est a fermentum consequat, nunc eros scelerisque quam, non lacinia lacus lorem non odio. Nulla sit amet iaculis magna, id iaculis ipsum. Nullam tincidunt tempor venenatis. In ut laoreet sapien. Vivamus sed urna eu nisi facilisis scelerisque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent congue mauris nisl, quis tincidunt arcu rhoncus et. Nam scelerisque tincidunt erat eu faucibus. Donec in eros id risus porttitor accumsan nec id ante.</p>
+                    </div> 
+                </div>
+                <div class="addloan-btn">
+                    <!--Boton para cancelar el prestamo-->
+                    <button >Cancelar</button>
+                    <!--Boton para agregar el prestamo-->
+                    <button id="loan-add-add"> Agregar</button>
+                </div>
             </div>
         </form> 
     </body>
