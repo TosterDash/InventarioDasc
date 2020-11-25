@@ -53,17 +53,18 @@
                  <div id="div-table">
                     <table id="table-equipo" class="table">
                         <thead class="thead-light">
+                            
                             <tr>
-                                <th>Equipo</th>
-                                <th>ID Producto</th>
+                                <th>Identificador</th>
                                 <th>Producto</th>
-                                <th>Nombre</th>
-                                <th>Descripcion</th>
-                                <th>Responsable</th>
-                                <th>Ultimo mantenimiento</th>
-                                <th>Proximo mantenimiento</th>
-                                <th>Prestamo Disponible</th>
                                 <th></th>
+                                <th>Nombre</th>
+                                <th>Descripción</th>
+                                <th>Responsable</th>
+                                <th>Último mantenimiento</th>
+                                <th>Próximo mantenimiento</th>
+                                <th>Prestamo Disponible</th>
+                                <th>Opciones</th>
                                 
                             </tr>
                         </thead>
@@ -71,13 +72,14 @@
                     </table>
                     <table id="table-consumible" class="table">
                         <thead class="thead-light">
+                            
                             <tr>
                                 <th>Consumible</th>
                                 <th>Producto</th>
                                 <th>Nombre</th>
                                 <th>Descripcion</th>
                                 <th>Cantidad</th>
-                                <th></th>
+                                <th>Opciones</th>
                             </tr>
                         </thead>
                         <tbody id="tbody-consumible"></tbody>

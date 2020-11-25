@@ -69,7 +69,7 @@ class rowTable{
             var option = "delete";
 
 
-    alertify.confirm(`¿Desea eliminar el objeto?`,function(e){
+    alertify.confirm(`Se eliminará de forma permanente ¿Eliminar de todas formas?`,function(e){
         if(e) {
             $.ajax({
                 url: rutaAjax ,
@@ -80,7 +80,7 @@ class rowTable{
             }).done(function(e){
                 switch(e){
                     case "error":
-                        alertify.error("No se pudo eliminar");
+                        alertify.error("No se pudo eliminar. Intente de nuevo");
                     break;
     
                     default:
@@ -89,7 +89,7 @@ class rowTable{
                     break;
                 }
             }).fail(function(e){
-                alertify.error("No se pudo eliminar");
+                alertify.error("No se pudo eliminar. Intente de nuevo");
             })
         }
     })
@@ -103,7 +103,8 @@ class rowTable{
             
             var templateImg = ` <form method="POST" id="formSend`+idObjeto+`" enctype="multipart/form-data">
                                 <input type="file" class="form-control-file" name="img"></input>
-                                <button type="submit" class="btn btn-success" id="confirmEdit`+idObjeto+` name="confirmar">Confirmar</button>
+                                <image style="height: 30px;" src="../resources/confirm.png" id="confirmEdit`+idObjeto+` name="confirmar"></image>
+                                <image style="height: 30px;" src="../resources/cancel.png" id="confirmEdit`+idObjeto+` name="cancelar" onClick="window.location.reload();"></image>
                                 </form>`;
             $("#img"+idObjeto).html(templateImg);
 
@@ -124,7 +125,7 @@ class rowTable{
                     contentType: false,
                     processData: false
                 }).done(function(){
-                    alertify.success("Imagen Modificada correctamente");
+                    alertify.success("Imagen modificada correctamente");
                     $("#option"+idObjeto).show();
                     console.log(clasificacion);
                     switch(clasificacion){
@@ -154,7 +155,8 @@ class rowTable{
         $(document).on('click',"#editProducto"+idObjeto,function(){
             var template = ` <form method="POST" id="formSend`+idObjeto+`">
                                 <select class="form-control-file" name="editInput`+idObjeto+`" id="editInput`+idObjeto+`"></select>
-                                <button type="submit" class="btn btn-success" id="confirmEdit`+idObjeto+` name="confirmar"`+idObjeto+`>Confirmar</button>
+                                <image style="height: 30px;" src="../resources/confirm.png" id="confirmEdit`+idObjeto+` name="confirmar"></image>
+                                <image style="height: 30px;" src="../resources/cancel.png" id="confirmEdit`+idObjeto+` name="cancelar" onClick="window.location.reload();"></image>
                                 </form>`;
             $("#producto"+idObjeto).html(template);
             optionsEquipo("hide");
@@ -216,7 +218,8 @@ class rowTable{
             console.log("-.-------------------------");
             var template = ` <form method="POST" id="formSend`+idObjeto+`">
                                 <input type="text" class="form-control-file" name="editInput" id="editInput" required></input>
-                                <button type="submit" class="btn btn-success" id="confirmEdit`+idObjeto+` name="confirmar">Confirmar</button>
+                                <image style="height: 30px;" src="../resources/confirm.png" id="confirmEdit`+idObjeto+` name="confirmar"></image>
+                                <image style="height: 30px;" src="../resources/cancel.png" id="confirmEdit`+idObjeto+` name="cancelar" onClick="window.location.reload();"></image>
                                 </form>`;
             $("#nombre"+idObjeto).html(template);
             optionsEquipo("hide");
@@ -267,7 +270,8 @@ class rowTable{
        
             var template = ` <form method="POST" id="formSend`+idObjeto+`">
                                 <input type="text" class="form-control-file" name="editInput" id="editInput" required></input>
-                                <button type="submit" class="btn btn-success" id="confirmEdit`+idObjeto+` name="confirmar">Confirmar</button>
+                                <image style="height: 30px;" src="../resources/confirm.png" id="confirmEdit`+idObjeto+` name="confirmar"></image>
+                                <image style="height: 30px;" src="../resources/cancel.png" id="confirmEdit`+idObjeto+` name="cancelar" onClick="window.location.reload();"></image>
                                 </form>`;
             $("#descripcion"+idObjeto).html(template);
             optionsEquipo("hide");
@@ -316,7 +320,8 @@ class rowTable{
        
             var template = ` <form method="POST" id="formSend`+idObjeto+`">
                                 <input type="number" class="form-control-file" name="editInput" id="editInput" required></input>
-                                <button type="submit" class="btn btn-success" id="confirmEdit`+idObjeto+` name="confirmar">Confirmar</button>
+                                <image style="height: 30px;" src="../resources/confirm.png" id="confirmEdit`+idObjeto+` name="confirmar"></image>
+                                <image style="height: 30px;" src="../resources/cancel.png" id="confirmEdit`+idObjeto+` name="cancelar" onClick="window.location.reload();"></image>
                                 </form>`;
             $("#cantidad"+idObjeto).html(template);
             optionsEquipo("hide");
@@ -366,8 +371,9 @@ class rowTable{
             console.log("-.-------------------------");
             var template = `<form method="POST" id="formSend`+idObjeto+`">
                                 <input type="text" class="form-control-file" name="editInput" id="editInput" required></input>
-                                <button type="submit" class="btn btn-success" id="confirmEdit`+idObjeto+`" name="confirmar">Confirmar</button>
-                                <button type="button" class="btn btn-danger" id="cancelEdit`+idObjeto+`">Dejar sin mantenimiento</button>
+                                <image style="height: 30px;" src="../resources/confirm.png" id="confirmEdit`+idObjeto+` name="confirmar"></image>
+                                <image style="height: 30px;" src="../resources/cancel.png" id="confirmEdit`+idObjeto+` name="cancelar" onClick="window.location.reload();"></image>
+                                <button type="button" class="btn" id="cancelEdit`+idObjeto+`">Dejar sin mantenimiento</button>
                             </form>`;
             $("#mantResp"+idObjeto).html(template);
             template = `
@@ -459,7 +465,8 @@ class rowTable{
         $(document).on('click',"#editPrestamo"+idObjeto,function(){
             var template = ` <form method="POST" id="formSend`+idObjeto+`">
             <input type="checkbox" class="form-control-file" name="editInput" id="editInput"></input>
-            <button type="submit" class="btn btn-success" id="confirmEdit`+idObjeto+` name="confirmar">Confirmar</button>
+            <image style="height: 30px;" src="../resources/confirm.png" id="confirmEdit`+idObjeto+` name="confirmar"></image>
+            <image style="height: 30px;" src="../resources/cancel.png" id="confirmEdit`+idObjeto+` name="cancelar" onClick="window.location.reload();"></image>
             </form>`;
             $("#prestamo"+idObjeto).html(template);
             optionsEquipo("hide");
@@ -562,68 +569,67 @@ function updateFileEquipo(idObjeto){
             var template = "";
             
             cons.forEach(task =>{
-                
+                //owo1
                 template = `
+                            <h5 class="center-title">Equipo</h5>
+                            <th id="etiqueta${task.idObjeto}">${task.etiqueta}</th> 
                             <th id="img${task.idObjeto}"><img height="70px" src="data:image/jpg;base64,${task.img}"/></th>
-                            <th id="etiqueta${task.idObjeto}">${task.etiqueta}</th>
                             <th id="producto${task.idObjeto}">${task.producto}</th>
                             <th id="nombre${task.idObjeto}">${task.nombre}</th>
                             <th id="descripcion${task.idObjeto}">${task.descripcion}</th>`
 
                             if(`${task.mantenimiento}`=="true"){
                                 if(`${task.mantResp}`==""){
-                                    template += `<th id="mantResp${task.idObjeto}">No hay responsable</th>`
+                                    template += `<th id="mantResp${task.idObjeto}">Sin responsable</th>`
                                 }else{
                                     template += `<th id="mantResp${task.idObjeto}">${task.mantResp}</th>`
                                 }
                                 if(`${task.lastMant}`=="0000-00-00 00:00:00" || `${task.lastMant}`=="" || `${task.lastMant}`== null){
-                                    template += `<th id="lastMant${task.idObjeto}">No hay fecha</th>`
+                                    template += `<th id="lastMant${task.idObjeto}">Sin fecha</th>`
                                 }else{
                                     template += `<th id="lastMant${task.idObjeto}">${task.lastMant}</th>`
                                 }
                                 if(`${task.nextMant}`=="0000-00-00 00:00:00" || `${task.nextMant}`=="" || `${task.nextMant}`== null){
-                                    template += `<th id="nextMant${task.idObjeto}">No hay fecha</th>`
+                                    template += `<th id="nextMant${task.idObjeto}">Sin fecha</th>`
                                 }else{
                                     template += `<th id="nextMant${task.idObjeto}">${task.nextMant}</th>`
                                 }
                             }else{
                                 template += `<th id="mantResp${task.idObjeto}">No hay mantenimiento</th>`;
                                 if(`${task.lastMant}`=="0000-00-00 00:00:00" || `${task.lastMant}`=="" || `${task.lastMant}`== null){
-                                    template += `<th id="lastMant${task.idObjeto}">No hay fecha</th>`
+                                    template += `<th id="lastMant${task.idObjeto}">Sin fecha</th>`
                                 }else{
                                     template += `<th id="lastMant${task.idObjeto}">${task.lastMant}</th>`
                                 }
-                                template += `<th id="nextMant${task.idObjeto}">No hay mantenimiento</th>`;
+                                template += `<th id="nextMant${task.idObjeto}">Sin mantenimiento</th>`;
                             }
                             //prestamo IF
                             if(`${task.prestamo}`=="true"){
-                                template += `<th id="prestamo${task.idObjeto}"><input type="checkbox" id="prestamo${task.idObjeto}" checked disabled></th>`;
+                                template += `<th id="prestamo${task.idObjeto}"><label id="prestamo${task.idObjeto}"> Disponible</label></th>`;
                 
                             }else{
-                                template += `<th id="prestamo${task.idObjeto}"><input type="checkbox" id="prestamo${task.idObjeto}" disabled></th>`;
+                                template += `<th id="prestamo${task.idObjeto}"><label id="prestamo${task.idObjeto}"> No disponible</label></th>`;
                             
                             }
 
-                            template += `<th id="option${task.idObjeto}">
-                                            <div class="btn-group">
-                                                <button type="button" class="btn btn-danger" id="delete${task.idObjeto}">Eliminar</button>
-                                                    
-                                                <div class="btn-group">
-                                                    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" id="edit${task.idObjeto}">Editar</button>
-                                                    <div class="dropdown-menu">
-                                                        <a class="dropdown-item" id="editImg${task.idObjeto}">Imagen</a>
-                                                        <a class="dropdown-item" id="editProducto${task.idObjeto}">Producto</a>
-                                                        <a class="dropdown-item" id="editNombre${task.idObjeto}">Nombre</a>
-                                                        <a class="dropdown-item" id="editDescripcion${task.idObjeto}">Descripcion</a>
-                                                        <a class="dropdown-item" id="editMantenimiento${task.idObjeto}">mantenimiento</a>
-                                                        <a class="dropdown-item" id="editPrestamo${task.idObjeto}">Disponibilidad de prestamo</a>
-                                                    </div>
-                                                </div>
+                            template += 
+                            `<th id="option${task.idObjeto}">
+                                    <div class="btn-group">
+                                        <image src="../resources/delete.png" style="height:30px" id="delete${task.idObjeto}"></image>
+                                            
+                                        <div class="btn-group">
+                                            <image src="../resources/edit.png" style="height:30px" class="dropdown-toggle" data-toggle="dropdown" id="edit${task.idObjeto}"></image>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" id="editImg${task.idObjeto}">Imagen</a>
+                                                <a class="dropdown-item" id="editProducto${task.idObjeto}">Producto</a>
+                                                <a class="dropdown-item" id="editNombre${task.idObjeto}">Nombre</a>
+                                                <a class="dropdown-item" id="editDescripcion${task.idObjeto}">Descripcion</a>
+                                                <a class="dropdown-item" id="editMantenimiento${task.idObjeto}">mantenimiento</a>
+                                                <a class="dropdown-item" id="editPrestamo${task.idObjeto}">Disponibilidad de prestamo</a>
                                             </div>
-                                        </th>
-                                    `;
-                
-                
+                                        </div>
+                                    </div>
+                                </th>`;                
                 $('#fila'+idObjeto).html(template);
             })
         }
@@ -647,31 +653,31 @@ function updateFileConsumible(idObjeto){
             var template = "";
             
             cons.forEach(task =>{
+                //owo2
+                template = `
+                    <th id="producto${task.idObjeto}">${task.producto}</th>
+                    <th id="img${task.idObjeto}"><img height="70px" src="data:image/jpg;base64,${task.img}"/></th>
+                    <th id="nombre${task.idObjeto}">${task.nombre}</th>
+                    <th id="descripcion${task.idObjeto}">${task.descripcion}</th>
+                    <th id="cantidad${task.idObjeto}">${task.cantidad}</th>
                 
-                template = `<th id="img${task.idObjeto}"><img height="70px" src="data:image/jpg;base64,${task.img}"/></th>
-                                <th id="producto${task.idObjeto}">${task.producto}</th>
-                                <th id="nombre${task.idObjeto}">${task.nombre}</th>
-                                <th id="descripcion${task.idObjeto}">${task.descripcion}</th>
-                                <th id="cantidad${task.idObjeto}">${task.cantidad}</th>
-                            
-                                <th id="option${task.idObjeto}">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-danger" id="delete${task.idObjeto}">Eliminar</button>
-                                            
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" id="edit${task.idObjeto}">Editar</button>
-                                            <div class="dropdown-menu">
-                                                <a class="dropdown-item" id="editImg${task.idObjeto}">Imagen</a>
-                                                <a class="dropdown-item" id="editProducto${task.idObjeto}">Producto</a>
-                                                <a class="dropdown-item" id="editNombre${task.idObjeto}">Nombre</a>
-                                                <a class="dropdown-item" id="editDescripcion${task.idObjeto}">Descripcion</a>
-                                                <a class="dropdown-item" id="editCantidad${task.idObjeto}">cantidad</a>
-                                            
-                                            </div>
-                                        </div>
-                                    </div>
-                                </th>
-                            `
+                    <th id="option${task.idObjeto}">
+                        <div class="btn-group">
+                             <image src="../resources/delete.png" style="height:30px" id="delete${task.idObjeto}"></image>
+                                
+                            <div class="btn-group">
+                                <image src="../resources/edit.png" style="height:30px" class="dropdown-toggle" data-toggle="dropdown" id="edit${task.idObjeto}"></image>                                            <div class="dropdown-menu">
+                                    <a class="dropdown-item" id="editImg${task.idObjeto}">Imagen</a>
+                                    <a class="dropdown-item" id="editProducto${task.idObjeto}">Producto</a>
+                                    <a class="dropdown-item" id="editNombre${task.idObjeto}">Nombre</a>
+                                    <a class="dropdown-item" id="editDescripcion${task.idObjeto}">Descripcion</a>
+                                    <a class="dropdown-item" id="editCantidad${task.idObjeto}">cantidad</a>
+                                
+                                </div>
+                            </div>
+                        </div>
+                    </th>
+                `
                 $('#fila'+idObjeto).html(template);
 
             })
@@ -733,65 +739,68 @@ function getTableEquipo(){
             var cont=0;
             cons.forEach(task =>{
                 rowTableEquipo[cont] = new rowTable(`${task.idObjeto}`,"Equipo",1);
-                template += `   <tr id="fila${task.idObjeto}">
-                                <th id="img${task.idObjeto}"><img height="70px" src="data:image/jpg;base64,${task.img}"/></th>
-                                <th id="etiqueta${task.idObjeto}">${task.etiqueta}</th>
-                                <th id="producto${task.idObjeto}">${task.producto}</th>
-                                <th id="nombre${task.idObjeto}">${task.nombre}</th>
-                                <th id="descripcion${task.idObjeto}">${task.descripcion}</th>`;
+                //owo3
+                template += `   
+                <tr id="fila${task.idObjeto}">
+                    <th id="etiqueta${task.idObjeto}">${task.etiqueta}</th>
+                    <th id="img${task.idObjeto}"><img height="70px" src="data:image/jpg;base64,${task.img}"/></th>
+                    <th id="producto${task.idObjeto}">${task.producto}</th>
+                    <th id="nombre${task.idObjeto}">${task.nombre}</th>
+                    <th id="descripcion${task.idObjeto}">${task.descripcion}</th>`;
                 if(`${task.mantenimiento}`=="true"){
                     if(`${task.mantResp}`==""){
-                        template += `<th id="mantResp${task.idObjeto}">No hay responsable</th>`
+                        template += `<th id="mantResp${task.idObjeto}">Sin responsable</th>`
                     }else{
                         template += `<th id="mantResp${task.idObjeto}">${task.mantResp}</th>`
                     }
                     if(`${task.lastMant}`=="0000-00-00 00:00:00" || `${task.lastMant}`=="" || `${task.lastMant}`== null){
-                        template += `<th id="lastMant${task.idObjeto}">No hay fecha</th>`
+                        template += `<th id="lastMant${task.idObjeto}">Sin fecha</th>`
                     }else{
                         template += `<th id="lastMant${task.idObjeto}">${task.lastMant}</th>`
                     }
                     if(`${task.nextMant}`=="0000-00-00 00:00:00" || `${task.nextMant}`=="" || `${task.nextMant}`== null){
-                        template += `<th id="nextMant${task.idObjeto}">No hay fecha</th>`
+                        template += `<th id="nextMant${task.idObjeto}">Sin fecha</th>`
                     }else{
                         template += `<th id="nextMant${task.idObjeto}">${task.nextMant}</th>`
                     }
                 }else{
-                    template += `<th id="mantResp${task.idObjeto}">No hay mantenimiento</th>`;
+                    template += `<th id="mantResp${task.idObjeto}">Sin mantenimiento</th>`;
                     if(`${task.lastMant}`=="0000-00-00 00:00:00" || `${task.lastMant}`=="" || `${task.lastMant}`== null){
-                        template += `<th id="lastMant${task.idObjeto}">No hay fecha</th>`
+                        template += `<th id="lastMant${task.idObjeto}">Sin fecha</th>`
                     }else{
                         template += `<th id="lastMant${task.idObjeto}">${task.lastMant}</th>`
                     }
-                    template += `<th id="nextMant${task.idObjeto}">No hay mantenimiento</th>`;
+                    template += `<th id="nextMant${task.idObjeto}">Sin mantenimiento</th>`;
                 }
                 
                 if(`${task.prestamo}`=="true"){
-                    template += `<th id="prestamo${task.idObjeto}"><input type="checkbox" id="prestamo${task.idObjeto}" checked disabled></th>`;
+                    template += `<th id="prestamo${task.idObjeto}"><label id="prestamo${task.idObjeto}"> Disponible</label></th>`;
     
                 }else{
-                    template += `<th id="prestamo${task.idObjeto}"><input type="checkbox" id="prestamo${task.idObjeto}" disabled></th>`;
+                    template += `<th id="prestamo${task.idObjeto}"><label id="prestamo${task.idObjeto}"> No disponible</label></th>`;
                 
                 }
 
+            template += 
+            `<th id="option${task.idObjeto}">
+                <div class="btn-group">
+                     <image src="../resources/delete.png" style="height:30px" id="delete${task.idObjeto}"></image>
 
-                template += `<th id="option${task.idObjeto}">
-                                    <div class="btn-group">
-                                         <image src="../resources/del.png" style="width:50px" onclick="confirmDelete()" id="delete${task.idObjeto}"></image>  
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" id="edit${task.idObjeto}">Editar</button>
-                                            <div class="dropdown-menu">
-                                                <a class="dropdown-item" id="editImg${task.idObjeto}">Imagen</a>
-                                                <a class="dropdown-item" id="editProducto${task.idObjeto}">Producto</a>
-                                                <a class="dropdown-item" id="editNombre${task.idObjeto}">Nombre</a>
-                                                <a class="dropdown-item" id="editDescripcion${task.idObjeto}">Descripcion</a>
-                                                <a class="dropdown-item" id="editMantenimiento${task.idObjeto}">mantenimiento</a>
-                                                <a class="dropdown-item" id="editPrestamo${task.idObjeto}">Disponibilidad de prestamo</a>
-                                            
-                                            </div>
-                                        </div>
-                                    </div>
-                                </th>
-                            </tr>`;
+                    <div class="btn-group">
+                        <image src="../resources/edit.png" style="height:30px" class="dropdown-toggle" data-toggle="dropdown" id="edit${task.idObjeto}"></image>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" id="editImg${task.idObjeto}">Imagen</a>
+                            <a class="dropdown-item" id="editProducto${task.idObjeto}">Producto</a>
+                            <a class="dropdown-item" id="editNombre${task.idObjeto}">Nombre</a>
+                            <a class="dropdown-item" id="editDescripcion${task.idObjeto}">Descripcion</a>
+                            <a class="dropdown-item" id="editMantenimiento${task.idObjeto}">mantenimiento</a>
+                            <a class="dropdown-item" id="editPrestamo${task.idObjeto}">Disponibilidad de prestamo</a>
+                        
+                        </div>
+                    </div>
+                </div>
+                </th>
+            </tr>`;
 
                 rowTableEquipo[cont].deleteOption();
                 rowTableEquipo[cont].editImg();
@@ -824,38 +833,37 @@ function getTableConsumible(){
             cons.forEach(task =>{
                 
                 rowTableConsumible[cont] = new rowTable(`${task.idObjeto}`,"Consumible",2);
-               
+               //owo4
                 template += `<tr id="fila${task.idObjeto}">
-                               
-                                <th id="img${task.idObjeto}"><img height="70px" src="data:image/jpg;base64,${task.img}"/></th>
-                                <th id="producto${task.idObjeto}">${task.producto}</th>
-                                <th id="nombre${task.idObjeto}">${task.nombre}</th>
-                                <th id="descripcion${task.idObjeto}">${task.descripcion}</th>
-                                <th id="cantidad${task.idObjeto}">${task.cantidad}</th>
-                              
-                                <th id="option${task.idObjeto}">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-danger" id="delete${task.idObjeto}">Eliminar</button>
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" id="edit${task.idObjeto}">Editar</button>
-                                            <div class="dropdown-menu">
-                                                <a class="dropdown-item" id="editImg${task.idObjeto}">Imagen</a>
-                                                <a class="dropdown-item" id="editProducto${task.idObjeto}">Producto</a>
-                                                <a class="dropdown-item" id="editNombre${task.idObjeto}">Nombre</a>
-                                                <a class="dropdown-item" id="editDescripcion${task.idObjeto}">Descripcion</a>
-                                                <a class="dropdown-item" id="editCantidad${task.idObjeto}">cantidad</a>
-                                            
-                                            </div>
-                                        </div>
-                                    </div>
-                                </th>
-                            </tr>`
-                            rowTableConsumible[cont].deleteOption();
-                            rowTableConsumible[cont].editImg();
-                            rowTableConsumible[cont].editProducto();
-                            rowTableConsumible[cont].editNombre();
-                            rowTableConsumible[cont].editDescripcion();
-                            rowTableConsumible[cont].editCantidad();
+                    <th id="producto${task.idObjeto}">${task.producto}</th>
+                    <th id="img${task.idObjeto}"><img height="70px" src="data:image/jpg;base64,${task.img}"/></th>
+                    <th id="nombre${task.idObjeto}">${task.nombre}</th>
+                    <th id="descripcion${task.idObjeto}">${task.descripcion}</th>
+                    <th id="cantidad${task.idObjeto}">${task.cantidad}</th>
+                  
+                    <th id="option${task.idObjeto}">
+                        <div class="btn-group">
+                            <image src="../resources/delete.png" style="height:30px" id="delete${task.idObjeto}"></image>
+                            <div class="btn-group">
+                                 <image src="../resources/edit.png" style="height:30px" class="dropdown-toggle" data-toggle="dropdown" id="edit${task.idObjeto}"></image> 
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" id="editImg${task.idObjeto}">Imagen</a>
+                                    <a class="dropdown-item" id="editProducto${task.idObjeto}">Producto</a>
+                                    <a class="dropdown-item" id="editNombre${task.idObjeto}">Nombre</a>
+                                    <a class="dropdown-item" id="editDescripcion${task.idObjeto}">Descripcion</a>
+                                    <a class="dropdown-item" id="editCantidad${task.idObjeto}">cantidad</a>
+                                
+                                </div>
+                            </div>
+                        </div>
+                    </th>
+                </tr>`
+                    rowTableConsumible[cont].deleteOption();
+                    rowTableConsumible[cont].editImg();
+                    rowTableConsumible[cont].editProducto();
+                    rowTableConsumible[cont].editNombre();
+                    rowTableConsumible[cont].editDescripcion();
+                    rowTableConsumible[cont].editCantidad();
                 $('#tbody-consumible').html(template);
                 cont++;
             })
