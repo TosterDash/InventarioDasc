@@ -1,4 +1,4 @@
-var nombre
+
 class Edificio {
     constructor(idEdificio,nombre,poly){
         this.idEdificio = idEdificio;

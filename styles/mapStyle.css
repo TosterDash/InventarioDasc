@@ -2,7 +2,10 @@
 
 .cons-col{
     width: 45%;
+    height: 200px;
 }
+
+#mapid { height: 500px; }
 
 
 /*EDIT MAP*/

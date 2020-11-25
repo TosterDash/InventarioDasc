@@ -25,19 +25,7 @@ describir cada método
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <?php include ('header.html');?>
-	<!--JQUERY SCRIPT REFRESCAR PAGINA-->
-    <script
-    src="Jquery/Jquery.js">
-    </script>
-    <script src="../styles/popper.js"></script>
-    <script src="../styles/bootstrap-4.5.3-dist/css/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="../styles/bootstrap-4.5.3-dist/css/bootstrap.min.css">
-    <script 
-        src="../styles/bootstrap-4.5.3-dist/js/bootstrap.min.js">
-    </script>
-	<!--P5 LIBRARY	<script src="../libraries/p5.js"></script>
-	<script src="../libraries/p5.dom.js"></script>
-	<script src="../libraries/p5.sound.js"></script> -->
+
 
 	
 	<!--MAP RESOURCES-->
@@ -48,39 +36,43 @@ describir cada método
 	<link rel="stylesheet" href="../styles/normalize.css">
 	<link rel="stylesheet" href="../styles/generalStyle.css">
 	<link rel="stylesheet" href="../styles/mapStyle.css">
+	
+	
 <head>
+<script src="mapa/JS/mapFunction.js"></script>
+<script src="mapa/JS/map.js"></script>	
 </head>
 <body>
 	<!--MENU Y BARRA DE BUSQUEDA-->
 	<div>
 		<!--CAJA DEL MAPA-->
-		<div class="background row-form cons-col" id="map-box" class="center-text map-box">
-			<h3>EDIFICIO</h3>
-			<div id="map-container" class="map-container">
-			<img src="../resources/mapa.png">
-			<script src="JS/classEdificio.js"></script>
-			<script src="JS/classAula.js"></script>
-			<script src="JS/map.js"></script>	
-			</div>
+		<div class="row-form cons-col" id="map-box" class="center-text map-box">
+			<div id="mapid" class=""></div>
 		</div>
 		<!--CAJA DEL MENÚ-->
 		<div class="row-form cons-col">
 			<select id="map-piso" placeholder="Planta">
-				<option value="BAJA" >PLANTA BAJA</option>
-				<option value="ALTA" >PLANTA ALTA</option>
+				<option value="1" >PLANTA BAJA</option>
+				<option value="2" >PLANTA ALTA</option>
 			</select>
 			<div id="display-info-box" class="display-info-box">
 			  <!--tr= filas, td=columnas td=???-->
 			  <!--PRODUCTO UNICO-->
 			<table id="info-table" class="info-table">
-				<thead>
-          			<tr>
-            			<td>Nombre</td>
-            			<td>Marca</td>
-            			<td>Modelo</td>
-            			<td>Mantenimiento</td>
-            			<td>Descripcion</td>
-          			</tr>
+				<thead id="table-equipo" class="table">
+					<tr class="thead-light">
+                        <th>Equipo</th>
+                        <th>ID Producto</th>
+                        <th>Producto</th>
+                        <th>Nombre</th>
+                        <th>Descripcion</th>
+                        <th>Responsable</th>
+                        <th>Ultimo mantenimiento (año/mes/dia)</th>
+                        <th>Proximo mantenimiento (año/mes/dia)</th>
+                        <th>Prestamo Disponible</th>
+                        <th></th>
+                                
+                    </tr>
         		</thead>
         		<tbody id="info-row"></tbody>
 			</table>
@@ -89,5 +81,10 @@ describir cada método
 		
 	</div>
 </body>
-	
+
+
 </html>
+
+
+
+
