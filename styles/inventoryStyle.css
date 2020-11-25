@@ -9,14 +9,33 @@
 	border:transparent;
 }
 
-
-
 /*CONS INVENTORY PART*/
 
+.row-cons{
+
+	width: 100%;
+}
+
 .cons-col-size{
-	width: 28%;
+	width: 90%;
 }
 
 .cons-nav-bar{
-	margin-bottom: 2%;
+	width: 20%;
+	background-color: pink;
+}
+
+.search-input:focus {
+    background-image:none;
+    text-indent:0px
+   }
+
+/*CONSINVENTORY TABLE*/
+
+.cons-tableRow{
+
+}
+
+.cons-tableCol{
+	
 }

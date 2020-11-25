@@ -44,7 +44,7 @@ class rowNotification{
                 case "mantenimiento":
                     $.when(mantenimientoHecho(idObjeto,nextMant)).done(function(){
                         actualizarFechas();
-                        alertify.success(etiqueta+": Mantenimiento realizado!");
+                        alertify.success(etiqueta+": Mantenimiento realizado");
                     
                     })
                 break;
@@ -63,29 +63,37 @@ class rowTable{
 
     deleteOption(){
         var idObjeto = this.idObjeto;
+
         //BOTON DELETE-----------------------------------
-        $(document).on('click',"#delete"+idObjeto,function(){
+    $(document).on('click',"#delete"+idObjeto,function(){
             var option = "delete";
+
+
+    alertify.confirm(`¿Desea eliminar el objeto?`,function(e){
+        if(e) {
             $.ajax({
                 url: rutaAjax ,
                 type: "POST" ,
                 data: {option,idObjeto},
-    
+                async: false,
+
             }).done(function(e){
                 switch(e){
                     case "error":
-                        alertify.error("Error de consulta");
+                        alertify.error("No se pudo eliminar");
                     break;
     
                     default:
                         $('#fila'+idObjeto).remove();
-                        alertify.success("Se elimino la fila");
+                        alertify.success("Se eliminó correctamente");
                     break;
                 }
             }).fail(function(e){
-                alertify.error("Error en la ruta");
+                alertify.error("No se pudo eliminar");
             })
-        })
+        }
+    })
+    })
     }
     editImg(){
         //imagen
@@ -116,7 +124,7 @@ class rowTable{
                     contentType: false,
                     processData: false
                 }).done(function(){
-                    alertify.success("Imagen Modificada");
+                    alertify.success("Imagen Modificada correctamente");
                     $("#option"+idObjeto).show();
                     console.log(clasificacion);
                     switch(clasificacion){
@@ -179,7 +187,7 @@ class rowTable{
                     processData: false
                 }).done(function(img){
                     console.log(img);
-                    alertify.success("Producto Modificado");
+                    alertify.success("Producto modificado correctamente");
                     $("#option"+idObjeto).show();
                     switch(clasificacion){
                         //1-EQUIPOS
@@ -229,7 +237,7 @@ class rowTable{
                     processData: false
                 }).done(function(){
                     
-                    alertify.success("Nombre Modificado");
+                    alertify.success("Nombre modificado correctamente");
                     $("#option"+idObjeto).show();
                     switch(clasificacion){
                         //1-EQUIPOS
@@ -279,7 +287,7 @@ class rowTable{
                     contentType: false,
                     processData: false
                 }).done(function(img){
-                    alertify.success("Descripcion Modificada");
+                    alertify.success("Descripcion modificada correctamente");
                     $("#option"+idObjeto).show();
                     switch(clasificacion){
                         //1-EQUIPOS
@@ -329,7 +337,7 @@ class rowTable{
                     contentType: false,
                     processData: false
                 }).done(function(img){
-                    alertify.success("Cantidad Modificada");
+                    alertify.success("Cantidad modificada correctamente");
                     $("#option"+idObjeto).show();
                     switch(clasificacion){
                         //1-EQUIPOS
@@ -389,7 +397,7 @@ class rowTable{
                             contentType: false,
                             processData: false
                         }).done(function(){
-                            alertify.success("Mantenimiento Modificado");
+                            alertify.success("Mantenimiento modificado correctamente");
                             $("#option"+idObjeto).show();
                             switch(clasificacion){
                                 //1-EQUIPOS
@@ -406,7 +414,7 @@ class rowTable{
                         });
                     }
                 }else{
-                    alertify.warning("La fecha del mantenimiento tiene que ser mayor a la fecha actual");
+                    alertify.warning("La fecha del mantenimiento debe ser mayor a la fecha actual");
                 }
             })//fin de evento submit
 
@@ -471,7 +479,7 @@ class rowTable{
                     type: "POST",
                     data: {idObjeto,isChecked,option},
                 }).done(function(){
-                    alertify.success("Disponibilidad Modificada");
+                    alertify.success("Disponibilidad modificada correctamente");
                     $("#option"+idObjeto).show();
                     switch(clasificacion){
                         //1-EQUIPOS
@@ -709,8 +717,11 @@ function optionsConsumible(option){
     
 }
 
-//(ruta para hacer post)FUNCIONES PRINCIPALES PARA TABLAS---------- 
+
+//(ruta para hacer post)FUNCIONES PRINCIPALES PARA TABLAS---owo-------
 function getTableEquipo(){
+    //Funcion para confirmar si quiere borrar
+
     var option = "equipo";
     $.ajax({
         url: rutaAjax,
@@ -722,7 +733,7 @@ function getTableEquipo(){
             var cont=0;
             cons.forEach(task =>{
                 rowTableEquipo[cont] = new rowTable(`${task.idObjeto}`,"Equipo",1);
-                template += `<tr id="fila${task.idObjeto}">
+                template += `   <tr id="fila${task.idObjeto}">
                                 <th id="img${task.idObjeto}"><img height="70px" src="data:image/jpg;base64,${task.img}"/></th>
                                 <th id="etiqueta${task.idObjeto}">${task.etiqueta}</th>
                                 <th id="producto${task.idObjeto}">${task.producto}</th>
@@ -761,11 +772,11 @@ function getTableEquipo(){
                     template += `<th id="prestamo${task.idObjeto}"><input type="checkbox" id="prestamo${task.idObjeto}" disabled></th>`;
                 
                 }
-                
+
+
                 template += `<th id="option${task.idObjeto}">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-danger" id="delete${task.idObjeto}">Eliminar</button>
-                                            
+                                         <image src="../resources/del.png" style="width:50px" onclick="confirmDelete()" id="delete${task.idObjeto}"></image>  
                                         <div class="btn-group">
                                             <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" id="edit${task.idObjeto}">Editar</button>
                                             <div class="dropdown-menu">
@@ -781,8 +792,7 @@ function getTableEquipo(){
                                     </div>
                                 </th>
                             </tr>`;
-                                
-                                
+
                 rowTableEquipo[cont].deleteOption();
                 rowTableEquipo[cont].editImg();
                 rowTableEquipo[cont].editProducto();
@@ -826,7 +836,6 @@ function getTableConsumible(){
                                 <th id="option${task.idObjeto}">
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-danger" id="delete${task.idObjeto}">Eliminar</button>
-                                            
                                         <div class="btn-group">
                                             <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" id="edit${task.idObjeto}">Editar</button>
                                             <div class="dropdown-menu">
@@ -869,8 +878,6 @@ function validarFecha(nextMant){
         return false;
     }
 }
-
-
 
 
 //funciones para inputs--------------------------------------------------------------
@@ -952,7 +959,10 @@ function actualizarFechas(){
     
     
 }
-    
+
+/*
+hacer que las notificaciones de mantenimiento 
+*/
     
 
 function getNotificationNum(response){
@@ -962,6 +972,8 @@ function getNotificationNum(response){
                                         <span class="badge">`+totalNotification+`</span></a>
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" href="notificationBoard.php">MANTENIMIENTO (`+totalNotification+`)</a>
+                                        <a class="dropdown-item" href="notificationBoard.php">PRÉSTAMOS (`+totalNotification+`)</a>
+                                        <a class="dropdown-item" href="notificationBoard.php">PRODUCTOS (`+totalNotification+`)</a>
                                     </div>`);
                                     
        

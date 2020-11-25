@@ -24,34 +24,33 @@
     </head>
     <body>
         <h1 id="" class="center-title">CONSULTAR INVENTARIO</h1>
-        <!--Realizar la consulta-->
-        
-            <!--Barra de busqueda y filtros-->
-                <!--Barra de busqueda-->
-                <div class="disp-flexRow cons-nav-bar">
-                    <div class="row-form cons-col-size"> 
-                        <label>Buscar por:</label>
-                        <select  name="combobox-search" id="combobox-search">
-                            <option values="nombre">nombre</option>
-                            <option values="descripcion">descripcion</option>
-                        </select>
-                    </div >
-                    <div class="row-form cons-col-size">
-                        <label>Buscar:</label>
-                        <div class="disp-flexRow">
-                            <img class="icon-size" src="../resources/icons/search_icon.png">
-                            <input type="text" placeholder="Buscar..." id="search">
-                        </div>
-                    </div>
-                    <div class=" row-form cons-col-size">
-                        <label>Mostrar por:</label>
-                        <select name="combobox-category" id="combobox-category">
-                        </select>
+
+        <div class="disp-flexRow">
+            <!--Barra de busqueda-->
+            <div class="disp-flexCol cons-nav-bar row-cons">
+                <div class="row-form cons-col-size"> 
+                    <label>Buscar por:</label>
+                    <select  name="combobox-search" id="combobox-search">
+                        <option values="nombre">nombre</option>
+                        <option values="descripcion">descripcion</option>
+                    </select>
+                </div >
+                <div class="row-form cons-col-size">
+                    <div class="disp-flexRow">
+                        <input type="text" placeholder="Buscar..." id="search" class="search-input">
                     </div>
                 </div>
-                <!--Barra de busqueda-->
-        <div id="inv-cons" class="consultar">
-             <div id="div-table"><!--Tabla de consulta-->
+                <div class=" row-form cons-col-size">
+                    <label>Mostrar por:</label>
+                    <select name="combobox-category" id="combobox-category">
+                    </select>
+                </div>
+            </div>
+            <!--Barra de busqueda-->
+
+            <!--Tabla de consulta-->
+            <div id="inv-cons" class="consultar row-cons">
+                 <div id="div-table">
                     <table id="table-equipo" class="table">
                         <thead class="thead-light">
                             <tr>
@@ -61,17 +60,14 @@
                                 <th>Nombre</th>
                                 <th>Descripcion</th>
                                 <th>Responsable</th>
-                                <th>Ultimo mantenimiento (año/mes/dia)</th>
-                                <th>Proximo mantenimiento (año/mes/dia)</th>
+                                <th>Ultimo mantenimiento</th>
+                                <th>Proximo mantenimiento</th>
                                 <th>Prestamo Disponible</th>
                                 <th></th>
                                 
                             </tr>
                         </thead>
-                        
-                        <tbody id="tbody-equipo">
-
-                        </tbody>
+                        <tbody id="tbody-equipo"></tbody>
                     </table>
                     <table id="table-consumible" class="table">
                         <thead class="thead-light">
@@ -82,15 +78,13 @@
                                 <th>Descripcion</th>
                                 <th>Cantidad</th>
                                 <th></th>
-                                
                             </tr>
                         </thead>
-                        <tbody id="tbody-consumible">
-                        </tbody>
+                        <tbody id="tbody-consumible"></tbody>
                     </table>
-                
+                </div>
             </div>
-
+            <!--Tabla de consulta-->
         </div>
     </body>
 </html>
