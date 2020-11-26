@@ -27,10 +27,12 @@
             switch(typePoly){
                 case "edificio":
                     this.poly.bindPopup("Edificio "+this.nombre);
+                    document.getElementById("name-edif").innerHTML = this.nombre;
                 break;
 
                 case "aula":
                     this.poly.bindPopup("Aula "+this.nombre);
+                    document.getElementById("name-aula").innerHTML = this.nombre;
                 break;
             }
             
@@ -172,12 +174,7 @@
             var cont=0;
             cons.forEach(task =>{
                 rowTableEquipo[cont] = new rowTable(`${task.idObjeto}`,"Equipo",1);
-                template += `<tr>
-                                <th id="etiqueta${task.idObjeto}">${task.etiqueta}</th>
-                                <th id="producto${task.idObjeto}">${task.producto}</th>
-                                <th id="nombre${task.idObjeto}">${task.nombre}</th>
-                                <th id="descripcion${task.idObjeto}">${task.descripcion}</th>
-                            </tr>`;
+                template += ``;
                 
                 
                 cont++;
@@ -189,3 +186,11 @@
     })
     }
 
+/*
+ <tr>
+    <th id="etiqueta${task.idObjeto}">${task.etiqueta}</th>
+    <th id="producto${task.idObjeto}">${task.producto}</th>
+    <th id="nombre${task.idObjeto}">${task.nombre}</th>
+    <th id="descripcion${task.idObjeto}">${task.descripcion}</th>
+</tr>
+*/

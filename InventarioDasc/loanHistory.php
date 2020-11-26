@@ -31,6 +31,8 @@
             <label >registro de prestamos</label>
         </nav>
 
+        
+
         <div id="card-container" class="disp-flexWarp">
             <!--INICIO DE UN CUADRITO DE PRESTAMO-->
             <div class="single-loan">

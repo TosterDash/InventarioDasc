@@ -13,12 +13,10 @@
     <script 
         src="../styles/bootstrap-4.5.3-dist/js/bootstrap.min.js">
     </script>
-
     <link rel="stylesheet" href="../styles/normalize.css">
-    <link rel="stylesheet" href="alertify/css/alertify.css">
     <link rel="stylesheet" href="../styles/generalStyle.css">
     <link rel="stylesheet" href="../styles/inventoryStyle.css">
-
+    
     <script src="alertify/alertify.js"></script>
     <script src="inventario/JS/addinventory.js"></script>
 </head>
@@ -59,11 +57,13 @@
                 </div>
             </div>
             <!-- PRIMERA COLUMNA DE LA PAGINA -->
+
             <!-- SEGUNDA COLUMNA DE LA PAGINA -->
             <div class="disp-flexCol row-form add-col-size" id="col-2-content round-border">
-                    <label class="">Asignar ubicación al objeto</label>
+                    <label class="">Edificio</label>
                     <select id = "col-2-combobox-edificios" name="col-2-combobox-edificios">
                     </select>
+                    <label class="">Aula</label>
                     <select id = "col-2-combobox-aulas" name="col-2-combobox-aulas">
                     </select>
                     <label class="">Nombre del producto</label>

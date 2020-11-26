@@ -39,26 +39,68 @@ describir cada método
 	
 	
 <head>
-<script src="mapa/JS/mapFunction.js"></script>
 <script src="mapa/JS/map.js"></script>	
 </head>
 <body>
 	<!--MENU Y BARRA DE BUSQUEDA-->
-	<div>
+	<div  class="disp-flexRow">
+			<!--Barra de busqueda-->
+            <div class="disp-flexCol cons-nav-bar row-cons">
+                <div class="row-form cons-col-size"> 
+                    <label>Edificio:</label>
+                    <select id="map-piso" placeholder="Planta">
+						<option >Seleccione un edificio</option>
+						<option value="1" >Macrocentro</option>
+						<option value="2" >Edificio DASC</option>
+					</select>
+					<label>Planta:</label>
+                    <select id="map-piso" placeholder="Planta">
+						<option >Seleccione una planta</option>
+						<option value="1" >Planta baja </option>
+						<option value="2" >Planta alta</option>
+					</select>
+                </div >
+                <div class="row-form cons-col-size">
+                    <div class="disp-flexRow">
+                        <input type="text" placeholder="Buscar..." id="search" class="search-input">
+                    </div>
+                </div>
+                <div class=" row-form cons-col-size">
+                    <label>Mostrar por:</label>
+                    <select name="combobox-category" id="combobox-category">
+                    </select>
+                </div>
+            </div>
+            <!--Barra de busqueda-->
+
 		<!--CAJA DEL MAPA-->
 		<div class="row-form cons-col" id="map-box" class="center-text map-box">
 			<div id="mapid" class=""></div>
 		</div>
-		<!--CAJA DEL MENÚ-->
-		<div class="row-form cons-col">
-			<select id="map-piso" placeholder="Planta">
-				<option value="1" >PLANTA BAJA</option>
-				<option value="2" >PLANTA ALTA</option>
-			</select>
-			<div id="display-info-box" class="display-info-box">
-			  <!--tr= filas, td=columnas td=???-->
-			  <!--PRODUCTO UNICO-->
-			<table id="info-table" class="info-table">
+		<!--CAJA DEL MAPA-->
+		
+		<!--CAJA DE INFORMACIÓN-->
+		<div class="background-c">
+			<h2 id="name-edif">Edificio</h2>
+			<h2 id="name-planta">Planta</h2>
+			<h2 id="name-aula">Aula</h2>
+		
+		</div>
+
+		<!--CAJA DE INFORMACIÓN-->
+
+		
+	</div>
+</body>
+
+<script src="mapa/JS/mapFunction.js"></script>
+</html>
+
+
+
+<!-- 
+
+<table id="info-table" class="info-table">
 				<thead id="table-equipo" class="table">
 					<tr class="thead-light">
                         <th>ID Producto</th>
@@ -71,15 +113,4 @@ describir cada método
         		</thead>
         		<tbody id="tbody-info"></tbody>
 			</table>
-			</div>
-		</div>
-		
-	</div>
-</body>
-
-
-</html>
-
-
-
-
+-->

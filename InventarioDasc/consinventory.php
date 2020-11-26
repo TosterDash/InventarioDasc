@@ -23,16 +23,14 @@
         
     </head>
     <body>
-        <h1  class="center-title">CONSULTAR INVENTARIO</h1>
-
         <div class="disp-flexRow">
             <!--Barra de busqueda-->
             <div class="disp-flexCol cons-nav-bar row-cons">
                 <div class="row-form cons-col-size"> 
                     <label>Buscar por:</label>
                     <select  name="combobox-search" id="combobox-search">
-                        <option values="nombre">nombre</option>
-                        <option values="descripcion">descripcion</option>
+                        <option values="Nombre">Nombre</option>
+                        <option values="Descripción">Descripcion</option>
                     </select>
                 </div >
                 <div class="row-form cons-col-size">
@@ -51,28 +49,26 @@
             <!--Tabla de consulta-->
             <div id="inv-cons" class="consultar row-cons">
                  <div id="div-table">
-                    <table id="table-equipo" class="table">
-                        <thead class="thead-light">
-                            
-                            <tr>
-                                <th>Identificador</th>
-                                <th>Producto</th>
-                                <th></th>
-                                <th>Nombre</th>
-                                <th>Descripción</th>
-                                <th>Responsable</th>
-                                <th>Último mantenimiento</th>
-                                <th>Próximo mantenimiento</th>
-                                <th>Prestamo Disponible</th>
-                                <th>Opciones</th>
+                    <table id="table-equipo" class="cons-tableRow">
+                        <thead class="">
+                            <tr class="cons-tableTitle">
+                                <th >Identificador</th>
+                                <th >Producto</th>
+                                <th ></th>
+                                <th >Nombre</th>
+                                <th >Descripción</th>
+                                <th >Responsable</th>
+                                <th >Último mantenimiento</th>
+                                <th >Próximo mantenimiento</th>
+                                <th >Prestamo Disponible</th>
+                                <th >Opciones</th>
                                 
                             </tr>
                         </thead>
                         <tbody id="tbody-equipo"></tbody>
                     </table>
-                    <table id="table-consumible" class="table">
-                        <thead class="thead-light">
-                            
+                    <table id="table-consumible" class="cons-tableRow">
+                        <thead class="cons-tableTitle">
                             <tr>
                                 <th>Consumible</th>
                                 <th>Producto</th>
@@ -87,6 +83,8 @@
                 </div>
             </div>
             <!--Tabla de consulta-->
+            
         </div>
+
     </body>
 </html>

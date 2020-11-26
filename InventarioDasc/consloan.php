@@ -27,7 +27,7 @@
          
         <div class="disp-flexrow">
          <!--Barra de busqueda-->
-            <div class="disp-flexCol cons-nav-bar row-cons">
+            <div class="disp-flexCol cons-nav-bar">
                 <div class="row-form cons-col-size"> 
                     <label>Buscar por:</label>
                     <select  name="combobox-search" id="combobox-search">

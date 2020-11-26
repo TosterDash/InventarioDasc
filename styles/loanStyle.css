@@ -33,6 +33,39 @@ body{
 }
 
 
+.loan-style{
+	
+}
+
+.loan-add-form{
+
+}
+
+.loan-container{
+	background-color: white;
+	padding: 3%;
+}
+
+.loan-size{
+	width: 50%;
+}
+
+.table-scroll{
+	overflow-y: scroll;
+	max-height: 100px;
+}
+
+.table-row{
+	border: 1px solid black;
+}
+
+.addloan-btn{
+	margin-left: 20%;
+}
+
+
+
+
 /* ********LOAN CONS******** */
 
 #card-container{
@@ -118,37 +151,6 @@ body{
 
 
 /* ********LOAN ADD******** */
-
-.loan-style{
-	
-}
-
-.loan-add-form{
-
-}
-
-.loan-container{
-	background-color: white;
-	padding: 3%;
-}
-
-.loan-size{
-	width: 50%;
-}
-
-.table-scroll{
-	overflow-y: scroll;
-	max-height: 300px;
-}
-
-.table-row{
-	border: 1px solid black;
-}
-
-.addloan-btn{
-	margin-left: 20%;
-}
-
 
 
 /* ********LOAN HISTORY******** */
