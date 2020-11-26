@@ -13,6 +13,14 @@
 
     var mapUabcs;
     class polygon{
+        /*
+        IdPoligon es la id ya sea de un edificio o un aula.
+        Nombre pues su nombre.
+        Typepoli es un string que dice si es un edificio o aula.
+        Poly es la clase completa y las propiedades del poligono del mapa.
+
+        El id planta e id edificio del final solo lo tienen las aulas
+        */
         constructor(idPolygon,nombre, typePoly ,poly, idPlanta, idEdificio){
             this.idPolygon = idPolygon;
             this.nombre = nombre;
@@ -21,13 +29,14 @@
             this.idPlanta = idPlanta;
             this.idEdificio = idEdificio;
         }
+
         enablePopUp(){ 
             var typePoly = this.typePoly;
             console.log(typePoly)
             switch(typePoly){
                 case "edificio":
+                    
                     this.poly.bindPopup("Edificio "+this.nombre);
-                    document.getElementById("name-edif").innerHTML = this.nombre;
                 break;
 
                 case "aula":
@@ -42,13 +51,15 @@
             console.log(idPolygon);
             this.poly.on('click',function(e){
                 removeAllAula();
+                console.log("BIBIBI");
+                document.getElementById("name-edif").innerHTML = this.nombre;
                 for(var i = 0;i<aulasArray.length;i++){
+                    //qué hace esto?
                     if(idPolygon==aulasArray[i].idEdificio && $("#map-piso").val()==aulasArray[i].idPlanta){
                         aulasArray[i].poly.addTo(mapUabcs);
                         aulasArray[i].aulaClick();
                         aulasArray[i].enablePopUp();
-                        
-                        
+    
                     }
                 }
             })
@@ -71,10 +82,6 @@
     }
 
 
-  
-
-
-
     //funciones----------------------------------------------------------
     function removeAllAula(){
         for(var i = 0;i<aulasArray.length;i++){
@@ -89,7 +96,8 @@
         mapUabcs = L.map(mapId).setView([24.102931, -110.316239], 18);
         L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
         attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
-        maxZoom: 40,
+        minZoom: 16,
+        maxZoom: 20,
         id: 'mapbox/streets-v11',
         tileSize: 512,
         zoomOffset: -1,
@@ -145,7 +153,6 @@
                         
                         
                         aulasArray[cont] =  new polygon(`${task.idAula}`,`${task.nombreAula}`,"aula",null,`${task.idPlanta}`,`${task.idEdificio}`); 
-        
         
                         aulaUabcs[cont] = [[`${task.x1}`, `${task.y1}`],
                                                 [`${task.x2}`, `${task.y2}`],

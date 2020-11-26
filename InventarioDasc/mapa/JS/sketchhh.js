@@ -48,12 +48,6 @@ function getEdificios(mapUabcs){
 							[`${task.x3}`, `${task.y3}`],
 							[`${task.x4}`, `${task.y4}`]];
 	            
-	            
-
-			           		
-
-
-				
 				template += `<option value="${task.Nombre}" >${task.Nombre}</option> `
 				$('#map-edificio').html(template);
 	
@@ -118,8 +112,6 @@ function getTable(aulasArray,i,mapUabcs){
             
                 tasks.forEach(task => {
                     
-                    
-                
                     template += `
                     <tr>
                     <td>${task.Nombre}</td>
@@ -178,22 +170,14 @@ function popEdificio(l,edificiosArray,mapUabcs){
                     for(var i = 0;i<aulasArray.length;i++){
                         if(`${task.nombreAula}`==aulasArray[i]){
 							popAula(i,mapUabcs,cont);
-                            
-                            
                             cont++;
                         }
-                        
                     }
-            
-             
                });
                console.log(aula.length);
             }
         
         })
-        
-            
-       
     });
 }
 
@@ -265,23 +249,6 @@ getAulas(mapUabcs);
 	};
 	//mapUabcs.addLayer(L.gridLayer.debugCoords());
 	//Layer
-
-
-	//icons
-	var LeafIcon = L.Icon.extend({
-		options: {
-			iconSize:     [60,60],
-			iconAnchor:   [0,0],
-			popupAnchor:  [0,10]
-		}
-	});
-
-	var dascIcon = new LeafIcon({iconUrl: '../resources/code.png'});
-	
-	L.marker([24.102794, -110.316159], {icon: dascIcon}).addTo(mapUabcs);
-	L.marker([24.102476, -110.316291], {icon: dascIcon}).addTo(mapUabcs);
-
-	
 	
 	/*
 	edif1.on('mouseover', function(event){

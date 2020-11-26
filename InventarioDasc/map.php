@@ -55,7 +55,7 @@ describir cada método
 					</select>
 					<label>Planta:</label>
                     <select id="map-piso" placeholder="Planta">
-						<option >Seleccione una planta</option>
+						<option value="0">Seleccione una planta</option>
 						<option value="1" >Planta baja </option>
 						<option value="2" >Planta alta</option>
 					</select>
@@ -81,9 +81,9 @@ describir cada método
 		
 		<!--CAJA DE INFORMACIÓN-->
 		<div class="background-c">
-			<h2 id="name-edif">Edificio</h2>
-			<h2 id="name-planta">Planta</h2>
-			<h2 id="name-aula">Aula</h2>
+			<h2 class="center-title" id="name-edif">Edificio</h2>
+			<h2 class="center-title" id="name-planta">Planta</h2>
+			<h2 class="center-title" id="name-aula">Aula</h2>
 		
 		</div>
 
