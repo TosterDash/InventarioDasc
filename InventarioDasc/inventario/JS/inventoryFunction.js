@@ -1030,7 +1030,13 @@ function getConsumibleCant(){
 //funciones POST table notificaciones
 function mantenimientoHecho(idObjeto,lastMant){
     var option = "mantenimientoHecho";
-    $.ajax({url: rutaAjax, type: 'POST',data:{idObjeto,option,lastMant}});
+    var nextMant = new Date(lastMant);
+    nextMant = nextMant.setMonth(nextMant.getMonth()+6);
+    
+    nextMant = new Date(nextMant)
+    //var nextMant = new Date(lastMant.setMonth(lastMant.getMonth()+6));
+    console.log(lastMant + " " + nextMant)
+    //$.ajax({url: rutaAjax, type: 'POST',data:{idObjeto,option,lastMant, nextMant}});
 }
 
 
