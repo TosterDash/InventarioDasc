@@ -26,9 +26,9 @@
         break;
 
         case "producto":
-            $idTipoClasificacion = $_POST["idTipoClasificacion"];
+            $idTipoReferencia = $_POST["idTipoReferencia"];
             $result = mysqli_query($conexion, "SELECT `tipoproducto`.`idTipoProducto`,`tipoproducto`.`producto` from tipoproducto 
-                                    where `tipoproducto`.`idTipoClasificacion` = '$idTipoClasificacion' ");
+                                    where `tipoproducto`.`idTipoClasificacion` = '$idTipoReferencia' ");
 
             if(!$result){
                 echo die("error");     
@@ -41,6 +41,49 @@
                         'producto' => $row['producto'],
                         'option' => "producto"
                         
+                    );
+                }
+                $jsonString = json_encode($json);
+
+                echo $jsonString;
+            }
+        break;
+
+        case "edificio":
+            $result = mysqli_query($conexion, "SELECT `edificio`. * from `edificio`");
+            if(!$result){
+                echo die("error");     
+            }else{
+                $json = array();
+                while ($row = mysqli_fetch_array($result)) {
+                    # code...
+                    $json[] = array(
+                        'idEdificio' => $row['idEdificio'],
+                        'Nombre' => $row['Nombre'],
+                        'option' => "edificio",
+
+                    );
+                }
+                $jsonString = json_encode($json);
+
+                echo $jsonString;
+            }
+        break;
+
+        case "aula":
+            $idTipoReferencia = $_POST["idTipoReferencia"];
+            $result = mysqli_query($conexion, "SELECT `aula`. * from `aula` where `aula`.`idEdificio`='$idTipoReferencia'");
+            if(!$result){
+                echo die("error");     
+            }else{
+                $json = array();
+                while ($row = mysqli_fetch_array($result)) {
+                    # code...
+                    $json[] = array(
+                        'idAula' => $row['idAula'],
+                        'nombreAula' => $row['nombreAula'],
+                        'option' => "aula",
+
                     );
                 }
                 $jsonString = json_encode($json);
@@ -289,6 +332,7 @@
         break;
 
         case "addInventory":
+            error_reporting(0);
             //mandar añadir objeto
             $clasificacion = $_POST["col-1-combobox-category"];
             $producto = $_POST["col-1-combobox-product"];
@@ -296,6 +340,7 @@
             $desc = $_POST["col-2-text-desc"];
             $checkboxMant = $_POST["checkboxMant"];
             $checkboxPrestamo = $_POST["checkboxPrestamo"];
+            $idAula = $_POST["col-2-combobox-aulas"];
 
             $respMant = $_POST["col-2-text-mantResp"];
             $nextMant = $_POST["col-2-date-nextMant"];
@@ -307,29 +352,32 @@
                 case "1":
                     $insert = ("INSERT INTO objeto(idUabcs,nombre,descripcion,cantidad,prestamo,mantenimiento,lastMant,nextMant,mantResp,idTipoProducto,img)
                     VALUES ('UABCS-','$nombre','$desc', null, '$checkboxPrestamo', '$checkboxMant', '', '$nextMant', '$respMant','$producto', '$img') ");
-
-
                     $result = mysqli_query($conexion, $insert);
-                    echo $result;    
+                    echo $idAula;
+                    
                 break;
                 //caso para consumibles
                 case "2":
                     $insert = ("INSERT INTO objeto(idUabcs,nombre,descripcion,cantidad,prestamo,mantenimiento,lastMant,nextMant,mantResp,idTipoProducto,img)
                     VALUES (null,'$nombre','$desc', '$cant', null , null , null, null, null,'$producto', '$img') ");
-
-
                     $result = mysqli_query($conexion, $insert);
-                    echo $result;
+                    echo $idAula;
+                    
                 break;
                 //Error
                 default:
                     echo die("error");
                 break;
             }
+        break;
 
-            
-
-            
+        case "addObjetoHasAula":
+            $idAula = $_POST["idAula"];
+            $result = mysqli_query($conexion, "INSERT INTO aula_has_objeto(idAula,idObjeto) VALUES ($idAula, (SELECT idObjeto from objeto ORDER BY idObjeto DESC LIMIT 1 )) ");
+            if(!$result){
+                echo die("error");
+            }
+            echo $result;          
         break;
 
         case "deleteProducto":

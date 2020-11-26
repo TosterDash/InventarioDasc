@@ -512,14 +512,14 @@ class rowTable{
 }
 
 //id del combobox, tipo de consulta en PHP, (solo si el tipo de combobox es producto) id de clasificacion
-function getCombobox(idCombobox,tipoCombobox,idTipoClasificacion){
+function getCombobox(idCombobox,tipoCombobox,idTipoReferencia){
     var option = tipoCombobox;
     $.ajax({
         url: rutaAjax ,
         type:"POST" ,
-        data: {option,tipoCombobox,idTipoClasificacion},
+        data: {option,tipoCombobox,idTipoReferencia},
     }).done(function(e){
-        console.log(e);
+       
         switch(e){
             case "error":
                 alertify.error("Error al crear el Combobox");
@@ -536,6 +536,14 @@ function getCombobox(idCombobox,tipoCombobox,idTipoClasificacion){
 
                         case "producto":
                             template+= `<option value="${task.idProducto}">${task.producto}</option>`;
+                        break;
+
+                        case "edificio":
+                            template+= `<option value="${task.idEdificio}">${task.Nombre}</option>`;
+                        break;
+
+                        case "aula":
+                            template+= `<option value="${task.idAula}">${task.nombreAula}</option>`;
                         break;
 
                         default:
@@ -1024,6 +1032,10 @@ function mantenimientoHecho(idObjeto,lastMant){
     var option = "mantenimientoHecho";
     $.ajax({url: rutaAjax, type: 'POST',data:{idObjeto,option,lastMant}});
 }
+
+
+
+
 
 
 

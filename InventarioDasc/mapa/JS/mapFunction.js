@@ -58,6 +58,7 @@
                     aulasArray[i].poly.setStyle({color: 'black'});
                 }
                 thisPoly.setStyle({color: 'green'});
+                createTable();
                 
             })
         }
@@ -156,5 +157,31 @@
                 }
             })
         }
+    }
+
+    function createTable(){
+    var option = "getTable";
+    $.ajax({
+        url: rutaAjaxMapa,
+        type: 'POST',
+        data: {option},
+        success: function(response){
+            var cons = JSON.parse(response);
+            var template = "";
+            var cont=0;
+            cons.forEach(task =>{
+                rowTableEquipo[cont] = new rowTable(`${task.idObjeto}`,"Equipo",1);
+                template += `   <th id="etiqueta${task.idObjeto}">${task.etiqueta}</th>
+                                <th id="producto${task.idObjeto}">${task.producto}</th>
+                                <th id="nombre${task.idObjeto}">${task.nombre}</th>
+                                <th id="descripcion${task.idObjeto}">${task.descripcion}</th>`;
+                
+                $('#tbody-info').html(template);
+                cont++;
+            
+            })
+            
+        }
+    })
     }
 

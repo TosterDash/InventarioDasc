@@ -61,20 +61,15 @@ describir cada método
 			<table id="info-table" class="info-table">
 				<thead id="table-equipo" class="table">
 					<tr class="thead-light">
-                        <th>Equipo</th>
                         <th>ID Producto</th>
                         <th>Producto</th>
                         <th>Nombre</th>
                         <th>Descripcion</th>
-                        <th>Responsable</th>
-                        <th>Ultimo mantenimiento (año/mes/dia)</th>
-                        <th>Proximo mantenimiento (año/mes/dia)</th>
-                        <th>Prestamo Disponible</th>
                         <th></th>
                                 
                     </tr>
         		</thead>
-        		<tbody id="info-row"></tbody>
+        		<tbody id="tbody-info"></tbody>
 			</table>
 			</div>
 		</div>

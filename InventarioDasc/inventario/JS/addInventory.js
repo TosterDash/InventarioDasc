@@ -7,13 +7,17 @@ $(document).ready(function(){
     $("#col-2-block-cant").hide();
     $("#col-1-block-mant").hide();
     $("#btn-producto-confirmar").hide();
-    
+    //combobox de clasificacion
     getCombobox("col-1-combobox-clasification","clasificacion");
+    //combobox de los edificios y aulas
+    getCombobox("col-2-combobox-edificios","edificio");
+    getCombobox("col-2-combobox-aulas","aula",$("#col-2-combobox-edificios").val());
     
 
 
 
     //inicializar los eventos de botones
+    //combobox clasificacion
     $("#col-1-combobox-clasification").on('change',function(){
        
         switch($("#col-1-combobox-clasification").val()){
@@ -67,7 +71,15 @@ $(document).ready(function(){
             break;
         }
     });
+    //combobox de edificio
+    $("#col-2-combobox-edificios").on('change',function(){
+        
+        getCombobox("col-2-combobox-aulas","aula",$("#col-2-combobox-edificios").val());
+    })
 
+
+
+    //checkbox de mantenimiento
     $('#col-1-checkbox-mant').on('change',function(){
         if($('#col-1-checkbox-mant').prop('checked')==true){
             //required a los inputs de mantenimiento
@@ -85,7 +97,7 @@ $(document).ready(function(){
             $("#col-2-block-mant").hide();
         }
     });
-
+    //boton añadir en producto
     $("#btn-producto-add").on('click',function(){
         var template ="";
         template += `<input type="text" id="input-text-producto"></input>`;
@@ -94,6 +106,7 @@ $(document).ready(function(){
         $("#btn-producto-confirmar").show();
         $("#cancel-objeto,#submit-objeto").prop("disabled", true);
     })
+    //boton eliminar en producto
     $("#btn-producto-delete").on('click',function(){
         var productVal = $("#col-1-combobox-product").val()
         if(productVal!=""){
@@ -120,6 +133,7 @@ $(document).ready(function(){
             alertify.warning("Seleccione algun producto si va a eliminar");
         }
     })
+    //boton confirmar para producto
     $("#btn-producto-confirmar").on('click',function(){
         var option ="addProducto";
         var clasificacionVal = $("#col-1-combobox-clasification").val();
@@ -155,7 +169,7 @@ $(document).ready(function(){
     })
 
 
-
+    //boton de submit para el objeto en general
     $("#formSend").on("submit",function(e){
         e.preventDefault();
         if($("#col-1-combobox-clasification").val()!=""){
@@ -186,6 +200,7 @@ $(document).ready(function(){
     //funciones---------------------------
 
     function addObjeto(){
+           
                 var form = document.querySelector('form');
                 var formData = new FormData(form);
                 formData.append("option","addInventory");
@@ -200,13 +215,24 @@ $(document).ready(function(){
                     cache: false,
                     contentType: false,
                     processData: false
-                }).done(function(response){
-                    console.log(response);
-                    vaciarCampos();
+                }).done(function(idAula){
+                    addObjetoHasAula(idAula);
                     alertify.success('Se añadio el objeto'); 
                         
                         
                 });
+    }
+
+    function addObjetoHasAula(idAula){
+        var option = "addObjetoHasAula";
+        $.ajax({
+            url: rutaAjax,
+            type: "POST",
+            data: {idAula,option},
+        }).done(function(response){
+            vaciarCampos();
+                
+        });
     }
     
 

@@ -61,6 +61,11 @@
             <!-- PRIMERA COLUMNA DE LA PAGINA -->
             <!-- SEGUNDA COLUMNA DE LA PAGINA -->
             <div class="disp-flexCol row-form add-col-size" id="col-2-content round-border">
+                    <label class="">Asignar ubicación al objeto</label>
+                    <select id = "col-2-combobox-edificios" name="col-2-combobox-edificios">
+                    </select>
+                    <select id = "col-2-combobox-aulas" name="col-2-combobox-aulas">
+                    </select>
                     <label class="">Nombre del producto</label>
                     <input type="text" name="col-2-text-name" class="" id="col-2-text-name" required></input>
 

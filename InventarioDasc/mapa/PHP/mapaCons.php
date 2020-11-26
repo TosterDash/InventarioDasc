@@ -68,7 +68,10 @@ switch($option){
         $jsonString = json_encode($json);
 
         echo $jsonString;
-        break;
+    break;
+
+    case "getTable":
+    break;
 }
 
 
