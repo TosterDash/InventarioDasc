@@ -1031,11 +1031,20 @@ function getConsumibleCant(){
 function mantenimientoHecho(idObjeto,lastMant){
     var option = "mantenimientoHecho";
     var nextMant = new Date(lastMant);
-    nextMant = nextMant.setMonth(nextMant.getMonth()+6);
-    
-    nextMant = new Date(nextMant)
-    //var nextMant = new Date(lastMant.setMonth(lastMant.getMonth()+6));
-    console.log(lastMant + " " + nextMant)
+    var year = nextMant.getMonth()+6 >= 11 ? nextMant.getFullYear()+1: nextMant.getFullYear();
+    var month = nextMant.getMonth()+6 >= 11 ? nextMant.getMonth()-5: nextMant.getMonth()+7;
+    var day = nextMant.getDate();
+    var hrs = nextMant.getHours();
+    var mins = nextMant.getMinutes();
+    var secs = nextMant.getSeconds() == 0 ? "00": nextMant.getSeconds();
+
+    //nextMant as a string (YYYY-MM-DD HH:MM:SS)
+    var nextMant = year+"-"+month+"-"+day+" "+hrs+":"+mins+":"+secs;
+
+    //nextMant as a date object (Tue May 25 2021 23:55:00 GMT-0600 (hora de verano del Pacífico de México))
+    //nextMant = nextMant.setMonth(nextMant.getMonth()+6);
+    //nextMant = new Date(nextMant)
+    console.log("lastMant = " + lastMant + " nextMant = " + nextMant)
     //$.ajax({url: rutaAjax, type: 'POST',data:{idObjeto,option,lastMant, nextMant}});
 }
 
