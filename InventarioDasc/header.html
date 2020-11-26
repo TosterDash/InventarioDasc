@@ -26,50 +26,42 @@
 	    }
 	</style>
 
-	<script>
-		$(document).ready(function(){
-		    $(".dropdown").hover(function(){
-		        var dropdownMenu = $(this).children(".dropdown-menu");
-		        if(dropdownMenu.is(":visible")){
-		            dropdownMenu.parent().toggleClass("open");
-		        }
-		    });
-		});     
-	</script>
 </head>
 <body>
 	<nav class="header-footer-style general-container">
 		<a href="index.php"><img src="../resources/uabcs_pc_img.png" class=" pc-img header-logo" alt=""></a>
 		<a href="index.php"><img src="../resources/uabcs_mobile_img.png" class="tablet-img header-logo" alt=""></a>
 		<ul class="navigation-menu-list">
-			<li> <a class="menu-list" href="index.php">INICIO</a> </li>
+		<a id="home-menu" class="menu-list" href="index.php">INICIO</a>
+		
 		<!--item de menu-->
 		<div class="btn-group">
-		    <a class=" menu-list dropdown-toggle" data-toggle="dropdown">INVENTARIO</a>
+		    <a id="inventory-menu" class=" menu-list dropdown-toggle" data-toggle="dropdown">INVENTARIO</a>
 		    <div class="dropdown-menu">
 		    <a class="dropdown-item" href="consinventory.php">CONSULTAR INVENTARIO</a>
 		    <a class="dropdown-item" href="addInventory.php">ADMINISTRAR INVENTARIO</a>
 		    </div>
 		</div>
 	    <!--item de menu-->
-		<!--item de menu-->
-		<div class="btn-group">
-		    <a class=" menu-list dropdown-toggle" data-toggle="dropdown">MAPA</a>
-		    <div class="dropdown-menu">
-		    <a class="dropdown-item" href="map.php">CONSULTAR MAPA</a>
-		    <a class="dropdown-item" href="editMap.php">ADMINISTRAR MAPA</a>
-		    </div>
-		</div>
-	    <!--item de menu-->
+		
 	    <!--item de menu-->
 	    <div class="btn-group">
-		    <a class=" menu-list dropdown-toggle" data-toggle="dropdown">PRÉSTAMO</a>
+		    <a id="loan-menu" class=" menu-list dropdown-toggle" data-toggle="dropdown">PRÉSTAMO</a>
 		    <div class="dropdown-menu">
 			    <a class="dropdown-item" href="consloan.php">CONSULTAR PRÉSTAMOS</a>
 			    <a class="dropdown-item" href="addloan.php">ADMINISTRAR PRÉSTAMOS</a>
 		    </div>
 		</div>
-	    <!--item de menu-->  
+	    <!--item de menu--> 
+	    <!--item de menu-->
+		<div class="btn-group">
+		    <a id="map-menu" class=" menu-list dropdown-toggle" data-toggle="dropdown">MAPA</a>
+		    <div class="dropdown-menu">
+		    <a class="dropdown-item" href="map.php">CONSULTAR MAPA</a>
+		    <a class="dropdown-item" href="editMap.php">ADMINISTRAR MAPA</a>
+		    </div>
+		</div>
+	    <!--item de menu--> 
 		<!--item de menu-->
 		<script>
 			$(document).ready(function(){
@@ -78,7 +70,7 @@
 					setInterval(actualizarFechas, 60000);
 
 				})
-			})
+			});
 			
 		</script>
 		
@@ -94,6 +86,7 @@
 	    <!--item de menu-->  
 		</ul>
 	</nav>
+	<script src="header/header.js"></script>
 </body>
 </html>
 

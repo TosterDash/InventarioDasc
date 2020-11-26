@@ -11,6 +11,7 @@
 
 /*CONS INVENTORY PART*/
 
+/*side menu*/
 .row-cons{
 
 	width: 100%;
@@ -28,7 +29,7 @@
 .search-input:focus {
     background-image:none;
     text-indent:0px
-   }
+}
 
 /*CONSINVENTORY TABLE*/
 

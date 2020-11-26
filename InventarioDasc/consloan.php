@@ -24,14 +24,32 @@
 
     </head>
     <body>
-        <h1 class="center-title">PRÉSTAMO</h1>
-
-        <nav>
-            <label>préstamos actuales</label>
-            <a href="loanHistory.php">registro de prestamos</a>
-        </nav>
+         
+        <div class="disp-flexrow">
+         <!--Barra de busqueda-->
+            <div class="disp-flexCol cons-nav-bar row-cons">
+                <div class="row-form cons-col-size"> 
+                    <label>Buscar por:</label>
+                    <select  name="combobox-search" id="combobox-search">
+                        <option values="nombre">Identificador</option>
+                        <option values="descripcion">Número de préstamo</option>
+                    </select>
+                </div >
+                <div class="row-form cons-col-size">
+                    <div class="disp-flexRow">
+                        <input type="text" placeholder="Buscar..." id="search" class="search-input">
+                    </div>
+                </div>
+                <div class=" row-form cons-col-size">
+                    <label>Mostrar por:</label>
+                    <select name="combobox-category" id="combobox-category">
+                    </select>
+                </div>
+            </div>
+            <!--Barra de busqueda-->
 
         <div id="card-container" class="disp-flexWarp">
+
             <!--INICIO DE UN CUADRITO DE PRESTAMO-->
             <div class="single-loan">
                 <div class="loan-head">
@@ -164,6 +182,7 @@
             </div>
             <!--FIN DE UN CUADRITO DE PRESTAMO-->
             
+        </div>
 
         </div>
     </body>

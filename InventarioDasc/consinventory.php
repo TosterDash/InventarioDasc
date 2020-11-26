@@ -23,7 +23,7 @@
         
     </head>
     <body>
-        <h1 id="" class="center-title">CONSULTAR INVENTARIO</h1>
+        <h1  class="center-title">CONSULTAR INVENTARIO</h1>
 
         <div class="disp-flexRow">
             <!--Barra de busqueda-->
