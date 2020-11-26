@@ -44,6 +44,7 @@
                     if(idPolygon==aulasArray[i].idEdificio && $("#map-piso").val()==aulasArray[i].idPlanta){
                         aulasArray[i].poly.addTo(mapUabcs);
                         aulasArray[i].aulaClick();
+                        aulasArray[i].enablePopUp();
                         
                         
                     }
@@ -51,14 +52,14 @@
             })
         }
         aulaClick(){
-            var nombre = this.nombre;
             var thisPoly = this.poly;
+            var idAula = this.idPolygon;
             this.poly.on('click',function(){
                 for(var i = 0;i<aulasArray.length;i++){
                     aulasArray[i].poly.setStyle({color: 'black'});
                 }
                 thisPoly.setStyle({color: 'green'});
-                createTable();
+                createTable(idAula);
                 
             })
         }
@@ -159,27 +160,30 @@
         }
     }
 
-    function createTable(){
+    function createTable(idAula){
     var option = "getTable";
     $.ajax({
         url: rutaAjaxMapa,
         type: 'POST',
-        data: {option},
+        data: {idAula,option},
         success: function(response){
             var cons = JSON.parse(response);
             var template = "";
             var cont=0;
             cons.forEach(task =>{
                 rowTableEquipo[cont] = new rowTable(`${task.idObjeto}`,"Equipo",1);
-                template += `   <th id="etiqueta${task.idObjeto}">${task.etiqueta}</th>
+                template += `<tr>
+                                <th id="etiqueta${task.idObjeto}">${task.etiqueta}</th>
                                 <th id="producto${task.idObjeto}">${task.producto}</th>
                                 <th id="nombre${task.idObjeto}">${task.nombre}</th>
-                                <th id="descripcion${task.idObjeto}">${task.descripcion}</th>`;
+                                <th id="descripcion${task.idObjeto}">${task.descripcion}</th>
+                            </tr>`;
                 
-                $('#tbody-info').html(template);
+                
                 cont++;
             
             })
+            $('#tbody-info').html(template);
             
         }
     })
