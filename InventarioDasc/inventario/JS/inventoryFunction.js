@@ -626,7 +626,7 @@ function updateFileEquipo(idObjeto){
                                         <image src="../resources/delete.png" style="height:30px" id="delete${task.idObjeto}"></image>
                                             
                                         <div class="btn-group">
-                                            <image src="../resources/edit.png" style="height:30px" class="dropdown-toggle" data-toggle="dropdown" id="edit${task.idObjeto}"></image>
+                                            <image src="../resources/edit.png" style="height:30px" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" id="edit${task.idObjeto}"></image>
                                             <div class="dropdown-menu">
                                                 <a class="dropdown-item" id="editImg${task.idObjeto}">Imagen</a>
                                                 <a class="dropdown-item" id="editProducto${task.idObjeto}">Producto</a>
@@ -674,7 +674,7 @@ function updateFileConsumible(idObjeto){
                              <image src="../resources/delete.png" style="height:30px" id="delete${task.idObjeto}"></image>
                                 
                             <div class="btn-group">
-                                <image src="../resources/edit.png" style="height:30px" class="dropdown-toggle" data-toggle="dropdown" id="edit${task.idObjeto}"></image>                                            <div class="dropdown-menu">
+                                <image src="../resources/edit.png" style="height:30px" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" id="edit${task.idObjeto}"></image>                                            <div class="dropdown-menu">
                                     <a class="dropdown-item" id="editImg${task.idObjeto}">Imagen</a>
                                     <a class="dropdown-item" id="editProducto${task.idObjeto}">Producto</a>
                                     <a class="dropdown-item" id="editNombre${task.idObjeto}">Nombre</a>
@@ -873,7 +873,7 @@ function getTableEquipo(){
                      <image src="../resources/delete.png" style="height:30px" id="delete${task.idObjeto}"></image>
 
                     <div class="btn-group">
-                        <image src="../resources/edit.png" style="height:30px" class="dropdown-toggle" data-toggle="dropdown" id="edit${task.idObjeto}"></image>
+                        <image src="../resources/edit.png" style="height:30px" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" id="edit${task.idObjeto}"></image>
                         <div class="dropdown-menu">
                             <a class="dropdown-item" id="editImg${task.idObjeto}">Imagen</a>
                             <a class="dropdown-item" id="editProducto${task.idObjeto}">Producto</a>
@@ -931,7 +931,7 @@ function getTableConsumible(){
                         <div class="btn-group">
                             <image src="../resources/delete.png" style="height:30px" id="delete${task.idObjeto}"></image>
                             <div class="btn-group">
-                                 <image src="../resources/edit.png" style="height:30px" class="dropdown-toggle" data-toggle="dropdown" id="edit${task.idObjeto}"></image> 
+                                 <image src="../resources/edit.png" style="height:30px" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" id="edit${task.idObjeto}"></image> 
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" id="editImg${task.idObjeto}">Imagen</a>
                                     <a class="dropdown-item" id="editProducto${task.idObjeto}">Producto</a>
