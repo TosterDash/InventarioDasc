@@ -54,7 +54,6 @@
                             <tr class="cons-tableTitle">
                                 <th >Identificador</th>
                                 <th >Producto</th>
-                                <th ></th>
                                 <th >Nombre</th>
                                 <th >Descripción</th>
                                 <th >Responsable</th>

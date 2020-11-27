@@ -1,12 +1,13 @@
 
 
 $(document).ready(function(){
-
+    
     //codigo principal-----------------Invocar funciones
     
-    getCombobox("combobox-category","clasificacion")
-    getTableEquipo();
-    getTableConsumible();
+    getCombobox("combobox-category","clasificacion");
+    getTableObjeto("equipo","tbody-equipo");
+    //getTableEquipo();
+    //getTableConsumible();
 
     //getTableEquipo(rutaAjax,rowTableEquipo);
     //getTableConsumible(rutaAjax,rowTableConsumible);

@@ -92,7 +92,7 @@
             }
         break;
 
-
+        
         
         case "consumible":
             //Crear consulta
@@ -105,7 +105,7 @@
                 //Realizar consulta
                 while($row = mysqli_fetch_array($result)){//Mientras tu variable fila este dentro de la cantidad de registros de consulta
                     $json []= array(
-                        'idObjeto' => $row['idObjeto'],
+                        'id' => $row['idObjeto'],
                         'idUabcs' => $row['idUabcs'],
                         'nombre' => $row['nombre'],
                         'descripcion' => $row['descripcion'],

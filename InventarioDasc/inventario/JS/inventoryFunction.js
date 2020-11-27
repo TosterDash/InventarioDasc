@@ -733,8 +733,86 @@ function optionsConsumible(option){
 
 
 //(ruta para hacer post)FUNCIONES PRINCIPALES PARA TABLAS---owo-------
+//(Tipo de tabla,nombre del tbody en donde se va a imprimir,Nombre de la tabla en donde vamos a sacar informacion, array de columnas que vamos a obtener )
+function getTableObjeto(typeTabla,tbodyName){
+    var option = typeTabla;
+    $.ajax({
+        url: rutaAjax,
+        type: 'POST',
+        data: {option,typeTabla},
+        success: function(response){
+           console.log(response);
+           var cons = JSON.parse(response);
+           var template = "";
+           var cont=0;
+           cons.forEach(task =>{
+            template += `<tr id="fila${task.idObjeto}">`;
+            switch(typeTabla){
+                case "equipo":
+                    template += `<th>${task.etiqueta}</th>`;
+                    template += `<th id="producto${task.idObjeto}"><img id="img${task.idObjeto}" height="70px" src="data:image/jpg;base64,${task.img}"/><label id="producto${task.idObjeto}">${task.producto}</label></th>`;
+                    template += `<th id="nombre${task.idObjeto}">${task.nombre}</th>`;
+                    template += `<th id="descripcion${task.idObjeto}">${task.descripcion}</th>`;
+                    if(`${task.mantenimiento}`=="true"){
+                        if(`${task.mantResp}`==""){
+                            template += `<th id="mantResp${task.idObjeto}">Sin responsable</th>`
+                        }else{
+                            template += `<th id="mantResp${task.idObjeto}">${task.mantResp}</th>`
+                        }
+                        if(`${task.lastMant}`=="0000-00-00 00:00:00" || `${task.lastMant}`=="" || `${task.lastMant}`== null){
+                            template += `<th id="lastMant${task.idObjeto}">Sin fecha</th>`
+                        }else{
+                            template += `<th id="lastMant${task.idObjeto}">${task.lastMant}</th>`
+                        }
+                        if(`${task.nextMant}`=="0000-00-00 00:00:00" || `${task.nextMant}`=="" || `${task.nextMant}`== null){
+                            template += `<th id="nextMant${task.idObjeto}">Sin fecha</th>`
+                        }else{
+                            template += `<th id="nextMant${task.idObjeto}">${task.nextMant}</th>`
+                        }
+                    }else{
+                        template += `<th id="mantResp${task.idObjeto}">Sin mantenimiento</th>`;
+                        if(`${task.lastMant}`=="0000-00-00 00:00:00" || `${task.lastMant}`=="" || `${task.lastMant}`== null){
+                            template += `<th id="lastMant${task.idObjeto}">Sin fecha</th>`
+                        }else{
+                            template += `<th id="lastMant${task.idObjeto}">${task.lastMant}</th>`
+                        }
+                        template += `<th id="nextMant${task.idObjeto}">Sin mantenimiento</th>`;
+                    }
+                    if(`${task.prestamo}`=="true"){
+                        template += `<th id="prestamo${task.idObjeto}"><label id="prestamo${task.idObjeto}"> Disponible</label></th>`;
+        
+                    }else{
+                        template += `<th id="prestamo${task.idObjeto}"><label id="prestamo${task.idObjeto}"> No disponible</label></th>`;
+                    
+                    }
+
+
+                break;
+
+                case "consumible":
+                break;
+            }//TERMINA EL SWITCH----------------------------------------------------
+            template += `<th><div class="btn-group">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+               Sony
+            </button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="#">Tablet</a>
+              <a class="dropdown-item" href="#">Smartphone</a>
+            </div>
+          </div></th>`;
+
+            cont++;
+           })
+           
+           $("#"+tbodyName).html(template);
+        }
+    })
+}
+
+
 function getTableEquipo(){
-    //Funcion para confirmar si quiere borrar
+    
 
     var option = "equipo";
     $.ajax({
