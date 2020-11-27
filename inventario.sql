@@ -109,8 +109,8 @@ CREATE TABLE `objeto` (
   `cantidad` int(11) DEFAULT NULL,
   `prestamo` varchar(5) DEFAULT NULL,
   `mantenimiento` varchar(5) DEFAULT NULL,
-  `lastMant` datetime DEFAULT NULL,
-  `nextMant` datetime DEFAULT NULL,
+  `lastMant` date DEFAULT NULL,
+  `nextMant` date DEFAULT NULL,
   `mantResp` varchar(45) DEFAULT NULL,
   `idTipoProducto` int(11) NOT NULL,
   `img` longblob DEFAULT NULL

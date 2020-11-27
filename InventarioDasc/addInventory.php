@@ -77,7 +77,7 @@
                     <label class="">Responsable del mantenimiento</label>
                     <input type="text" name="col-2-text-mantResp"  class="" id="col-2-text-mantResp"></input>
                     <label class="d-block">Fecha de Mantenimiento</label>
-                    <input type="datetime-local" name="col-2-date-nextMant" class="" id="col-2-date-nextMant"></input>
+                    <input type="date" name="col-2-date-nextMant" class="" id="col-2-date-nextMant"></input>
                 </div>
                 <div id="col-2-block-cant">
                     <label class="d-block">Cantidad de consumibles</label>
