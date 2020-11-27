@@ -155,7 +155,8 @@ CREATE TABLE `prestamo` (
   `idEdificio` int(11) NOT NULL,
   `idAula` int(11) NOT NULL,
   `exitDate` date NOT NULL,
-  `returnDate` date NOT NULL
+  `returnDate` date NOT NULL,
+  `entregado` boolean NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
