@@ -93,6 +93,37 @@ switch($option){
 
         echo $jsonString;
     break;
+
+    case "getComboboxMap":
+        error_reporting(0);
+        $nameCombo = $_POST["nameCombo"];
+        $nombreTabla = $_POST["nombreTabla"];
+        $idNombreRow = $_POST["idNombreRow"];
+        $nombreRow = $_POST["nombreRow"];
+        $nombreRowReferencia = $_POST["nombreRowReferencia"];
+        $idReferencia = $_POST["idReferencia"];
+        if($idReferencia == "" || $idReferencia == null){
+            $result = mysqli_query($conexion,"SELECT * from $nombreTabla");
+        }else{
+            $result = mysqli_query($conexion,"SELECT * from $nombreTabla where $nombreRowReferencia = $idReferencia");
+        }
+        $json = array();
+        while ($row = mysqli_fetch_array($result)) {
+   
+        $json[] = array(
+                'id' => $row[$idNombreRow],
+                'info' => $row[$nombreRow],
+               
+                
+            );
+        }
+        //se hace un encode para que la variable sea un string
+        $jsonString = json_encode($json);
+
+        echo $jsonString;
+    break;
+
+
 }
 
 

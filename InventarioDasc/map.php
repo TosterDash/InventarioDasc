@@ -48,16 +48,12 @@ describir cada método
             <div class="disp-flexCol cons-nav-bar row-cons">
                 <div class="row-form cons-col-size"> 
                     <label>Edificio:</label>
-                    <select id="map-piso" placeholder="Planta">
-						<option >Seleccione un edificio</option>
-						<option value="1" >Macrocentro</option>
-						<option value="2" >Edificio DASC</option>
+                    <select id="map-edificio" placeholder="Planta">
+						
 					</select>
 					<label>Planta:</label>
                     <select id="map-piso" placeholder="Planta">
-						<option value="0">Seleccione una planta</option>
-						<option value="1" >Planta baja </option>
-						<option value="2" >Planta alta</option>
+						
 					</select>
                 </div >
                 <div class="row-form cons-col-size">

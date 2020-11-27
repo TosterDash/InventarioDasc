@@ -41,37 +41,33 @@
 
                 case "aula":
                     this.poly.bindPopup("Aula "+this.nombre);
-                    document.getElementById("name-aula").innerHTML = this.nombre;
+                    
                 break;
             }
             
         }
         edificioClick(){
             var idPolygon = this.idPolygon;
-            console.log(idPolygon);
+            
             this.poly.on('click',function(e){
+                $("#map-edificio").val(idPolygon);
+                updateInfo($("#map-edificio").find("option:selected").text() , $("#map-piso").find("option:selected").text(),  "----" );
                 removeAllAula();
-                console.log("BIBIBI");
-                document.getElementById("name-edif").innerHTML = this.nombre;
-                for(var i = 0;i<aulasArray.length;i++){
-                    //qué hace esto?
-                    if(idPolygon==aulasArray[i].idEdificio && $("#map-piso").val()==aulasArray[i].idPlanta){
-                        aulasArray[i].poly.addTo(mapUabcs);
-                        aulasArray[i].aulaClick();
-                        aulasArray[i].enablePopUp();
-    
-                    }
-                }
+                //document.getElementById("name-edif").innerHTML = this.nombre;
+                showAulas(idPolygon,$("#map-piso").val());
+                
             })
         }
         aulaClick(){
             var thisPoly = this.poly;
             var idAula = this.idPolygon;
+            var nombre = this.nombre;
             this.poly.on('click',function(){
                 for(var i = 0;i<aulasArray.length;i++){
                     aulasArray[i].poly.setStyle({color: 'black'});
                 }
                 thisPoly.setStyle({color: 'green'});
+                updateInfo($("#map-edificio").find("option:selected").text() , $("#map-piso").find("option:selected").text(),  nombre );
                 createTable(idAula);
                 
             })
@@ -83,6 +79,37 @@
 
 
     //funciones----------------------------------------------------------
+    function updateInfo(edificio,piso,aula){
+        $("#name-edif").html(edificio)
+        $("#name-planta").html(piso)
+        $("#name-aula").html(aula)
+    }
+
+    function showAulas(idEdificio,piso){
+        removeAllAula();
+        for(var i = 0;i<aulasArray.length;i++){
+            //qué hace esto?
+            if(idEdificio==aulasArray[i].idEdificio && piso==aulasArray[i].idPlanta){
+                //console.log("aulasArray");
+                aulasArray[i].poly.addTo(mapUabcs);
+                aulasArray[i].aulaClick();
+                aulasArray[i].enablePopUp();
+    
+            }
+            
+        }
+    }
+
+    function setView(edificioVal){
+        for(var i = 0;i<edificiosArray.length; i++){
+            if(edificiosArray[i].idPolygon==edificioVal){
+                mapUabcs.fitBounds(edificiosArray[i].poly.getBounds());
+                break;
+            }
+        }
+        
+    }
+
     function removeAllAula(){
         for(var i = 0;i<aulasArray.length;i++){
             aulasArray[i].poly.setStyle({color: 'black'});
@@ -191,6 +218,29 @@
             
         }
     })
+    }
+    //(nombre del combobox, nombre de la id de la BDD, nombre del row en BDD,Nombre de la tabla en la BDD, nombre del row para la condicion where (opcional), la id para la condicion where (opcional))
+    function getComboboxMap(nameCombo,idNombreRow,nombreRow,nombreTabla,capaInicial,nombreRowReferencia,idReferencia){
+        var option = "getComboboxMap"
+        $.ajax({
+            url: rutaAjaxMapa,
+            type: 'POST',
+            data: {option,idNombreRow,nameCombo,nombreTabla,nombreRow,nombreRowReferencia,idReferencia},
+            success: function(response){
+               var cons = JSON.parse(response);
+               var template = ``;
+               var cont = 0;
+                if(capaInicial != undefined){
+                    template = `<option value="">`+capaInicial+`</option>`;
+                }
+               cons.forEach(task =>{
+                
+                   template += `<option value="${task.id}">${task.info}</option>`;
+                   cont++;
+               })
+               $("#"+nameCombo).html(template);
+            }
+        })
     }
 
 /*
