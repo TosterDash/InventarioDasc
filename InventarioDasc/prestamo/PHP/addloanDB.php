@@ -1,6 +1,6 @@
 <?php 
     //Conectar a la base de datos
-    include ('../../baseConexion/conexion.php');
+    include ('conexion.php');
     
     //Obtener datos para crear tabla 
     //Crear consulta

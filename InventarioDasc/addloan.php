@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="../styles/generalStyle.css">
     <link rel="stylesheet" href="../styles/loanStyle.css">
     <script 
+        src="header/prestamoFunction.js">
+    </script>
+    <script 
         src="prestamo/JS/addloan.js">
     </script>
     <title></title>
@@ -34,9 +37,9 @@
                         </select>
                         <!--Fecha del prestamo-->
                         <label class="input-margin" >Fecha salida</label>
-                        <input class="input-margin" id="loan-add-datetime" type="datetime-local">
+                        <input class="input-margin" id="loan-add-datetime" type="date">
                         <label class="input-margin" >Fecha retorno</label>
-                        <input class="input-margin" id="loan-add-datetime-return" type="datetime-local">
+                        <input class="input-margin" id="loan-add-datetime-return" type="date">
                     </div>
                 
                     <!--Tabla donde puedes seleccionar todos los objetos que vas a pedir-->
