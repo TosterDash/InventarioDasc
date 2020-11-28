@@ -1,7 +1,7 @@
 <?php
     include ('../../baseConexion/conexion.php');
     //prestamo usuario salon fechapedido fechaentrega
-    $result = mysqli_query($conexion, "SELECT prestamo.idPrestamo, convert(varchar, prestamo.exitDate, 105), prestamo.returnDate, aula.nombreAula from prestamo, aula WHERE prestamo.idAula = aula.idAula");
+    $result = mysqli_query($conexion, "SELECT prestamo.idPrestamo, DATE_FORMAT(prestamo.exitDate, '%d-%m-%Y') as exitDate, DATE_FORMAT(prestamo.returnDate, '%d-%m-%Y') as returnDate, aula.nombreAula from prestamo, aula WHERE prestamo.idAula = aula.idAula");
     if(!$result){
         echo die("error");     
     }else{
