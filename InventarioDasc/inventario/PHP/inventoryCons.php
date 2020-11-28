@@ -406,7 +406,7 @@
 
         case "getDate":
             $select = ("SELECT `objeto`.`idObjeto`, concat(objeto.idUabcs, objeto.idObjeto) as etiqueta  ,`objeto`.`lastMant`,`objeto`.`nextMant`,`objeto`.`mantResp`,`tipoproducto`.`producto`, 
-                        DATE_FORMAT(objeto.lastMant, '%d-%m-%Y') as lastMant, DATE_FORMAT(objeto.nextMant, '%d-%m-%Y') as nextMantfrom objeto, tipoproducto where `objeto`.`mantenimiento` = 'true' and `tipoproducto`.`idTipoProducto`=`objeto`.idTipoProducto");
+                        DATE_FORMAT(objeto.lastMant, '%d-%m-%Y') as lastMant, DATE_FORMAT(objeto.nextMant, '%d-%m-%Y') as nextMant from objeto, tipoproducto where `objeto`.`mantenimiento` = 'true' and `tipoproducto`.`idTipoProducto`=`objeto`.idTipoProducto");
             $result = mysqli_query($conexion, $select);
             if(!$result){
                 echo die("error");
