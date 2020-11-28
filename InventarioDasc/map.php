@@ -89,7 +89,7 @@ describir cada método
 	</div>
 </body>
 
-<script src="mapa/JS/mapFunction.js"></script>
+<script src="header/mapFunction.js"></script>
 </html>
 
 
