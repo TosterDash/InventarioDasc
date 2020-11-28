@@ -122,7 +122,7 @@
 
         case "equipo":
             //Crear consulta
-            $result = mysqli_query($conexion, "SELECT `objeto`.*, concat(`objeto`.`idUabcs`, `objeto`.`idObjeto`) as etiqueta,`tipoproducto`.`producto` from objeto,tipoproducto where `tipoproducto`.`idTipoClasificacion`=1 and `objeto`.`idTipoProducto`=`tipoproducto`.`idTipoProducto`");
+            $result = mysqli_query($conexion, "SELECT `objeto`.*, concat(`objeto`.`idUabcs`, `objeto`.`idObjeto`) as etiqueta,`tipoproducto`.`producto`, DATE_FORMAT(objeto.lastMant, '%d-%m-%Y') as lastMant, DATE_FORMAT(objeto.nextMant, '%d-%m-%Y') as nextMant   from objeto,tipoproducto where `tipoproducto`.`idTipoClasificacion`=1 and `objeto`.`idTipoProducto`=`tipoproducto`.`idTipoProducto`");
             if(!$result){
                 echo die("error");     
             }else{
@@ -154,7 +154,7 @@
         case "updateFileEquipo":
             //Crear consulta
             $idObjeto = $_POST['idObjeto'];
-            $result = mysqli_query($conexion, "SELECT `objeto`.*, concat(`objeto`.`idUabcs`, `objeto`.`idObjeto`) as etiqueta,`tipoproducto`.`producto` from objeto,tipoproducto where `tipoproducto`.`idTipoClasificacion`=1 and `objeto`.`idTipoProducto`=`tipoproducto`.`idTipoProducto` and `objeto`.`idObjeto`='$idObjeto'");
+            $result = mysqli_query($conexion, "SELECT `objeto`.*, concat(`objeto`.`idUabcs`, `objeto`.`idObjeto`), DATE_FORMAT(objeto.lastMant, '%d-%m-%Y') as lastMant, DATE_FORMAT(objeto.nextMant, '%d-%m-%Y') as nextMant as etiqueta,`tipoproducto`.`producto` from objeto,tipoproducto where `tipoproducto`.`idTipoClasificacion`=1 and `objeto`.`idTipoProducto`=`tipoproducto`.`idTipoProducto` and `objeto`.`idObjeto`='$idObjeto'");
             if(!$result){
                 echo die("error");     
             }else{
@@ -405,8 +405,8 @@
         
 
         case "getDate":
-            $select = ("SELECT `objeto`.`idObjeto`, concat(objeto.idUabcs, objeto.idObjeto) as etiqueta  ,`objeto`.`lastMant`,`objeto`.`nextMant`,`objeto`.`mantResp`,`tipoproducto`.`producto` 
-                        from objeto, tipoproducto where `objeto`.`mantenimiento` = 'true' and `tipoproducto`.`idTipoProducto`=`objeto`.idTipoProducto");
+            $select = ("SELECT `objeto`.`idObjeto`, concat(objeto.idUabcs, objeto.idObjeto) as etiqueta  ,`objeto`.`lastMant`,`objeto`.`nextMant`,`objeto`.`mantResp`,`tipoproducto`.`producto`, 
+                        DATE_FORMAT(objeto.lastMant, '%d-%m-%Y') as lastMant, DATE_FORMAT(objeto.nextMant, '%d-%m-%Y') as nextMantfrom objeto, tipoproducto where `objeto`.`mantenimiento` = 'true' and `tipoproducto`.`idTipoProducto`=`objeto`.idTipoProducto");
             $result = mysqli_query($conexion, $select);
             if(!$result){
                 echo die("error");
