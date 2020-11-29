@@ -7,6 +7,10 @@
         <link rel="stylesheet" href="../styles/loanStyle.css">
         <link rel="stylesheet" href="../styles/generalStyle.css">
         
+
+        <script 
+            src="header/prestamoFunction.js">
+        </script>
         <script 
             src="prestamo/JS/consloan.js">
         </script>

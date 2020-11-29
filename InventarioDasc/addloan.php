@@ -18,7 +18,7 @@
     <body class="background-img">
         
         <!--Form para agregar a inventario-->
-        <form id="loan-add-form">
+        
             <div class="form-background">
                 <h1 class="center-title" >AÑADIR PRÉSTAMO</h1>
                 <hr class="divider-hor">
@@ -37,9 +37,9 @@
                         </select>
                         <!--Fecha del prestamo-->
                         <label class="input-margin" >Fecha salida</label>
-                        <input class="input-margin" id="loan-add-datetime" type="date">
+                        <input class="input-margin" id="loan-add-datetime" type="date" >
                         <label class="input-margin" >Fecha retorno</label>
-                        <input class="input-margin" id="loan-add-datetime-return" type="date">
+                        <input class="input-margin" id="loan-add-datetime-return" type="date" >
                     </div>
                 
                     <!--Tabla donde puedes seleccionar todos los objetos que vas a pedir-->
@@ -49,7 +49,7 @@
                             <tbody id="loan-tbody"></tbody>
                             <!--fila-->
                         </table>
-                        <p>ESTE TEXTO ES SOLO PARA VER SI JALA BIEN EL SCROLL OWO stie, est a fermentum consequat, nunc eros scelerisque quam, non lacinia lacus lorem non odio. Nulla sit amet iaculis magna, id iaculis ipsum. Nullam tincidunt tempor venenatis. In ut laoreet sapien. Vivamus sed urna eu nisi facilisis scelerisque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent congue mauris nisl, quis tincidunt arcu rhoncus et. Nam scelerisque tincidunt erat eu faucibus. Donec in eros id risus porttitor accumsan nec id ante.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vel magna vitae lacus mattis euismod nec a felis. Vestibulum pretium ex sapien, in maximus lectus auctor sed. Ut lectus orci, mattis non nibh quis, consequat sodales risus. Sed molestie, est a fermentum consequat, nunc eros scelerisque quam, non lacinia lacus lorem non odio. Nulla sit amet iaculis magna, id iaculis ipsum. Nullam tincidunt tempor venenatis. In ut laoreet sapien. Vivamus sed urna eu nisi facilisis scelerisque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent congue mauris nisl, quis tincidunt arcu rhoncus et. Nam scelerisque tincidunt erat eu faucibus. Donec in eros id risus porttitor accumsan nec id ante.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vel magna vitae lacus mattis euismod nec a felis. Vestibulum pretium ex sapien, in maximus lectus auctor sed. Ut lectus orci, mattis non nibh quis, consequat sodales risus. Sed molestie, est a fermentum consequat, nunc eros scelerisque quam, non lacinia lacus lorem non odio. Nulla sit amet iaculis magna, id iaculis ipsum. Nullam tincidunt tempor venenatis. In ut laoreet sapien. Vivamus sed urna eu nisi facilisis scelerisque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent congue mauris nisl, quis tincidunt arcu rhoncus et. Nam scelerisque tincidunt erat eu faucibus. Donec in eros id risus porttitor accumsan nec id ante.</p>
+                        <p>ESTE ES UN TEXTO SOLO PARA PARTIRLE LA MADRE A LOS PINCHES CHECKBOXES QUE ME TIENEN HASTA LA MADRE OJALA SE LOS VIOLE SU TIO. pinches jotos nada mas dije eso y ya se muestran hijos de su reputisima madre. </p>
                     </div> 
                 </div>
                 <div class="addloan-btn">
@@ -59,6 +59,6 @@
                     <button id="loan-add-add"> Agregar</button>
                 </div>
             </div>
-        </form> 
+         
     </body>
 </html>

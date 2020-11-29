@@ -75,11 +75,47 @@ switch($option){
 
     break;
 
+    case "disableDisponible":
+        $objects = $_POST["objects"];
+        $i = $_POST["i"];
+        $mod = mysqli_query($conexion,"UPDATE objeto SET prestamo = 'false' where idObjeto = '$objects[$i]'");
+    break;
+
     case "addPrestamoHasObjeto":
         $objects = $_POST["objects"];
         $i = $_POST["i"];
          $insert = mysqli_query($conexion,"INSERT INTO prestamo_has_objeto(idPrestamo,idObjeto)
         VALUES ( (SELECT idPrestamo from prestamo ORDER BY idPrestamo DESC LIMIT 1 ), $objects[$i]) ");
+    break;
+
+    case "getLoanCard":
+        $result = mysqli_query($conexion, "SELECT `prestamo_has_objeto`.`idPrestamo`, concat(`objeto`.`idUabcs`,`objeto`.idObjeto) as etiqueta ,`objeto`.`nombre`, `tipoproducto`.`producto`,
+        `aula`.`nombreAula`,`edificio`.`Nombre`,`prestamo`.`exitDate`,`prestamo`.`returnDate` from tipoproducto,objeto,aula,edificio,prestamo,prestamo_has_objeto where 
+        `prestamo_has_objeto`.`idPrestamo` = `prestamo`.`idPrestamo` and `prestamo_has_objeto`.`idObjeto` = `objeto`.`idObjeto`  and `prestamo`.`idEdificio` = `edificio`.`idEdificio` and `prestamo`.`idAula` = `aula`.`idAula` and `objeto`.`idTipoProducto` = `tipoproducto`.`idTipoProducto`
+        ");
+        if(!$result){
+            echo die("error");     
+        }else{
+            //Crear json
+            $json = array();
+            //Realizar consulta
+            while($row = mysqli_fetch_array($result)){//Mientras tu variable fila este dentro de la cantidad de registros de consulta
+                $json []= array(
+                    'idPrestamo' => $row['idPrestamo'],
+                    'etiqueta' => $row['etiqueta'],
+                    'nombre' => $row['nombre'],
+                    'producto' => $row['producto'],
+                    'nombreAula' => $row['nombreAula'],
+                    'nombreEdificio' => $row['Nombre'],
+                    'exitDate' => $row['exitDate'],
+                    'returnDate' => $row['returnDate'],
+                    
+                );
+            }
+            $jsonstring = json_encode($json);
+            echo $jsonstring;
+        }
+
     break;
 
 
