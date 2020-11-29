@@ -1,11 +1,22 @@
 /*CONSULT MAP*/
 
 .cons-col{
-    width: 30%;
-    height: 200px;
+	width: 80%;
 }
 
-#mapid { height: 500px; }
+
+.map-size{
+	width: 60%;
+	height: 100vh;
+}
+#mapid { 
+	width: 40vw;
+	height: 90vh;
+}
+
+.info-size{
+	width:40%;
+}
 
 /*sidebar menu*/
 .cons-nav-bar{ 
@@ -27,9 +38,15 @@
 /*info box*/
 
 .background-c{
-	margin-left: 1%;
-	width: 40%;
+	margin-left: 15px;
+	width: 100%;
 }
+
+/*table*/
+tr{
+	
+}
+
 
 /*EDIT MAP*/
 

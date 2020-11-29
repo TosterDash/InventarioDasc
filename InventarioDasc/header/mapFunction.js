@@ -35,7 +35,6 @@
             console.log(typePoly)
             switch(typePoly){
                 case "edificio":
-                    
                     this.poly.bindPopup("Edificio "+this.nombre);
                 break;
 
@@ -51,7 +50,7 @@
             
             this.poly.on('click',function(e){
                 $("#map-edificio").val(idPolygon);
-                updateInfo($("#map-edificio").find("option:selected").text() , $("#map-piso").find("option:selected").text(),  "----" );
+                updateInfo($("#map-edificio").find("option:selected").text() , $("#map-piso").find("option:selected").text(),  " ----" );
                 removeAllAula();
                 //document.getElementById("name-edif").innerHTML = this.nombre;
                 showAulas(idPolygon,$("#map-piso").val());
@@ -88,7 +87,6 @@
     function showAulas(idEdificio,piso){
         removeAllAula();
         for(var i = 0;i<aulasArray.length;i++){
-            //qué hace esto?
             if(idEdificio==aulasArray[i].idEdificio && piso==aulasArray[i].idPlanta){
                 //console.log("aulasArray");
                 aulasArray[i].poly.addTo(mapUabcs);

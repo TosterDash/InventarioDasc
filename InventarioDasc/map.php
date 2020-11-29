@@ -26,8 +26,6 @@ describir cada método
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <?php include ('header.html');?>
 
-
-	
 	<!--MAP RESOURCES-->
 	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="crossorigin=""/>
 	<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="crossorigin=""></script>
@@ -69,23 +67,76 @@ describir cada método
             </div>
             <!--Barra de busqueda-->
 
-		<!--CAJA DEL MAPA-->
-		<div class="row-form cons-col" id="map-box" class="center-text map-box">
-			<div id="mapid" class=""></div>
-		</div>
-		<!--CAJA DEL MAPA-->
-		
-		<!--CAJA DE INFORMACIÓN-->
-		<div class="background-c">
-			<h2 class="center-title" id="name-edif">Edificio</h2>
-			<h2 class="center-title" id="name-planta">Planta</h2>
-			<h2 class="center-title" id="name-aula">Aula</h2>
-		
-		</div>
+	       	<div class=" cons-col">
+				<!--CAJA DEL MAPA-->
+				<div class="disp-flexRow" >
+					<div style="background-color: pink;" class="map-size">
+						<div class="row-form" id="map-box" class="center-text map-box">
+							<div id="mapid"></div>
+						</div>
+					</div>
+				<!--CAJA DEL MAPA-->
+				<!--CAJA DE INFORMACIÓN-->
+					<div class="info-size">
+						<div class="background-c">
+							<div class="disp-flexRow">
+								<h2 class="center-title">Edificio: </h2>
+								<h2 class="center-title" id="name-edif"> </h2>
+							</div>
+							
+							<div class="disp-flexRow">
+								<h2 class="center-title">Planta: </h2>
+								<h2 class="center-title" id="name-planta"> </h2>	
+							</div>
+							
+							<div class="disp-flexRow">
+								<h2 class="center-title">Aula: </h2>
+								<h2 class="center-title" id="name-aula"> </h2>	
+							</div>
+							
+							<div >
+								
+							</div>
 
-		<!--CAJA DE INFORMACIÓN-->
+						</div>
+						<label>DESLICE HACIA ABAJO PARA CONSULTAR TABLA DE CONTENIDO</label>
+					</div>
+					<!--CAJA DE INFORMACIÓN-->
+				</div>
+				<div class="">
+				<table>
+					<tr>
+						<th>a</th>
+						<th>a</th>
+						<th>a</th>
+						<th>a</th>
+						<th>a</th>
+						<th>a</th>
 
-		
+					</tr>
+					<tr>
+						<th>a</th>
+						<th>a</th>
+						<th>a</th>
+						<th>a</th>
+						<th>a</th>
+						<th>a</th>
+						
+					</tr>
+					<tr>
+						<th>a</th>
+						<th>a</th>
+						<th>a</th>
+						<th>a</th>
+						<th>a</th>
+						<th>a</th>
+						
+					</tr>
+				</table>
+			</div>
+			</div>
+
+			
 	</div>
 </body>
 
