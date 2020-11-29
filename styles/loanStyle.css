@@ -5,12 +5,6 @@ body{
 	
 }
 
-.background-img{
-	background-image: url('../resources/campus_mapa.jpg');
-
-	background-repeat: no-repeat, repeat;
-	background-size: cover;
-}
 
 .form-background{
 	background-color: white;

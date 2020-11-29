@@ -1,7 +1,7 @@
 /*CONSULT MAP*/
 
 .cons-col{
-    width: 40%;
+    width: 30%;
     height: 200px;
 }
 
@@ -28,8 +28,23 @@
 
 .background-c{
 	margin-left: 1%;
-	background-color: blue;
-	width: 30%;
+	width: 40%;
 }
 
 /*EDIT MAP*/
+
+.background-img{
+	background-image: url('../resources/campus_mapa.jpg');
+	background-repeat: no-repeat, repeat;
+	background-size: cover;
+}
+
+.form-background{
+	background-color: white;
+	border: 1px solid white;
+	border-radius: 10px;
+
+	margin-left: 15%;
+	padding: 1%;
+	margin-top: 5%;
+}

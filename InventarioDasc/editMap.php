@@ -20,33 +20,28 @@
     
 	<!--SITE STYLE SHEETS-->
 	<link rel="stylesheet" href="../styles/normalize.css">
-    <link rel="stylesheet" href="../styles/editMapStyle.css">
+    <link rel="stylesheet" href="../styles/mapStyle.css">
+    <link rel="stylesheet" href="../styles/generalStyle.css">
     
     <title>AÑADIR AL MAPA</title>
 </head>
-<body>
+<body class="background-img">
     <div class="master-box">
         <!--CAJA DEL FORM-->
-        <div class="add-field-box">
+        <div class="row-form form-background">
             <!--FORM CON CAMPOS-->
-            
             <form action="" class="add-field-box" id="form-edit">
-                    
-                    <div id="accion-combobox">
-                        <label for="">ACCIÓN</label>
-                            <select id="accion-select">
-                                <option value="">SELECCIONE UNA ACCIÓN</option>
-                                <option value="add">Agregar Edificio</option>
-                                <option value="delete">Eliminar Edificio</option>
-                                <option value="mod">Modificar Edificio</option>
-                            </select>
-                        
-                    </div>
-
-                    <div id="nombre-placeholder">
+                    <label for="">Opciones de gestión</label>
+                    <select id="accion-select">
+                        <option value="">SELECCIONE UNA ACCIÓN</option>
+                        <option value="add">Agregar Edificio</option>
+                        <option value="delete">Eliminar Edificio</option>
+                        <option value="mod">Modificar Edificio</option>
+                    </select>
+                <div id="nombre-placeholder">
                     <label id= "nombre-label" for="">NOMBRE</label>
                     <input type="text" id="nombre-map" placeholder="Escriba un nombre para Edificio/Aula">
-                    </div>
+                </div>
 
                     <div id="tipo-combobox">
                     <!--comboboggs-->
@@ -66,8 +61,6 @@
                         <option value="ALTA">ALTA</option>
                     </select>
                     </div>
-
-
                     <div id="edificio-combobox">
                     <!--comboboggs llenarlos con la bdd?-->
                     <label for="" id="label-edificio">EDIFICIO</label>
@@ -85,16 +78,16 @@
         </div>
         <!--CAJA DEL MAPA-->
         
-        <div id="edit-map-box" class="edit-map-box">
+        <div id="edit-map-box" class="row-form">
             <div id="edit-map-container" class="edit-map-container">
             
             </div>
         </div>
-        <script src="mapa/JS/classAula.js"></script>
-        <script src="mapa/JS/classEdificio.js"></script>
-        <script src="mapa/JS/editorMap.js"></script>
-        
+
     </div>
+    <script src="mapa/JS/classAula.js"></script>
+    <script src="mapa/JS/classEdificio.js"></script>
+    <script src="mapa/JS/editorMap.js"></script>
 </body>
 
 </html>
