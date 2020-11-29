@@ -24,6 +24,17 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `usuario`
+--
+
+CREATE TABLE `userprestamo`(
+  `idUserprestamo` int(11) NOT NULL,
+  `identificador` int(11) NOT NULL,
+  `nombre` varchar(100) NOT NULL,
+  `fecha` date NOT NULL
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
 -- Table structure for table `aula`
 --
 
@@ -154,6 +165,7 @@ CREATE TABLE `prestamo` (
   `idPrestamo` int(11) NOT NULL,
   `idEdificio` int(11) NOT NULL,
   `idAula` int(11) NOT NULL,
+  `idUserprestamo` int(11) NOT NULL,
   `exitDate` date NOT NULL,
   `returnDate` date NOT NULL,
   `entregado` boolean NOT NULL
@@ -232,6 +244,12 @@ INSERT INTO `usuario` (`idUsuario`, `Nombre`, `Password`) VALUES
 --
 -- Indexes for dumped tables
 --
+
+-- Indexes for table `prestamo`
+--
+ALTER TABLE `userprestamo`
+  ADD PRIMARY KEY (`idUserprestamo`),
+  MODIFY `idUserprestamo` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Indexes for table `aula`
@@ -398,7 +416,8 @@ COMMIT;
 --
 ALTER TABLE `prestamo`
   ADD CONSTRAINT `prestamo_idEdificio` FOREIGN KEY (`idEdificio`) REFERENCES `edificio` (`idEdificio`),
-  ADD CONSTRAINT `prestamo_idAula` FOREIGN KEY (`idAula`) REFERENCES `aula` (`idAula`);
+  ADD CONSTRAINT `prestamo_idAula` FOREIGN KEY (`idAula`) REFERENCES `aula` (`idAula`),
+  ADD CONSTRAINT `prestamo_idUserprestamo` FOREIGN KEY (`idUserprestamo`) REFERENCES `userprestamo` (`idUserprestamo`);
 COMMIT;
 
 -- Constraints for table `prestamo_has_objeto`

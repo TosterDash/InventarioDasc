@@ -89,9 +89,29 @@ switch($option){
     break;
 
     case "getLoanCard":
-        $result = mysqli_query($conexion, "SELECT `prestamo_has_objeto`.`idPrestamo`, concat(`objeto`.`idUabcs`,`objeto`.idObjeto) as etiqueta ,`objeto`.`nombre`, `tipoproducto`.`producto`,
-        `aula`.`nombreAula`,`edificio`.`Nombre`,`prestamo`.`exitDate`,`prestamo`.`returnDate` from tipoproducto,objeto,aula,edificio,prestamo,prestamo_has_objeto where 
-        `prestamo_has_objeto`.`idPrestamo` = `prestamo`.`idPrestamo` and `prestamo_has_objeto`.`idObjeto` = `objeto`.`idObjeto`  and `prestamo`.`idEdificio` = `edificio`.`idEdificio` and `prestamo`.`idAula` = `aula`.`idAula` and `objeto`.`idTipoProducto` = `tipoproducto`.`idTipoProducto`
+        $result = mysqli_query($conexion, "SELECT 
+                                                `prestamo_has_objeto`.`idPrestamo`, 
+                                                concat(`objeto`.`idUabcs`,`objeto`.idObjeto) as etiqueta ,
+                                                `objeto`.`nombre`, `tipoproducto`.`producto`,
+                                                `aula`.`nombreAula`,
+                                                `edificio`.`Nombre`,
+                                                `prestamo`.`exitDate`,
+                                                `prestamo`.`returnDate`,
+                                                concat(DATE_FORMAT(userprestamo.fecha, '%d%m%Y'), userprestamo.identificador) as idUsuario, 
+                                                userprestamo.nombre as nombreUsuario 
+                                            from 
+                                                tipoproducto, 
+                                                objeto, 
+                                                aula,edificio, 
+                                                prestamo, 
+                                                prestamo_has_objeto,
+                                                userprestamo 
+                                            where `prestamo_has_objeto`.`idPrestamo` = `prestamo`.`idPrestamo` 
+                                                and `prestamo_has_objeto`.`idObjeto` = `objeto`.`idObjeto`  
+                                                and `prestamo`.`idEdificio` = `edificio`.`idEdificio` 
+                                                and `prestamo`.`idAula` = `aula`.`idAula` 
+                                                and `objeto`.`idTipoProducto` = `tipoproducto`.`idTipoProducto`
+                                                and `userprestamo`.`idUserprestamo` = `prestamo`.`idUserprestamo`
         ");
         if(!$result){
             echo die("error");     
@@ -109,7 +129,8 @@ switch($option){
                     'nombreEdificio' => $row['Nombre'],
                     'exitDate' => $row['exitDate'],
                     'returnDate' => $row['returnDate'],
-                    
+                    'idUsuario' => $row['idUsuario'],
+                    'nombreUsuario' => $row['nombreUsuario']
                 );
             }
             $jsonstring = json_encode($json);

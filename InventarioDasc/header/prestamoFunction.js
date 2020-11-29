@@ -22,6 +22,7 @@ function getLoanCard(cardName){
             var idLoan;
             var lastIdLoan;
             cons.forEach(task=>{
+                console.log(task.usuario)
                 idLoan = task.idPrestamo;
                 cardLoanArray[cont] = new cardLoan(task.idPrestamo);
                 if(idLoan != lastIdLoan){
@@ -35,10 +36,10 @@ function getLoanCard(cardName){
                                     <div class="loan-body disp-flexRow">
                                         <div class="loan-info disp-flexCol">
                                             <label class="label-clas">No. de usuario: 
-                                                <label class="label-answ"> NO EXISTE CAMPO BDD </label>
+                                                <label class="label-answ"> ${task.idUsuario} </label>
                                             </label>
                                             <label class="label-clas">Nombre de usuario: 
-                                                <label class="label-answ"> NO EXISTE CAMPO BDD </label>
+                                                <label class="label-answ"> ${task.nombreUsuario} </label>
                                             </label>
                                             <label class="label-clas">Salón 
                                                 <label class="label-answ"> ${task.nombreAula} </label>
