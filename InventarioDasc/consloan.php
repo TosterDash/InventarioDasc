@@ -19,36 +19,13 @@
 
     </head>
     <body>
+     
          
-        <div class="disp-flexrow">
-         <!--Barra de busqueda-->
-            <div class="disp-flexCol cons-nav-bar">
-                <div class="row-form cons-col-size"> 
-                    <label>Buscar por:</label>
-                    <select  name="combobox-search" id="combobox-search">
-                        <option values="nombre">Identificador</option>
-                        <option values="descripcion">Número de préstamo</option>
-                    </select>
-                </div >
-                <div class="row-form cons-col-size">
-                    <div class="disp-flexRow">
-                        <input type="text" placeholder="Buscar..." id="search" class="search-input">
-                    </div>
-                </div>
-                <div class=" row-form cons-col-size">
-                    <label>Mostrar por:</label>
-                    <select name="combobox-category" id="combobox-category">
-                    </select>
-                </div>
-            </div>
-            <!--Barra de busqueda-->
+    
 
         <div id="card-container" class="disp-flexWarp">
-
-            
             
         </div>
-
-        </div>
+    
     </body>
 </html>

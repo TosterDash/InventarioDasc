@@ -89,17 +89,13 @@ body{
 	width: 100%;
 	display: inline-block;
 }
-
 .loan-info{
 	width: 50%;
 	display: inline-block;
 }
-
 .loan-info label{
-
 	margin-bottom: 5%;
 }
-
 .label-clas{
 	color: black;
 }
@@ -132,7 +128,7 @@ body{
 	position:sticky;
 	top: 0;
 	height: 100vh;
-	width: 30%;
+	width: 22%;
 	padding: 1%;
 	border-top:1px solid black;
 	background-color: #333E49;
