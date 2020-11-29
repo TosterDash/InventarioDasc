@@ -73,7 +73,6 @@
                 </div>
             </div>
             <!--Tabla de consulta-->
-            
         </div>
 
     </body>
