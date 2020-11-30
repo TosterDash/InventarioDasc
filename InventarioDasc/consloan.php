@@ -20,7 +20,7 @@
     </head>
     <body>
      
-     <div class="disp-flexRow">
+    <div class="disp-flexRow">
          <!--Barra de busqueda-->
         <div class="disp-flexCol cons-nav-bar">
             <div class="row-form cons-col-size"> 
@@ -37,8 +37,16 @@
             </div>
             <div class=" row-form cons-col-size">
                 <label>Mostrar por:</label>
-                <select name="combobox-category" id="combobox-category">
-                </select>
+                <div class="disp-flexWrap" style="width: 100%">
+                    <input style="width: 10%" type="radio" onclick="window.location='loanHistory.php';" />
+                    <label>Entregados</label>
+                </div>
+
+                <div class="disp-flexWrap" style="width: 100%">
+                    <input style="width: 10%" type="radio" onclick="window.location='consloan.php';" / checked="true">
+                    <label>No entregados</label>
+                </div>
+                
             </div>
         </div>
         <!--Barra de busqueda-->

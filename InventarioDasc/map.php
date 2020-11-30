@@ -105,7 +105,7 @@ describir cada método
 				</div>
 				<div class="">
 				<table>
-					<tr>
+					<tr> Nombre
 						<th>a</th>
 						<th>a</th>
 						<th>a</th>
@@ -114,22 +114,22 @@ describir cada método
 						<th>a</th>
 
 					</tr>
-					<tr>
-						<th>a</th>
-						<th>a</th>
-						<th>a</th>
-						<th>a</th>
-						<th>a</th>
-						<th>a</th>
-						
+					<tr> Descripción
+						<th>b</th>
+						<th>b</th>
+						<th>b</th>
+						<th>b</th>
+						<th>b</th>
+						<th>b</th>
 					</tr>
 					<tr>
-						<th>a</th>
-						<th>a</th>
-						<th>a</th>
-						<th>a</th>
-						<th>a</th>
-						<th>a</th>
+						Cantidad
+						<th>c</th>
+						<th>c</th>
+						<th>c</th>
+						<th>c</th>
+						<th>c</th>
+						<th>c</th>
 						
 					</tr>
 				</table>

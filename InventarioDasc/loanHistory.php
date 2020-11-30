@@ -24,149 +24,42 @@
 
     </head>
     <body>
-        <h1 class="center-title">HISTORIAL DE PRÉSTAMOS</h1>
-
-        <nav class="history-nav">
-            <a href="consloan.php">préstamos actuales<a/>
-            <label >registro de prestamos</label>
-        </nav>
-
-        
-
-        <div id="card-container" class="disp-flexWarp">
-            <!--INICIO DE UN CUADRITO DE PRESTAMO-->
-            <div class="single-loan">
-                <div class="loan-head">
-                      <label># DE PRÉSTAMO</label>
-                </div>
-                <hr class="divider-hor">
-                <div class="loan-body disp-flexRow">
-                    <div class="loan-info disp-flexCol">
-                        <label class="label-clas">No. de usuario: 
-                            <label class="label-answ"> 2016082757 </label>
-                        </label>
-                        <label class="label-clas">Nombre de usuario: 
-                            <label class="label-answ"> Juan carlos bodoque </label>
-                        </label>
-                        <label class="label-clas">Salón 
-                            <label class="label-answ"> salon oshenta </label>
-                        </label>
-                        <label class="label-clas">fecha pedido: 
-                            <label class="label-answ"> ayer </label>
-                        </label>
-                        <label class="label-clas">fecha pedido: 
-                            <label class="label-answ"> hoy </label>
-                        </label>
-                    </div>
-                    <hr class="divider-ver">
-                    <div class="loan-table disp-flexCol">
-                        <table>
-                            <tr>
-                                <td>CAUTÍN PEDORRO</td>
-                                <td>FOTO DELKAUTIN</td>
-                            </tr>
-                            <tr>
-                                <td>CAUTÍN PEDORRO</td>
-                                <td>FOTO DELKAUTIN</td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-                <div class="loan-foot">
-                    <button>Entregar</button>
+        <div class="disp-flexRow">
+         <!--Barra de busqueda-->
+        <div class="disp-flexCol cons-nav-bar">
+            <div class="row-form cons-col-size"> 
+                <label>Buscar por:</label>
+                <select  name="combobox-search" id="combobox-search">
+                    <option values="nombre">Identificador</option>
+                    <option values="descripcion">Número de préstamo</option>
+                </select>
+            </div >
+            <div class="row-form cons-col-size">
+                <div class="disp-flexRow">
+                    <input type="text" placeholder="Buscar..." id="" class="search-input">
                 </div>
             </div>
-            <!--FIN DE UN CUADRITO DE PRESTAMO-->
+            <div class=" row-form cons-col-size">
+                <label>Mostrar por:</label>
+                <div class="disp-flexWrap" style="width: 100%">
+                    <input style="width: 10%" type="radio" onclick="window.location='loanHistory.php';" / checked="true">
+                    <label>Entregados</label>
+                </div>
 
-            <!--INICIO DE UN CUADRITO DE PRESTAMO-->
-            <div class="single-loan">
-                <div class="loan-head">
-                      <label># DE PRÉSTAMO</label>
-                </div>
-                <hr class="divider-hor">
-                <div class="loan-body disp-flexRow">
-                    <div class="loan-info disp-flexCol">
-                        <label class="label-clas">No. de usuario: 
-                            <label class="label-answ"> 2016082757 </label>
-                        </label>
-                        <label class="label-clas">Nombre de usuario: 
-                            <label class="label-answ"> Juan carlos bodoque </label>
-                        </label>
-                        <label class="label-clas">Salón 
-                            <label class="label-answ"> salon oshenta </label>
-                        </label>
-                        <label class="label-clas">fecha pedido: 
-                            <label class="label-answ"> ayer </label>
-                        </label>
-                        <label class="label-clas">fecha pedido: 
-                            <label class="label-answ"> hoy </label>
-                        </label>
-                    </div>
-                    <hr class="divider-ver">
-                    <div class="loan-table disp-flexCol">
-                        <table>
-                            <tr>
-                                <td>CAUTÍN PEDORRO</td>
-                                <td>FOTO DELKAUTIN</td>
-                            </tr>
-                            <tr>
-                                <td>CAUTÍN PEDORRO</td>
-                                <td>FOTO DELKAUTIN</td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-                <div class="loan-foot">
-                    <button>Entregar</button>
+                <div class="disp-flexWrap" style="width: 100%">
+                    <input style="width: 10%" type="radio" onclick="window.location='consloan.php';" />
+                    <label>No entregados</label>
                 </div>
             </div>
-            <!--FIN DE UN CUADRITO DE PRESTAMO-->
-
-            <!--INICIO DE UN CUADRITO DE PRESTAMO-->
-            <div class="single-loan">
-                <div class="loan-head">
-                      <label># DE PRÉSTAMO</label>
-                </div>
-                <hr class="divider-hor">
-                <div class="loan-body disp-flexRow">
-                    <div class="loan-info disp-flexCol">
-                        <label class="label-clas">No. de usuario: 
-                            <label class="label-answ"> 2016082757 </label>
-                        </label>
-                        <label class="label-clas">Nombre de usuario: 
-                            <label class="label-answ"> Juan carlos bodoque </label>
-                        </label>
-                        <label class="label-clas">Salón 
-                            <label class="label-answ"> salon oshenta </label>
-                        </label>
-                        <label class="label-clas">fecha pedido: 
-                            <label class="label-answ"> ayer </label>
-                        </label>
-                        <label class="label-clas">fecha pedido: 
-                            <label class="label-answ"> hoy </label>
-                        </label>
-                    </div>
-                    <hr class="divider-ver">
-                    <div class="loan-table disp-flexCol">
-                        <table>
-                            <tr>
-                                <td>CAUTÍN PEDORRO</td>
-                                <td>FOTO DELKAUTIN</td>
-                            </tr>
-                            <tr>
-                                <td>CAUTÍN PEDORRO</td>
-                                <td>FOTO DELKAUTIN</td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-                <div class="loan-foot">
-                    <button>Entregar</button>
-                </div>
-            </div>
-            <!--FIN DE UN CUADRITO DE PRESTAMO-->
-            
-
         </div>
+        <!--Barra de busqueda-->
+    
+        <div id="" class="disp-flexWarp">
+            
+        </div>
+    </div>
+
+    <script src="header/header.js"></script>
+        
     </body>
 </html>

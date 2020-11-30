@@ -4,7 +4,7 @@ if (document.URL.includes("consinventory.php") || document.URL.includes("addInve
 	console.log("patopipon");
 	document.getElementById("inventory-menu").style.color = "#bfcbe0";
 
-}else if(document.URL.includes("consloan.php")||document.URL.includes("addloan.php")){
+}else if(document.URL.includes("consloan.php")||document.URL.includes("addloan.php")||document.URL.includes("loanHistory.php") ){
 	console.log("patopipon");
 	document.getElementById("loan-menu").style.color = "#d9e7ff";
 

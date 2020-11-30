@@ -81,7 +81,18 @@ hacer que las notificaciones de mantenimiento
 
 function getNotificationNum(response){
     var totalNotification = getMantenimientoToDo(response);
-    $("#notification").html(`<a class="menu-list navigation-menu-listt dropdown-toggle" data-toggle="dropdown">
+    
+    if (totalNotification == 0) {
+        $("#notification").html(`<a class="menu-list navigation-menu-listt dropdown-toggle" data-toggle="dropdown">
+                                        NOTIFICACIONES
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="notificationBoard.php">MANTENIMIENTO (0)</a>
+                                        <a class="dropdown-item" href="notificationBoard.php">PRÉSTAMOS (0)</a>
+                                        <a class="dropdown-item" href="notificationBoard.php">PRODUCTOS ()</a>
+                                    </div>`);
+    }
+    else{
+        $("#notification").html(`<a class="menu-list navigation-menu-listt dropdown-toggle" data-toggle="dropdown">
                                         NOTIFICACIONES
                                         <span class="badge">`+totalNotification+`</span></a>
                                     <div class="dropdown-menu">
@@ -89,6 +100,7 @@ function getNotificationNum(response){
                                         <a class="dropdown-item" href="notificationBoard.php">PRÉSTAMOS (`+totalNotification+`)</a>
                                         <a class="dropdown-item" href="notificationBoard.php">PRODUCTOS (`+totalNotification+`)</a>
                                     </div>`);
+    }
                                     
        
 }
