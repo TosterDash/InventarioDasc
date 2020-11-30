@@ -488,7 +488,7 @@ function getCombobox(idCombobox,tipoCombobox,idTipoReferencia){
 
             default:
                 var jsonInfo = JSON.parse(e);
-                var template = `<option value="">--seleccionar--</option>`;
+                var template = `<option hidden>Selecciona</option>`;
                 jsonInfo.forEach(task=>{
                     switch(task.option){
                         case "clasificacion":

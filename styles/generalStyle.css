@@ -3,7 +3,7 @@ body{
 }
 
 a { color: inherit; } 
-a:hover  { color: white; } 
+a:hover{ cursor: pointer; }
 
 .link-button {
 	font-size: 5mm;
@@ -55,13 +55,19 @@ a:hover  { color: white; }
 
 /*STANDAR SHAPE PARA LAS SIGUIENTES ETIQUETAS*/
 /*inputs*/
-input {
+input{
 	border-radius:8px;
 	border:1px solid #333E49;
 	padding: 2.5%;
 	width: 100%;
 }
 
+input[type=radio]{
+
+}
+input[type=checkbox]{
+	width: 15px;
+}
 
 select {
 	border-radius:8px;
@@ -84,6 +90,8 @@ button{
 	width: 20%;
 	margin-left: 10%;
 }
+
+
 
 .reset-btn{
 	width: 6%;

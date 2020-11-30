@@ -13,10 +13,15 @@
     <script src="inventario/JS/addinventory.js"></script>
 </head>
 
-<body>
-    <h1 id="title" class="center-title">AÑADIR INVENTARIO</h1>
+<body class="background-img">
+    
 <form class="disp-flexCol" method="POST" id="formSend" enctype="multipart/form-data">
-    <div>
+
+
+    <div class="form-background">
+        <h1 id="title" class="center-title">AÑADIR INVENTARIO</h1>
+        <hr class="divider-hor">
+    <div class="disp-flexCol">
         <!--<input class="reset-btn" type="reset" value="reiniciar">
         <a class="a-to-btn" href="consinventory.php">Volver</a>-->
         <div id="col-1">
@@ -40,8 +45,6 @@
                         
                     </div>
                     <button class="btn btn-success" type="button" id="btn-producto-confirmar" value="confirm-add">Añadir producto</button>
-                    
-
                 </div>
                 <div id="col-1-block-mant">
                     <input type="checkbox" name="col-1-checkbox-mant" id="col-1-checkbox-mant">Mantenimiento</input>
@@ -63,8 +66,6 @@
 
                     <label class="">Descripción del producto</label>
                     <input type="text" name="col-2-text-desc" class="" id="col-2-text-desc" required></input>
-                    
-
                 <div id="col-2-block-mant">
                     <label class="">Responsable del mantenimiento</label>
                     <input type="text" name="col-2-text-mantResp"  class="" id="col-2-text-mantResp"></input>
@@ -77,6 +78,7 @@
                 </div>
             </div>
             <!-- SEGUNDA COLUMNA DE LA PAGINA -->
+
             <!-- TERCERA COLUMNA DE LA PAGINA -->
             <div class="disp-flexCol row-form add-col-size">
                 <div id="col-3-content">  
@@ -84,15 +86,20 @@
                     <input class="pic-input" type="file" class="" name="item_file" id="item_file" require></input>
                 </div>
             </div>
-        <!-- TERCERA COLUMNA DE LA PAGINA -->
+            <!-- TERCERA COLUMNA DE LA PAGINA -->
         </div>
     </div>
-    <div class="button-form">
+    <div>
+        <div class="button-form">
         <div class="auto-margin">
             <button type="" class="" id="cancel-objeto">Cancelar</button>
             <button type="submit" class="" id="submit-objeto">Añadir Objeto</button>
         </div>
+        </div>
     </div>
+    
+</div>
+
 </form> 
 </body>
 </html>

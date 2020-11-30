@@ -5,6 +5,11 @@ body{
 	
 }
 
+.background-img{
+	background-image: url('../resources/campus_mapa.jpg');
+	background-repeat: no-repeat, repeat;
+	background-size: cover;
+}
 
 .form-background{
 	background-color: white;
@@ -14,6 +19,7 @@ body{
 	margin-left: 15%;
 	padding: 1%;
 	margin-top: 5%;
+	margin-bottom: 5%;
 }
 
 .divider-hoz{
@@ -46,7 +52,7 @@ body{
 
 .table-scroll{
 	overflow-y: scroll;
-	max-height: 100px;
+	max-height: 50vh;
 }
 
 .table-row{

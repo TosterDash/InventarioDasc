@@ -6,7 +6,7 @@
     <?php include ('header.html');?>
     <link rel="stylesheet" href="../styles/normalize.css">
     <link rel="stylesheet" href="../styles/generalStyle.css">
-    <!--<link rel="stylesheet" href="../styles/loanStyle.css">-->
+    <link rel="stylesheet" href="../styles/loanStyle.css">
     <script 
         src="header/prestamoFunction.js">
     </script>
@@ -49,7 +49,7 @@
                             <tbody id="loan-tbody"></tbody>
                             <!--fila-->
                         </table>
-                        <p>ESTE ES UN TEXTO SOLO PARA PARTIRLE LA MADRE A LOS PINCHES CHECKBOXES QUE ME TIENEN HASTA LA MADRE OJALA SE LOS VIOLE SU TIO. pinches jotos nada mas dije eso y ya se muestran hijos de su reputisima madre. </p>
+                        <p>Ya vatoooooo arregla2, como ves papu? todo bien, todo correcto y yo q me alegro </p>
                     </div> 
                 </div>
                 <div class="addloan-btn">

@@ -20,6 +20,7 @@
                 <div class="row-form cons-col-size"> 
                     <label>Buscar por:</label>
                     <select  name="combobox-search" id="combobox-search">
+                        <option hidden>Selecciona</option>
                         <option values="Nombre">Nombre</option>
                         <option values="Descripción">Descripcion</option>
                     </select>
@@ -32,6 +33,7 @@
                 <div class=" row-form cons-col-size">
                     <label>Mostrar por:</label>
                     <select name="combobox-category" id="combobox-category">
+                        <option hidden>Selecciona</option>
                     </select>
                 </div>
             </div>

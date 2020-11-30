@@ -26,6 +26,7 @@
             <div class="row-form cons-col-size"> 
                 <label>Buscar por:</label>
                 <select  name="combobox-search" id="combobox-search">
+                    <option hidden>Selecciona</option>
                     <option values="nombre">Identificador</option>
                     <option values="descripcion">Número de préstamo</option>
                 </select>
