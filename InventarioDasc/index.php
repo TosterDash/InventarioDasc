@@ -26,12 +26,6 @@ if(!isset($_SESSION['nombre']))
 </head>
 <body>
 	<div id="demo" class="carousel slide mt-9" data-interval="5000" data-ride="carousel">
-  <!-- Indicators -->
-  <ul class="carousel-indicators">
-    <li data-target="#demo" data-slide-to="0" class="active"></li>
-    <li data-target="#demo" data-slide-to="1"></li>
-    <li data-target="#demo" data-slide-to="2"></li>
-  </ul>
   <div>
   	<!-- The slideshow -->
 	  <div class="carousel-inner">
@@ -61,5 +55,7 @@ if(!isset($_SESSION['nombre']))
 	</div>
   </div>
 </body>
+<?php include ('footer.html');?>
 </html>
+
 

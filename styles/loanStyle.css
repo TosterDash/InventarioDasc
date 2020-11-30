@@ -52,7 +52,8 @@ body{
 
 .table-scroll{
 	overflow-y: scroll;
-	max-height: 50vh;
+	overflow-x: scroll;
+	width: 100%;
 }
 
 .table-row{

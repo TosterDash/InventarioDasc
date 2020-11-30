@@ -43,13 +43,12 @@
                     </div>
                 
                     <!--Tabla donde puedes seleccionar todos los objetos que vas a pedir-->
-                    <div class="disp-flexCol row-form  table-scroll">
+                    <div class="disp-flexCol row-form table-scroll">
                         <label>Selecciona los materiales a prestar</label>
                         <table id="loan-table" class="">
                             <tbody id="loan-tbody"></tbody>
                             <!--fila-->
                         </table>
-                        <p>Ya vatoooooo arregla2, como ves papu? todo bien, todo correcto y yo q me alegro </p>
                     </div> 
                 </div>
                 <div class="addloan-btn">
