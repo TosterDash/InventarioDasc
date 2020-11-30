@@ -35,6 +35,27 @@ switch($option){
         echo $jsonString;
     break;
 
+    case "getIdUsuario":
+        $result = mysqli_query($conexion,"SELECT * from userprestamo");
+        if(!$result){
+            echo die("error");     
+        }else{
+            //Crear json
+            $json = array();
+            //Realizar consulta
+            while($row = mysqli_fetch_array($result)){//Mientras tu variable fila este dentro de la cantidad de registros de consulta
+                $json []= array(
+                    'id' => $row['idUserPrestamo'],
+                    'identificador' => $row['identificador'],
+                    'nombre' => $row['nombre'],
+                    'prestamoActivo' => $row['prestamoActivo'],
+                );
+            }
+            $jsonstring = json_encode($json);
+            echo $jsonstring;
+        }
+    break;
+
     case "getTablePrestamo":
         
         $result = mysqli_query($conexion,
@@ -62,16 +83,22 @@ switch($option){
     break;
 
     case "addPrestamo":
+        $numUsuario = $_POST["numUsuario"];
         $building = $_POST["building"];
         $classroom = $_POST["classroom"];
         $exitDate = $_POST["exitDate"];
         $returnDate = $_POST["returnDate"];
+   
+        //2016082681
+        $insert = mysqli_query($conexion,"INSERT INTO prestamo(idEdificio,idAula,idUserprestamo,exitDate,returnDate,entregado)
+        VALUES ('$building','$classroom','$numUsuario','$exitDate','$returnDate','false') ");
         
-
-        $insert = mysqli_query($conexion,"INSERT INTO prestamo(idEdificio,idAula,exitDate,returnDate,entregado)
-        VALUES ('$building','$classroom','$exitDate','$returnDate',null) ");
-
-        echo $insert;
+        if(!$insert){
+            echo die("error");     
+        }else{
+            
+        }
+        
 
     break;
 
@@ -81,11 +108,37 @@ switch($option){
         $mod = mysqli_query($conexion,"UPDATE objeto SET prestamo = 'false' where idObjeto = '$objects[$i]'");
     break;
 
+    case "disableDisponibleUser":
+        $numUsuario = $_POST["numUsuario"];
+        $mod = mysqli_query($conexion,"UPDATE userprestamo SET prestamoActivo = 'true' where idUserPrestamo = '$numUsuario'");
+        
+    break;
+
+
     case "addPrestamoHasObjeto":
         $objects = $_POST["objects"];
         $i = $_POST["i"];
          $insert = mysqli_query($conexion,"INSERT INTO prestamo_has_objeto(idPrestamo,idObjeto)
         VALUES ( (SELECT idPrestamo from prestamo ORDER BY idPrestamo DESC LIMIT 1 ), $objects[$i]) ");
+    break;
+
+
+    case "entregarPrestamo":
+        $idPrestamo = $_POST["idPrestamo"];
+        $idUsuario = $_POST["idUsuario"];
+
+        $mod = mysqli_query($conexion,"UPDATE `prestamo`,`objeto`,`userprestamo`, `prestamo_has_objeto`
+        SET `prestamo`.`entregado` = 'true', `objeto`.`prestamo` = 'true', `userprestamo`.`prestamoActivo` = 'false'
+        WHERE `prestamo`.`idPrestamo` = '$idPrestamo' 
+        and `userprestamo`.`identificador` = '$idUsuario' 
+        and `prestamo_has_objeto`.`idObjeto` = `objeto`.`idObjeto` 
+        and `prestamo_has_objeto`.`idPrestamo` = '$idPrestamo' ");
+        echo $mod;
+    break;
+
+    case "removePrestamoHas":
+        $idPrestamo = $_POST["idPrestamo"];
+        $delete = mysqli_query($conexion, "DELETE FROM prestamo_has_objeto where idPrestamo = '$idPrestamo'");
     break;
 
     case "getLoanCard":
@@ -97,21 +150,24 @@ switch($option){
                                                 `edificio`.`Nombre`,
                                                 `prestamo`.`exitDate`,
                                                 `prestamo`.`returnDate`,
-                                                concat(DATE_FORMAT(userprestamo.fecha, '%d%m%Y'), userprestamo.identificador) as idUsuario, 
-                                                userprestamo.nombre as nombreUsuario 
+                                                `userprestamo`.`identificador`,
+                                                `userprestamo`.`nombre`
                                             from 
                                                 tipoproducto, 
                                                 objeto, 
                                                 aula,edificio, 
                                                 prestamo, 
                                                 prestamo_has_objeto,
-                                                userprestamo 
+                                                userprestamo
+                                               
                                             where `prestamo_has_objeto`.`idPrestamo` = `prestamo`.`idPrestamo` 
                                                 and `prestamo_has_objeto`.`idObjeto` = `objeto`.`idObjeto`  
                                                 and `prestamo`.`idEdificio` = `edificio`.`idEdificio` 
                                                 and `prestamo`.`idAula` = `aula`.`idAula` 
                                                 and `objeto`.`idTipoProducto` = `tipoproducto`.`idTipoProducto`
-                                                and `userprestamo`.`idUserprestamo` = `prestamo`.`idUserprestamo`
+                                                and `prestamo`.`idUserprestamo` = `userprestamo`.`idUserPrestamo`
+                                                
+                                                
         ");
         if(!$result){
             echo die("error");     
@@ -129,8 +185,8 @@ switch($option){
                     'nombreEdificio' => $row['Nombre'],
                     'exitDate' => $row['exitDate'],
                     'returnDate' => $row['returnDate'],
-                    'idUsuario' => $row['idUsuario'],
-                    'nombreUsuario' => $row['nombreUsuario']
+                    'idUsuario' => $row['identificador'],//atributo temporal
+                    'nombreUsuario' => $row['nombre']//atributo temporal
                 );
             }
             $jsonstring = json_encode($json);
@@ -138,6 +194,13 @@ switch($option){
         }
 
     break;
+
+
+    /*
+    case "entregarPrestamo":
+        
+    break;
+    */
 
 
 }

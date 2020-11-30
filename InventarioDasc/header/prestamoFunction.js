@@ -1,11 +1,37 @@
 var rutaAjaxPrestamo = "prestamo/PHP/prestamoCons.php";
 var listPrestamoId = [];
 var cardLoanArray = [];
+var idUsuarioArray = [];
+
+class idUsuario{
+    constructor(idUserPrestamo,id,nombre,prestamoActivo){
+        this.idUserPrestamo = idUserPrestamo;
+        this.id = id;
+        this.nombre = nombre;
+        this.prestamoActivo = prestamoActivo;
+     
+    }
+}
 
 class cardLoan{
-    constructor(id){
+    constructor(id,idUsuario,nombreUsuario){
         this.id = id;
+        this.idUsuario = idUsuario;
+        this.nombreUsuario = nombreUsuario;
+        
+       
     }
+
+    entregarButton(){
+        var idPrestamo = this.id;
+        var idUsuario = this.idUsuario;
+
+        $(document).on('click',"#card-loan-button-"+idPrestamo,function(){
+            console.log(idPrestamo);
+            entregarPrestamo(idPrestamo,idUsuario);
+        })
+    }
+
 }
 
 function getLoanCard(cardName){
@@ -15,20 +41,24 @@ function getLoanCard(cardName){
         type: 'POST',
         data: {option},
         success: function(response){
-            console.log(response);
+            //console.log(response);
             var cons = JSON.parse(response);
             var template = ``; 
+            
             var cont = 0;
             var idLoan;
             var lastIdLoan;
             cons.forEach(task=>{
-                console.log(task.usuario)
+               
                 idLoan = task.idPrestamo;
-                cardLoanArray[cont] = new cardLoan(task.idPrestamo);
+                
                 if(idLoan != lastIdLoan){
-                    
+                
+                    cardLoanArray[cont] = new cardLoan(idLoan,task.idUsuario,task.nombreUsuario);
+                   
+                    //console.log(cardLoanArray.length);
                     template += `
-                                <div class="single-loan">
+                                <div class="single-loan" id="single-loan-${task.idPrestamo}">
                                     <div class="loan-head">
                                         <label>#${task.idPrestamo} DE PRÉSTAMO</label>
                                     </div>
@@ -53,42 +83,96 @@ function getLoanCard(cardName){
                                         </div>
                                         <hr class="divider-ver">
                                         <div class="loan-table disp-flexCol">
-                                            <table id=loan-card-${task.idPrestamo}>
+                                            <table id="loan-card-${task.idPrestamo}">
                                                 
                                             </table>
                                         </div>
                                     </div>
                                     <div class="loan-foot">
-                                        <button>Entregar</button>
+                                        <button id="card-loan-button-${task.idPrestamo}">Entregar</button>
                                     </div>
                                 </div>
                                         `;
+                 
+                    $("#"+cardName).html(template);
+                    cardLoanArray[cont].entregarButton();
                 }
+               
+                
                 lastIdLoan = idLoan;
-                console.log(cardLoanArray[cont].id)
                 cont++;              
 
             })
-            $("#"+cardName).html(template);
-            
+        
+            template = ``;
+            idLoan = 0;
+            cont=0;
             cons.forEach(task=>{
-                
-                var template1 = ``;
-                for(var i = 0;i<cardLoanArray.length;i++){
-                    
-                    if(task.idPrestamo == cardLoanArray[i].id){
-                        //console.log(task.etiqueta);
-                        template1 += `<tr>
-                                        <td>${task.etiqueta}</td>
-                                        <td>${task.producto}</td>
-                                        
-                                    </tr>`;
-                    }
+                if(task.idPrestamo!=idLoan){
+                    template = ``;
+
                 }
-                $("#loan-card-"+task.idPrestamo).html(template1);
+                idLoan = task.idPrestamo;
+                template += `<tr>
+                                <td>${task.etiqueta}</td>
+                                <td>${task.producto}</td>
+                            </tr>`;
+                
+                $("#loan-card-"+idLoan).html(template);
+                
+
+            })
+            
+        }
+    })
+}
+
+function entregarPrestamo(idPrestamo,idUsuario){
+    var option = "entregarPrestamo";
+    $.ajax({
+        url: rutaAjaxPrestamo,
+        type: 'POST',
+        data: {option,idPrestamo,idUsuario},
+        success: function(response){
+            console.log(response);
+            removePrestamoHas();
+        }
+    })
+
+    function removePrestamoHas(){
+        option = "removePrestamoHas";
+        $.ajax({
+            url: rutaAjaxPrestamo,
+            type: 'POST',
+            data: {option,idPrestamo},
+            success: function(response){
+                console.log(response);
+                $("#single-loan-"+idPrestamo).remove();
+                $(document).off('click',"#card-loan-button-"+idPrestamo);
+                alertify.success("Se ha entregado el prestamo");
+            }
+        })
+    }
+
+}
+
+function getIdUsuario(){
+    var option = "getIdUsuario";
+    $.ajax({
+        url: rutaAjaxPrestamo,
+        type: 'POST',
+        data: {option},
+        success: function(response){
+            var cons = JSON.parse(response);
+            var cont = 0;
+            cons.forEach(task=>{
+                idUsuarioArray[cont] = new idUsuario(task.id,task.identificador,task.nombre,task.prestamoActivo);
+
+                cont++;
             })
         }
     })
+
 }
 
 
@@ -99,7 +183,7 @@ function getComboboxMap(nameCombo,idNombreRow,nombreRow,nombreTabla,capaInicial,
         type: 'POST',
         data: {option,idNombreRow,nameCombo,nombreTabla,nombreRow,nombreRowReferencia,idReferencia},
         success: function(response){
-            console.log(response);
+            //console.log(response);
            var cons = JSON.parse(response);
            var template = ``;
            var cont = 0;
@@ -123,14 +207,14 @@ function getTablePrestamo(nameTable){
         type: 'POST',
         data: {option},
         success: function(response){
-            console.log(response);
+            //console.log(response);
             var cons = JSON.parse(response);
             var template = ``;
             var cont = 0;
 
             cons.forEach(task=>{
                 template += `<tr file${task.idObjeto}>`;
-                template += `<th><input type="checkbox" id="${task.idObjeto}" ></input></th>`;
+                template += `<th><input type="checkbox" id="${task.idObjeto}" " ></input></th>`;
                 template += `<th><img height="70px" src="data:image/jpg;base64,${task.img}"/></th>`;
                 template += `<th>${task.etiqueta}</th>`;
                 template += `<th>${task.nombre}</th>`;
@@ -145,18 +229,24 @@ function getTablePrestamo(nameTable){
 
 }
 
-function addPrestamo(building,classroom,exitDate,returnDate,objects){
+function addPrestamo(numUsuario,building,classroom,exitDate,returnDate,objects){
     var option = "addPrestamo";
+    console.log(numUsuario);
     $.ajax({
         url: rutaAjaxPrestamo,
         type:'POST',
-        data:{option,building,classroom,exitDate,returnDate},
+        data:{option,numUsuario,building,classroom,exitDate,returnDate},
         success: function(response){
-            console.log(response);
+            //console.log(response);
             for(var i = 0;i<objects.length;i++){
                 disableDisponible(objects,i);
                 addPrestamoHasObjeto(objects,i);
+                
             }
+            disableDisponibleUser(numUsuario);
+            alertify.success("Se creo un nuevo prestamo");
+            getIdUsuario();
+            getTablePrestamo("loan-tbody");
         }
     })
 
@@ -178,6 +268,18 @@ function addPrestamo(building,classroom,exitDate,returnDate,objects){
             url: rutaAjaxPrestamo,
             type:'POST',
             data:{option,objects,i},
+            success: function(response){
+              
+            }
+        })
+    }
+
+    function disableDisponibleUser(numUsuario){
+        var option = "disableDisponibleUser";
+        $.ajax({
+            url: rutaAjaxPrestamo,
+            type:'POST',
+            data:{option,numUsuario},
             success: function(response){
               
             }

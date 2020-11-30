@@ -6,7 +6,7 @@
     <?php include ('header.html');?>
     <link rel="stylesheet" href="../styles/normalize.css">
     <link rel="stylesheet" href="../styles/generalStyle.css">
-    <link rel="stylesheet" href="../styles/loanStyle.css">
+    <!--<link rel="stylesheet" href="../styles/loanStyle.css">-->
     <script 
         src="header/prestamoFunction.js">
     </script>
@@ -25,7 +25,7 @@
                 <div class="loan-container disp-flexRow">          
                     <div class="disp-flexCol row-form round-border">
                         <label class="" >Identificador</label>
-                        <input class="" type="number" value="">
+                        <input class="" type="number" value="" id="input-id-user">
                         <!--Edificio-->
                         <label class="input-margin" >Edificio</label>
                         <select class="input-margin" name="loan-add-edif" id="loan-add-edif">
