@@ -136,13 +136,28 @@ switch($option){
         echo $mod;
     break;
 
-    case "removePrestamoHas":
+    /*case "removePrestamoHas":
         $idPrestamo = $_POST["idPrestamo"];
         $delete = mysqli_query($conexion, "DELETE FROM prestamo_has_objeto where idPrestamo = '$idPrestamo'");
-    break;
+    break;*/
 
     case "getLoanCard":
         $typeEntregado = $_POST["typeEntregado"];
+        $typeBuscar = $_POST["typeBuscar"];
+        
+        //$tablebdd = $_POST["tableBdd"];
+        //$text = $_POST["text"];
+        switch($typeBuscar){
+            case "identificador":
+                $buscador = "userprestamo.identificador";
+            break;
+            case "idPrestamo":
+                $buscador = "prestamo.idPrestamo";
+            break;
+            default:
+                $buscador = "userprestamo.identificador";
+
+        }
         $result = mysqli_query($conexion, "SELECT 
                                                 `prestamo_has_objeto`.`idPrestamo`, 
                                                 concat(`objeto`.`idUabcs`,`objeto`.idObjeto) as etiqueta ,
@@ -168,6 +183,16 @@ switch($option){
                                                 and `prestamo`.`idAula` = `aula`.`idAula` 
                                                 and `objeto`.`idTipoProducto` = `tipoproducto`.`idTipoProducto`
                                                 and `prestamo`.`idUserprestamo` = `userprestamo`.`idUserPrestamo`
+                                                /*and text like (CASE
+                                                            WHEN tablebdd = userprestamo THEN
+                                                                userprestamo.identificador
+                                                            WHEN tablebdd = prestamo THEN
+                                                                prestamo.idPrestamo
+                                                            ELSE
+                                                                text;
+                                                            END)*/
+                                            order by $buscador ASC
+
                                                 
                                                 
         ");
