@@ -402,7 +402,7 @@
             }
         break;
 
-        
+        //--------------NOTIFICACIONES--------------------
 
         case "getDate":
             $select = ("SELECT 
@@ -436,6 +436,29 @@
                         'nextMant' => $row['nextMant'],
                         'mantResp' => $row['mantResp'],
                         'tipoNotificacion' => "mantenimiento",
+                    );
+                }
+                $jsonstring = json_encode($json);
+                echo $jsonstring;
+            }
+        break;
+
+        case "getPrestamoDato":
+            $result = mysqli_query($conexion, "SELECT `prestamo`.`idPrestamo`,`prestamo`.`returnDate`,`userprestamo`.`identificador`,`userprestamo`.`nombre`
+            from `prestamo`,`userprestamo` where `prestamo`.`entregado` = 'false' and `prestamo`.`idUserprestamo` = `userprestamo`.`idUserPrestamo`  ");
+            if(!$result){
+                echo die("error");
+            }else{
+                //Crear json
+                $json = array();
+                //Realizar consulta
+                while($row = mysqli_fetch_array($result)){//Mientras tu variable fila este dentro de la cantidad de registros de consulta
+                    $json []= array(
+                        'idPrestamo' => $row['idPrestamo'],
+                        'returnDate' => $row['returnDate'],
+                        'idUser' => $row['identificador'],
+                        'userName' => $row['nombre'],
+                        
                     );
                 }
                 $jsonstring = json_encode($json);

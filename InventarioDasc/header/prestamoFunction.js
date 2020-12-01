@@ -27,21 +27,22 @@ class cardLoan{
         var idUsuario = this.idUsuario;
 
         $(document).on('click',"#card-loan-button-"+idPrestamo,function(){
-            console.log(idPrestamo);
+            //console.log(idPrestamo);
             entregarPrestamo(idPrestamo,idUsuario);
         })
     }
 
 }
 
-function getLoanCard(cardName,typeEntregado){
+function getLoanCard(cardName,typeEntregado,typeBuscar,text,tableBdd){
     var option = "getLoanCard";
     $.ajax({
         url: rutaAjaxPrestamo,
         type: 'POST',
-        data: {option,typeEntregado},
+        data: {option,typeEntregado,typeBuscar,text,tableBdd},
         success: function(response){
             deleteCards();
+            console.log(response);
             var cons = JSON.parse(response);
             var template = ``; 
             
@@ -60,8 +61,13 @@ function getLoanCard(cardName,typeEntregado){
                     
                     template += `
                                 <div class="single-loan" id="single-loan-${task.idPrestamo}">
-                                    <div class="loan-head">
-                                        <label>#${task.idPrestamo} DE PRÉSTAMO</label>
+                                    <div class="loan-head">`;
+                    if(typeEntregado=="true"){
+                        template += `<label>#${task.idPrestamo} DE PRÉSTAMO | ENTREGADO</label>`;
+                    }else{
+                        template += `<label>#${task.idPrestamo} DE PRÉSTAMO</label>`
+                    }                
+                        template += `
                                     </div>
                                     <hr class="divider-hor">
                                     <div class="loan-body disp-flexRow">
@@ -90,10 +96,11 @@ function getLoanCard(cardName,typeEntregado){
                                         </div>
                                     </div>
                                     <div class="loan-foot">
-                                        <button id="card-loan-button-${task.idPrestamo}">Entregar</button>
-                                    </div>
-                                </div>
-                                        `;
+                                    `;
+                    if(typeEntregado=="false"){
+                        template += `<button id="card-loan-button-${task.idPrestamo}">Entregar</button>`;
+                    }                
+                    template +=  `</div></div>`;
                  
                     $("#"+cardName).html(template);
                     cardLoanArray[cont].entregarButton();

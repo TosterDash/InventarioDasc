@@ -26,9 +26,8 @@
             <div class="row-form cons-col-size"> 
                 <label>Buscar por:</label>
                 <select  name="combobox-search" id="combobox-search">
-                    <option hidden>Selecciona</option>
-                    <option values="nombre">Identificador</option>
-                    <option values="descripcion">Número de préstamo</option>
+                    <option value="identificador">Identificador</option>
+                    <option value="idPrestamo">Número de préstamo</option>
                 </select>
             </div >
             <div class="row-form cons-col-size">
@@ -39,12 +38,12 @@
             <div class=" row-form cons-col-size">
                 <label>Mostrar por:</label>
                 <div class="disp-flexWrap" style="width: 100%">
-                    <input style="width: 10%" type="radio" id="mostrar-radio-entregados" name="mostrar-radio" values="entregados" />
+                    <input style="width: 10%" type="radio" id="mostrar-radio-entregados" name="mostrar-radio" value="true" />
                     <label>Entregados</label>
                 </div>
 
                 <div class="disp-flexWrap" style="width: 100%">
-                    <input style="width: 10%" type="radio" id="mostrar-radio-noentregados" name="mostrar-radio" checked="true" values="noentregados">
+                    <input style="width: 10%" type="radio" id="mostrar-radio-noentregados" name="mostrar-radio" checked="true" value="false">
                     <label>No entregados</label>
                 </div>
                 

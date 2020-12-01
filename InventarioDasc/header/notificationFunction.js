@@ -1,6 +1,8 @@
 var rowTableNotification = [];
 //numero de notificaciones en la barra de notificaciones
 var totalNotification = 0;
+var notificacionPrestamo;
+var notificacionMantenimiento;
 //ruta para hacer consultas
 var rutaAjax = "inventario/PHP/inventoryCons.php";
 //Clases--------------------------------------------------------------------------------
@@ -86,15 +88,15 @@ hacer que las notificaciones de mantenimiento
 */
     
 
-function getNotificationNum(response){
+function getNotificationNum(response,respPrestamo){
     var totalNotification = getMantenimientoToDo(response);
-    
+    totalNotification += getPrestamoToDo(respPrestamo);
     if (totalNotification == 0) {
         $("#notification").html(`<a class="menu-list navigation-menu-listt dropdown-toggle" data-toggle="dropdown">
                                         NOTIFICACIONES
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="notificationBoard.php">MANTENIMIENTO (0)</a>
-                                        <a class="dropdown-item" href="notificationBoard.php">PRÉSTAMOS (0)</a>
+                                        <a class="dropdown-item" href="notificationBoard.php">MANTENIMIENTO ()</a>
+                                        <a class="dropdown-item" href="notificationBoard.php">PRÉSTAMOS ()</a>
                                         <a class="dropdown-item" href="notificationBoard.php">PRODUCTOS ()</a>
                                     </div>`);
     }
@@ -103,9 +105,9 @@ function getNotificationNum(response){
                                         NOTIFICACIONES
                                         <span class="badge">`+totalNotification+`</span></a>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="notificationBoard.php">MANTENIMIENTO (`+totalNotification+`)</a>
-                                        <a class="dropdown-item" href="notificationBoard.php">PRÉSTAMOS (`+totalNotification+`)</a>
-                                        <a class="dropdown-item" href="notificationBoard.php">PRODUCTOS (`+totalNotification+`)</a>
+                                        <a class="dropdown-item" href="notificationBoard.php">MANTENIMIENTO (`+notificationMantenimiento+`)</a>
+                                        <a class="dropdown-item" href="notificationBoard.php">PRÉSTAMOS (`+notificacionPrestamo+`)</a>
+                                        <a class="dropdown-item" href="notificationBoard.php">PRODUCTOS (0)</a>
                                     </div>`);
     }
                                     
@@ -113,10 +115,9 @@ function getNotificationNum(response){
 }
 //funciones get para saber que se necesita hacer (ligadas a getNotificationNUM)
 function getMantenimientoToDo(response){
-    console.log(response);
-    var cons = JSON.parse(response);
+    var cons = JSON.parse(response[0]);
     var cont = 0;
-    var notificationMantenimiento=0;
+    notificationMantenimiento=0;
     var dateNow = new Date();
     var dateMant = [];
     cons.forEach(task =>{
@@ -127,26 +128,26 @@ function getMantenimientoToDo(response){
         cont++;
 
     })
+    
     return notificationMantenimiento;
 }
 
 
-function getPrestamoMantenimientoToDo(response){
-    console.log(response);
-    var cons = JSON.parse(response);
+function getPrestamoToDo(response){
+    var cons = JSON.parse(response[0]);
     var cont = 0;
-    var notificationMantenimiento=0;
+    notificacionPrestamo=0;
     var dateNow = new Date();
-    var dateMant = [];
+    var datePrestamo = [];
     cons.forEach(task =>{
-        dateMant[cont] = new Date(`${task.nextMant}`);
-        if(dateNow.getTime()>=dateMant[cont].getTime()){
-            notificationMantenimiento++;
+        datePrestamo[cont] = new Date(`${task.returnDate}`);
+        if(dateNow.getTime()>=datePrestamo[cont].getTime()){
+            notificacionPrestamo++;
         }
         cont++;
 
     })
-    return notificationMantenimiento;
+    return notificacionPrestamo;
 }
 //funciones get
 function getDate(){
@@ -156,7 +157,8 @@ function getDate(){
 }
 
 function getPrestamoDate(){
-
+    var option = "getPrestamoDato";
+    return $.ajax({url: rutaAjax, type: 'POST',data:{option}})
 }
 
 function getConsumibleCant(){
