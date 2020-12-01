@@ -15,9 +15,16 @@ class rowNotification{
         this.template = "";
     }
     generateRow(){
+        var mant = new Date(this.nextMant)
+        console.log(mant.getMonth());
+        var day = mant.getDate( );
+        var month = mant.getMonth( )+1;
+        var year = mant.getFullYear( );
+        mant = day + 1 +'-'+ month + '-' +year;
+
         this.template = `<tr id="fila`+this.idObjeto+`">
                         <th>`+this.tipoNotificacion+`</th>
-                        <th>`+this.etiqueta+`: El producto `+this.producto+` necesita mantenimiento desde `+this.nextMant+` por el responsable `+this.mantResp+`</th>
+                        <th>`+this.etiqueta+`: El producto `+this.producto+` necesita mantenimiento desde `+mant+` por el responsable `+this.mantResp+`</th>
                         <th><button type="button" class="btn btn-success" id="notifDelete`+this.idObjeto+`">Hecho</button></th>
                         </tr>`
         
@@ -106,6 +113,7 @@ function getNotificationNum(response){
 }
 //funciones get para saber que se necesita hacer (ligadas a getNotificationNUM)
 function getMantenimientoToDo(response){
+    console.log(response);
     var cons = JSON.parse(response);
     var cont = 0;
     var notificationMantenimiento=0;
@@ -122,6 +130,24 @@ function getMantenimientoToDo(response){
     return notificationMantenimiento;
 }
 
+
+function getPrestamoMantenimientoToDo(response){
+    console.log(response);
+    var cons = JSON.parse(response);
+    var cont = 0;
+    var notificationMantenimiento=0;
+    var dateNow = new Date();
+    var dateMant = [];
+    cons.forEach(task =>{
+        dateMant[cont] = new Date(`${task.nextMant}`);
+        if(dateNow.getTime()>=dateMant[cont].getTime()){
+            notificationMantenimiento++;
+        }
+        cont++;
+
+    })
+    return notificationMantenimiento;
+}
 //funciones get
 function getDate(){
     var option = "getDate";
