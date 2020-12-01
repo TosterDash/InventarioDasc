@@ -142,6 +142,7 @@ switch($option){
     break;
 
     case "getLoanCard":
+        $typeEntregado = $_POST["typeEntregado"];
         $result = mysqli_query($conexion, "SELECT 
                                                 `prestamo_has_objeto`.`idPrestamo`, 
                                                 concat(`objeto`.`idUabcs`,`objeto`.idObjeto) as etiqueta ,
@@ -163,6 +164,7 @@ switch($option){
                                             where `prestamo_has_objeto`.`idPrestamo` = `prestamo`.`idPrestamo` 
                                                 and `prestamo_has_objeto`.`idObjeto` = `objeto`.`idObjeto`  
                                                 and `prestamo`.`idEdificio` = `edificio`.`idEdificio` 
+                                                and `prestamo`.`entregado` = '$typeEntregado' 
                                                 and `prestamo`.`idAula` = `aula`.`idAula` 
                                                 and `objeto`.`idTipoProducto` = `tipoproducto`.`idTipoProducto`
                                                 and `prestamo`.`idUserprestamo` = `userprestamo`.`idUserPrestamo`

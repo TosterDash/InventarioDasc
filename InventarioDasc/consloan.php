@@ -39,12 +39,12 @@
             <div class=" row-form cons-col-size">
                 <label>Mostrar por:</label>
                 <div class="disp-flexWrap" style="width: 100%">
-                    <input style="width: 10%" type="radio" onclick="window.location='loanHistory.php';" />
+                    <input style="width: 10%" type="radio" id="mostrar-radio-entregados" name="mostrar-radio" values="entregados" />
                     <label>Entregados</label>
                 </div>
 
                 <div class="disp-flexWrap" style="width: 100%">
-                    <input style="width: 10%" type="radio" onclick="window.location='consloan.php';" / checked="true">
+                    <input style="width: 10%" type="radio" id="mostrar-radio-noentregados" name="mostrar-radio" checked="true" values="noentregados">
                     <label>No entregados</label>
                 </div>
                 

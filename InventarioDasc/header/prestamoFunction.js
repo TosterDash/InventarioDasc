@@ -34,14 +34,14 @@ class cardLoan{
 
 }
 
-function getLoanCard(cardName){
+function getLoanCard(cardName,typeEntregado){
     var option = "getLoanCard";
     $.ajax({
         url: rutaAjaxPrestamo,
         type: 'POST',
-        data: {option},
+        data: {option,typeEntregado},
         success: function(response){
-            //console.log(response);
+            deleteCards();
             var cons = JSON.parse(response);
             var template = ``; 
             
@@ -49,14 +49,15 @@ function getLoanCard(cardName){
             var idLoan;
             var lastIdLoan;
             cons.forEach(task=>{
-               
+                
                 idLoan = task.idPrestamo;
+                //console.log(idLoan);
                 
                 if(idLoan != lastIdLoan){
-                
+                    
                     cardLoanArray[cont] = new cardLoan(idLoan,task.idUsuario,task.nombreUsuario);
-                   
-                    //console.log(cardLoanArray.length);
+                    console.log(cardLoanArray);
+                    
                     template += `
                                 <div class="single-loan" id="single-loan-${task.idPrestamo}">
                                     <div class="loan-head">
@@ -96,11 +97,12 @@ function getLoanCard(cardName){
                  
                     $("#"+cardName).html(template);
                     cardLoanArray[cont].entregarButton();
+                    cont++;  
                 }
                
                 
                 lastIdLoan = idLoan;
-                cont++;              
+                            
 
             })
         
@@ -125,6 +127,16 @@ function getLoanCard(cardName){
             
         }
     })
+
+    function deleteCards(){
+        
+        for(var i = 0; i<cardLoanArray.length; i++){
+            $(document).off('click',"#card-loan-button-"+cardLoanArray[i].id);
+            $("#single-loan-"+cardLoanArray[i].id).remove();
+        }
+    }
+
+
 }
 
 function entregarPrestamo(idPrestamo,idUsuario){
@@ -135,7 +147,9 @@ function entregarPrestamo(idPrestamo,idUsuario){
         data: {option,idPrestamo,idUsuario},
         success: function(response){
             console.log(response);
-            removePrestamoHas();
+            $("#single-loan-"+idPrestamo).remove();
+            $(document).off('click',"#card-loan-button-"+idPrestamo);
+            //removePrestamoHas();
         }
     })
 
@@ -147,8 +161,7 @@ function entregarPrestamo(idPrestamo,idUsuario){
             data: {option,idPrestamo},
             success: function(response){
                 console.log(response);
-                $("#single-loan-"+idPrestamo).remove();
-                $(document).off('click',"#card-loan-button-"+idPrestamo);
+                
                 alertify.success("Se ha entregado el prestamo");
             }
         })
