@@ -34,16 +34,17 @@
         src="../styles/bootstrap-4.5.3-dist/js/bootstrap.min.js">
     </script>
 	<!--SITE STYLE SHEETS-->
-	<link rel="stylesheet" href="../styles/login.css">
 	<link rel="stylesheet" href="../styles/normalize.css">
+	<link rel="stylesheet" href="../styles/generalStyle.css">
+	<link rel="stylesheet" href="../styles/loginStyle.css">
 <head>
 </head>
 
 <body>
 <div>
-	<div class="form-style"> 
-		<h1 class="center-text" >LOGIN</h1>
-			<form class="login-style" id="login-form"> 
+	<div class=""> 
+		<h1 class="center-title">LOGIN</h1>
+			<form class="" id="login-form"> 
 				<label for="username">USUARIO</label><br>
 				<input type="text" name="username" id="username">
 				<label for="username">CONTRASEÑA</label><br>
