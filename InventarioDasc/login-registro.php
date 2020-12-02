@@ -27,22 +27,24 @@
     <script
     src="Jquery/Jquery.js">
     </script>
-    <script src="../styles/popper.js"></script>
-    <script src="../styles/bootstrap-4.5.3-dist/css/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="../styles/bootstrap-4.5.3-dist/css/bootstrap.min.css">
-    <script 
-        src="../styles/bootstrap-4.5.3-dist/js/bootstrap.min.js">
-    </script>
-	<!--SITE STYLE SHEETS-->
+    
+    <link rel="stylesheet" type="text/css" href="../styles/bootstrap.min.css">
+	<script src="Jquery/Jquery.js"></script>
+	<script type="text/javascript" src="../styles/popper.js"></script>
+	<script type="text/javascript" src="../styles/bootstrap.min.js"></script>
+
 	<link rel="stylesheet" href="../styles/normalize.css">
 	<link rel="stylesheet" href="../styles/generalStyle.css">
+
+	<link rel="stylesheet" href="alertify/css/alertify.css">
+	<script src="alertify/alertify.js"></script>
 	<link rel="stylesheet" href="../styles/loginStyle.css">
 <head>
 </head>
 
-<body>
-<div>
-	<div class=""> 
+<body class="background-img">
+
+	<div class="form-background form-size"> 
 		<h1 class="center-title">LOGIN</h1>
 			<form class="" id="login-form"> 
 				<label for="username">USUARIO</label><br>
@@ -50,11 +52,11 @@
 				<label for="username">CONTRASEÑA</label><br>
 				<input type="password" name="password" id="password">
 				<input type="submit" name="" id="login-submit">
-				<div id="error" name="error"></div>
+				
 			</form>
 			<a href="" class="center-text">¿No tienes una cuenta? Crea una</a>
 	</div>
-</div>
+
     
 </body>
 	

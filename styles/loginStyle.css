@@ -1,0 +1,21 @@
+.background-img{
+	background-image: url('../resources/campus_mapa.jpg');
+	background-repeat: no-repeat, repeat;
+	background-size: cover;
+}
+
+.form-background{
+	background-color: white;
+	border: 1px solid white;
+	border-radius: 10px;
+	width: 70%;
+	margin-left: 15%;
+	padding: 1%;
+	margin-top: 5%;
+	margin-bottom: 5%;
+}
+
+.form-size{
+	margin-left: 25%;
+	width: 50vw;
+}

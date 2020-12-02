@@ -17,71 +17,74 @@
     <link rel="stylesheet" href="../styles/mapStyle.css">
     <link rel="stylesheet" href="../styles/generalStyle.css">
 
-    <script src="header/mapFunction.js"></script>
+ <!--   <script src="header/mapFunction.js"></script>-->
     
     <title>AÑADIR AL MAPA</title>
 </head>
 <body class="background-img">
-    <div class="master-box">
-        <!--CAJA DEL FORM-->
-        <div class="row-form form-background">
-            <!--FORM CON CAMPOS-->
-            <form action="" class="add-field-box" id="form-edit">
-                    <label for="">Opciones de gestión</label>
-                    <select id="accion-select">
-                        <option value="">SELECCIONE UNA ACCIÓN</option>
-                        <option value="add">Agregar Edificio</option>
-                        <option value="delete">Eliminar Edificio</option>
-                        <option value="mod">Modificar Edificio</option>
-                    </select>
-                <div id="nombre-placeholder">
-                    <label id= "nombre-label" for="">NOMBRE</label>
-                    <input type="text" id="nombre-map" placeholder="Escriba un nombre para Edificio/Aula">
+
+    <div class="disp-flexRow">
+        <!--Barra de busqueda-->
+        <div class="disp-flexCol cons-nav-bar row-cons">
+            <div class="row-form cons-col-size"> 
+                <label for="">Opciones de gestión</label>
+                <select id="accion-select">
+                    <option value="">SELECCIONE UNA ACCIÓN</option>
+                    <option value="add">Agregar Edificio</option>
+                    <option value="delete">Eliminar Edificio</option>
+                    <option value="mod">Modificar Edificio</option>
+                </select>
+            </div >
+        </div>
+        <!--Barra de busqueda-->
+    <div class="">
+        <form action="" class="add-field-box" id="form-edit"> 
+            <div class="form-background">
+                <label id= "nombre-label" for="">NOMBRE</label>
+                <input type="text" id="nombre-map" placeholder="Escriba un nombre para Edificio/Aula">
+                <label for="">TIPO</label>
+                <select id="tipo-select">
+                    <option value="">SELECCIONE UNA OPCIÓN</option>
+                    <option value="edificio">EDIFICIO</option>
+                    <option value="aula">AULA</option>
+                </select>
+
+                <label for="">PLANTA</label>
+                <select id="planta-select" placeholder="baja, alta">
+                    <option value="BAJA">BAJA</option>
+                    <option value="ALTA">ALTA</option>
+                </select>
+                
+                <label for="" id="label-edificio">EDIFICIO</label>
+                
+                <select id="edificio-select" placeholder="En que edificio">
+                    <option value="" >SELECCIONE UNA OPCIÓN</option>
+                </select>
+
+                <label id= "descripcion-label" for="">Seleccione un poligono para eliminarlo</label>
+
+                <!--BOTON ACEPTAR-->
+                <input type="submit" name="" id="boton-edificioPlanta" value="Insertar Poligono">
+            </div>
+        </form> 
+
+        <!--CAJA DEL MAPA-->  
+        <div class=" " >
+            <div style="background-color: pink; " class="map-size">
+                <div class="row-form" id="map-box" class="center-text map-box">
+                    <div id="mapid"></div>
                 </div>
-
-                    <div id="tipo-combobox">
-                    <!--comboboggs-->
-                    <label for="">TIPO</label>
-                    <select id="tipo-select">
-                        <option value="">SELECCIONE UNA OPCIÓN</option>
-                        <option value="edificio">EDIFICIO</option>
-                        <option value="aula">AULA</option>
-                    </select>
-                    </div>
-
-                    <div id="planta-combobox">
-                    <!--comboboggs-->
-                    <label for="">PLANTA</label>
-                    <select id="planta-select" placeholder="baja, alta">
-                        <option value="BAJA">BAJA</option>
-                        <option value="ALTA">ALTA</option>
-                    </select>
-                    </div>
-                    <div id="edificio-combobox">
-                    <!--comboboggs llenarlos con la bdd?-->
-                    <label for="" id="label-edificio">EDIFICIO</label>
-                    
-                    <select id="edificio-select" placeholder="En que edificio">
-                        <option value="" >SELECCIONE UNA OPCIÓN</option>
-                    </select>
-                    </div>
-
-                    <label id= "descripcion-label" for="">Seleccione un poligono para eliminarlo</label>
-
-                    <!--BOTON ACEPTAR-->
-                    <input type="submit" name="" id="boton-edificioPlanta" value="Insertar Poligono">
-            </form> 
+            </div>
         </div>
         <!--CAJA DEL MAPA-->
+        </div>
+    </div>    
         
-        <div class="disp-flexRow" >
-					<div style="background-color: pink;" class="map-size">
-						<div class="row-form" id="map-box" class="center-text map-box">
-							<div id="mapid"></div>
-						</div>
-					</div>
+        
 
     </div>
+
+  
     <script src="mapa/JS/classAula.js"></script>
     <script src="mapa/JS/classEdificio.js"></script>
     <script src="mapa/JS/editorMap.js"></script>

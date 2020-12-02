@@ -1,51 +1,161 @@
 /*HEADER*/
-li.navigation-menu-list{
-    list-style-type: none;
+
+.header-img{
+  background-image: url('../resources/uabcs_pc_img.png');
+  background-repeat: no-repeat, repeat;
+  background-size: cover;
+  height: 180px;
 }
 
-.header-footer-style{
-    background-color: #333E49;
-    display: flex;
-    flex-direction: row;
-    height: 15vh;
-    width: 100%;
-    height: 100px;
+.header-style{
+   background-color: #333E49;
+   display: flex;
+   flex-direction: row;
 }
 
-.header-logo{
-  margin: 0 0 0 0;
-  margin-top: 5px;
-  height: 80%;
+
+.header-menu{
+  width: 100%;
+  margin-top: 50px;
+  font-size: 20px;
+  display: flex;
+  flex-direction: row;
 }
 
-.general-container{
-    width: 100%;
+.item-menu {
+  margin-left: 50px;  
+  color: white;
+  text-decoration: none;
 }
 
-.navigation-menu-list{
-    width: 100%;
-    margin-top: 50px;
-    font-size: 20px;
-    display: flex;
-    flex-direction: row;
-}
-  
-.menu-list{
-    margin-left: 50px;  
-    color: white;
-    text-decoration: none;
-}
-
-.info-list{
-    text-align: left;
-}
-
-.pc-img{
+#pc-img{
    display: inline-block;
   }
 
-.tablet-img{
+#tablet-img{
     display:none;
+}
+
+
+.hide{
+  display: none;
+}
+
+/*REEEESSSSSSSSSSSPOOOOOONSIVEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE*/
+
+@media only screen and (max-width: 1024px) {
+  /* For mobile phones: */
+
+  .header-menu{
+    margin-left: 10%;
+  }
+
+  .item-menu {
+    margin-left: 50px;
+  }
+
+  #pc-img{
+   display:none;
+  }
+
+  #tablet-img{
+      display: inline-block;
+  }
+
+  .mobile-size{
+    height: 20vh;
+    margin: 10px;
+  }
+
+}
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+
+  .header-menu{
+    margin-left: 3%;  
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    display: flex;
+    flex-direction: row;
+  }
+  .item-menu {
+    margin-left: 20px;  
+    color: white;
+    text-decoration: none;
+  }
+
+  #pc-img{
+   display:none;
+  }
+
+  #tablet-img{
+      display: inline-block;
+  }
+
+  .mobile-size{
+    height: 20vh;
+    margin: 10px;
+  }
+
+}
+
+@media only screen and (max-width: 425px) {
+  /* For mobile phones: */
+  .header-style{
+     display: flex;
+     flex-direction: row;
+  }
+
+  .header-menu{  
+    margin-top: 2%;
+    color: white;
+    text-decoration: none;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  #pc-img{
+   display:none;
+  }
+
+  #tablet-img{
+      display: inline-block;
+  }
+
+  .mobile-size{
+    height: 20vh;
+    margin: 10px;
+  }
+
+}
+
+@media only screen and (max-width: 320px) {
+  /* For mobile phones: */
+
+  .header-menu{
+    margin-left: 15%;  
+    color: white;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #pc-img{
+   display:none;
+  }
+
+  #tablet-img{
+      display: inline-block;
+  }
+
+  .mobile-size{
+    height: 20vh;
+    margin: 10px;
+  }
+
+
+
 }
 
 /*Notification*/

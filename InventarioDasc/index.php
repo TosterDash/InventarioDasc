@@ -49,7 +49,7 @@ if(!isset($_SESSION['nombre']))
 				<a class="center-title" href="consInventory.php"><img src="../resources/1x/inven_icon.png"><h2>INVENTARIO</h2></a>
 			</div>
 			<div class="menu-title hvr-float">
-				<a class="center-title" href="prestamo-cons.php"><img src="../resources/1x/prest_icon.png"><h2>PRÉSTAMOS</h2></a>
+				<a class="center-title" href="consloan.php"><img src="../resources/1x/prest_icon.png"><h2>PRÉSTAMOS</h2></a>
 			</div>				
 		</div>	
 	</div>
