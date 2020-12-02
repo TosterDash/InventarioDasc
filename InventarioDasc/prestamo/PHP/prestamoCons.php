@@ -141,9 +141,37 @@ switch($option){
         $delete = mysqli_query($conexion, "DELETE FROM prestamo_has_objeto where idPrestamo = '$idPrestamo'");
     break;
 
+    case "searchLoanCard":
+        $typeBuscar = $_POST["typeBuscar"];
+        $text = $_POST["text"];
+        $tableBdd = $_POST["tableBdd"];
+        $result = mysqli_query($conexion, "SELECT $typeBuscar from $tableBdd where $typeBuscar LIKE '%$text%' ");
+
+        if(!$result){
+            echo die("error");     
+        }else{
+            //Crear json
+            $json = array();
+            //Realizar consulta
+            while($row = mysqli_fetch_array($result)){//Mientras tu variable fila este dentro de la cantidad de registros de consulta
+                $json []= array(
+                    'selectType' => $row[$typeBuscar],
+                
+                );
+            }
+            $jsonstring = json_encode($json);
+            echo $jsonstring;
+        }
+    break;
+
     case "getLoanCard":
+        error_reporting(0);
         $typeEntregado = $_POST["typeEntregado"];
-        $result = mysqli_query($conexion, "SELECT 
+        $typeBuscar = $_POST["typeBuscar"];
+        $text = $_POST["text"];
+        $tableBdd = $_POST["tableBdd"];
+        if($text == ""){
+            $result = mysqli_query($conexion, "SELECT 
                                                 `prestamo_has_objeto`.`idPrestamo`, 
                                                 concat(`objeto`.`idUabcs`,`objeto`.idObjeto) as etiqueta ,
                                                 `objeto`.`nombre`, `tipoproducto`.`producto`,
@@ -171,6 +199,38 @@ switch($option){
                                                 
                                                 
         ");
+        }else{
+            $result = mysqli_query($conexion, "SELECT 
+                                                `prestamo_has_objeto`.`idPrestamo`, 
+                                                concat(`objeto`.`idUabcs`,`objeto`.idObjeto) as etiqueta ,
+                                                `objeto`.`nombre`, `tipoproducto`.`producto`,
+                                                `aula`.`nombreAula`,
+                                                `edificio`.`Nombre`,
+                                                `prestamo`.`exitDate`,
+                                                `prestamo`.`returnDate`,
+                                                `userprestamo`.`identificador`,
+                                                `userprestamo`.`nombre`
+                                            from 
+                                                tipoproducto, 
+                                                objeto, 
+                                                aula,edificio, 
+                                                prestamo, 
+                                                prestamo_has_objeto,
+                                                userprestamo
+                                               
+                                            where `prestamo_has_objeto`.`idPrestamo` = `prestamo`.`idPrestamo` 
+                                                and `prestamo_has_objeto`.`idObjeto` = `objeto`.`idObjeto`  
+                                                and `prestamo`.`idEdificio` = `edificio`.`idEdificio` 
+                                                and `prestamo`.`entregado` = '$typeEntregado' 
+                                                and `prestamo`.`idAula` = `aula`.`idAula` 
+                                                and `objeto`.`idTipoProducto` = `tipoproducto`.`idTipoProducto`
+                                                and `prestamo`.`idUserprestamo` = `userprestamo`.`idUserPrestamo`
+                                                and `$tableBdd`.`$typeBuscar` IN (SELECT $typeBuscar from $tableBdd where $typeBuscar LIKE '%$text%' )
+                                                
+                                                
+        ");
+        }
+        
         if(!$result){
             echo die("error");     
         }else{

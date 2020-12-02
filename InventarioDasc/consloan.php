@@ -27,7 +27,6 @@
                 <label>Buscar por:</label>
                 <select  name="combobox-search" id="combobox-search">
                     <option value="identificador">Identificador</option>
-                    <option value="idPrestamo">Número de préstamo</option>
                 </select>
             </div >
             <div class="row-form cons-col-size">

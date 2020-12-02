@@ -32,7 +32,7 @@
 
         enablePopUp(){ 
             var typePoly = this.typePoly;
-            console.log(typePoly)
+            //console.log(typePoly)
             switch(typePoly){
                 case "edificio":
                     this.poly.bindPopup("Edificio "+this.nombre);
@@ -116,9 +116,9 @@
         }
     }
 
-    function createMap(mapId){
+    function createMap(mapId,flagEdit){
         //Inicializa el mapa en el contenedor edit-map-container en editMap.php
-        mapUabcs = L.map(mapId).setView([24.102931, -110.316239], 18);
+        mapUabcs = L.map(mapId,{drawControl: flagEdit}).setView([24.102931, -110.316239], 18);
         L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
         attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
         minZoom: 16,
@@ -130,7 +130,58 @@
         }).addTo(mapUabcs);
         getAula();
         getEdificios();
+        if(flagEdit){
+            editTool();
+        }
 
+
+        function editTool(){
+            //Crea la interfaz de dibujado a la izquierda del mapa
+            // FeatureGroup is to store editable layers
+            var drawnItems = new L.FeatureGroup();
+            mapUabcs.addLayer(drawnItems);
+
+            drawControl = new L.Control.Draw({
+                edit: {
+                    featureGroup: drawnItems,
+                    poly:{
+                        allowIntersection: false
+                    }
+                }
+                
+            });
+            
+            
+
+            //La creacion de poligonos y extraccion de coordenadas para ser procesadas
+            mapUabcs.on(L.Draw.Event.CREATED, function (e){
+            var type = e.layerType,
+                layer = e.layer;
+            if (type === 'marker') {
+            }
+            polyArray=layer.getLatLngs();
+            if(polyArray[0].length==numSide){
+                
+                mapUabcs.addLayer(layer);
+                
+            }else{
+                alert("El poligono tiene que ser de 4 lados");
+            }
+            var numC = 0;
+            for(let i =0; i<polyArray[0].length;i++){
+                console.log(polyArray[0][i]);
+                var polyArrayC = Object.values(polyArray[0][i]);
+                xyCoord[numC] = polyArrayC[0];
+                numC++;
+
+                xyCoord[numC] = polyArrayC[1];
+                numC++;
+            
+            
+                
+            }
+            })
+        }    
         function getEdificios(){
             var option = "getEdificios";
             $.ajax({
