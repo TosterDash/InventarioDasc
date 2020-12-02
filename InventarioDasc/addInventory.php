@@ -68,7 +68,7 @@
                     <input type="text" name="col-2-text-desc" class="" id="col-2-text-desc" required></input>
                 <div id="col-2-block-mant">
                     <label class="">Responsable del mantenimiento</label>
-                    <input type="text" name="col-2-text-mantResp"  class="" id="col-2-text-mantResp"></input>
+                    <select  name="col-2-combobox-mantResp"  class="" id="col-2-combobox-mantResp"></select>
                     <label class="d-block">Fecha de Mantenimiento</label>
                     <input type="date" name="col-2-date-nextMant" class="" id="col-2-date-nextMant"></input>
                 </div>
