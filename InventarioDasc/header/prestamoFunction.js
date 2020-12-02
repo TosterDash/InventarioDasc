@@ -36,7 +36,6 @@ class cardLoan{
 
 function getLoanCard(cardName,typeEntregado,typeBuscar,text,tableBdd){
     var option = "getLoanCard";
-    console.log("Se esta buscando " + typeBuscar)
     $.ajax({
         url: rutaAjaxPrestamo,
         type: 'POST',
