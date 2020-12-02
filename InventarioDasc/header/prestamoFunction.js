@@ -34,6 +34,19 @@ class cardLoan{
 
 }
 
+function searchLoanCard(typeBuscar,text,tableBdd){
+    deleteCards();
+    var option = "searchLoanCard";
+    $.ajax({
+        url: rutaAjaxPrestamo,
+        type: 'POST',
+        data: {option,typeBuscar,text,tableBdd},
+        success: function(response){
+            console.log(response)
+        }
+    })
+}
+
 function getLoanCard(cardName,typeEntregado,typeBuscar,text,tableBdd){
     var option = "getLoanCard";
     $.ajax({
@@ -43,17 +56,14 @@ function getLoanCard(cardName,typeEntregado,typeBuscar,text,tableBdd){
         success: function(response){
             deleteCards();
             console.log(response);
-            var cons = JSON.parse(response);
-            var template = ``; 
             
+            var cons = JSON.parse(response);
+            var template = ``;             
             var cont = 0;
             var idLoan;
             var lastIdLoan;
-            cons.forEach(task=>{
-                
+            cons.forEach(task=>{               
                 idLoan = task.idPrestamo;
-                //console.log(idLoan);
-                
                 if(idLoan != lastIdLoan){
                     
                     cardLoanArray[cont] = new cardLoan(idLoan,task.idUsuario,task.nombreUsuario);
@@ -135,15 +145,17 @@ function getLoanCard(cardName,typeEntregado,typeBuscar,text,tableBdd){
         }
     })
 
-    function deleteCards(){
+    
+
+
+}
+
+function deleteCards(){
         
-        for(var i = 0; i<cardLoanArray.length; i++){
-            $(document).off('click',"#card-loan-button-"+cardLoanArray[i].id);
-            $("#single-loan-"+cardLoanArray[i].id).remove();
-        }
+    for(var i = 0; i<cardLoanArray.length; i++){
+        $(document).off('click',"#card-loan-button-"+cardLoanArray[i].id);
+        $("#single-loan-"+cardLoanArray[i].id).remove();
     }
-
-
 }
 
 function entregarPrestamo(idPrestamo,idUsuario){
