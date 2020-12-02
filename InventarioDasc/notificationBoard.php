@@ -8,36 +8,33 @@
 	<script src="inventario/JS/notificationBoard.js"></script>
 	<link rel="stylesheet" href="../styles/normalize.css">
 	<link rel="stylesheet" href="../styles/hover.css">
+	<link rel="stylesheet" href="../styles/generalStyle.css">
+	<link rel="stylesheet" href="../styles/notificationBoardStyle.css">
 	<title>NOTIFICACIONES | INVENTARIO</title>
 <head>
 </head>
 <body>
 	
-	<div>
-		<label>Mostrar:</label>
-		<select class="" name="" id="">
-			<option>Todos</option>
-			<option>Solo Mantenimiento por hacer</option>
-			<option>Solo Prestamos caducados</option>
-			<option>Solo Consumibles por agotar</option>
-		</select>
-	</div>
+	<div class="disp-flexRow">
+         <!--Barra de busqueda-->
+        <div class="disp-flexCol cons-nav-bar">
+            <div class="row-form cons-col-size"> 
+                <label>Mostrar:</label>
+                <select  name="combobox-search" id="combobox-search">
+                    <option value="mantenimientoN">Mantenimiento</option>
+                    <option value="prestamoN">Préstamos</option>
+                    <option value="inventarioN">Productos</option>
+                </select>
+            </div >
+        </div>
+        <!--Barra de busqueda-->
 
-
-	<div id="div-table"><!--Tabla de consulta-->
-		<table id="table-notification" class="table">
-			<thead class="thead-light">
-				<tr>
-					<th>Asunto</th>
-					<th>Descripción del asunto</th>
-				</tr>
-			</thead>
-			<tbody id="tbody-notification">
-				
-			</tbody>
-						
-		</table>
-	</div>
+        <div>
+        	
+        </div>
+    
+        
+    </div>
 </body>
 </html>
 

@@ -78,7 +78,6 @@
 	  	 	$('#error').html(`<h2>Datos Incorrectos</h2> `);
 	  	 	$('#login-form').trigger('reset');
 	  	 }
-	      
 	  });
 	});
 });

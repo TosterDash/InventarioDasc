@@ -68,11 +68,38 @@ li.navigation-menu-list{
 }
 
 .dropdown-menu.show {
-    background-color: #333E49;
+  background-color: #333E49;
 }
 
 .dropdown-menu.show a{
     color: white;
+}
+
+.notification-dropdown{
+  padding: 5%;
+  overflow-y:auto;
+  max-height: 80vh; 
+}
+
+.notification-area{
+  color: navy;
+  background-color: #7f9ab5;
+  padding: 5%;
+  width: 25vw;
+  height: 15vh;
+  overflow-y:auto;
+  border:1px #7f9ab5 solid;
+  border-radius: 10px;
+}
+
+.notification-area:hover{
+  background-color: #5b6d80;
+  cursor: pointer;
+  border:1px #5b6d80 solid;
+}
+
+a{
+  color: black;
 }
 
 

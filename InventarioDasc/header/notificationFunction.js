@@ -92,7 +92,8 @@ function getNotificationNum(response,respPrestamo){
     var totalNotification = getMantenimientoToDo(response);
     totalNotification += getPrestamoToDo(respPrestamo);
     if (totalNotification == 0) {
-        $("#notification").html(`<a class="menu-list navigation-menu-listt dropdown-toggle" data-toggle="dropdown">
+        //comente esto para ver el pinshi tenplei c:
+       /* $("#notification").html(`<a class="menu-list navigation-menu-listt dropdown-toggle" data-toggle="dropdown">
                                         NOTIFICACIONES
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" href="notificationBoard.php">MANTENIMIENTO ()</a>
@@ -111,7 +112,7 @@ function getNotificationNum(response,respPrestamo){
                                     </div>`);
     }
                                     
-       
+       */
 }
 //funciones get para saber que se necesita hacer (ligadas a getNotificationNUM)
 function getMantenimientoToDo(response){

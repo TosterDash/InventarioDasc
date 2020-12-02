@@ -13,15 +13,16 @@
 	<link rel="stylesheet" href="../styles/normalize.css">
 	<link rel="stylesheet" href="../styles/headerFooterStyle.css">
 	<link rel="stylesheet" href="../styles/generalStyle.css">
-
+<!--
 	<link rel="stylesheet" href="alertify/css/alertify.css">
 	<script src="alertify/alertify.js"></script>
-
+	
+	
 	<script src="header/notificationFunction.js"></script>
 
-
-	<!--
 	<script type="text/javascript" src="inventario/JS/inventoryFunction.js"></script>
+	
+
 	<link rel="stylesheet" href="../styles/normalize.css">
 	<link rel="stylesheet" href="../styles/headerFooterStyle.css">
 	<link rel="stylesheet" href="../styles/generalStyle.css">
@@ -75,7 +76,7 @@
 		</div>
 	    <!--item de menu--> 
 		<!--item de menu-->
-		<script>
+		<!--<script>
 			$(document).ready(function(){
 				console.log("JAJAJAJAJAJAJAJAJAJAJAJAJA DIJO PATOPIPON NO PINCHES MAMEEEES");
 				$.when(getDate(),getPrestamoDate()).done(function(respDate,respPrestamo){
@@ -83,21 +84,24 @@
 					//console.log(respPrestamo);
 					getNotificationNum(respDate,respPrestamo);
 					//setInterval(actualizarFechas, 60000);
-					
-					
 				})
 			});
 			
-		</script>
+		</script>-->
 		
 		<!--item de menu-->
 	     <div class="btn-group notification" id="notification">
-		    <a class="menu-list navigation-menu-listt dropdown-toggle" data-toggle="dropdown">
-		    	NOTIFICACIONES
-  				<span class="badge">0</span></a>
-		    <div class="dropdown-menu">
-			    <a class="dropdown-item" href="notificationBoard.php">MANTENIMIENTO</a>
+		    <a class="menu-list navigation-menu-listt dropdown-toggle " data-toggle="dropdown">NOTIFICACIONES</a>
+		    <div class="dropdown-menu notification-dropdown">
+                <div class="notification-area">
+                	<a href="login-registro.php"><span>
+                		"At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis prae 
+                	</span></a>
+                </div>
+                
+               
 		    </div>
+
 		</div>
 	    <!--item de menu-->  
 		</ul>
