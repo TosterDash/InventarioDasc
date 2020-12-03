@@ -472,52 +472,36 @@ class rowTable{
 
 }
 
+
+
 //id del combobox, tipo de consulta en PHP, (solo si el tipo de combobox es producto) id de clasificacion
-function getCombobox(idCombobox,tipoCombobox,idTipoReferencia){
-    var option = tipoCombobox;
+function getCombobox(nameCombo,idNombreRow,nombreRow,nombreTabla,capaInicial,nombreRowReferencia,idReferencia){
+    var option = "getCombobox"
     $.ajax({
-        url: rutaAjax ,
-        type:"POST" ,
-        data: {option,tipoCombobox,idTipoReferencia},
-    }).done(function(e){
-       
-        switch(e){
-            case "error":
-                alertify.error("Error al crear el Combobox");
-            break;
-
-            default:
-                var jsonInfo = JSON.parse(e);
-                var template = `<option hidden>Selecciona</option>`;
-                jsonInfo.forEach(task=>{
-                    switch(task.option){
-                        case "clasificacion":
-                            template+= `<option value="${task.idClasificacion}">${task.clasificacion}</option>`;
-                        break;
-
-                        case "producto":
-                            template+= `<option value="${task.idProducto}">${task.producto}</option>`;
-                        break;
-
-                        case "edificio":
-                            template+= `<option value="${task.idEdificio}">${task.Nombre}</option>`;
-                        break;
-
-                        case "aula":
-                            template+= `<option value="${task.idAula}">${task.nombreAula}</option>`;
-                        break;
-
-                        default:
-                            
-                        break;
-                    }
-                })
-                $("#"+idCombobox).html(template);
-            break;
+        url: rutaAjax,
+        type: 'POST',
+        data: {option,idNombreRow,nameCombo,nombreTabla,nombreRow,nombreRowReferencia,idReferencia},
+        success: function(response){
+            //console.log(response);
+           var cons = JSON.parse(response);
+           var template = ``;
+           var cont = 0;
+            if(capaInicial != undefined ){
+                template = `<option value="">`+capaInicial+`</option>`;
+            }
+           cons.forEach(task =>{
+            
+               template += `<option value="${task.id}">${task.info}</option>`;
+               cont++;
+           })
+           $("#"+nameCombo).html(template);
         }
-    }).fail(function(){
-        alertify.error("Error de ruta en combobox")
     })
+}
+
+function vaciarCombobox(nameCombo){
+    var template = `<option value=""></option>`;
+    $("#"+nameCombo).html(template);
 }
 //funciones de tablas------------------------
 

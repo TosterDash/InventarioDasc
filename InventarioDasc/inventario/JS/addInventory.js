@@ -8,13 +8,16 @@ $(document).ready(function(){
     $("#col-1-block-mant").hide();
     $("#btn-producto-confirmar").hide();
     //combobox de clasificacion
-    getCombobox("col-1-combobox-clasification","clasificacion");
+    getCombobox("col-1-combobox-clasification","idTipoClasificacion","clasificacion","tipoclasificacion","Seleccionar");
+    //getCombobox("col-1-combobox-clasification","clasificacion");
     //combobox de los edificios y aulas
-    getCombobox("col-2-combobox-edificios","edificio");
-    getCombobox("col-2-combobox-aulas","aula",$("#col-2-combobox-edificios").val());
-    
+    getCombobox("col-2-combobox-edificios","idEdificio","Nombre","edificio","Seleccionar");
+    getCombobox("col-2-combobox-aulas","idAula","nombreAula","aula",undefined,"idEdificio",$("#col-2-combobox-edificios").val());
+    //getCombobox("col-2-combobox-edificios","edificio");
+    //getCombobox("col-2-combobox-aulas","aula",$("#col-2-combobox-edificios").val());
+    getCombobox("col-2-combobox-mantResp","idMantResp","nombreRol","mantresp",undefined);
 
-
+    console.log($("#col-2-combobox-mantResp").val())
 
     //inicializar los eventos de botones
     //combobox clasificacion
@@ -22,7 +25,8 @@ $(document).ready(function(){
        
         switch($("#col-1-combobox-clasification").val()){
             case "1":
-                getCombobox("col-1-combobox-product","producto", $("#col-1-combobox-clasification").val());
+                //getCombobox("col-1-combobox-product","producto", $("#col-1-combobox-clasification").val());
+                getCombobox("col-1-combobox-product","idTipoProducto","producto","tipoproducto",undefined,"idTipoClasificacion",$("#col-1-combobox-clasification").val());
                 //quitar otros required
                 $("#col-2-number-cant").prop('required',false);
                 //--------------------------------------------
@@ -35,7 +39,8 @@ $(document).ready(function(){
             break;
 
             case "2":
-                getCombobox("col-1-combobox-product","producto", $("#col-1-combobox-clasification").val());
+                //getCombobox("col-1-combobox-product","producto", $("#col-1-combobox-clasification").val());
+                getCombobox("col-1-combobox-product","idTipoProducto","producto","tipoproducto",undefined,"idTipoClasificacion",$("#col-1-combobox-clasification").val());
                 //required a input cantidad
                 $("#col-2-number-cant").prop('required',true);
                 //quitar otros required
@@ -54,6 +59,7 @@ $(document).ready(function(){
             break;
 
             default:
+                vaciarCombobox("col-1-combobox-product");
                 $("#col-1-block-producto").hide();
                 //quitar otros required
                 $("#col-2-text-mantResp").prop('required',false);
@@ -74,7 +80,7 @@ $(document).ready(function(){
     //combobox de edificio
     $("#col-2-combobox-edificios").on('change',function(){
         
-        getCombobox("col-2-combobox-aulas","aula",$("#col-2-combobox-edificios").val());
+        getCombobox("col-2-combobox-aulas","idAula","nombreAula","aula",undefined,"idEdificio",$("#col-2-combobox-edificios").val());
     })
 
 
@@ -82,17 +88,14 @@ $(document).ready(function(){
     //checkbox de mantenimiento
     $('#col-1-checkbox-mant').on('change',function(){
         if($('#col-1-checkbox-mant').prop('checked')==true){
-            //required a los inputs de mantenimiento
-            $("#col-2-text-mantResp").prop('required',true);
+            
+            
             $("#col-2-date-nextMant").prop('required',true);
             $("#col-2-block-mant").show();
         }else{
-            //quitar required a los inputs
-            //required a los inputs de mantenimiento
-            $("#col-2-text-mantResp").prop('required',false);
+            //vaciarCombobox("col-2-combobox-mantResp");
             $("#col-2-date-nextMant").prop('required',false);
-
-            $("#col-2-text-mantResp").val("");       
+            $("#col-2-combobox-mantResp").val("0");       
             $("#col-2-date-nextMant").val("");
             $("#col-2-block-mant").hide();
         }
@@ -172,25 +175,37 @@ $(document).ready(function(){
     //boton de submit para el objeto en general
     $("#formSend").on("submit",function(e){
         e.preventDefault();
-        if($("#col-1-combobox-clasification").val()!=""){
-            
-            if($("#col-1-combobox-product").val()!=""){
-                if($('#col-1-checkbox-mant').prop('checked')==true){
-                    if(validarFecha( $("#col-2-date-nextMant").val())==true){
-                        addObjeto();
+        var comboboxClasification = $("#col-1-combobox-clasification").val();
+        var comboboxEdificio = $("#col-2-combobox-edificios").val();
+        var flagMantResp;
+
+        if($('#col-1-checkbox-mant').prop('checked')){
+             flagMantResp = verificarMantResp($("#col-2-combobox-mantResp").val());
+        }
+
+
+        if(comboboxClasification!=""){
+            if(comboboxEdificio!=""){
+                if($('#col-1-checkbox-mant').prop('checked')){
+                    if(flagMantResp){
+                        if(validarFecha( $("#col-2-date-nextMant").val())==true){
+                            addObjeto();
+                        }else{
+                            alertify.warning("La fecha de mantenimiento tiene que ser mayor a la fecha actual");
+                        }
                     }else{
-                        alertify.warning("La fecha de mantenimiento tiene que ser mayor a la fecha actual");
+                        alertify.warning("Seleccione algun responsable");
                     }
                 }else{
                     addObjeto();
                 }
-                
             }else{
-                alertify.warning("No hay un producto seleccionado");
+                alertify.warning("Seleccione un campo edificio");
             }
         }else{
-            alertify.warning("No hay una clasificacion seleccionada");
+            alertify.warning("Seleccione una clasificación");
         }
+       
     });
 
 
@@ -198,14 +213,23 @@ $(document).ready(function(){
 
 
     //funciones---------------------------
+    function verificarMantResp(mantRespVal){
+        if(mantRespVal == "0"){
+            return false;
+        }else{
+            return true;
+        }
+    }
 
     function addObjeto(){
+        
            
                 var form = document.querySelector('form');
                 var formData = new FormData(form);
                 formData.append("option","addInventory");
                 formData.append("checkboxMant",$('#col-1-checkbox-mant').prop('checked'));
                 formData.append("checkboxPrestamo",$('#col-1-checkbox-loan').prop('checked'));
+                console.log(formData);
                 
                 $.ajax({
                     url: rutaAjax,
@@ -216,11 +240,13 @@ $(document).ready(function(){
                     contentType: false,
                     processData: false
                 }).done(function(idAula){
+                    console.log(idAula);
                     addObjetoHasAula(idAula);
                     alertify.success('Se añadio el objeto'); 
                         
                         
                 });
+                
     }
 
     function addObjetoHasAula(idAula){
@@ -242,7 +268,7 @@ $(document).ready(function(){
         $("#col-1-combobox-product").val("");    
         $("#col-2-text-name").val("");    
         $("#col-2-text-desc").val("");    
-        $("#col-2-text-mantResp").val("");    
+        //$("#col-2-text-mantResp").val("");    
         $("#col-2-date-lastMant").val("");    
         $("#col-2-date-nextMant").val("");    
         $("#col-2-number-cant").val("");    

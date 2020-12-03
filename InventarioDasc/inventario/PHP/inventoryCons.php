@@ -3,6 +3,38 @@
     $option = $_POST['option'];
 
     switch($option){
+        case "getCombobox":
+            error_reporting(0);
+            $nameCombo = $_POST["nameCombo"];
+            $nombreTabla = $_POST["nombreTabla"];
+            $idNombreRow = $_POST["idNombreRow"];
+            $nombreRow = $_POST["nombreRow"];
+            $nombreRowReferencia = $_POST["nombreRowReferencia"];
+            $idReferencia = $_POST["idReferencia"];
+            
+            if($nombreRowReferencia == ""){
+                
+                $result = mysqli_query($conexion,"SELECT * from $nombreTabla");
+            }else{
+                
+                $result = mysqli_query($conexion,"SELECT * from $nombreTabla where $nombreRowReferencia = $idReferencia");
+            }
+            $json = array();
+            while ($row = mysqli_fetch_array($result)) {
+    
+            $json[] = array(
+                    'id' => $row[$idNombreRow],
+                    'info' => $row[$nombreRow],
+                
+                    
+                );
+        }
+        //se hace un encode para que la variable sea un string
+        $jsonString = json_encode($json);
+
+        echo $jsonString;
+        break;
+
         case "clasificacion":
             $result = mysqli_query($conexion, "SELECT `tipoclasificacion`. * from `tipoclasificacion`");
 
@@ -341,19 +373,40 @@
             $checkboxMant = $_POST["checkboxMant"];
             $checkboxPrestamo = $_POST["checkboxPrestamo"];
             $idAula = $_POST["col-2-combobox-aulas"];
-
-            $respMant = $_POST["col-2-text-mantResp"];
+            $respMant = $_POST["col-2-combobox-mantResp"];
             $nextMant = $_POST["col-2-date-nextMant"];
             $cant = $_POST["col-2-number-cant"];
             $img = addslashes(file_get_contents($_FILES["item_file"]["tmp_name"]));
             
+            
+
+            switch($clasificacion){
+                //EQUIPO
+                case "1":
+                    $insert = ("INSERT INTO 
+                    objeto(idUabcs,nombre,descripcion,cantidad,prestamo,mantenimiento,lastMant,nextMant,idMantResp,idTipoProducto,img)
+                    VALUES ('UABCS-','$nombre','$desc',null,'$checkboxPrestamo','$checkboxMant',null,'$nextMant','$respMant','$producto','$img')");
+                    $result = mysqli_query($conexion,$insert);
+                    echo $idAula;
+                break;
+                //Consumible
+                case "2":
+                    $insert = ("INSERT INTO 
+                    objeto(idUabcs,nombre,descripcion,cantidad,prestamo,mantenimiento,lastMant,nextMant,idMantResp,idTipoProducto,img)
+                    VALUES (null,'$nombre','$desc','$cant',null,null,null,null,0,'$producto','$img')");
+                    $result = mysqli_query($conexion,$insert);
+                    echo $idAula;
+                break;
+            }
+            
+            /*
             switch($clasificacion){
                 //caso para Equipos
                 case "1":
                     $insert = ("INSERT INTO objeto(idUabcs,nombre,descripcion,cantidad,prestamo,mantenimiento,lastMant,nextMant,mantResp,idTipoProducto,img)
                     VALUES ('UABCS-','$nombre','$desc', null, '$checkboxPrestamo', '$checkboxMant', '', '$nextMant', '$respMant','$producto', '$img') ");
                     $result = mysqli_query($conexion, $insert);
-                    echo $idAula;
+                    //echo $idAula;
                     
                 break;
                 //caso para consumibles
@@ -361,7 +414,7 @@
                     $insert = ("INSERT INTO objeto(idUabcs,nombre,descripcion,cantidad,prestamo,mantenimiento,lastMant,nextMant,mantResp,idTipoProducto,img)
                     VALUES (null,'$nombre','$desc', '$cant', null , null , null, null, null,'$producto', '$img') ");
                     $result = mysqli_query($conexion, $insert);
-                    echo $idAula;
+                    //echo $idAula;
                     
                 break;
                 //Error
@@ -369,6 +422,8 @@
                     echo die("error");
                 break;
             }
+            echo $result;
+            */
         break;
 
         case "addObjetoHasAula":
