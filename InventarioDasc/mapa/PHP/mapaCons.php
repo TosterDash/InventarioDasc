@@ -123,6 +123,12 @@ switch($option){
         echo $jsonString;
     break;
 
+    case "deletePolyAula":
+        $id = $_POST["idAula"];
+
+        $delete = mysqli_query($conexion, "DELETE FROM aula where idAula = '$id'");
+    break;
+
     case "addPoly":
         $nombre = $_POST["nombre"];
         $xyCoord = $_POST["xyCoord"];

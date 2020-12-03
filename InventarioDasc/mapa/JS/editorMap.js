@@ -53,6 +53,8 @@ $(comboboxOptionAction).on('change',function(){
     
     switch($(comboboxOptionAction).val()){
         case "add":
+            removeAllAula();
+            $(mensaje).html("<label></label>");
             getEdificios(true,false);
             $(buttonSumbit).show();
             editTool();
@@ -67,7 +69,7 @@ $(comboboxOptionAction).on('change',function(){
                     break;
 
                     case "aula":
-                        getAula(true,false);
+                        getAula(true);
                         $(blockPlanta).show();
                         $(blockEdificio).show();
                     break;
@@ -108,26 +110,35 @@ $(comboboxOptionAction).on('change',function(){
 
         case "mod":
             
-            $(formHtml).on('submit')
+            $(formHtml).off('submit')
             $(comboboxTipo).off('change');
         break;
         
         case "delete":
-            
-            $(formHtml).on('submit')
+            removeAll();
+            removeEditTool();
+            $(blockPlanta).show();
+            $(mensaje).html("<label>Seleccione un poligono para eliminar</label>");
+            $(formHtml).off('submit')
             $(comboboxTipo).off('change');
-            $(mensaje).val("Seleccione un poligono para eliminar");
+            getEdificios(true,false);
+            
+
+            $(comboboxPlanta).on('change',function(){
+                getAula(true,"showAulaPorPiso",$(comboboxPlanta).val(),"delete");
+            })
+            
+
+
+
+
+
+        
 
         break;
 
         default:
-            $(mensaje).html("<label>Seleccione un poligono para eliminar</label>");
-            vaciarCampos();
-            removeAllAula();
-            removeAllEdificio();
-            $(comboboxTipo).off('change');
-            $(blockNombre).hide(); $(blockTipo).hide(); $(blockPlanta).hide(); $(blockEdificio).hide(); $(mensajeDelete).hide(); $(buttonSumbit).hide();
-            removeEditTool();
+            removeAll();
         break;
     }
 })
@@ -179,6 +190,17 @@ function vaciarCampos(){
     $(comboboxPlanta).val("");
     $(comboboxEdificio).val("");
    
+}
+
+function removeAll(){
+    $(mensaje).html("<label></label>");
+    vaciarCampos();
+    removeAllAula();
+    removeAllEdificio();
+    $(comboboxPlanta).off('change');
+    $(comboboxTipo).off('change');
+    $(blockNombre).hide(); $(blockTipo).hide(); $(blockPlanta).hide(); $(blockEdificio).hide(); $(buttonSumbit).hide();
+    removeEditTool();
 }
 
 

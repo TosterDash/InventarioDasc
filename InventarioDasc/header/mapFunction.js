@@ -12,6 +12,7 @@
     //variables para la interfaz del mapa
     var drawnItems;
     var drawControl;
+    var editToolEnable = false;
     
 
     var mapUabcs;
@@ -74,6 +75,29 @@
                 
             })
         }
+
+        aulaClickDelete(){
+            var idAula = this.idPolygon;
+            var poly = this.poly;
+            this.poly.on('click',function(){
+                var option = "deletePolyAula";
+                $.ajax({
+                    url: rutaAjaxMapa,
+                    type: 'POST',
+                    data: {option,idAula},
+                    success: function(response){
+                        mapUabcs.removeLayer(poly);
+                        poly.off();
+
+                    }
+                        
+                })
+            })
+        }
+
+        edificioClickDelete(){
+
+        }
         
 
 
@@ -100,6 +124,7 @@
             
         }
     }
+
 
     function setView(edificioVal){
         for(var i = 0;i<edificiosArray.length; i++){
@@ -141,7 +166,7 @@
         }).addTo(mapUabcs);
 
         if(generatePoly){
-            getAula(true,true);
+            getAula(true);
             getEdificios(true,true);
         }
              
@@ -149,6 +174,7 @@
     }
 
     function getEdificios(visible,clickFunction){
+        removeAllEdificio();
         var option = "getEdificios";
         $.ajax({
             url: rutaAjaxMapa,
@@ -187,7 +213,8 @@
         })
     }
 
-    function getAula(visible){
+    function getAula(visible,optionAula,valorPiso,accionClick){
+        removeAllAula();
         var option = "getAula";
         $.ajax({
             url: rutaAjaxMapa,
@@ -199,8 +226,6 @@
                 //console.log(aula1);
                 var cont = 0;
                 aula1.forEach(task => {	
-                    
-                    
                     aulasArray[cont] =  new polygon(`${task.idAula}`,`${task.nombreAula}`,"aula",null,`${task.idPlanta}`,`${task.idEdificio}`); 
     
                     aulaUabcs[cont] = [[`${task.x1}`, `${task.y1}`],
@@ -208,8 +233,18 @@
                                             [`${task.x3}`, `${task.y3}`],
                                             [`${task.x4}`, `${task.y4}`]];
                     aulasArray[cont].poly = L.polygon(aulaUabcs[cont] , {color: 'black'});
-                    if(visible){
-                        aulasArray[cont].poly.addTo(mapUabcs);
+                    
+                    switch(optionAula){
+                        case "showAulaPorPiso":
+                            
+                            showAulaPorPiso(cont);
+                        break;
+
+                        default:
+                            if(visible){
+                                aulasArray[cont].poly.addTo(mapUabcs);
+                            }
+                        break;
                     }
                     cont++;
                     
@@ -218,14 +253,36 @@
                 
             }
         })
+
+        function showAulaPorPiso(cont){
+            console.log("idplanta: "+aulasArray[cont].idPlanta);
+            console.log("piso seleccionado: "+valorPiso);
+            console.log("-------------------------------");
+            if(aulasArray[cont].idPlanta==valorPiso){
+                aulasArray[cont].poly.addTo(mapUabcs);
+                aulasArray[cont].enablePopUp();
+                switch(accionClick){
+                    case "delete":
+                        aulasArray[cont].aulaClickDelete();
+                    break;
+
+                    case "mod":
+                    break;
+                }
+            }
+        }
     }
 
     function removeEditTool(){
+       if(editToolEnable){
         mapUabcs.removeControl(drawControl);
         mapUabcs.removeLayer(drawnItems);
+        editToolEnable = false;
+       }
     }
 
     function editTool(){
+        editToolEnable = true;
         //Crea la interfaz de dibujado a la izquierda del mapa
         // FeatureGroup is to store editable layers
         drawnItems = new L.FeatureGroup();
