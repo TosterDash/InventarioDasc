@@ -29,11 +29,46 @@
         </div>
         <!--Barra de busqueda-->
 
-        <div>
-        	
+        <div class="disp-flexWrap">
+            <!--Template de una notificación-->
+            <div class="single-notif disp-flexRow">
+                <table>
+                    <tr>
+                        <th>Asunto</th>
+                    </tr>   
+                    <tr>
+                        <td class="table-data">
+                            Mantenimiento
+                            <a class="show-info">
+                                <img src="../resources/info_icon.png">
+                            </a>
+                            <a>
+                                <img src="../resources/confirm.png">
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+                <div id="info-notif" class="info-notif">
+                    información de la notifiación. el boton verde es para decir "SI WEY YA SE HIZO YA YA ALCH"
+                </div>
+            </div>
+            <!--Template de una notificación-->
+            
         </div>
-    
+        <script>
+            $(function() {
+                // DOM ready
+                $('.show-info').hover(
+                  function () {
+                      $('.info-notif').show();
+                  }, 
+                  function () {
+                      $('.info-notif').hide();
+                  });
+            });
+        </script>
         
+
     </div>
 </body>
 </html>

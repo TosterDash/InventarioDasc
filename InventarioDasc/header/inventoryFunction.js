@@ -579,7 +579,9 @@ function updateFileEquipo(idObjeto){
                                                 <a class="dropdown-item" id="editCantidad${task.idObjeto}">cantidad</a>
                                             
                                             </div>
-                                        </div>
+                                        
+
+                                                  
                                     </div>
                                 </th>`;                
                 $('#fila'+idObjeto).html(template);
@@ -736,15 +738,20 @@ function getTableObjeto(typeTabla,tbodyName){
                 case "consumible":
                 break;
             }//TERMINA EL SWITCH----------------------------------------------------
-            template += `<th><div class="btn-group">
-            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-               Sony
-            </button>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">Tablet</a>
-              <a class="dropdown-item" href="#">Smartphone</a>
-            </div>
-          </div></th>`;
+            template += `<th id="option ${task.idObjeto}">
+                                    <div class="btn-group">
+                                        <image src="../resources/delete.png" style="height:30px" id="delete${task.idObjeto}"></image>
+                                        <image src="../resources/edit.png" style="height:30px" class="dropdown-toggle" data-toggle="dropdown" id="edit${task.idObjeto}"></image> 
+                                            <div class="dropdown-menu" style?"overflow-y:auto;">
+                                                <a class="dropdown-item" id="editImg${task.idObjeto}">Imagen</a>
+                                                <a class="dropdown-item" id="editProducto${task.idObjeto}">Producto</a>
+                                                <a class="dropdown-item" id="editNombre${task.idObjeto}">Nombre</a>
+                                                <a class="dropdown-item" id="editDescripcion${task.idObjeto}">Descripcion</a>
+                                                <a class="dropdown-item" id="editCantidad${task.idObjeto}">cantidad</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </th>`;
 
             cont++;
            })

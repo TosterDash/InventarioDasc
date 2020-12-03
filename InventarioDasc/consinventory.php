@@ -40,9 +40,9 @@
             <!--Barra de busqueda-->
 
             <!--Tabla de consulta-->
-            <div id="inv-cons" class="consultar row-cons">
-                 <div id="div-table">
-                    <table id="table-equipo" class="cons-tableRow">
+            <div id="inv-cons" class="consultar row-cons scroll-tabla">
+                 <div id="div-table ">
+                    <table id="table-equipo" class="cons-tableRow ">
                         <thead class="">
                             <tr class="cons-tableTitle">
                                 <th >Identificador</th>

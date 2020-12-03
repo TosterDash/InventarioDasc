@@ -98,7 +98,7 @@ function getNotificationNum(response,respPrestamo){
        $("#notification").html(`<a class="menu-list dropdown-toggle item-menu" data-toggle="dropdown"><img style="height: 30px;" src="../resources/notif_icon.png"></a>
                                     <div class="dropdown-menu notification-dropdown">
                                         <div class="notification-area">
-                                            <a href="login-registro.php"><span>
+                                            <a href="notificationBoard.php"><span>
                                                 NOO AY NADAAAAAAAAAAA
                                             </span></a>
                                         </div>
@@ -109,7 +109,7 @@ function getNotificationNum(response,respPrestamo){
                                 <a class="menu-list dropdown-toggle item-menu" data-toggle="dropdown"><img style="height: 30px;" src="../resources/notif_icon.png"></a>
                                     <div class="dropdown-menu notification-dropdown">
                                         <div class="notification-area">
-                                            <a href="login-registro.php"><span>
+                                            <a href="notificationBoard.php"><span>
                                                 SI AAAAAAAAI
                                             </span></a>
                                         </div>
@@ -189,3 +189,18 @@ function mantenimientoHecho(idObjeto,lastMant){
     console.log("lastMant = " + lastMant + " nextMant = " + nextMant)
     //$.ajax({url: rutaAjax, type: 'POST',data:{idObjeto,option,lastMant, nextMant}});
 }
+
+
+
+/*********HOVERS DE NOTIFICATIONBOARD.PHP***********/
+
+$(function() {
+    // DOM ready
+    $('.show-info').hover(
+      function () {
+          $('.info-notif').show();
+      }, 
+      function () {
+          $('.info-notif').hide();
+      });
+});

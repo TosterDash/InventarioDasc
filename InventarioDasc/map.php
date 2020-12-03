@@ -42,7 +42,30 @@ describir cada método
 <body>
 	<!--MENU Y BARRA DE BUSQUEDA-->
 	<div  class="disp-flexRow">
-			
+			<!--Barra de busqueda-->
+            <div class="disp-flexCol cons-nav-bar row-cons">
+                <div class="row-form cons-col-size"> 
+                    <label>Edificio:</label>
+                    <select id="map-edificio" placeholder="Planta">
+						
+					</select>
+					<label>Planta:</label>
+                    <select id="map-piso" placeholder="Planta">
+						
+					</select>
+                </div >
+                <div class="row-form cons-col-size">
+                    <div class="disp-flexRow">
+                        <input type="text" placeholder="Buscar..." id="search" class="search-input">
+                    </div>
+                </div>
+                <div class=" row-form cons-col-size">
+                    <label>Mostrar por:</label>
+                    <select name="combobox-category" id="combobox-category">
+                    </select>
+                </div>
+            </div>
+            <!--Barra de busqueda-->
 
 	       	<div class=" cons-col">
 				<!--CAJA DEL MAPA-->
