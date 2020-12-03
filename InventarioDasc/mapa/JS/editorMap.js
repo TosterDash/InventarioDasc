@@ -53,8 +53,7 @@ $(comboboxOptionAction).on('change',function(){
     
     switch($(comboboxOptionAction).val()){
         case "add":
-            removeAllAula();
-            $(mensaje).html("<label></label>");
+            removeAll();
             getEdificios(true,false);
             $(buttonSumbit).show();
             editTool();
@@ -63,19 +62,19 @@ $(comboboxOptionAction).on('change',function(){
             $(comboboxTipo).on('change',function(){
                 switch($(comboboxTipo).val()){
                     case "edificio":
-                        removeAllAula();
                         $(blockPlanta).hide();
                         $(blockEdificio).hide();
                     break;
 
                     case "aula":
-                        getAula(true);
                         $(blockPlanta).show();
                         $(blockEdificio).show();
+                        $(comboboxPlanta).on('change',function(){
+                            getAula("showAulaPorPiso",$(comboboxPlanta).val(),"delete");
+                        })
                     break;
 
                     default:
-                        removeAllAula();
                         $(blockPlanta).hide();
                         $(blockEdificio).hide();
                     break;
@@ -109,35 +108,32 @@ $(comboboxOptionAction).on('change',function(){
         break;
 
         case "mod":
-            
+            vaciarCampos();
+            removeAll();
             $(formHtml).off('submit')
             $(comboboxTipo).off('change');
         break;
         
         case "delete":
+            vaciarCampos();
             removeAll();
             removeEditTool();
             $(blockPlanta).show();
             $(mensaje).html("<label>Seleccione un poligono para eliminar</label>");
             $(formHtml).off('submit')
             $(comboboxTipo).off('change');
-            getEdificios(true,false);
+            getEdificios(true,"clickDelete");
             
 
             $(comboboxPlanta).on('change',function(){
-                getAula(true,"showAulaPorPiso",$(comboboxPlanta).val(),"delete");
+                getAula("showAulaPorPiso",$(comboboxPlanta).val(),"delete");
             })
             
-
-
-
-
-
-        
-
         break;
 
         default:
+
+            vaciarCampos();
             removeAll();
         break;
     }
@@ -152,9 +148,31 @@ function addPoly(nombre,seleccionTipo,plantaMap,edificioMap){
     
     }).done(function(response){
         console.log(response);
-            
-            
+        //removeAll();
+        removeLayer();
+        getComboboxMap("planta-select","idPlanta","planta","planta","Seleccione una planta");
+        getComboboxMap("edificio-select","idEdificio","Nombre","edificio","Seleccione un edificio");    
+        $(textNombre).val("");
+        alertify.success("Poligono creado!");
+        switch($(comboboxTipo).val()){
+            case "edificio":
+                getEdificios(true);
+            break;
+
+            case "aula":
+                getEdificios(true);
+                getAula("showAulaPorPiso",$(comboboxPlanta).val(),"delete");
+            break;
+
+            default:
+                
+            break;
+        }
     });
+
+    function removeLayer(){
+        mapUabcs.removeLayer(capaEdit);
+    }
 }
 
 function verificarTipo(){
@@ -194,7 +212,7 @@ function vaciarCampos(){
 
 function removeAll(){
     $(mensaje).html("<label></label>");
-    vaciarCampos();
+    //vaciarCampos();
     removeAllAula();
     removeAllEdificio();
     $(comboboxPlanta).off('change');

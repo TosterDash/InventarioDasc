@@ -123,6 +123,18 @@ switch($option){
         echo $jsonString;
     break;
 
+    case "deletePolyEdificio":
+            $id = $_POST["idEdificio"];
+            $delete = ("DELETE FROM aula WHERE idEdificio='$id'");
+            $result = mysqli_query($conexion, $delete);
+        
+
+            $delete = ("DELETE FROM edificio WHERE idEdificio='$id'");
+            $result = mysqli_query($conexion, $delete);
+
+       
+    break;
+
     case "deletePolyAula":
         $id = $_POST["idAula"];
 

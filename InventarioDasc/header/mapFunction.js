@@ -13,7 +13,7 @@
     var drawnItems;
     var drawControl;
     var editToolEnable = false;
-    
+    var capaEdit;
 
     var mapUabcs;
     class polygon{
@@ -76,6 +76,29 @@
             })
         }
 
+        edificioClickDelete(){
+            
+            var idEdificio = this.idPolygon;
+            var poly = this.poly;
+            this.poly.on('click',function(){
+                
+                var option = "deletePolyEdificio";
+                $.ajax({
+                    url: rutaAjaxMapa,
+                    type: 'POST',
+                    data: {option,idEdificio},
+                    success: function(response){
+                        console.log(response);
+                        getEdificios(true,"clickDelete");
+                        getAula("showAulaPorPiso",$(comboboxPlanta).val(),"delete");
+                  
+
+                    }
+                        
+                })
+            })
+        }
+
         aulaClickDelete(){
             var idAula = this.idPolygon;
             var poly = this.poly;
@@ -95,10 +118,7 @@
             })
         }
 
-        edificioClickDelete(){
-
-        }
-        
+       
 
 
     }
@@ -173,7 +193,7 @@
         
     }
 
-    function getEdificios(visible,clickFunction){
+    function getEdificios(visible,accionClick){
         removeAllEdificio();
         var option = "getEdificios";
         $.ajax({
@@ -201,8 +221,18 @@
                     if(visible){
                         edificiosArray[cont].poly.addTo(mapUabcs);
                     }
-                    if(clickFunction){
-                        edificiosArray[cont].edificioClick();
+                    switch(accionClick){
+                        case "clickInfo":
+                            edificiosArray[cont].edificioClick();
+                        break;
+
+                        case "clickDelete":
+                            
+                            edificiosArray[cont].edificioClickDelete();
+                        break;
+                        default:
+                            
+                        break;
                     }
                     cont++;
                     
@@ -213,7 +243,7 @@
         })
     }
 
-    function getAula(visible,optionAula,valorPiso,accionClick){
+    function getAula(optionAula,valorPiso,accionClick){
         removeAllAula();
         var option = "getAula";
         $.ajax({
@@ -241,9 +271,7 @@
                         break;
 
                         default:
-                            if(visible){
-                                aulasArray[cont].poly.addTo(mapUabcs);
-                            }
+                            
                         break;
                     }
                     cont++;
@@ -255,9 +283,6 @@
         })
 
         function showAulaPorPiso(cont){
-            console.log("idplanta: "+aulasArray[cont].idPlanta);
-            console.log("piso seleccionado: "+valorPiso);
-            console.log("-------------------------------");
             if(aulasArray[cont].idPlanta==valorPiso){
                 aulasArray[cont].poly.addTo(mapUabcs);
                 aulasArray[cont].enablePopUp();
@@ -316,10 +341,11 @@
             layer = e.layer;
         if (type === 'marker') {
         }
+        capaEdit = layer;
         polyArray=layer.getLatLngs();
         if(polyArray[0].length==numSide){
             
-            mapUabcs.addLayer(layer);
+            mapUabcs.addLayer(capaEdit);
             
         }else{
             alert("El poligono tiene que ser de 4 lados");
