@@ -1,5 +1,5 @@
 <?php
-include("conexion.php");
+include ("../../baseConexion/conexion.php");
 $option = $_POST["option"];
 
 switch($option){
@@ -121,6 +121,35 @@ switch($option){
         $jsonString = json_encode($json);
 
         echo $jsonString;
+    break;
+
+    case "addPoly":
+        $nombre = $_POST["nombre"];
+        $xyCoord = $_POST["xyCoord"];
+        $seleccionTipo = $_POST["seleccionTipo"];
+        $plantaMap = $_POST["plantaMap"];
+        $edificioMap = $_POST["edificioMap"];
+
+        switch($seleccionTipo){
+            case "edificio":
+                $insertar = ("INSERT INTO edificio(Nombre,x1,y1,x2,y2,x3,y3,x4,y4) VALUES 
+				('$nombre','$xyCoord[0]','$xyCoord[1]', '$xyCoord[2]', '$xyCoord[3]', '$xyCoord[4]', '$xyCoord[5]', '$xyCoord[6]', '$xyCoord[7]')");
+				
+                $result = mysqli_query($conexion, $insertar);
+              
+                echo $insertar;
+                echo $result;
+            break;
+
+            case "aula":
+                $insertar = ("INSERT INTO aula(idPlanta,idEdificio,nombreAula,x1,y1,x2,y2,x3,y3,x4,y4) VALUES 
+                ('$plantaMap','$edificioMap','$nombre','$xyCoord[0]','$xyCoord[1]', '$xyCoord[2]', '$xyCoord[3]', '$xyCoord[4]', '$xyCoord[5]', '$xyCoord[6]', '$xyCoord[7]')");
+				$result = mysqli_query($conexion, $insertar);
+				echo $result;
+            break;
+        }
+
+
     break;
 
     

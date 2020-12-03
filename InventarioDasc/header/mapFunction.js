@@ -9,6 +9,9 @@
     var aulaUabcs = [];
     //ruta
     var rutaAjaxMapa = 'mapa/PHP/mapaCons.php';
+    //variables para la interfaz del mapa
+    var drawnItems;
+    var drawControl;
     
 
     var mapUabcs;
@@ -116,9 +119,17 @@
         }
     }
 
-    function createMap(mapId,flagEdit){
+    function removeAllEdificio(){
+        for(var i = 0;i<edificiosArray.length;i++){
+            edificiosArray[i].poly.setStyle({color: 'black'});
+            edificiosArray[i].poly.off();
+            mapUabcs.removeLayer(edificiosArray[i].poly);
+        }
+    }
+
+    function createMap(mapId,generatePoly){
         //Inicializa el mapa en el contenedor edit-map-container en editMap.php
-        mapUabcs = L.map(mapId,{drawControl: flagEdit}).setView([24.102931, -110.316239], 18);
+        mapUabcs = L.map(mapId).setView([24.102931, -110.316239], 18);
         L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
         attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
         minZoom: 16,
@@ -128,122 +139,149 @@
         zoomOffset: -1,
         accessToken: accessTokenMB
         }).addTo(mapUabcs);
-        getAula();
-        getEdificios();
-        if(flagEdit){
-            editTool();
+
+        if(generatePoly){
+            getAula(true,true);
+            getEdificios(true,true);
         }
-
-
-        function editTool(){
-            //Crea la interfaz de dibujado a la izquierda del mapa
-            // FeatureGroup is to store editable layers
-            var drawnItems = new L.FeatureGroup();
-            mapUabcs.addLayer(drawnItems);
-
-            drawControl = new L.Control.Draw({
-                edit: {
-                    featureGroup: drawnItems,
-                    poly:{
-                        allowIntersection: false
-                    }
-                }
-                
-            });
-            
-            
-
-            //La creacion de poligonos y extraccion de coordenadas para ser procesadas
-            mapUabcs.on(L.Draw.Event.CREATED, function (e){
-            var type = e.layerType,
-                layer = e.layer;
-            if (type === 'marker') {
-            }
-            polyArray=layer.getLatLngs();
-            if(polyArray[0].length==numSide){
-                
-                mapUabcs.addLayer(layer);
-                
-            }else{
-                alert("El poligono tiene que ser de 4 lados");
-            }
-            var numC = 0;
-            for(let i =0; i<polyArray[0].length;i++){
-                console.log(polyArray[0][i]);
-                var polyArrayC = Object.values(polyArray[0][i]);
-                xyCoord[numC] = polyArrayC[0];
-                numC++;
-
-                xyCoord[numC] = polyArrayC[1];
-                numC++;
-            
-            
-                
-            }
-            })
-        }    
-        function getEdificios(){
-            var option = "getEdificios";
-            $.ajax({
-                url: rutaAjaxMapa,
-                type: 'POST',
-                data: {option},
-                success: function(response){
-                    
-                    edificio1 = JSON.parse(response);
-                    var cont = 0;
-                    edificio1.forEach(task => {	
-                        
-                        
-                        edificiosArray[cont] =  new polygon(`${task.idEdificio}`,`${task.Nombre}`,"edificio",null); 
+             
         
-        
-                        edificioUabcs[cont] = [[`${task.x1}`, `${task.y1}`],
-                                                [`${task.x2}`, `${task.y2}`],
-                                                [`${task.x3}`, `${task.y3}`],
-                                                [`${task.x4}`, `${task.y4}`]];
-        
-                        edificiosArray[cont].poly = L.polygon(edificioUabcs[cont] , {color: 'red'}).addTo(mapUabcs);
-                        edificiosArray[cont].enablePopUp();
-                        edificiosArray[cont].edificioClick();
-                        cont++;
-                        
-                    });
-                      
-                    
-                }
-            })
-        }
-        function getAula(){
-            var option = "getAula";
-            $.ajax({
-                url: rutaAjaxMapa,
-                type: 'POST',
-                data: {option},
-                success: function(response){
-                    
-                    aula1 = JSON.parse(response);
-                    //console.log(aula1);
-                    var cont = 0;
-                    aula1.forEach(task => {	
-                        
-                        
-                        aulasArray[cont] =  new polygon(`${task.idAula}`,`${task.nombreAula}`,"aula",null,`${task.idPlanta}`,`${task.idEdificio}`); 
-        
-                        aulaUabcs[cont] = [[`${task.x1}`, `${task.y1}`],
-                                                [`${task.x2}`, `${task.y2}`],
-                                                [`${task.x3}`, `${task.y3}`],
-                                                [`${task.x4}`, `${task.y4}`]];
-                        aulasArray[cont].poly = L.polygon(aulaUabcs[cont] , {color: 'black'});
-                        cont++;
-                        
-                    });
-                      
-                    
-                }
-            })
-        }
     }
+
+    function getEdificios(visible,clickFunction){
+        var option = "getEdificios";
+        $.ajax({
+            url: rutaAjaxMapa,
+            type: 'POST',
+            data: {option},
+            success: function(response){
+                
+                edificio1 = JSON.parse(response);
+                var cont = 0;
+                edificio1.forEach(task => {	
+                    
+                    
+                    edificiosArray[cont] =  new polygon(`${task.idEdificio}`,`${task.Nombre}`,"edificio",null); 
+    
+    
+                    edificioUabcs[cont] = [[`${task.x1}`, `${task.y1}`],
+                                            [`${task.x2}`, `${task.y2}`],
+                                            [`${task.x3}`, `${task.y3}`],
+                                            [`${task.x4}`, `${task.y4}`]];
+    
+                    edificiosArray[cont].poly = L.polygon(edificioUabcs[cont] , {color: 'red'})
+                    edificiosArray[cont].enablePopUp();
+                    
+                    if(visible){
+                        edificiosArray[cont].poly.addTo(mapUabcs);
+                    }
+                    if(clickFunction){
+                        edificiosArray[cont].edificioClick();
+                    }
+                    cont++;
+                    
+                });
+                  
+                
+            }
+        })
+    }
+
+    function getAula(visible){
+        var option = "getAula";
+        $.ajax({
+            url: rutaAjaxMapa,
+            type: 'POST',
+            data: {option},
+            success: function(response){
+                
+                aula1 = JSON.parse(response);
+                //console.log(aula1);
+                var cont = 0;
+                aula1.forEach(task => {	
+                    
+                    
+                    aulasArray[cont] =  new polygon(`${task.idAula}`,`${task.nombreAula}`,"aula",null,`${task.idPlanta}`,`${task.idEdificio}`); 
+    
+                    aulaUabcs[cont] = [[`${task.x1}`, `${task.y1}`],
+                                            [`${task.x2}`, `${task.y2}`],
+                                            [`${task.x3}`, `${task.y3}`],
+                                            [`${task.x4}`, `${task.y4}`]];
+                    aulasArray[cont].poly = L.polygon(aulaUabcs[cont] , {color: 'black'});
+                    if(visible){
+                        aulasArray[cont].poly.addTo(mapUabcs);
+                    }
+                    cont++;
+                    
+                });
+                  
+                
+            }
+        })
+    }
+
+    function removeEditTool(){
+        mapUabcs.removeControl(drawControl);
+        mapUabcs.removeLayer(drawnItems);
+    }
+
+    function editTool(){
+        //Crea la interfaz de dibujado a la izquierda del mapa
+        // FeatureGroup is to store editable layers
+        drawnItems = new L.FeatureGroup();
+        mapUabcs.addLayer(drawnItems);
+
+        drawControl = new L.Control.Draw({
+            edit: {
+              featureGroup: drawnItems, // allow editing/deleting of features in this group
+              edit: false // disable the edit tool (since we are doing editing ourselves)
+            },
+            draw: {
+              circle: false, // disable circles
+              marker: false, // disable polylines
+              polyline: false, // disable polylines
+              polygon: {
+                allowIntersection: false, // polygons cannot intersect thenselves
+                drawError: {
+                  color: 'red', // color the shape will turn when intersects
+                  message: 'No puedes Realizar una intersección' 
+                }
+              }
+            }
+          });
+        mapUabcs.addControl(drawControl);
+        
+        
+
+        //La creacion de poligonos y extraccion de coordenadas para ser procesadas
+        mapUabcs.on(L.Draw.Event.CREATED, function (e){
+        var type = e.layerType,
+            layer = e.layer;
+        if (type === 'marker') {
+        }
+        polyArray=layer.getLatLngs();
+        if(polyArray[0].length==numSide){
+            
+            mapUabcs.addLayer(layer);
+            
+        }else{
+            alert("El poligono tiene que ser de 4 lados");
+        }
+        var numC = 0;
+        for(let i =0; i<polyArray[0].length;i++){
+            console.log(polyArray[0][i]);
+            var polyArrayC = Object.values(polyArray[0][i]);
+            xyCoord[numC] = polyArrayC[0];
+            numC++;
+
+            xyCoord[numC] = polyArrayC[1];
+            numC++;
+        
+        
+            
+        }
+        })
+    }   
 
     function createTable(idAula){
     var option = "getTable";

@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	var containMap = "mapid"
-	createMap(containMap);
+	createMap(containMap,true);
 	//Combobox Planta
 	getComboboxMap("map-piso","idPlanta","planta","planta");
 	//combobox Edificio

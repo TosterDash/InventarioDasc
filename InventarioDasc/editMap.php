@@ -27,8 +27,8 @@
         <div class="row-form form-background">
             <!--FORM CON CAMPOS-->
             <form action="" class="add-field-box" id="form-edit">
-                    <label for="">Opciones de gestión</label>
-                    <select id="accion-select">
+                    <label for="" id="label-option">Opciones de gestión</label>
+                    <select id="accion-select" name="accion-select">
                         <option value="">SELECCIONE UNA ACCIÓN</option>
                         <option value="add">Agregar Edificio</option>
                         <option value="delete">Eliminar Edificio</option>
@@ -36,12 +36,12 @@
                     </select>
                 <div id="nombre-placeholder">
                     <label id= "nombre-label" for="">NOMBRE</label>
-                    <input type="text" id="nombre-map" placeholder="Escriba un nombre para Edificio/Aula">
+                    <input type="text" id="nombre-map" name="nombre-map" placeholder="Escriba un nombre para Edificio/Aula" require>
                 </div>
                 <div id="tipo-combobox">
                     <!--comboboggs-->
                     <label for="">TIPO</label>
-                    <select id="tipo-select">
+                    <select id="tipo-select" name="tipo-select">
                         <option value="">SELECCIONE UNA OPCIÓN</option>
                         <option value="edificio">EDIFICIO</option>
                         <option value="aula">AULA</option>
@@ -50,7 +50,7 @@
                 <div id="planta-combobox">
                     <!--comboboggs-->
                     <label for="">PLANTA</label>
-                    <select id="planta-select" placeholder="baja, alta">
+                    <select id="planta-select" name="planta-select" placeholder="baja, alta">
                         <option value="BAJA">BAJA</option>
                         <option value="ALTA">ALTA</option>
                     </select>
@@ -59,14 +59,16 @@
                     <!--comboboggs llenarlos con la bdd?-->
                     <label for="" id="label-edificio">EDIFICIO</label>
                     
-                    <select id="edificio-select" placeholder="En que edificio">
+                    <select id="edificio-select" name="edificio-select" placeholder="En que edificio">
                         <option value="" >SELECCIONE UNA OPCIÓN</option>
                     </select>
                     </div>
-                    <label id= "descripcion-label" for="">Seleccione un poligono para eliminarlo</label>
+                    <div  id= "descripcion-label">
+                    
+                    </div>
 
                     <!--BOTON ACEPTAR-->
-                    <input type="submit" name="" id="boton-edificioPlanta" value="Insertar Poligono">
+                    <input type="submit" name="boton-edificioPlanta" id="boton-edificioPlanta" value="Insertar Poligono">
             </form> 
         </div>
         <!--CAJA DEL MAPA-->
