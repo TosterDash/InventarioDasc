@@ -18,8 +18,7 @@ body{
 
 .carousel-item> img {
   	width: 100%;
-	height: 630px;
-	
+	height: 630px;	
 }
 
 .menu{
@@ -35,9 +34,47 @@ body{
 	position: absolute;
 	top: 20%;
   	background-color: rgba(0,0,0,0.4);
-  	
 	width: 100%;
 	padding: 2%;
 }
 
+/*REEEESSSSSSSSSSSPOOOOOONSIVEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE*/
 
+@media only screen and (max-width: 1024px) {
+  /* For mobile phones: */
+
+}
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+
+	.index-image{
+		height: 150px;
+	}
+}
+
+@media only screen and (max-width: 425px) {
+  /* For mobile phones: */
+ 
+	.index-image{
+		height: 150px;
+	}
+
+	.btn-container{
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+	}
+
+	.btn-container img{
+		margin-left: 120px;
+	}
+}
+
+@media only screen and (max-width: 320px) {
+  /* For mobile phones: */
+  .btn-container img{
+		margin-left: 80px;
+	}
+}
+
+/*REEEESSSSSSSSSSSPOOOOOONSIVEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE*/

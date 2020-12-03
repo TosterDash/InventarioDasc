@@ -40,7 +40,6 @@
 	padding: 1%;
 	border-top:1px solid black;
 	background-color: #333E49;
-	
 }
 
 .search-input:focus {
@@ -73,3 +72,50 @@ th, td {
   border-bottom: 1px solid #ddd;
   overflow: hidden;
 }
+
+
+/*REEEESSSSSSSSSSSPOOOOOONSIVEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE*/
+
+@media only screen and (max-width: 1024px) {
+  /* For mobile phones: */
+
+}
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+
+}
+
+@media only screen and (max-width: 425px) {
+  /* For mobile phones: */
+
+	.cons-nav-bar{ 
+		color: white;
+		position: initial;
+		top: 0;
+		height: 100px;
+		width: 100vw;
+		display: flex;
+		flex-wrap: wrap;
+		padding: 1%;
+		border-top:1px solid black;
+		background-color: #333E49;
+	}
+
+	input, select{
+		display: flex;
+		flex-direction: column;
+		width: 100px;
+	}
+
+	.barra-size{
+		display: flex;
+		flex-direction: column;
+	}
+}
+
+@media only screen and (max-width: 320px) {
+  /* For mobile phones: */
+
+}
+
+/*REEEESSSSSSSSSSSPOOOOOONSIVEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE*/

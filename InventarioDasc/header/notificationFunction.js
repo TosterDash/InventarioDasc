@@ -89,30 +89,33 @@ hacer que las notificaciones de mantenimiento
     
 
 function getNotificationNum(response,respPrestamo){
-    var totalNotification = getMantenimientoToDo(response);
-    totalNotification += getPrestamoToDo(respPrestamo);
+    var totalNotification = 50; //getMantenimientoToDo(response);
+
+    //eSta linea de abajo está haciendo que haya error, si la quito todo jala
+     // totalNotification += getPrestamoToDo(respPrestamo);
     if (totalNotification == 0) {
         //comente esto para ver el pinshi tenplei c:
-       /* $("#notification").html(`<a class="menu-list navigation-menu-listt dropdown-toggle" data-toggle="dropdown">
-                                        NOTIFICACIONES
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="notificationBoard.php">MANTENIMIENTO ()</a>
-                                        <a class="dropdown-item" href="notificationBoard.php">PRÉSTAMOS ()</a>
-                                        <a class="dropdown-item" href="notificationBoard.php">PRODUCTOS ()</a>
+       $("#notification").html(`<a class="menu-list dropdown-toggle item-menu" data-toggle="dropdown"><img style="height: 30px;" src="../resources/notif_icon.png"></a>
+                                    <div class="dropdown-menu notification-dropdown">
+                                        <div class="notification-area">
+                                            <a href="login-registro.php"><span>
+                                                NOO AY NADAAAAAAAAAAA
+                                            </span></a>
+                                        </div>
                                     </div>`);
     }
     else{
-        $("#notification").html(`<a class="menu-list navigation-menu-listt dropdown-toggle" data-toggle="dropdown">
-                                        NOTIFICACIONES
-                                        <span class="badge">`+totalNotification+`</span></a>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="notificationBoard.php">MANTENIMIENTO (`+notificationMantenimiento+`)</a>
-                                        <a class="dropdown-item" href="notificationBoard.php">PRÉSTAMOS (`+notificacionPrestamo+`)</a>
-                                        <a class="dropdown-item" href="notificationBoard.php">PRODUCTOS (0)</a>
+        $("#notification").html(`<span class="badge">`+totalNotification+`</span></a>
+                                <a class="menu-list dropdown-toggle item-menu" data-toggle="dropdown"><img style="height: 30px;" src="../resources/notif_icon.png"></a>
+                                    <div class="dropdown-menu notification-dropdown">
+                                        <div class="notification-area">
+                                            <a href="login-registro.php"><span>
+                                                SI AAAAAAAAI
+                                            </span></a>
+                                        </div>
                                     </div>`);
     }
-                                    
-       */
+        
 }
 //funciones get para saber que se necesita hacer (ligadas a getNotificationNUM)
 function getMantenimientoToDo(response){

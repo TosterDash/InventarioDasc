@@ -14,7 +14,7 @@
         
     </head>
     <body>
-        <div class="disp-flexRow">
+        <div class="disp-flexRow barra-size">
             <!--Barra de busqueda-->
             <div class="disp-flexCol cons-nav-bar row-cons">
                 <div class="row-form cons-col-size"> 

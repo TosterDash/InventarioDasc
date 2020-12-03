@@ -16,7 +16,6 @@
 
 	<link rel="stylesheet" href="alertify/css/alertify.css">
 	<script src="alertify/alertify.js"></script>
-	<!--
 	
 	<script src="header/notificationFunction.js"></script>
 
@@ -28,8 +27,7 @@
 	<link rel="stylesheet" href="../styles/generalStyle.css">
 	<link rel="stylesheet" href="alertify/css/alertify.css">
 	<script src="alertify/alertify.js"></script>
-	-->
- 
+	
 
 </head>
 <body>
@@ -69,33 +67,31 @@
 		    </div>
 		</div>
 	    <!--item de menu--> 
-	    <!-- <script>
+	     <script>
 			$(document).ready(function(){
-				console.log("JAJAJAJAJAJAJAJAJAJAJAJAJA DIJO PATOPIPON NO PINCHES MAMEEEES");
+				console.log("funcion del getDate para las notifs");
 				$.when(getDate(),getPrestamoDate()).done(function(respDate,respPrestamo){
 					//console.log(respDate);
 					//console.log(respPrestamo);
 					getNotificationNum(respDate,respPrestamo);
-					//setInterval(actualizarFechas, 60000);
+					setInterval(actualizarFechas, 60000);
 				})
 			});
 			
-		</script>-->
+		</script>
 	    <!--item de menu-->
 	     <div class="notification" id="notification">
-		    <a class="menu-list dropdown-toggle item-menu" data-toggle="dropdown"><img style="height: 30px;" src="../resources/notif.png"></a>
+		    <a class="menu-list dropdown-toggle item-menu" data-toggle="dropdown"><img style="height: 30px;" src="../resources/notif_icon.png"></a>
 		    <div class="dropdown-menu notification-dropdown">
                 <div class="notification-area">
-                	<a href="login-registro.php"><span>
-                		"At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis prae 
-                	</span></a>
+                	
                 </div>
 		    </div>
 		</div>
 	    <!--item de menu-->  
 	    <!--item de menu-->
 			<div class="">
-			    <a id="inventory-menu" class="menu-list dropdown-toggle item-menu" data-toggle="dropdown"><img style="height: 30px;" src="../resources/notif.png"></a>
+			    <a id="inventory-menu" class="menu-list dropdown-toggle item-menu" data-toggle="dropdown"><img style="height: 30px;" src="../resources/login_icon.png"></a>
 			    <div class="dropdown-menu">
 			    	<!--si ya estás logeado esta cosa debería decir "SALIR"-->
 				    <a class="dropdown-item" href="login-registro.php">ENTRAR</a>

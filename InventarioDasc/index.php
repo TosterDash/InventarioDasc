@@ -43,19 +43,18 @@ if(!isset($_SESSION['nombre']))
   	<div class="menu">
 		<div id="btn-cont" class="btn-container">
 			<div class="menu-title hvr-float">
-				<a class="center-title" href="map.php"><img src="../resources/1x/mapa_icon.png"><h2>MAPA</h2></a> 
+				<a class="center-title" href="map.php"><img class="index-image" src="../resources/1x/mapa_icon.png"><h2>MAPA</h2></a> 
 			</div>
 			<div class="menu-title hvr-float">
-				<a class="center-title" href="consInventory.php"><img src="../resources/1x/inven_icon.png"><h2>INVENTARIO</h2></a>
+				<a class="center-title" href="consInventory.php"><img class="index-image" src="../resources/1x/inven_icon.png"><h2>INVENTARIO</h2></a>
 			</div>
 			<div class="menu-title hvr-float">
-				<a class="center-title" href="consloan.php"><img src="../resources/1x/prest_icon.png"><h2>PRÉSTAMOS</h2></a>
+				<a class="center-title" href="consloan.php"><img class="index-image" src="../resources/1x/prest_icon.png"><h2>PRÉSTAMOS</h2></a>
 			</div>				
 		</div>	
 	</div>
   </div>
 </body>
-<?php include ('footer.html');?>
 </html>
 
 

@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="../styles/mapStyle.css">
     <link rel="stylesheet" href="../styles/generalStyle.css">
 
- <!--   <script src="header/mapFunction.js"></script>-->
+  <script src="header/mapFunction.js"></script>
     
     <title>AÑADIR AL MAPA</title>
 </head>
