@@ -4,6 +4,7 @@ $(document).ready(function(){
     getLoanCard("card-container","false");
 
     $("#mostrar-radio-entregados").on('change',function(){
+        getNotificationNum(false);
         if($("#mostrar-radio-entregados").prop('checked')){
             getLoanCard("card-container","true");
         }

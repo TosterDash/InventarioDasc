@@ -69,13 +69,10 @@
 	    <!--item de menu--> 
 	     <script>
 			$(document).ready(function(){
-				console.log("funcion del getDate para las notifs");
-				$.when(getDate(),getPrestamoDate()).done(function(respDate,respPrestamo){
-					//console.log(respDate);
-					//console.log(respPrestamo);
-					getNotificationNum(respDate,respPrestamo);
-					setInterval(actualizarFechas, 60000);
-				})
+
+			getNotificationNum(true);
+					
+				
 			});
 			
 		</script>
