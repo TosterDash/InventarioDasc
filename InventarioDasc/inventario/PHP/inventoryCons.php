@@ -331,9 +331,10 @@
         break;
 
         case "mantenimientoHecho":
-            $idObjeto = $_POST["idObjeto"];
+            $id = $_POST["id"];
             $lastMant = $_POST["lastMant"];
-            $mod = ("UPDATE objeto SET mantenimiento = 'false',lastMant = '$lastMant', nextMant = '' WHERE idObjeto = '$idObjeto'");
+            $nextMant = $_POST["nextMant"];
+            $mod = ("UPDATE objeto SET lastMant = '$lastMant', nextMant = '$nextMant' WHERE idObjeto = '$id'");
             $result = mysqli_query($conexion,$mod);
             if(!$result){
                 echo die("error");
@@ -461,20 +462,17 @@
 
         case "getDate":
             $select = ("SELECT 
-                            `objeto`.`idObjeto`, 
-                            concat(objeto.idUabcs, objeto.idObjeto) as etiqueta  ,
-                            `objeto`.`lastMant`,
-                            `objeto`.`nextMant`,
-                            `objeto`.`mantResp`,
-                            `tipoproducto`.`producto`,
-                            objeto.lastMant, 
-                            objeto.nextMant 
+                            `objeto`.`idObjeto`, concat(`objeto`.`idUabcs`,`objeto`.`idObjeto`) as etiqueta, `tipoproducto`.`producto`,
+                            `mantresp`.`nombreRol`, `objeto`.`nextMant`, `edificio`.`Nombre`, `aula`.`nombreAula`
                         from 
-                            objeto, 
-                            tipoproducto 
+                            objeto,tipoproducto,mantresp,edificio,aula, aula_has_objeto 
                         where 
-                            `objeto`.`mantenimiento` = 'true' 
-                            and `tipoproducto`.`idTipoProducto`=`objeto`.idTipoProducto");
+                            `objeto`.`mantenimiento` = 'true' and
+                            `tipoproducto`.`idTipoProducto` = `objeto`.`idTipoProducto` and
+                            `mantresp`.`idMantResp`=`objeto`.`idMantResp` and
+                            `aula_has_objeto`.`idObjeto`=`objeto`.`idObjeto` and
+                            `aula`.`idAula`=`aula_has_objeto`.`idAula` and
+                            `edificio`.`idEdificio`=`aula`.`idEdificio`");
             $result = mysqli_query($conexion, $select);
             if(!$result){
                 echo die("error");
@@ -487,10 +485,11 @@
                         'idObjeto' => $row['idObjeto'],
                         'etiqueta' => $row['etiqueta'],
                         'producto' => $row['producto'],
-                        'lastMant' => $row['lastMant'],
+                        'nombreRol' => $row['nombreRol'],
                         'nextMant' => $row['nextMant'],
-                        'mantResp' => $row['mantResp'],
-                        'tipoNotificacion' => "mantenimiento",
+                        'Nombre' => $row['Nombre'],
+                        'nombreAula' => $row['nombreAula'],
+                        'tipoNotificacion' => "Mantenimiento",
                     );
                 }
                 $jsonstring = json_encode($json);
@@ -513,6 +512,7 @@
                         'returnDate' => $row['returnDate'],
                         'idUser' => $row['identificador'],
                         'userName' => $row['nombre'],
+                        'tipoNotificacion' => "Prestamo",
                         
                     );
                 }

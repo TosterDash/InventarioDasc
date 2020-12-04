@@ -32,6 +32,7 @@
 	<script src="Jquery/Jquery.js"></script>
 	<script type="text/javascript" src="../styles/popper.js"></script>
 	<script type="text/javascript" src="../styles/bootstrap.min.js"></script>
+	<script src="login/JS/login.js"></script>
 
 	<link rel="stylesheet" href="../styles/normalize.css">
 	<link rel="stylesheet" href="../styles/generalStyle.css">
@@ -54,7 +55,7 @@
 		        <div class="button-form">
 		            <div class="auto-margin">
 		            	<!--Boton para cancelar el prestamo-->
-                        <button >Cancelar</button>
+                        <button id="login-cancel" >Cancelar</button>
 		                <input type="submit" name="" id="login-submit">
 		            </div>
 		        </div>
@@ -67,7 +68,7 @@
 </html>
 
 <script type="text/javascript">
-	$(document).ready(function() {
+	/*$(document).ready(function() {
 
 
 	$('#login-form').submit(function (e){
@@ -76,7 +77,7 @@
 	    var username = $('#username').val();
 	    var password = $('#password').val();
 	  
-	  $.post('PHP/login.php',{username,password} ,function(response){
+	  $.post('login/PHP/login.php',{username,password} ,function(response){
 	  	 if (response == username) {
 	  	 	console.log(response);
 	  	 	$(location).attr('href','index.php');
@@ -87,5 +88,5 @@
 	  	 }
 	  });
 	});
-});
+});*/
 </script>
