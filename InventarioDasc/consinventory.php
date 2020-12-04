@@ -17,7 +17,7 @@
         <div class="disp-flexRow barra-size">
             <!--Barra de busqueda-->
             <div class="disp-flexCol cons-nav-bar row-cons">
-                <div class="row-form cons-col-size"> 
+                <div class="row-form cons-col-size search-box"> 
                     <label>Buscar por:</label>
                     <select  name="combobox-search" id="combobox-search">
                         <option hidden>Selecciona</option>
@@ -25,12 +25,12 @@
                         <option values="Descripción">Descripcion</option>
                     </select>
                 </div >
-                <div class="row-form cons-col-size">
+                <div class="row-form cons-col-size search-box">
                     <div class="disp-flexRow">
                         <input type="text" placeholder="Buscar..." id="search" class="search-input">
                     </div>
                 </div>
-                <div class=" row-form cons-col-size">
+                <div class=" row-form cons-col-size search-box">
                     <label>Mostrar por:</label>
                     <select name="combobox-category" id="combobox-category">
                         <option hidden>Selecciona</option>

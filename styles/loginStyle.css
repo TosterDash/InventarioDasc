@@ -15,8 +15,12 @@
 	margin-bottom: 5%;
 }
 
+
 .form-size{
-	margin-left: 25%;
-	width: 50vw;
+	margin-left: 30%;
+	width: 40vw;
 }
- 
+
+.auto-margin{
+	margin-left: 5px;
+ }

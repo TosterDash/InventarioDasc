@@ -120,16 +120,7 @@ button, input[type=submit]{
 	width: 100%;
 }
 
-.form-background{
-	background-color: white;
-	border: 1px solid white;
-	border-radius: 10px;
-	width: 70%;
-	margin-left: 15%;
-	padding: 1%;
-	margin-top: 5%;
-	margin-bottom: 5%;
-}
+
 
 /*sidebar menu*/
 .cons-nav-bar{ 
@@ -162,7 +153,7 @@ button, input[type=submit]{
 
 @media only screen and (max-width: 425px) {
   /* For mobile phones: */
- 
+  
 }
 
 @media only screen and (max-width: 320px) {

@@ -45,7 +45,7 @@
 <body class="background-img">
 
 	<div class="form-background form-size"> 
-		<h1 class="center-title">LOGIN</h1>
+		<h1 class="center-title">INICIO DE SESIÓN</h1>
 			<form class="" id="login-form"> 
 				<label >USUARIO</label>
 				<input type="text" name="username" id="username">

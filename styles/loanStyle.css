@@ -16,6 +16,17 @@ body{
     border:1px solid rgba(4,4,4,0.2);
 }
 
+.form-background{
+	background-color: white;
+	border: 1px solid white;
+	border-radius: 10px;
+	width: 70%;
+	margin-left: 15%;
+	padding: 1%;
+	margin-top: 5%;
+	margin-bottom: 5%;
+}
+
 .divider-ver{
     height:30vh;
     border:1px solid rgba(4,4,4,0.2);

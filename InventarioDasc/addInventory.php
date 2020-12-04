@@ -26,7 +26,7 @@
         <a class="a-to-btn" href="consinventory.php">Volver</a>-->
         <div id="col-1">
             <!-- PRIMERA COLUMNA DE LA PAGINA -->
-            <div class="disp-flexCol row-form add-col-size" id="col-1-content" >
+            <div class="disp-flexCol row-form add-col-size input-size" id="col-1-content" >
                 <label class="">Tipo de clasificacion</label>
                 <select class="" name="col-1-combobox-category" id="col-1-combobox-clasification">  
                 </select>
@@ -68,7 +68,7 @@
             <!-- PRIMERA COLUMNA DE LA PAGINA -->
 
             <!-- SEGUNDA COLUMNA DE LA PAGINA -->
-            <div class="disp-flexCol row-form add-col-size" id="col-2-content round-border">
+            <div class="disp-flexCol row-form add-col-size" id="col-2-content round-border input-size">
                     <label class="">Edificio</label>
                     <select id = "col-2-combobox-edificios" name="col-2-combobox-edificios">
                     </select>
@@ -94,7 +94,7 @@
             <!-- SEGUNDA COLUMNA DE LA PAGINA -->
 
             <!-- TERCERA COLUMNA DE LA PAGINA -->
-            <div class="disp-flexCol row-form add-col-size">
+            <div class="disp-flexCol row-form add-col-size input-size">
                 <div id="col-3-content">  
                     <label for="myfile">Selecciona una imagen</label>
                     <input class="pic-input" type="file" class="" name="item_file" id="item_file" require></input>
