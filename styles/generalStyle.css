@@ -38,7 +38,7 @@ a:hover{ cursor: pointer; }
 }
 
 .auto-margin{
-	margin-left: 12%;
+	margin-left: 20%;
 	width: 100%;
 }
 
@@ -82,16 +82,14 @@ label{
 }
 
 /*buttons*/
-button{
+button, input[type=submit]{
 	border-radius:8px;
 	border:1px solid #333E49;
-	padding: 0.7%;
+	padding: 5px;
 	text-align: center;
-	width: 20%;
-	margin-left: 10%;
+	width: 160px;
+	margin-left: 80px;
 }
-
-
 
 .reset-btn{
 	width: 6%;
@@ -121,6 +119,17 @@ button{
 	width: 100%;
 }
 
+.form-background{
+	background-color: white;
+	border: 1px solid white;
+	border-radius: 10px;
+	width: 70%;
+	margin-left: 15%;
+	padding: 1%;
+	margin-top: 5%;
+	margin-bottom: 5%;
+}
+
 /*sidebar menu*/
 .cons-nav-bar{ 
 	color: white;
@@ -134,3 +143,30 @@ button{
 }
 
 
+
+/*REEEESSSSSSSSSSSPOOOOOONSIVEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE*/
+
+@media only screen and (max-width: 1024px) {
+  /* For mobile phones: */
+  .auto-margin{
+		margin-left: 10%;
+	}
+}
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  .auto-margin{
+		margin-left: 5%;
+	}
+}
+
+@media only screen and (max-width: 425px) {
+  /* For mobile phones: */
+ 
+}
+
+@media only screen and (max-width: 320px) {
+  /* For mobile phones: */
+
+}
+
+/*REEEESSSSSSSSSSSPOOOOOONSIVEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE*/

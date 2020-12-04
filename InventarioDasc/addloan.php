@@ -51,12 +51,14 @@
                         </table>
                     </div> 
                 </div>
-                <div class="addloan-btn">
-                    <!--Boton para cancelar el prestamo-->
-                    <button >Cancelar</button>
-                    <!--Boton para agregar el prestamo-->
-                    <button id="loan-add-add"> Agregar</button>
-                </div>
+                <div class="button-form">
+                        <div class="auto-margin">
+                            <!--Boton para cancelar el prestamo-->
+                            <button >Cancelar</button>
+                            <!--Boton para agregar el prestamo-->
+                            <button id="loan-add-add"> Agregar</button>
+                        </div>
+                    </div>
             </div>
          
     </body>

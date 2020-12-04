@@ -91,10 +91,10 @@
     </div>
     <div>
         <div class="button-form">
-        <div class="auto-margin">
-            <button type="" class="" id="cancel-objeto">Cancelar</button>
-            <button type="submit" class="" id="submit-objeto">Añadir Objeto</button>
-        </div>
+            <div class="auto-margin">
+                <button type="" class="" id="cancel-objeto">Cancelar</button>
+                <button type="submit" class="" id="submit-objeto">Añadir Objeto</button>
+            </div>
         </div>
     </div>
     

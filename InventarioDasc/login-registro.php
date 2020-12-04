@@ -47,14 +47,18 @@
 	<div class="form-background form-size"> 
 		<h1 class="center-title">LOGIN</h1>
 			<form class="" id="login-form"> 
-				<label for="username">USUARIO</label><br>
+				<label >USUARIO</label>
 				<input type="text" name="username" id="username">
-				<label for="username">CONTRASEÑA</label><br>
+				<label >CONTRASEÑA</label>
 				<input type="password" name="password" id="password">
-				<input type="submit" name="" id="login-submit">
-				
+		        <div class="button-form">
+		            <div class="auto-margin">
+		            	<!--Boton para cancelar el prestamo-->
+                        <button >Cancelar</button>
+		                <input type="submit" name="" id="login-submit">
+		            </div>
+		        </div>
 			</form>
-			<a href="" class="center-text">¿No tienes una cuenta? Crea una</a>
 	</div>
 
     
