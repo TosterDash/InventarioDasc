@@ -177,8 +177,8 @@ switch($option){
                                                 `objeto`.`nombre`, `tipoproducto`.`producto`,
                                                 `aula`.`nombreAula`,
                                                 `edificio`.`Nombre`,
-                                                `prestamo`.`exitDate`,
-                                                `prestamo`.`returnDate`,
+                                                DATE_FORMAT(`prestamo`.`exitDate`, '%d-%m-%Y') as exitDate,
+                                                DATE_FORMAT(`prestamo`.`returnDate`, '%d-%m-%Y') as returnDate,
                                                 `userprestamo`.`identificador`,
                                                 `userprestamo`.`nombre`
                                             from 
@@ -206,8 +206,8 @@ switch($option){
                                                 `objeto`.`nombre`, `tipoproducto`.`producto`,
                                                 `aula`.`nombreAula`,
                                                 `edificio`.`Nombre`,
-                                                `prestamo`.`exitDate`,
-                                                `prestamo`.`returnDate`,
+                                                DATE_FORMAT(`prestamo`.`exitDate`, '%d-%m-%Y') as exitDate,
+                                                DATE_FORMAT(`prestamo`.`returnDate`, '%d-%m-%Y') as returnDate,
                                                 `userprestamo`.`identificador`,
                                                 `userprestamo`.`nombre`
                                             from 
