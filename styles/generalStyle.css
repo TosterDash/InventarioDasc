@@ -121,6 +121,21 @@ button, input[type=submit]{
 }
 
 
+
+/*sidebar menu*/
+.cons-nav-bar{ 
+	color: white;
+	position:sticky;
+	top: 0;
+	height: 100vh;
+	width: 22%;
+	padding: 1%;
+	border-top:1px solid black;
+	background-color: #333E49;
+}
+
+
+
 /*REEEESSSSSSSSSSSPOOOOOONSIVEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE*/
 
 @media only screen and (max-width: 1024px) {
@@ -132,18 +147,13 @@ button, input[type=submit]{
 @media only screen and (max-width: 768px) {
   /* For mobile phones: */
   .auto-margin{
-  		display: flex;
-  		flex-direction: row;
-		margin-left: 0;
-		width: 100%;
+		margin-left: 5%;
 	}
 }
 
 @media only screen and (max-width: 425px) {
   /* For mobile phones: */
-  .auto-margin{
-
-  }
+  
 }
 
 @media only screen and (max-width: 320px) {
