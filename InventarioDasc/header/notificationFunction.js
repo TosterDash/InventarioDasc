@@ -201,6 +201,8 @@ function getCantidadMantenimiento(response,enableCrear){
         for(var i=0;i<mantenimientoNotification.length;i++){
             mantenimientoNotification[i].enablePopUp();
         }
+    }else{
+        $("#disp-flexWrap").html(template);
     }
     
     

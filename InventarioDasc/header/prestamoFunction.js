@@ -29,8 +29,6 @@ class cardLoan{
         $(document).on('click',"#card-loan-button-"+idPrestamo,function(){
             //console.log(idPrestamo);
             entregarPrestamo(idPrestamo,idUsuario);
-            setTimeout(() => { getNotificationNum(true); }, 10000);
-            
         })
     }
 
@@ -57,6 +55,7 @@ function getLoanCard(cardName,typeEntregado,typeBuscar,text,tableBdd){
         data: {option,typeEntregado,typeBuscar,text,tableBdd},
         success: function(response){
             deleteCards();
+            console.log(response);
             
             var cons = JSON.parse(response);
             var template = ``;             
@@ -68,6 +67,7 @@ function getLoanCard(cardName,typeEntregado,typeBuscar,text,tableBdd){
                 if(idLoan != lastIdLoan){
                     
                     cardLoanArray[cont] = new cardLoan(idLoan,task.idUsuario,task.nombreUsuario);
+                    console.log(cardLoanArray);
                     
                     template += `
                                 <div class="single-loan" id="single-loan-${task.idPrestamo}">
@@ -168,9 +168,7 @@ function entregarPrestamo(idPrestamo,idUsuario){
             console.log(response);
             $("#single-loan-"+idPrestamo).remove();
             $(document).off('click',"#card-loan-button-"+idPrestamo);
-            
-            
-         
+            //removePrestamoHas();
         }
     })
 
