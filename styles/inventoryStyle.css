@@ -107,7 +107,7 @@ th, td {
 		background-color: #333E49;
 	}
 
-	.search-box input, select{
+	.search-box {
 		display: flex;
 		flex-direction: column;
 		width: 100px;
@@ -134,12 +134,10 @@ th, td {
 		flex-direction: column;
 	}
 
-	.input-size input, select{
-		display: flex;
-		flex-direction: column;
-		width: 100px;
+	.add-col-size{
+		width: 80%;
 	}
-
+ 
 }
 
 @media only screen and (max-width: 320px) {

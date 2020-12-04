@@ -50,6 +50,11 @@ body{
 	width: 50%;
 }
 
+.barra-size{
+	display: flex;
+	flex-direction: row;
+}
+
 .table-scroll{
 	overflow-y: scroll;
 	overflow-x: scroll;
@@ -156,3 +161,74 @@ body{
 .history-nav{
 	margin-top: 3%;
 }
+
+
+/*REEEESSSSSSSSSSSPOOOOOONSIVEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE*/
+
+@media only screen and (max-width: 1024px) {
+  /* For mobile phones: */
+
+}
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+
+}
+
+@media only screen and (max-width: 425px) {
+  /* For mobile phones: */
+/*CONSLOAN*/
+	 	.cons-nav-bar{ 
+		color: white;
+		position: initial;
+		top: 0;
+		height: 100px;
+		width: 100vw;
+		display: flex;
+		flex-wrap: wrap;
+		padding: 1%;
+		border-top:1px solid black;
+		background-color: #333E49;
+	}
+
+	.search-box {
+		display: flex;
+		flex-direction: column;
+		width: 100px;
+	}
+
+	.barra-size{
+		display: flex;
+		flex-direction: column;
+	}
+	
+	#card-container{
+		border-left:1px solid black;
+		width: 100%;
+	}
+
+	.single-loan{
+		width: 100vw;
+	}
+
+/*ADDLOAN*/
+	.form-background{
+		background-color: white;
+		border: 1px solid white;
+		border-radius: 10px;
+		width: 100%;
+		margin-left: 0%;
+	}
+
+	.loan-container{
+		display: flex;
+		flex-direction: column;
+	}
+
+}
+
+@media only screen and (max-width: 320px) {
+  /* For mobile phones: */
+
+}
+
+/*REEEESSSSSSSSSSSPOOOOOONSIVEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE*/

@@ -41,7 +41,7 @@ describir cada método
 </head>
 <body>
 	<!--MENU Y BARRA DE BUSQUEDA-->
-	<div  class="disp-flexRow">
+	<div  class="map-container">
 			<!--Barra de busqueda-->
             <div class="disp-flexCol cons-nav-bar row-cons">
                 <div class="row-form cons-col-size"> 
