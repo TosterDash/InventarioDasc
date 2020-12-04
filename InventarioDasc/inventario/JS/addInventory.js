@@ -103,9 +103,11 @@ $(document).ready(function(){
     //boton añadir en producto
     $("#btn-producto-add").on('click',function(){
         var template ="";
-        template += `<input type="text" id="input-text-producto"></input>`;
+        template += `<label>Nuevo tipo de producto</label>
+        <input type="text" id="input-text-producto"></input>`;
         $("#product-input").html(template);
         $("#buttons-option-product").hide();
+        $("#prod-label").hide();
         $("#btn-producto-confirmar").show();
         $("#cancel-objeto,#submit-objeto").prop("disabled", true);
     })
@@ -146,6 +148,7 @@ $(document).ready(function(){
             template += `<select class="" name="col-1-combobox-product" id="col-1-combobox-product"></select>`;
             $("#product-input").html(template);
             $("#buttons-option-product").show();
+            $("#prod-label").show();
             $("#btn-producto-confirmar").hide();
             $("#btn-producto-confirmar").val("");
             $("#cancel-objeto,#submit-objeto").prop("disabled", false);
@@ -164,10 +167,10 @@ $(document).ready(function(){
                         getCombobox("col-1-combobox-product","producto", clasificacionVal)
                     break;
                 }
-                alertify.success("Se añadio el producto");
+                alertify.success("Se añadió el producto");
             })
         }else{
-            alertify.warning("Campo vacio en producto");
+            alertify.warning("Campo vacío en producto");
         }
     })
 

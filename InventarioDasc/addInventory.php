@@ -30,22 +30,36 @@
                 <label class="">Tipo de clasificacion</label>
                 <select class="" name="col-1-combobox-category" id="col-1-combobox-clasification">  
                 </select>
-                <div id="col-1-block-producto">
-                    <label class="">Tipo de producto</label>
-                    <div class="input-group mb-3">
-                        <div id="product-input">
-                            <select class="" name="col-1-combobox-product" id="col-1-combobox-product">
-                            </select>
+
+                <div id="col-1-block-producto" class="">
+                    <label id="prod-label">Tipo de producto</label>
+                    <div>
+                        <div>
+                            <div id="product-input">
+                                <select class="" name="col-1-combobox-product" id="col-1-combobox-product">
+                                </select>
+                            </div>
+                            <button type="button" style="margin-left: 0px;" class="button-form" id="btn-producto-confirmar" value="confirm-add">Añadir producto</button>
                         </div>
                         
-                        <div class="input-group-append" id="buttons-option-product">
-                            <button class="btn btn-success" type="button" id="btn-producto-add" value="add">Añadir</button>
-                            <button class="btn btn-danger" type="button" id="btn-producto-delete" value="delete">Eliminar</button>
+
+                        <div class="button-form disp-flexRow"  id="buttons-option-product">
+                            <div class="disp-flexRow" style="margin-right:18px">
+                                <label style="width:60px;">Añadir</label>
+                                <img src="../resources/add.png" class="icon-size" id="btn-producto-add" value="add"></img>
+                            </div>
+                            <div class="disp-flexRow" style="margin-right:18px">
+                                <label style="width:60px;">Eliminar</label>
+                                <img src="../resources/delete.png" class="icon-size" id="btn-producto-delete" value="delete"></img>
+                            </div>
+                            
+                            
                         </div>
-                        
                     </div>
-                    <button class="btn btn-success" type="button" id="btn-producto-confirmar" value="confirm-add">Añadir producto</button>
+
+                    
                 </div>
+
                 <div id="col-1-block-mant">
                     <input type="checkbox" name="col-1-checkbox-mant" id="col-1-checkbox-mant">Mantenimiento</input>
                     <input type="checkbox" name="col-1-checkbox-loan" id="col-1-checkbox-loan">Disponible para prestamo</input>
