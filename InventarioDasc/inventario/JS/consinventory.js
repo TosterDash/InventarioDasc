@@ -1,12 +1,12 @@
 
 
 $(document).ready(function(){
-    
+    var comboboxClasification = "#combobox-category";
     //codigo principal-----------------Invocar funciones
     
-    getCombobox("combobox-category","clasificacion");
-    getTableObjeto("equipo","tbody-equipo");
-    //getTableEquipo();
+    getCombobox("combobox-category","idTipoClasificacion","clasificacion","tipoclasificacion","Todos");
+    getTableObjeto("equipo","tbody-equipo",false);
+    getTableObjeto("consumible","tbody-consumible");
     //getTableConsumible();
 
     //getTableEquipo(rutaAjax,rowTableEquipo);

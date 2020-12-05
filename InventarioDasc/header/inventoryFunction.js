@@ -24,37 +24,21 @@ class rowTable{
 
     deleteOption(){
         var idObjeto = this.idObjeto;
-
-        //BOTON DELETE-----------------------------------
-    $(document).on('click',"#delete"+idObjeto,function(){
-            var option = "delete";
-
-
-    alertify.confirm(`Se eliminará de forma permanente ¿Eliminar de todas formas?`,function(e){
-        if(e) {
-            $.ajax({
-                url: rutaAjax ,
-                type: "POST" ,
-                data: {option,idObjeto},
-                async: false,
-
-            }).done(function(e){
-                switch(e){
-                    case "error":
-                        alertify.error("No se pudo eliminar. Intente de nuevo");
-                    break;
-    
-                    default:
-                        $('#fila'+idObjeto).remove();
-                        alertify.success("Se eliminó correctamente");
-                    break;
+        var option = "delete";
+        $(document).on('click',"#delete"+idObjeto,function(){
+            alertify.confirm(`Se eliminará de forma permanente ¿Eliminar de todas formas?`,function(e){
+                if(e) {
+                    deleteRow(idObjeto);
                 }
-            }).fail(function(e){
-                alertify.error("No se pudo eliminar. Intente de nuevo");
             })
-        }
-    })
-    })
+            
+            
+            
+            
+            
+        })
+       
+
     }
     editImg(){
         //imagen
@@ -64,8 +48,8 @@ class rowTable{
             
             var templateImg = ` <form method="POST" id="formSend`+idObjeto+`" enctype="multipart/form-data">
                                 <input type="file" class="form-control-file" name="img"></input>
-                                <image style="height: 30px;" src="../resources/confirm.png" id="confirmEdit`+idObjeto+` name="confirmar"></image>
-                                <image style="height: 30px;" src="../resources/cancel.png" id="confirmEdit`+idObjeto+` name="cancelar" onClick="window.location.reload();"></image>
+                                <input type="image"  style="height: 30px;" src="../resources/confirm.png" id="confirmEdit`+idObjeto+` name="confirmar"></image>
+                                
                                 </form>`;
             $("#img"+idObjeto).html(templateImg);
 
@@ -92,14 +76,14 @@ class rowTable{
                     switch(clasificacion){
                         //1-EQUIPOS
                         case "Equipo":
-                            updateFileEquipo(idObjeto);
+                            getTableObjeto("equipo","fila"+idObjeto,true,idObjeto);
                             
                            
                         break;
             
                         case "Consumible":
                         //2-CONSUMIBLES
-                            updateFileConsumible(idObjeto);
+                            getTableObjeto("updateFileConsumible",idObjeto);
                             
                         break;
             
@@ -472,9 +456,31 @@ class rowTable{
 
 }
 
+//UTILIDADES FUNCIONES DE MANIPULACION------------------------------------
+function deleteRow(idObjeto){
+    $.when(verificarPrestamos(idObjeto)).done(function(respPrest){
+        console.log(respPrest);
+        if(respPrest==0){
+            deleteObjeto(idObjeto);
+            alertify.success("Se ha eliminado el objeto");
+            $('#fila'+idObjeto).remove();
+        }else{
+            alertify.error("No se puede eliminar, el objeto tiene un prestamo activo!");
+        }
+    })
+    function deleteObjeto(idObjeto){
+        var option = "delete"
+        return $.ajax({url: rutaAjax,type: 'POST',data: {option,idObjeto},});
+    }
+
+    function verificarPrestamos(){
+        var option = "verificarPrestamos"
+        return $.ajax({url: rutaAjax,type: 'POST',data: {option,idObjeto},});
+    }
+}
 
 
-//id del combobox, tipo de consulta en PHP, (solo si el tipo de combobox es producto) id de clasificacion
+
 function getCombobox(nameCombo,idNombreRow,nombreRow,nombreTabla,capaInicial,nombreRowReferencia,idReferencia){
     var option = "getCombobox"
     $.ajax({
@@ -482,11 +488,10 @@ function getCombobox(nameCombo,idNombreRow,nombreRow,nombreTabla,capaInicial,nom
         type: 'POST',
         data: {option,idNombreRow,nameCombo,nombreTabla,nombreRow,nombreRowReferencia,idReferencia},
         success: function(response){
-            //console.log(response);
            var cons = JSON.parse(response);
            var template = ``;
            var cont = 0;
-            if(capaInicial != undefined ){
+            if(capaInicial != undefined){
                 template = `<option value="">`+capaInicial+`</option>`;
             }
            cons.forEach(task =>{
@@ -506,7 +511,117 @@ function vaciarCombobox(nameCombo){
 //funciones de tablas------------------------
 
 //(ruta para hacer post) Obtener valores de clasificacion y categoria en combobox
+function updateFile(typeTabla,idObjeto){
+    var option = typeTabla;
+    $.ajax({
+        url: rutaAjax,
+        type: 'POST',
+        data: {option,idObjeto},
+        success: function(response){
+           console.log(response);
+           var cons = JSON.parse(response);
+           var template = "";
+           var cont=0;
+           cons.forEach(task =>{
+            console.log(task.img);
+            switch(typeTabla){
+                case "equipo":
+                    rowTableEquipo[cont] = new rowTable(`${task.idObjeto}`,"Equipo",1);
+                    template += `<th>${task.etiqueta}</th>`;
+                    template += `<th id="producto${task.idObjeto}"><div id="img${task.idObjeto}"><img height="70px" src="data:image/jpg;base64,${task.img}"/></div><div id="producto${task.idObjeto}"><label>${task.producto}</label></div></th>`;
+                    template += `<th id="nombre${task.idObjeto}">${task.nombre}</th>`;
+                    template += `<th id="descripcion${task.idObjeto}">${task.descripcion}</th>`;
+                    if(`${task.mantenimiento}`=="true"){
+                        if(`${task.mantResp}`==""){
+                            template += `<th id="mantResp${task.idObjeto}">Sin responsable</th>`
+                        }else{
+                            template += `<th id="mantResp${task.idObjeto}">${task.nombreRol}</th>`
+                        }
+                        if(`${task.lastMant}`=="00-00-0000" || `${task.lastMant}`=="" || `${task.lastMant}`== null){
+                            template += `<th id="lastMant${task.idObjeto}">Sin fecha</th>`
+                        }else{
+                            template += `<th id="lastMant${task.idObjeto}">${task.lastMant}</th>`
+                        }
+                        if(`${task.nextMant}`=="00-00-0000" || `${task.nextMant}`=="" || `${task.nextMant}`== null){
+                            template += `<th id="nextMant${task.idObjeto}">Sin fecha</th>`
+                        }else{
+                            template += `<th id="nextMant${task.idObjeto}">${task.nextMant}</th>`
+                        }
+                    }else{
+                        template += `<th id="mantResp${task.idObjeto}">Sin mantenimiento</th>`;
+                        if(`${task.lastMant}`=="00-00-0000" || `${task.lastMant}`=="" || `${task.lastMant}`== null){
+                            template += `<th id="lastMant${task.idObjeto}">Sin fecha</th>`
+                        }else{
+                            template += `<th id="lastMant${task.idObjeto}">${task.lastMant}</th>`
+                        }
+                        template += `<th id="nextMant${task.idObjeto}">Sin mantenimiento</th>`;
+                    }
+                    if(`${task.prestamo}`=="true"){
+                        template += `<th id="prestamo${task.idObjeto}"><label id="prestamo${task.idObjeto}"> Disponible</label></th>`;
+        
+                    }else{
+                        template += `<th id="prestamo${task.idObjeto}"><label id="prestamo${task.idObjeto}"> No disponible</label></th>`;
+                    
+                    }
+                    template += `<th id="option ${task.idObjeto}">
+                                    <div class="btn-group">
+                                        <image src="../resources/delete.png" style="height:30px" id="delete${task.idObjeto}"></image>
+                                        <image src="../resources/edit.png" style="height:30px" class="dropdown-toggle" data-toggle="dropdown" id="edit${task.idObjeto}"></image> 
+                                            <div class="dropdown-menu" style?"overflow-y:auto;">
+                                                <a class="dropdown-item" id="editImg${task.idObjeto}">Imagen</a>
+                                                <a class="dropdown-item" id="editProducto${task.idObjeto}">Producto</a>
+                                                <a class="dropdown-item" id="editNombre${task.idObjeto}">Nombre</a>
+                                                <a class="dropdown-item" id="editDescripcion${task.idObjeto}">Descripcion</a>
+                                                <a class="dropdown-item" id="editMantenimiento${task.idObjeto}">Mantenimiento</a>
+                                                <a class="dropdown-item" id="editPrestamo${task.idObjeto}">Disponibilidad de prestamo</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </th>`;
+                                rowTableEquipo[cont].deleteOption();
+                                rowTableEquipo[cont].editImg();
+                                rowTableEquipo[cont].editProducto();
+                                rowTableEquipo[cont].editNombre();
+                                rowTableEquipo[cont].editDescripcion();
+                                rowTableEquipo[cont].editMantenimiento();
+                                rowTableEquipo[cont].editPrestamo();
+                break;
 
+                case "consumible":
+                    template += `<th></th>`;
+                    template += `<th id="producto${task.idObjeto}"><img id="img${task.idObjeto}" height="70px" src="data:image/jpg;base64,${task.img}"/><label id="producto${task.idObjeto}">${task.producto}</label></th>`;
+                    template += `<th id="nombre${task.idObjeto}">${task.nombre}</th>`;
+                    template += `<th id="descripcion${task.idObjeto}">${task.descripcion}</th>`;
+                    template += `<th id="cantidad${task.idObjeto}">${task.cantidad}</th>`;
+                    template += `<th id="option ${task.idObjeto}">
+                                    <div class="btn-group">
+                                        <image src="../resources/delete.png" style="height:30px" id="delete${task.idObjeto}"></image>
+                                        <image src="../resources/edit.png" style="height:30px" class="dropdown-toggle" data-toggle="dropdown" id="edit${task.idObjeto}"></image> 
+                                            <div class="dropdown-menu" style?"overflow-y:auto;">
+                                                <a class="dropdown-item" id="editImg${task.idObjeto}">Imagen</a>
+                                                <a class="dropdown-item" id="editProducto${task.idObjeto}">Producto</a>
+                                                <a class="dropdown-item" id="editNombre${task.idObjeto}">Nombre</a>
+                                                <a class="dropdown-item" id="editDescripcion${task.idObjeto}">Descripcion</a>
+                                                <a class="dropdown-item" id="editCantidad${task.idObjeto}">cantidad</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </th>`;
+                break;
+            }//TERMINA EL SWITCH----------------------------------------------------
+            
+
+            cont++;
+           })
+           
+           $('#fila'+idObjeto).html(template);
+        }
+    })
+    $(document).off('submit',"#formSend"+idObjeto);
+    $(document).off('click',"#cancelEdit"+idObjeto);
+    optionsEquipo("show");
+    optionsConsumible("show");
+}
 
 function updateFileEquipo(idObjeto){
     
@@ -524,7 +639,7 @@ function updateFileEquipo(idObjeto){
             cons.forEach(task =>{
                 //owo1
                 template = `
-                            <h5 class="center-title">Equipo</h5>
+                            
                             <th id="etiqueta${task.idObjeto}">${task.etiqueta}</th> 
                             <th id="img${task.idObjeto}"><img height="70px" src="data:image/jpg;base64,${task.img}"/></th>
                             <th id="producto${task.idObjeto}">${task.producto}</th>
@@ -682,44 +797,48 @@ function optionsConsumible(option){
 
 //(ruta para hacer post)FUNCIONES PRINCIPALES PARA TABLAS---owo-------
 //(Tipo de tabla,nombre del tbody en donde se va a imprimir,Nombre de la tabla en donde vamos a sacar informacion, array de columnas que vamos a obtener )
-function getTableObjeto(typeTabla,tbodyName){
+function getTableObjeto(typeTabla,insertName,updateFile,idObjeto){
     var option = typeTabla;
     $.ajax({
         url: rutaAjax,
         type: 'POST',
-        data: {option,typeTabla},
+        data: {option,updateFile,idObjeto},
         success: function(response){
            console.log(response);
            var cons = JSON.parse(response);
            var template = "";
            var cont=0;
            cons.forEach(task =>{
-            template += `<tr id="fila${task.idObjeto}">`;
+            if(!updateFile){
+                template += `<tr id="fila${task.idObjeto}">`;
+            }
+            
             switch(typeTabla){
                 case "equipo":
+                    rowTableEquipo[cont] = new rowTable(`${task.idObjeto}`,"Equipo",1);
                     template += `<th>${task.etiqueta}</th>`;
-                    template += `<th id="producto${task.idObjeto}"><img id="img${task.idObjeto}" height="70px" src="data:image/jpg;base64,${task.img}"/><label id="producto${task.idObjeto}">${task.producto}</label></th>`;
+                    template += `<th id="producto${task.idObjeto}"><div id="img${task.idObjeto}"><img height="70px" src="data:image/jpg;base64,${task.img}"/></div><div id="producto${task.idObjeto}"><label>${task.producto}</label></div></th>`;
                     template += `<th id="nombre${task.idObjeto}">${task.nombre}</th>`;
                     template += `<th id="descripcion${task.idObjeto}">${task.descripcion}</th>`;
                     if(`${task.mantenimiento}`=="true"){
                         if(`${task.mantResp}`==""){
                             template += `<th id="mantResp${task.idObjeto}">Sin responsable</th>`
                         }else{
-                            template += `<th id="mantResp${task.idObjeto}">${task.mantResp}</th>`
+                            template += `<th id="mantResp${task.idObjeto}">${task.nombreRol}</th>`
                         }
-                        if(`${task.lastMant}`=="0000-00-00 00:00:00" || `${task.lastMant}`=="" || `${task.lastMant}`== null){
+                        if(`${task.lastMant}`=="00-00-0000" || `${task.lastMant}`=="" || `${task.lastMant}`== null){
                             template += `<th id="lastMant${task.idObjeto}">Sin fecha</th>`
                         }else{
                             template += `<th id="lastMant${task.idObjeto}">${task.lastMant}</th>`
                         }
-                        if(`${task.nextMant}`=="0000-00-00 00:00:00" || `${task.nextMant}`=="" || `${task.nextMant}`== null){
+                        if(`${task.nextMant}`=="00-00-0000" || `${task.nextMant}`=="" || `${task.nextMant}`== null){
                             template += `<th id="nextMant${task.idObjeto}">Sin fecha</th>`
                         }else{
                             template += `<th id="nextMant${task.idObjeto}">${task.nextMant}</th>`
                         }
                     }else{
                         template += `<th id="mantResp${task.idObjeto}">Sin mantenimiento</th>`;
-                        if(`${task.lastMant}`=="0000-00-00 00:00:00" || `${task.lastMant}`=="" || `${task.lastMant}`== null){
+                        if(`${task.lastMant}`=="00-00-0000" || `${task.lastMant}`=="" || `${task.lastMant}`== null){
                             template += `<th id="lastMant${task.idObjeto}">Sin fecha</th>`
                         }else{
                             template += `<th id="lastMant${task.idObjeto}">${task.lastMant}</th>`
@@ -733,12 +852,40 @@ function getTableObjeto(typeTabla,tbodyName){
                         template += `<th id="prestamo${task.idObjeto}"><label id="prestamo${task.idObjeto}"> No disponible</label></th>`;
                     
                     }
+                    template += `<th id="option ${task.idObjeto}">
+                                    <div class="btn-group">
+                                        <image src="../resources/delete.png" style="height:30px" id="delete${task.idObjeto}"></image>
+                                        <image src="../resources/edit.png" style="height:30px" class="dropdown-toggle" data-toggle="dropdown" id="edit${task.idObjeto}"></image> 
+                                            <div class="dropdown-menu" style?"overflow-y:auto;">
+                                                <a class="dropdown-item" id="editImg${task.idObjeto}">Imagen</a>
+                                                <a class="dropdown-item" id="editProducto${task.idObjeto}">Producto</a>
+                                                <a class="dropdown-item" id="editNombre${task.idObjeto}">Nombre</a>
+                                                <a class="dropdown-item" id="editDescripcion${task.idObjeto}">Descripcion</a>
+                                                <a class="dropdown-item" id="editMantenimiento${task.idObjeto}">Mantenimiento</a>
+                                                <a class="dropdown-item" id="editPrestamo${task.idObjeto}">Disponibilidad de prestamo</a>
+                                            </div>
+                                        </div>
+                                    </div>`
+                                    if(!updateFile){
+                                        template += `</tr>`;
+                                        rowTableEquipo[cont].deleteOption();
+                                        rowTableEquipo[cont].editImg();
+                                        rowTableEquipo[cont].editProducto();
+                                        rowTableEquipo[cont].editNombre();
+                                        rowTableEquipo[cont].editDescripcion();
+                                        rowTableEquipo[cont].editMantenimiento();
+                                        rowTableEquipo[cont].editPrestamo();
+                                    }    
+                                
                 break;
 
                 case "consumible":
-                break;
-            }//TERMINA EL SWITCH----------------------------------------------------
-            template += `<th id="option ${task.idObjeto}">
+                    template += `<th></th>`;
+                    template += `<th id="producto${task.idObjeto}"><img id="img${task.idObjeto}" height="70px" src="data:image/jpg;base64,${task.img}"/><label id="producto${task.idObjeto}">${task.producto}</label></th>`;
+                    template += `<th id="nombre${task.idObjeto}">${task.nombre}</th>`;
+                    template += `<th id="descripcion${task.idObjeto}">${task.descripcion}</th>`;
+                    template += `<th id="cantidad${task.idObjeto}">${task.cantidad}</th>`;
+                    template += `<th id="option ${task.idObjeto}">
                                     <div class="btn-group">
                                         <image src="../resources/delete.png" style="height:30px" id="delete${task.idObjeto}"></image>
                                         <image src="../resources/edit.png" style="height:30px" class="dropdown-toggle" data-toggle="dropdown" id="edit${task.idObjeto}"></image> 
@@ -750,13 +897,25 @@ function getTableObjeto(typeTabla,tbodyName){
                                                 <a class="dropdown-item" id="editCantidad${task.idObjeto}">cantidad</a>
                                             </div>
                                         </div>
-                                    </div>
-                                </th>`;
+                                    </div>`
+                                    if(!updateFile){
+                                        template += `</tr>`;
+                                    }  
+                                
+                break;
+            }//TERMINA EL SWITCH----------------------------------------------------
+            
 
             cont++;
            })
            
-           $("#"+tbodyName).html(template);
+           $("#"+insertName).html(template);
+           if(updateFile){
+            $(document).off('submit',"#formSend"+idObjeto);
+            $(document).off('click',"#cancelEdit"+idObjeto);
+            optionsEquipo("show");
+            optionsConsumible("show");
+           }
         }
     })
 }

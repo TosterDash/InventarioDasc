@@ -20,7 +20,6 @@
                 <div class="row-form cons-col-size search-box"> 
                     <label>Buscar por:</label>
                     <select  name="combobox-search" id="combobox-search">
-                        <option hidden>Selecciona</option>
                         <option values="Nombre">Nombre</option>
                         <option values="Descripción">Descripcion</option>
                     </select>

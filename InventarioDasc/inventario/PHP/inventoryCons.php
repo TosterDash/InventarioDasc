@@ -137,7 +137,7 @@
                 //Realizar consulta
                 while($row = mysqli_fetch_array($result)){//Mientras tu variable fila este dentro de la cantidad de registros de consulta
                     $json []= array(
-                        'id' => $row['idObjeto'],
+                        'idObjeto' => $row['idObjeto'],
                         'idUabcs' => $row['idUabcs'],
                         'nombre' => $row['nombre'],
                         'descripcion' => $row['descripcion'],
@@ -153,8 +153,32 @@
         break;
 
         case "equipo":
-            //Crear consulta
-            $result = mysqli_query($conexion, "SELECT `objeto`.*, concat(`objeto`.`idUabcs`, `objeto`.`idObjeto`) as etiqueta,`tipoproducto`.`producto`, DATE_FORMAT(objeto.lastMant, '%d-%m-%Y') as lastMant, DATE_FORMAT(objeto.nextMant, '%d-%m-%Y') as nextMant   from objeto,tipoproducto where `tipoproducto`.`idTipoClasificacion`=1 and `objeto`.`idTipoProducto`=`tipoproducto`.`idTipoProducto`");
+            $updateFile = $_POST["updateFile"];
+            
+            if($updateFile=="true"){
+                $idObjeto = $_POST["idObjeto"];
+                
+                //Crear consulta
+                $result = mysqli_query($conexion, "SELECT `objeto`.*,
+                concat(`objeto`.`idUabcs`, `objeto`.`idObjeto`) as etiqueta,
+                `tipoproducto`.`producto`, 
+                DATE_FORMAT(objeto.lastMant, '%d-%m-%Y') as lastMant,
+                DATE_FORMAT(objeto.nextMant, '%d-%m-%Y') as nextMant,
+                `mantresp`.`nombreRol`
+            from objeto,tipoproducto,mantresp where `tipoproducto`.`idTipoClasificacion`=1 and `objeto`.`idTipoProducto`=`tipoproducto`.`idTipoProducto` and `objeto`.`idMantResp`=`mantresp`.`idMantResp` and `objeto`.`idObjeto`='$idObjeto'");
+            
+            }else{
+                //Crear consulta
+                    $result = mysqli_query($conexion, "SELECT `objeto`.*,
+                    concat(`objeto`.`idUabcs`, `objeto`.`idObjeto`) as etiqueta,
+                    `tipoproducto`.`producto`, 
+                    DATE_FORMAT(objeto.lastMant, '%d-%m-%Y') as lastMant,
+                    DATE_FORMAT(objeto.nextMant, '%d-%m-%Y') as nextMant,
+                    `mantresp`.`nombreRol`
+                from objeto,tipoproducto,mantresp where `tipoproducto`.`idTipoClasificacion`=1 and `objeto`.`idTipoProducto`=`tipoproducto`.`idTipoProducto` and `objeto`.`idMantResp`=`mantresp`.`idMantResp`");
+                
+            }
+            
             if(!$result){
                 echo die("error");     
             }else{
@@ -172,7 +196,7 @@
                         'mantenimiento' => $row['mantenimiento'],
                         'lastMant' => $row['lastMant'],
                         'nextMant' => $row['nextMant'],
-                        'mantResp' => $row['mantResp'],
+                        'nombreRol' => $row['nombreRol'],
                         'producto' => $row['producto'],
                         'img' => base64_encode($row['img']),
                     );
@@ -183,10 +207,17 @@
             
         break;
 
+
         case "updateFileEquipo":
             //Crear consulta
             $idObjeto = $_POST['idObjeto'];
-            $result = mysqli_query($conexion, "SELECT `objeto`.*, concat(`objeto`.`idUabcs`, `objeto`.`idObjeto`), DATE_FORMAT(objeto.lastMant, '%d-%m-%Y') as lastMant, DATE_FORMAT(objeto.nextMant, '%d-%m-%Y') as nextMant as etiqueta,`tipoproducto`.`producto` from objeto,tipoproducto where `tipoproducto`.`idTipoClasificacion`=1 and `objeto`.`idTipoProducto`=`tipoproducto`.`idTipoProducto` and `objeto`.`idObjeto`='$idObjeto'");
+            $result = mysqli_query($conexion, "SELECT `objeto`.*,
+             concat(`objeto`.`idUabcs`, `objeto`.`idObjeto`) as etiqueta,
+             `tipoproducto`.`producto`, 
+             DATE_FORMAT(objeto.lastMant, '%d-%m-%Y') as lastMant,
+              DATE_FORMAT(objeto.nextMant, '%d-%m-%Y') as nextMant,
+              `mantresp`.`nombreRol`
+            from objeto,tipoproducto,mantresp where `tipoproducto`.`idTipoClasificacion`=1 and `objeto`.`idTipoProducto`=`tipoproducto`.`idTipoProducto` and `objeto`.`idMantResp`=`mantresp`.`idMantResp` and `objeto`.`idObjeto`='$idObjeto'");
             if(!$result){
                 echo die("error");     
             }else{
@@ -204,7 +235,7 @@
                         'mantenimiento' => $row['mantenimiento'],
                         'lastMant' => $row['lastMant'],
                         'nextMant' => $row['nextMant'],
-                        'mantResp' => $row['mantResp'],
+                        'nombreRol' => $row['nombreRol'],
                         'producto' => $row['producto'],
                         'img' => base64_encode($row['img']),
                     );
@@ -217,7 +248,7 @@
         case "updateFileConsumible":
             //Crear consulta
             $idObjeto = $_POST['idObjeto'];
-            $result = mysqli_query($conexion, "SELECT `objeto`.*,`tipoproducto`.`producto` from objeto,tipoproducto where `tipoproducto`.`idTipoClasificacion`=2 and `objeto`.`idTipoProducto`=`tipoproducto`.`idTipoProducto` and `objeto`.`idObjeto` = '$idObjeto' ");
+            $result = mysqli_query($conexion, "SELECT `objeto`.*,`tipoproducto`.`producto` from objeto,tipoproducto where `tipoproducto`.`idTipoClasificacion`=2 and `objeto`.`idTipoProducto`=`tipoproducto`.`idTipoProducto` and `objeto`.`idObjeto` ='$idObjeto'");
             if(!$result){
                 echo die("error");     
             }else{
@@ -227,6 +258,7 @@
                 while($row = mysqli_fetch_array($result)){//Mientras tu variable fila este dentro de la cantidad de registros de consulta
                     $json []= array(
                         'idObjeto' => $row['idObjeto'],
+                        'idUabcs' => $row['idUabcs'],
                         'nombre' => $row['nombre'],
                         'descripcion' => $row['descripcion'],
                         'cantidad' => $row['cantidad'],
@@ -239,13 +271,28 @@
             }
         break;
 
+        case "verificarPrestamos":
+            $idObjeto = $_POST['idObjeto'];
+            $result = mysqli_query($conexion,"SELECT `prestamo_has_objeto`.`idPrestamo` from
+            prestamo_has_objeto,prestamo
+            where `prestamo_has_objeto`.`idObjeto`='$idObjeto' and
+            `prestamo_has_objeto`.`idPrestamo`=`prestamo`.`idPrestamo` and
+            `prestamo`.`entregado`='false'");
+
+            $filas = mysqli_num_rows($result);
+            echo $filas;
+        break;
+
         case "delete":
             //Crear consulta delete
             $idObjeto = $_POST['idObjeto'];
+            $result = mysqli_query($conexion,"DELETE FROM aula_has_objeto WHERE idObjeto = '$idObjeto'");
+
+            $result = mysqli_query($conexion,"DELETE FROM prestamo_has_objeto WHERE idObjeto = '$idObjeto'");
+
             $result = mysqli_query($conexion,"DELETE FROM objeto WHERE idObjeto = '$idObjeto'");
-            if(!$result){
-                echo die("error");
-            }
+           
+            
             
         break;
 
