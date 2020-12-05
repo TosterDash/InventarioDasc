@@ -9,19 +9,20 @@
             if(!$result){
                 echo die("error");     
             }else{
-                $json = array();
-                while ($row = mysqli_fetch_array($result)) {
-                    # code...
-                    $json[] = array(
-                        'usuario' => $row['Nombre'],
-                        'password' => $row['Password']
-                        
-                    );
+                $consCont = $result->num_rows;
+                if($consCont!=0){
+                    session_start();
+                    $_SESSION['user'] = $username;
+                    echo $consCont;
+                    if(isset($_SESSION['user'])){
+                        header("Location: http://localhost/colection/InventarioDasc/InventarioDasc/index.php");
+                    }
+                }else{
+                    echo 0;
                 }
-                $jsonString = json_encode($json);
-
-                echo $jsonString;
+                
             }
         break;
-    }
+    };
+
 ?>

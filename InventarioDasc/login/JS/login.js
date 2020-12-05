@@ -12,7 +12,7 @@ $(document).ready(function(){
             console.log("Rellena los campos");
             
         }else{
-            console.log(username+password)
+            //console.log(username+password)
             $.ajax({
                 url: rutaAjax,
                 type: 'POST',
@@ -22,16 +22,11 @@ $(document).ready(function(){
                     var cons = JSON.parse(response);
                     var template = ``;
                     var cont = 0;
-                    if(response == "[]"){
+                    if(response == 0){
                         console.log("no hay coincidncias");
                         $('#login-form').trigger('reset');
-                    }else{
-                        cons.forEach(task =>{
-                            template += ``;
-                            console.log("Usuario "+task.usuario + " password "+ task.password);
-                            cont++;
-                        })
-                        
+                    }else{       
+                                        
                     }
                     
                    
