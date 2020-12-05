@@ -24,28 +24,22 @@ class rowTable{
 
     deleteOption(){
         var idObjeto = this.idObjeto;
-        var option = "delete";
         $(document).on('click',"#delete"+idObjeto,function(){
             alertify.confirm(`Se eliminará de forma permanente ¿Eliminar de todas formas?`,function(e){
                 if(e) {
                     deleteRow(idObjeto);
                 }
             })
-            
-            
-            
-            
-            
+   
         })
-       
-
     }
     editImg(){
         //imagen
+
         var idObjeto = this.idObjeto;
         var clasificacion = this.clasificacion;
         $(document).on('click',"#editImg"+idObjeto,function(){
-            
+            console.log("aaaaaaaaaaa")
             var templateImg = ` <form method="POST" id="formSend`+idObjeto+`" enctype="multipart/form-data">
                                 <input type="file" class="form-control-file" name="img"></input>
                                 <input type="image"  style="height: 30px;" src="../resources/confirm.png" id="confirmEdit`+idObjeto+` name="confirmar"></image>
@@ -83,7 +77,7 @@ class rowTable{
             
                         case "Consumible":
                         //2-CONSUMIBLES
-                            getTableObjeto("updateFileConsumible",idObjeto);
+                            getTableObjeto("consumible","fila"+idObjeto,true,idObjeto);
                             
                         break;
             
@@ -97,25 +91,17 @@ class rowTable{
         var idObjeto = this.idObjeto;
         var clasificacion = this.clasificacion;
         var idTipoClasificacion = this.idTipoClasificacion;
+        var selectName = "editInput"+idObjeto;
         $(document).on('click',"#editProducto"+idObjeto,function(){
             var template = ` <form method="POST" id="formSend`+idObjeto+`">
                                 <select class="form-control-file" name="editInput`+idObjeto+`" id="editInput`+idObjeto+`"></select>
-                                <image style="height: 30px;" src="../resources/confirm.png" id="confirmEdit`+idObjeto+` name="confirmar"></image>
-                                <image style="height: 30px;" src="../resources/cancel.png" id="confirmEdit`+idObjeto+` name="cancelar" onClick="window.location.reload();"></image>
+                                <input type="image"  style="height: 30px;" src="../resources/confirm.png" id="confirmEdit`+idObjeto+` name="confirmar"></image>
                                 </form>`;
             $("#producto"+idObjeto).html(template);
             optionsEquipo("hide");
             optionsConsumible("hide");
            
-            switch(clasificacion){
-                case "Equipo":
-                    getCombobox( "editInput"+idObjeto , "producto",idTipoClasificacion);
-                break;
-
-                case "Consumible":
-                    getCombobox( "editInput"+idObjeto , "producto",idTipoClasificacion);
-                break;
-            }
+            getCombobox(selectName,"idTipoProducto","producto","tipoproducto",undefined,"idTipoClasificacion",idTipoClasificacion);
        
             
             $(document).on('submit',"#formSend"+idObjeto,function(e){
@@ -139,14 +125,14 @@ class rowTable{
                     switch(clasificacion){
                         //1-EQUIPOS
                         case "Equipo":
-                            updateFileEquipo(idObjeto);
+                            getTableObjeto("equipo","fila"+idObjeto,true,idObjeto);
                            
                            
                         break;
             
                         case "Consumible":
                         //2-CONSUMIBLES
-                            updateFileConsumible(idObjeto);
+                            getTableObjeto("consumible","fila"+idObjeto,true,idObjeto);
                             
                         break;
             
@@ -154,17 +140,17 @@ class rowTable{
                     
                 });
             })
+            
         })
     }
     editNombre(){
         var idObjeto = this.idObjeto;
         var clasificacion = this.clasificacion;
         $(document).on('click',"#editNombre"+idObjeto,function(){
-            console.log("-.-------------------------");
+            
             var template = ` <form method="POST" id="formSend`+idObjeto+`">
                                 <input type="text" class="form-control-file" name="editInput" id="editInput" required></input>
-                                <image style="height: 30px;" src="../resources/confirm.png" id="confirmEdit`+idObjeto+` name="confirmar"></image>
-                                <image style="height: 30px;" src="../resources/cancel.png" id="confirmEdit`+idObjeto+` name="cancelar" onClick="window.location.reload();"></image>
+                                <input type="image"  style="height: 30px;" src="../resources/confirm.png" id="confirmEdit`+idObjeto+` name="confirmar"></image>
                                 </form>`;
             $("#nombre"+idObjeto).html(template);
             optionsEquipo("hide");
@@ -190,14 +176,14 @@ class rowTable{
                     switch(clasificacion){
                         //1-EQUIPOS
                         case "Equipo":
-                            updateFileEquipo(idObjeto);
+                            getTableObjeto("equipo","fila"+idObjeto,true,idObjeto);
                            
                            
                         break;
             
                         case "Consumible":
                         //2-CONSUMIBLES
-                            updateFileConsumible(idObjeto);
+                            getTableObjeto("consumible","fila"+idObjeto,true,idObjeto);
                             
                         break;
             
@@ -215,8 +201,7 @@ class rowTable{
        
             var template = ` <form method="POST" id="formSend`+idObjeto+`">
                                 <input type="text" class="form-control-file" name="editInput" id="editInput" required></input>
-                                <image style="height: 30px;" src="../resources/confirm.png" id="confirmEdit`+idObjeto+` name="confirmar"></image>
-                                <image style="height: 30px;" src="../resources/cancel.png" id="confirmEdit`+idObjeto+` name="cancelar" onClick="window.location.reload();"></image>
+                                <input type="image"  style="height: 30px;" src="../resources/confirm.png" id="confirmEdit`+idObjeto+` name="confirmar"></image>
                                 </form>`;
             $("#descripcion"+idObjeto).html(template);
             optionsEquipo("hide");
@@ -237,18 +222,17 @@ class rowTable{
                     processData: false
                 }).done(function(img){
                     alertify.success("Descripcion modificada correctamente");
-                    $("#option"+idObjeto).show();
                     switch(clasificacion){
                         //1-EQUIPOS
                         case "Equipo":
-                            updateFileEquipo(idObjeto);
+                            getTableObjeto("equipo","fila"+idObjeto,true,idObjeto);
                            
                            
                         break;
             
                         case "Consumible":
                         //2-CONSUMIBLES
-                            updateFileConsumible(idObjeto);
+                            getTableObjeto("consumible","fila"+idObjeto,true,idObjeto);
                             
                         break;
             
@@ -265,8 +249,7 @@ class rowTable{
        
             var template = ` <form method="POST" id="formSend`+idObjeto+`">
                                 <input type="number" class="form-control-file" name="editInput" id="editInput" required></input>
-                                <image style="height: 30px;" src="../resources/confirm.png" id="confirmEdit`+idObjeto+` name="confirmar"></image>
-                                <image style="height: 30px;" src="../resources/cancel.png" id="confirmEdit`+idObjeto+` name="cancelar" onClick="window.location.reload();"></image>
+                                <input type="image"  style="height: 30px;" src="../resources/confirm.png" id="confirmEdit`+idObjeto+` name="confirmar"></image>
                                 </form>`;
             $("#cantidad"+idObjeto).html(template);
             optionsEquipo("hide");
@@ -292,14 +275,14 @@ class rowTable{
                     switch(clasificacion){
                         //1-EQUIPOS
                         case "Equipo":
-                            updateFileEquipo(idObjeto);
+                            getTableObjeto("equipo","fila"+idObjeto,true,idObjeto);
                            
                            
                         break;
             
                         case "Consumible":
                         //2-CONSUMIBLES
-                            updateFileConsumible(idObjeto);
+                            getTableObjeto("consumible","fila"+idObjeto,true,idObjeto);
                             
                         break;
             
@@ -312,57 +295,64 @@ class rowTable{
     editMantenimiento(){
         var idObjeto = this.idObjeto;
         var clasificacion = this.clasificacion;
+        var selectName = "editInput"+idObjeto;
         $(document).on('click',"#editMantenimiento"+idObjeto,function(){
             console.log("-.-------------------------");
             var template = `<form method="POST" id="formSend`+idObjeto+`">
-                                <input type="text" class="form-control-file" name="editInput" id="editInput" required></input>
-                                <image style="height: 30px;" src="../resources/confirm.png" id="confirmEdit`+idObjeto+` name="confirmar"></image>
-                                <image style="height: 30px;" src="../resources/cancel.png" id="confirmEdit`+idObjeto+` name="cancelar" onClick="window.location.reload();"></image>
+                                <select class="form-control-file" name="editInput`+idObjeto+`" id="editInput`+idObjeto+`"></select>
+                                <input type="image"  style="height: 30px;" src="../resources/confirm.png" id="confirmEdit`+idObjeto+` name="confirmar"></image>
                                 <button type="button" class="btn" id="cancelEdit`+idObjeto+`">Dejar sin mantenimiento</button>
                             </form>`;
             $("#mantResp"+idObjeto).html(template);
             template = `
-                        <input type="datetime-local" class="form-control-file" name="editInput3" id="editInput3" required></input>
+                        <input type="date" class="form-control-file" name="editInput2" id="editInput2`+idObjeto+`" required></input>
                         `;
             $("#nextMant"+idObjeto).html(template);
+            getCombobox(selectName,"idMantResp","nombreRol","mantresp",undefined);
             optionsEquipo("hide");
             optionsConsumible("hide");
             $(document).on('submit',"#formSend"+idObjeto,function(e){
                 e.preventDefault();
-                if(validarFecha($("#editInput3").val())){
-                    if($("#editInput3").val()==""){
+                if(validarFecha($("#editInput2"+idObjeto).val())){
+                    if($("#"+selectName).val()!="0"){
+                        if($("#editInput2").val()==""){
                         alertify.warning("El campo fecha de mantenimiento esta vacio");
+                        }else{
+                            var form = document.querySelector('form');
+                            var formData = new FormData(form);
+                            formData.append("idObjeto",idObjeto);
+                            formData.append("editInput",$("#editInput"+idObjeto).val());
+                            formData.append("editInput2",$("#editInput2"+idObjeto).val());
+                            formData.append("option","editMantenimiento");
+                            formData.append("optionMantenimiento","editMantenimiento");
+                            $.ajax({
+                                url: rutaAjax,
+                                type: "POST",
+                                dataType: "HTML",
+                                data: formData,
+                                cache: false,
+                                contentType: false,
+                                processData: false
+                            }).done(function(e){
+                                console.log(e);
+                                alertify.success("Mantenimiento modificado correctamente");
+                                $("#option"+idObjeto).show();
+                                switch(clasificacion){
+                                    //1-EQUIPOS
+                                    case "Equipo":
+                                        getTableObjeto("equipo","fila"+idObjeto,true,idObjeto);
+                                    break;
+                        
+                                    case "Consumible":
+                                    //2-CONSUMIBLES
+                                        getTableObjeto("consumible","fila"+idObjeto,true,idObjeto);
+                                    break;
+                                }
+                                
+                            });
+                        }
                     }else{
-                        var form = document.querySelector('form');
-                        var formData = new FormData(form);
-                        formData.append("idObjeto",idObjeto);
-                        formData.append("editInput3",$("#editInput3").val());
-                        formData.append("option","editMantenimiento");
-                        formData.append("optionMantenimiento","editMantenimiento");
-                        $.ajax({
-                            url: rutaAjax,
-                            type: "POST",
-                            dataType: "HTML",
-                            data: formData,
-                            cache: false,
-                            contentType: false,
-                            processData: false
-                        }).done(function(){
-                            alertify.success("Mantenimiento modificado correctamente");
-                            $("#option"+idObjeto).show();
-                            switch(clasificacion){
-                                //1-EQUIPOS
-                                case "Equipo":
-                                    updateFileEquipo(idObjeto);
-                                break;
-                    
-                                case "Consumible":
-                                //2-CONSUMIBLES
-                                    updateFileConsumible(idObjeto);
-                                break;
-                            }
-                            
-                        });
+                        alertify.warning("Seleccione un responsable");
                     }
                 }else{
                     alertify.warning("La fecha del mantenimiento debe ser mayor a la fecha actual");
@@ -371,17 +361,15 @@ class rowTable{
 
             $(document).on('click',"#cancelEdit"+idObjeto,function(){
                 var option = "editMantenimiento";
-                $("#editInput2").val("")
-                $("#editInput2").val("")
-                $("#editInput2").val("")
-                var editInput2 = $("#editInput2").val()
-                var editInput3 =$("#editInput2").val()
-                var editInput =$("#editInput2").val()
+                $("#editInput"+idObjeto).val("0");
+                $("#editInput2"+idObjeto).val("");
+                var editInput2 =$("#editInput2"+idObjeto).val();
+                var editInput =$("#editInput"+idObjeto).val();
                 var optionMantenimiento = "cancelMantenimiento";
                 $.ajax({
                     url: rutaAjax,
                     type: "POST",
-                    data: {idObjeto,optionMantenimiento,editInput2,editInput3,editInput,option},
+                    data: {idObjeto,optionMantenimiento,editInput2,editInput,option},
                 }).done(function(e){
                     console.log(e);
                     alertify.success("Se ha dejado sin mantenimiento");
@@ -389,12 +377,12 @@ class rowTable{
                     switch(clasificacion){
                         //1-EQUIPOS
                         case "Equipo":
-                            updateFileEquipo(idObjeto);
+                            getTableObjeto("equipo","fila"+idObjeto,true,idObjeto);
                         break;
             
                         case "Consumible":
                         //2-CONSUMIBLES
-                            updateFileConsumible(idObjeto);
+                            getTableObjeto("consumible","fila"+idObjeto,true,idObjeto);
                         break;
                     }
                     
@@ -410,8 +398,7 @@ class rowTable{
         $(document).on('click',"#editPrestamo"+idObjeto,function(){
             var template = ` <form method="POST" id="formSend`+idObjeto+`">
             <input type="checkbox" class="form-control-file" name="editInput" id="editInput"></input>
-            <image style="height: 30px;" src="../resources/confirm.png" id="confirmEdit`+idObjeto+` name="confirmar"></image>
-            <image style="height: 30px;" src="../resources/cancel.png" id="confirmEdit`+idObjeto+` name="cancelar" onClick="window.location.reload();"></image>
+            <input type="image"  style="height: 30px;" src="../resources/confirm.png" id="confirmEdit`+idObjeto+` name="confirmar"></image>
             </form>`;
             $("#prestamo"+idObjeto).html(template);
             optionsEquipo("hide");
@@ -436,14 +423,13 @@ class rowTable{
                     switch(clasificacion){
                         //1-EQUIPOS
                         case "Equipo":
-                            updateFileEquipo(idObjeto);
-                           
-                           
+                            getTableObjeto("equipo","fila"+idObjeto,true,idObjeto);
+            
                         break;
             
                         case "Consumible":
                         //2-CONSUMIBLES
-                            updateFileConsumible(idObjeto);
+                            getTableObjeto("consumible","fila"+idObjeto,true,idObjeto);
                             
                         break;
             
@@ -488,6 +474,7 @@ function getCombobox(nameCombo,idNombreRow,nombreRow,nombreTabla,capaInicial,nom
         type: 'POST',
         data: {option,idNombreRow,nameCombo,nombreTabla,nombreRow,nombreRowReferencia,idReferencia},
         success: function(response){
+            console.log(response);
            var cons = JSON.parse(response);
            var template = ``;
            var cont = 0;
@@ -528,7 +515,7 @@ function updateFile(typeTabla,idObjeto){
                 case "equipo":
                     rowTableEquipo[cont] = new rowTable(`${task.idObjeto}`,"Equipo",1);
                     template += `<th>${task.etiqueta}</th>`;
-                    template += `<th id="producto${task.idObjeto}"><div id="img${task.idObjeto}"><img height="70px" src="data:image/jpg;base64,${task.img}"/></div><div id="producto${task.idObjeto}"><label>${task.producto}</label></div></th>`;
+                    template += `<th><div id="img${task.idObjeto}"><img height="70px" src="data:image/jpg;base64,${task.img}"/></div><div id="producto${task.idObjeto}"><label>${task.producto}</label></div></th>`;
                     template += `<th id="nombre${task.idObjeto}">${task.nombre}</th>`;
                     template += `<th id="descripcion${task.idObjeto}">${task.descripcion}</th>`;
                     if(`${task.mantenimiento}`=="true"){
@@ -804,7 +791,7 @@ function getTableObjeto(typeTabla,insertName,updateFile,idObjeto){
         type: 'POST',
         data: {option,updateFile,idObjeto},
         success: function(response){
-           console.log(response);
+           //console.log(response);
            var cons = JSON.parse(response);
            var template = "";
            var cont=0;
@@ -817,7 +804,7 @@ function getTableObjeto(typeTabla,insertName,updateFile,idObjeto){
                 case "equipo":
                     rowTableEquipo[cont] = new rowTable(`${task.idObjeto}`,"Equipo",1);
                     template += `<th>${task.etiqueta}</th>`;
-                    template += `<th id="producto${task.idObjeto}"><div id="img${task.idObjeto}"><img height="70px" src="data:image/jpg;base64,${task.img}"/></div><div id="producto${task.idObjeto}"><label>${task.producto}</label></div></th>`;
+                    template += `<th><div id="img${task.idObjeto}"><img height="70px" src="data:image/jpg;base64,${task.img}"/></div><div id="producto${task.idObjeto}"><label>${task.producto}</label></div></th>`;
                     template += `<th id="nombre${task.idObjeto}">${task.nombre}</th>`;
                     template += `<th id="descripcion${task.idObjeto}">${task.descripcion}</th>`;
                     if(`${task.mantenimiento}`=="true"){
@@ -880,8 +867,9 @@ function getTableObjeto(typeTabla,insertName,updateFile,idObjeto){
                 break;
 
                 case "consumible":
+                    rowTableConsumible[cont] = new rowTable(`${task.idObjeto}`,"Consumible",2);
                     template += `<th></th>`;
-                    template += `<th id="producto${task.idObjeto}"><img id="img${task.idObjeto}" height="70px" src="data:image/jpg;base64,${task.img}"/><label id="producto${task.idObjeto}">${task.producto}</label></th>`;
+                    template += `<th><div id="img${task.idObjeto}"><img height="70px" src="data:image/jpg;base64,${task.img}"/></div><div id="producto${task.idObjeto}"><label>${task.producto}</label></div></th>`;
                     template += `<th id="nombre${task.idObjeto}">${task.nombre}</th>`;
                     template += `<th id="descripcion${task.idObjeto}">${task.descripcion}</th>`;
                     template += `<th id="cantidad${task.idObjeto}">${task.cantidad}</th>`;
@@ -900,6 +888,12 @@ function getTableObjeto(typeTabla,insertName,updateFile,idObjeto){
                                     </div>`
                                     if(!updateFile){
                                         template += `</tr>`;
+                                        rowTableConsumible[cont].deleteOption();
+                                        rowTableConsumible[cont].editImg();
+                                        rowTableConsumible[cont].editProducto();
+                                        rowTableConsumible[cont].editNombre();
+                                        rowTableConsumible[cont].editDescripcion();
+                                        rowTableConsumible[cont].editCantidad();
                                     }  
                                 
                 break;
@@ -912,6 +906,7 @@ function getTableObjeto(typeTabla,insertName,updateFile,idObjeto){
            $("#"+insertName).html(template);
            if(updateFile){
             $(document).off('submit',"#formSend"+idObjeto);
+            $(document).off('click',"#formSend"+idObjeto);
             $(document).off('click',"#cancelEdit"+idObjeto);
             optionsEquipo("show");
             optionsConsumible("show");

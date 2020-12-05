@@ -342,19 +342,21 @@
             $optionMantenimiento = $_POST['optionMantenimiento'];
             $idObjeto = $_POST['idObjeto'];
             $editInput = $_POST['editInput'];
-            $editInput3 = $_POST['editInput3'];
+            $editInput2 = $_POST['editInput2'];
     
             switch($optionMantenimiento){
                 case "editMantenimiento":
-                    $mod = ("UPDATE objeto SET mantenimiento = 'true', nextMant = '$editInput3', mantResp = '$editInput' WHERE idObjeto = '$idObjeto'");
+                    $mod = ("UPDATE objeto SET mantenimiento = 'true', nextMant = '$editInput2', idMantResp = '$editInput' WHERE idObjeto = '$idObjeto'");
                     $result = mysqli_query($conexion,$mod);
+                    echo $mod;
                     if(!$result){
                         echo die("error");
                     }
+                    
                 break;
 
                 case "cancelMantenimiento":
-                    $mod = ("UPDATE objeto SET mantenimiento = 'false', nextMant = '', mantResp = '$editInput' WHERE idObjeto = '$idObjeto'");
+                    $mod = ("UPDATE objeto SET mantenimiento = 'false', nextMant = '', idMantResp = '$editInput' WHERE idObjeto = '$idObjeto'");
                     $result = mysqli_query($conexion,$mod);
                     if(!$result){
                         echo die("error");
