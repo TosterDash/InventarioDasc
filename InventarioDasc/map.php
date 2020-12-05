@@ -44,22 +44,25 @@ describir cada método
 	<div  class="map-container">
 			<!--Barra de busqueda-->
             <div class="disp-flexCol cons-nav-bar row-cons">
-                <div class="row-form cons-col-size"> 
-                    <label>Edificio:</label>
-                    <select id="map-edificio" placeholder="Planta">
-						
-					</select>
-					<label>Planta:</label>
-                    <select id="map-piso" placeholder="Planta">
-						
-					</select>
-                </div >
-                <div class="row-form cons-col-size">
-                    <div class="disp-flexRow">
-                        <input type="text" placeholder="Buscar..." id="search" class="search-input">
-                    </div>
-                </div>
-                <div class=" row-form cons-col-size">
+               <div class="resp-disp">
+		           	<div class="row-form search-col"> 
+		                <label>Edificio:</label>
+		                <select id="map-edificio" placeholder="Planta">
+							
+						</select>
+						<label>Planta:</label>
+		                <select id="map-piso" placeholder="Planta">
+							
+						</select>
+		            </div >
+		            <div class="row-form search-col">
+		                <div class="disp-flexRow">
+		                    <input type="text" placeholder="Buscar..." id="search" class="search-input">
+		                </div>
+		            </div>
+               </div>
+                
+                <div class=" row-form search-col">
                     <label>Mostrar por:</label>
                     <select name="combobox-category" id="combobox-category">
                     </select>
@@ -67,72 +70,59 @@ describir cada método
             </div>
             <!--Barra de busqueda-->
 
-	       	<div class=" cons-col">
+	       	<div class="map-container">
 				<!--CAJA DEL MAPA-->
-				<div class="disp-flexRow" >
-					<div style="background-color: pink;" class="map-size">
+				<div class="map-container" >
+					<div class="map-size">
 						<div class="row-form" id="map-box" class="center-text map-box">
 							<div id="mapid"></div>
 						</div>
 					</div>
 				<!--CAJA DEL MAPA-->
+
 				<!--CAJA DE INFORMACIÓN-->
 					<div class="info-size">
 						<div class="background-c">
 							<div class="disp-flexRow">
 								<h2 class="center-title">Edificio: </h2>
-								<h2 class="center-title" id="name-edif"> </h2>
+								<h2 class="map-title center-title" id="name-edif"> </h2>
 							</div>
 							
 							<div class="disp-flexRow">
 								<h2 class="center-title">Planta: </h2>
-								<h2 class="center-title" id="name-planta"> </h2>	
+								<h2 class="map-title center-title" id="name-planta"> </h2>	
 							</div>
 							
 							<div class="disp-flexRow">
 								<h2 class="center-title">Aula: </h2>
-								<h2 class="center-title" id="name-aula"> </h2>	
+								<h2 class="map-title center-title" id="name-aula"> </h2>	
 							</div>
 							
 							<div >
-								
+								<table class="map-table">
+										<tr class="map-tableTitle">
+										    <th>Nombre</th>
+										    <td>Laptop acer</td>
+										</tr>
+										<tr class="map-tableTitle">
+										   <th>Descripción</th>
+										   <td>Laptop acer</td>
+										</tr>
+										<tr class="map-tableTitle">
+										   <th>Cantidad</th>
+										   <td>Laptop acer</td>
+										</tr>
+
+								</table>
 							</div>
 
 						</div>
-						<label>DESLICE HACIA ABAJO PARA CONSULTAR TABLA DE CONTENIDO</label>
+						
 					</div>
 					<!--CAJA DE INFORMACIÓN-->
 				</div>
-				<div class="">
-				<table>
-					<tr> Nombre
-						<th>a</th>
-						<th>a</th>
-						<th>a</th>
-						<th>a</th>
-						<th>a</th>
-						<th>a</th>
-
-					</tr>
-					<tr> Descripción
-						<th>b</th>
-						<th>b</th>
-						<th>b</th>
-						<th>b</th>
-						<th>b</th>
-						<th>b</th>
-					</tr>
-					<tr>
-						Cantidad
-						<th>c</th>
-						<th>c</th>
-						<th>c</th>
-						<th>c</th>
-						<th>c</th>
-						<th>c</th>
-						
-					</tr>
-				</table>
+				<div class="table-container">
+				
 			</div>
 			</div>
 

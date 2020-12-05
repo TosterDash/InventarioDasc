@@ -43,6 +43,7 @@ class rowTable{
             var templateImg = ` <form method="POST" id="formSend`+idObjeto+`" enctype="multipart/form-data">
                                 <input type="file" class="form-control-file" name="img"></input>
                                 <input type="image"  style="height: 30px;" src="../resources/confirm.png" id="confirmEdit`+idObjeto+` name="confirmar"></image>
+                                <input type="image"  style="height: 30px;" src="../resources/cancel.png"></image>
                                 
                                 </form>`;
             $("#img"+idObjeto).html(templateImg);
@@ -95,7 +96,8 @@ class rowTable{
         $(document).on('click',"#editProducto"+idObjeto,function(){
             var template = ` <form method="POST" id="formSend`+idObjeto+`">
                                 <select class="form-control-file" name="editInput`+idObjeto+`" id="editInput`+idObjeto+`"></select>
-                                <input type="image"  style="height: 30px;" src="../resources/confirm.png" id="confirmEdit`+idObjeto+` name="confirmar"></image>
+                                <input type="image"  style="height: 30px;" src="../resources/confirm.png" id="confirmEdit`+idObjeto+` name="confirmar"></image> 
+                                <input type="image" style="height: 30px;" src="../resources/cancel.png"></image>
                                 </form>`;
             $("#producto"+idObjeto).html(template);
             optionsEquipo("hide");

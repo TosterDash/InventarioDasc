@@ -13,6 +13,12 @@
 	width: 60%;
 	height: 100vh;
 }
+
+.map-title{
+	margin-left: 10px;
+	font-weight: normal;
+}
+
 #mapid { 
 	width: 40vw;
 	height: 90vh;
@@ -47,11 +53,22 @@
 }
 
 /*table*/
-tr{
-	
+
+.table-container{
+	width: 60%;
+	margin-bottom: 10px;
 }
 
 
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 5px;
+  text-align: left;
+  width: 13vw;
+}
 /*EDIT MAP*/
 
 .background-img{
@@ -85,36 +102,61 @@ tr{
 @media only screen and (max-width: 425px) {
   /* For mobile phones: */
 /*CONSLOAN*/
- 	.cons-nav-bar{ 
-		color: white;
-		position: initial;
-		top: 0;
-		height: 100px;
-		width: 100vw;
-		display: flex;
-		flex-wrap: wrap;
-		padding: 1%;
-		border-top:1px solid black;
-		background-color: #333E49;
+
+/*sidebar*/
+ 	.cons-nav-bar {
+	    color: white;
+	    position: initial;
+	    top: 0;
+	    height: 100px;
+	    width: 100vw;
+	    display: flex;
+	    flex-wrap: wrap;
+	    padding: 1%;
+	    border-top: 1px solid black;
+	    background-color: #333E49;
 	}
 
 	.search-box {
 		display: flex;
 		flex-direction: column;
-		width: 100px;
 	}
 
-	.barra-size{
+	.map-container{
 		display: flex;
 		flex-direction: column;
 	}
-	
-	#card-container{
-		border-left:1px solid black;
-		width: 100%;
+
+	.search-col{
+		width: 30%;
 	}
 
-	.single-loan{
+	.resp-disp{
+		display: flex;
+		flex-direction: row;
+	}
+
+/*map*/
+	.map-size {
+	    width: 100vw;
+	    height: 60vh;
+	}
+	#mapid { 
+		width: 100vw;
+		height: 60vh;
+	}
+
+	.info-size{
+		margin-top: 20px;
+		width: 100vw;
+	}
+
+/*table map*/
+	.table-container{
+		width: 100vw;
+	}
+
+	th, td {
 		width: 100vw;
 	}
 
@@ -127,10 +169,6 @@ tr{
 		margin-left: 0%;
 	}
 
-	.map-container{
-		display: flex;
-		flex-direction: column;
-	}
 
 }
 

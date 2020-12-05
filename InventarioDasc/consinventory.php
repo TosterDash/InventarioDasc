@@ -39,9 +39,11 @@
             <!--Barra de busqueda-->
 
             <!--Tabla de consulta-->
-            <div id="inv-cons" class="consultar row-cons scroll-tabla">
+            <div id="inv-cons" class="consultar row-cons scroll-tabla ">
                  <div id="div-table ">
-                    <table id="table-equipo" class="cons-tableRow ">
+
+                    <table id="table-equipo" class="cons-tableRow">
+                        <h2 class="center-title">EQUIPO</h2>
                         <thead class="">
                             <tr class="cons-tableTitle">
                                 <th >Identificador</th>
@@ -53,12 +55,12 @@
                                 <th >Próximo mantenimiento</th>
                                 <th >Prestamo Disponible</th>
                                 <th >Opciones</th>
-                                
                             </tr>
                         </thead>
                         <tbody id="tbody-equipo"></tbody>
                     </table>
                     <table id="table-consumible" class="cons-tableRow">
+                        <h2 class="center-title">CONSUMIBLE</h2>
                         <thead class="cons-tableTitle">
                             <tr>
                                 <th>Consumible</th>
@@ -75,6 +77,7 @@
             </div>
             <!--Tabla de consulta-->
         </div>
+
 
     </body>
 </html>

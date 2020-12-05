@@ -55,11 +55,17 @@ a:hover{ cursor: pointer; }
 
 /*STANDAR SHAPE PARA LAS SIGUIENTES ETIQUETAS*/
 /*inputs*/
-input{
+input[type=text], input[type=select], input[type=number], input[type=date], input[type=password]{
 	border-radius:8px;
 	border:1px solid #333E49;
 	padding: 2.5%;
 	width: 100%;
+}
+
+input[type=image]{
+	border-radius:8px;
+	padding: 2.5%;
+	height: 30px;
 }
 
 input[type=radio]{
@@ -88,7 +94,7 @@ button, input[type=submit]{
 	padding: 5px;
 	text-align: center;
 	width: 160px;
-	margin-left: 80px;
+	margin-left: 5vw;
 }
 
 .reset-btn{
