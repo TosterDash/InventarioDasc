@@ -506,6 +506,8 @@
 
             $result = mysqli_query($conexion,"DELETE FROM objeto WHERE idTipoProducto = '$productVal'");
 
+            $result = mysqli_query($conexion,"DELETE FROM tipoproducto WHERE idTipoProducto = '$productVal'");
+
 
 
             

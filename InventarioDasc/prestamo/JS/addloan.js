@@ -19,6 +19,7 @@ $(document).ready(function(){
         var exitDate = $('#loan-add-datetime').val();
         var returnDate = $('#loan-add-datetime-return').val();
         var objects = [];
+        var validarFechaRetorno = validarFecha(returnDate);
 
         for(var i = 0;i<idUsuarioArray.length;i++){
             var disponible;
@@ -28,56 +29,61 @@ $(document).ready(function(){
                 disponible = false;
             }
            
-            if($("#input-id-user").val()==idUsuarioArray[i].id){
-                var numUsuario = idUsuarioArray[i].idUserPrestamo;
-                if(exitDate==""){
-                    alertify.warning("Campo fecha salida esta vacia");
-                    
-                    break;
-                 }else{
-                     if(returnDate==""){
-                         alertify.warning("Campo fecha retorno esta vacia");
-                         
-                         break;
+            if(validarFechaRetorno){
+                if($("#input-id-user").val()==idUsuarioArray[i].id){
+                    var numUsuario = idUsuarioArray[i].idUserPrestamo;
+                    if(exitDate==""){
+                        alertify.warning("Campo fecha salida esta vacia");
+                        
+                        break;
                      }else{
-                         if(building==""){
-                             alertify.warning("Campo edificio esta vacia");
+                         if(returnDate==""){
+                             alertify.warning("Campo fecha retorno esta vacia");
                              
                              break;
                          }else{
-                             
-                             for(var i = 0;i<listPrestamoId.length;i++){
-                                 if($("#"+listPrestamoId[i]).prop('checked')){
-                                     objects[i] = listPrestamoId[i];
-                                     
-                                 }
-                             }
-                             
-                             if(objects.length == 0){
-                                 alertify.warning("No hay ningun objeto seleccionado");
+                             if(building==""){
+                                 alertify.warning("Campo edificio esta vacia");
+                                 
                                  break;
                              }else{
-                                
-                                if(disponible){
-                                    borrarCampos();
-                                    addPrestamo(numUsuario,building,classroom,exitDate,returnDate,objects);
+                                 
+                                 for(var i = 0;i<listPrestamoId.length;i++){
+                                     if($("#"+listPrestamoId[i]).prop('checked')){
+                                         objects[i] = listPrestamoId[i];
+                                         
+                                     }
+                                 }
+                                 
+                                 if(objects.length == 0){
+                                     alertify.warning("No hay ningun objeto seleccionado");
+                                     break;
+                                 }else{
                                     
-                                    break;
-                                }else{
-                                    alertify.error("Este usuario tiene un prestamo activo!");
-                                    break;
-                                }
+                                    if(disponible){
+                                        borrarCampos();
+                                        addPrestamo(numUsuario,building,classroom,exitDate,returnDate,objects);
+                                        
+                                        break;
+                                    }else{
+                                        alertify.error("Este usuario tiene un prestamo activo!");
+                                        break;
+                                    }
+                                     
+                                 }
+                                 
                                  
                              }
-                             
-                             
                          }
                      }
-                 }
-            }else{
-                if(i==idUsuarioArray.length-1){
-                    alertify.error("No existe el numero de usuario");
+                }else{
+                    if(i==idUsuarioArray.length-1){
+                        alertify.error("No existe el numero de usuario");
+                    }
                 }
+            }else{
+                alertify.warning("La fecha de retorno tiene que ser mayor a la fecha actual");
+                break;
             }
         }
 
@@ -90,7 +96,15 @@ $(document).ready(function(){
         
        
     });
-
+    function validarFecha(nextMant){
+        var valDate = new Date (nextMant);
+        var dateNow = new Date();
+        if(valDate.getTime()>=dateNow.getTime()){
+            return true;
+        }else{
+            return false;
+        }
+    }
 
     function borrarCampos(){
         $("#input-id-user").val("");

@@ -263,8 +263,9 @@ $(document).ready(function(){
             if(respPrest==0){
                 
                 deleteObjeto(productVal);
-                getCombobox("col-1-combobox-product","idTipoProducto","producto","tipoproducto",undefined,"idTipoClasificacion",productVal);
-                alertify.success("Producto eliminado");
+                setTimeout(function(){ getCombobox("col-1-combobox-product","idTipoProducto","producto","tipoproducto",undefined,"idTipoClasificacion",$("#col-1-combobox-clasification").val()),alertify.success("Producto eliminado"); }, 1500);
+                
+                
             }else{
                 alertify.error("No se puede eliminar, este producto actualmente tiene un prestamo activo!");
             }
@@ -280,18 +281,7 @@ $(document).ready(function(){
         }
     }
 
-    function deleteProducto0(productVal){
-        var option = "deleteProducto";
-        $.ajax({
-            url: rutaAjax,
-            type: "POST",
-            data: {option,productVal},
-        }).done(function(e){
-            var clasificacionVal = $("#col-1-combobox-clasification").val();
-            getCombobox("col-1-combobox-product","idTipoProducto","producto","tipoproducto",undefined,"idTipoClasificacion",clasificacionVal);
-            alertify.success("Se ha eliminado el producto");
-        })
-    }
+    
 
     function addProducto(){
 
