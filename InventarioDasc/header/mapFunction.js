@@ -388,8 +388,14 @@
             var template = ``;
             var cont=0;
             cons.forEach(task =>{
-               template = `<tr >
-                                <th >${task.etiqueta}</th>
+                if(task.etiqueta==null){
+                    template += `<tr >
+                                <th >Consumible</th>`
+                }else{
+                    template += `<tr >
+                                <th >${task.etiqueta}</th>`
+                }
+               template += `
                                 <th >${task.producto}</th>
                                 <th >${task.nombre}</th>
                                 
