@@ -81,7 +81,7 @@ class rowNotification{
                                 </tr>
                             </table>
                             <div id="info-`+this.tipoNotificacion+this.id+`" class="info-notif">
-                                El prestamo del usuario `+this.nombreAula+` con el identificador `+this.nombreEdificio+` ha caducado!.
+                                El prestamo del usuario `+this.nombreRol+` con el identificador `+this.nombreEdificio+` ha caducado!.
                             </div>
                         </div>`
     }

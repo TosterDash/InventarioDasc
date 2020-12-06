@@ -2,7 +2,6 @@ $(document).ready(function(){
 
     getIdUsuario();
     getComboboxMap("loan-add-edif","idEdificio","Nombre","edificio","-Seleccionar-");
-    
     getTablePrestamo("loan-tbody");
 
     
@@ -60,8 +59,9 @@ $(document).ready(function(){
                              }else{
                                 
                                 if(disponible){
-                                    addPrestamo(numUsuario,building,classroom,exitDate,returnDate,objects);
                                     borrarCampos();
+                                    addPrestamo(numUsuario,building,classroom,exitDate,returnDate,objects);
+                                    
                                     break;
                                 }else{
                                     alertify.error("Este usuario tiene un prestamo activo!");

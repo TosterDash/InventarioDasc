@@ -17,7 +17,7 @@ $(document).ready(function(){
     //getCombobox("col-2-combobox-aulas","aula",$("#col-2-combobox-edificios").val());
     getCombobox("col-2-combobox-mantResp","idMantResp","nombreRol","mantresp",undefined);
 
-    console.log($("#col-2-combobox-mantResp").val())
+    //console.log($("#col-2-combobox-mantResp").val())
 
     //inicializar los eventos de botones
     //combobox clasificacion
@@ -115,25 +115,13 @@ $(document).ready(function(){
     $("#btn-producto-delete").on('click',function(){
         var productVal = $("#col-1-combobox-product").val()
         if(productVal!=""){
-            var option = "deleteProducto";
-            $.ajax({
-                url: rutaAjax,
-                type: "POST",
-                data: {option,productVal},
-            }).done(function(e){
-                var clasificacionVal = $("#col-1-combobox-clasification").val();
-                switch(clasificacionVal){
-                    //equipo
-                    case "1":
-                        getCombobox("col-1-combobox-product","producto", clasificacionVal)
-                    break;
-                    //consumible
-                    case "2":
-                        getCombobox("col-1-combobox-product","producto", clasificacionVal)
-                    break;
-               }
-               alertify.success("Se ha eliminado el producto");
+            alertify.confirm(`¿Desea eliminar este producto?`,function(e){
+                if(e) {
+                    deleteProducto(productVal);
+                }
             })
+            
+            
         }else{
             alertify.warning("Seleccione algun producto si va a eliminar");
         }
@@ -157,16 +145,7 @@ $(document).ready(function(){
                 type: "POST",
                 data: {option,productVal,clasificacionVal},
             }).done(function(){
-               switch(clasificacionVal){
-                    //equipo
-                    case "1":
-                        getCombobox("col-1-combobox-product","producto", clasificacionVal)
-                    break;
-                    //consumible
-                    case "2":
-                        getCombobox("col-1-combobox-product","producto", clasificacionVal)
-                    break;
-                }
+                getCombobox("col-1-combobox-product","idTipoProducto","producto","tipoproducto",undefined,"idTipoClasificacion",clasificacionVal);
                 alertify.success("Se añadió el producto");
             })
         }else{
@@ -232,7 +211,7 @@ $(document).ready(function(){
                 formData.append("option","addInventory");
                 formData.append("checkboxMant",$('#col-1-checkbox-mant').prop('checked'));
                 formData.append("checkboxPrestamo",$('#col-1-checkbox-loan').prop('checked'));
-                console.log(formData);
+                //console.log(formData);
                 
                 $.ajax({
                     url: rutaAjax,
@@ -243,7 +222,7 @@ $(document).ready(function(){
                     contentType: false,
                     processData: false
                 }).done(function(idAula){
-                    console.log(idAula);
+                    //console.log(idAula);
                     addObjetoHasAula(idAula);
                     alertify.success('Se añadio el objeto'); 
                         
@@ -276,6 +255,46 @@ $(document).ready(function(){
         $("#col-2-date-nextMant").val("");    
         $("#col-2-number-cant").val("");    
         $("#item_file").val("");        
+    }
+
+    function deleteProducto(productVal){
+        $.when(verificarPrestamos(productVal)).done(function(respPrest){
+            console.log(respPrest);
+            if(respPrest==0){
+                
+                deleteObjeto(productVal);
+                getCombobox("col-1-combobox-product","idTipoProducto","producto","tipoproducto",undefined,"idTipoClasificacion",productVal);
+                alertify.success("Producto eliminado");
+            }else{
+                alertify.error("No se puede eliminar, este producto actualmente tiene un prestamo activo!");
+            }
+        })
+        function deleteObjeto(productVal){
+            var option = "deleteProducto"
+            return $.ajax({url: rutaAjax,type: 'POST',data: {option,productVal},});
+        }
+    
+        function verificarPrestamos(){
+            var option = "verificarPrestamosProducto"
+            return $.ajax({url: rutaAjax,type: 'POST',data: {option,productVal},});
+        }
+    }
+
+    function deleteProducto0(productVal){
+        var option = "deleteProducto";
+        $.ajax({
+            url: rutaAjax,
+            type: "POST",
+            data: {option,productVal},
+        }).done(function(e){
+            var clasificacionVal = $("#col-1-combobox-clasification").val();
+            getCombobox("col-1-combobox-product","idTipoProducto","producto","tipoproducto",undefined,"idTipoClasificacion",clasificacionVal);
+            alertify.success("Se ha eliminado el producto");
+        })
+    }
+
+    function addProducto(){
+
     }
 
 

@@ -476,7 +476,7 @@ function getCombobox(nameCombo,idNombreRow,nombreRow,nombreTabla,capaInicial,nom
         type: 'POST',
         data: {option,idNombreRow,nameCombo,nombreTabla,nombreRow,nombreRowReferencia,idReferencia},
         success: function(response){
-            console.log(response);
+            //console.log(response);
            var cons = JSON.parse(response);
            var template = ``;
            var cont = 0;
@@ -507,7 +507,7 @@ function updateFile(typeTabla,idObjeto){
         type: 'POST',
         data: {option,idObjeto},
         success: function(response){
-           console.log(response);
+           //console.log(response);
            var cons = JSON.parse(response);
            var template = "";
            var cont=0;
@@ -621,7 +621,7 @@ function updateFileEquipo(idObjeto){
         type: 'POST',
         data: {option,idObjeto},
         success: function(response){
-            console.log(response);
+            //console.log(response);
             var cons = JSON.parse(response);
             var template = "";
             
@@ -1087,7 +1087,7 @@ function search(buscarPor,stringSearch){
     var option = "search";
     var buscarPor = buscarPor;
     var stringSearch = stringSearch;
-    console.log(buscarPor);
+    //console.log(buscarPor);
 
     if(stringSearch==""){
         for(var i = 0; i<rowTableEquipo.length; i++){

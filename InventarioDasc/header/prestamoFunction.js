@@ -28,7 +28,12 @@ class cardLoan{
 
         $(document).on('click',"#card-loan-button-"+idPrestamo,function(){
             //console.log(idPrestamo);
-            entregarPrestamo(idPrestamo,idUsuario);
+            alertify.confirm(`¿Seguro que desea entregar este prestamo?`,function(e){
+                if(e) {
+                    entregarPrestamo(idPrestamo,idUsuario);
+                }
+            })
+            
         })
     }
 
@@ -42,7 +47,7 @@ function searchLoanCard(typeBuscar,text,tableBdd){
         type: 'POST',
         data: {option,typeBuscar,text,tableBdd},
         success: function(response){
-            console.log(response)
+            //console.log(response)
         }
     })
 }
@@ -55,7 +60,7 @@ function getLoanCard(cardName,typeEntregado,typeBuscar,text,tableBdd){
         data: {option,typeEntregado,typeBuscar,text,tableBdd},
         success: function(response){
             deleteCards();
-            console.log(response);
+            //console.log(response);
             
             var cons = JSON.parse(response);
             var template = ``;             
@@ -67,7 +72,7 @@ function getLoanCard(cardName,typeEntregado,typeBuscar,text,tableBdd){
                 if(idLoan != lastIdLoan){
                     
                     cardLoanArray[cont] = new cardLoan(idLoan,task.idUsuario,task.nombreUsuario);
-                    console.log(cardLoanArray);
+                    //console.log(cardLoanArray);
                     
                     template += `
                                 <div class="single-loan" id="single-loan-${task.idPrestamo}">
@@ -165,7 +170,7 @@ function entregarPrestamo(idPrestamo,idUsuario){
         type: 'POST',
         data: {option,idPrestamo,idUsuario},
         success: function(response){
-            console.log(response);
+            //console.log(response);
             $("#single-loan-"+idPrestamo).remove();
             $(document).off('click',"#card-loan-button-"+idPrestamo);
             //removePrestamoHas();
@@ -179,7 +184,7 @@ function entregarPrestamo(idPrestamo,idUsuario){
             type: 'POST',
             data: {option,idPrestamo},
             success: function(response){
-                console.log(response);
+                //console.log(response);
                 
                 alertify.success("Se ha entregado el prestamo");
             }
@@ -263,7 +268,7 @@ function getTablePrestamo(nameTable){
 
 function addPrestamo(numUsuario,building,classroom,exitDate,returnDate,objects){
     var option = "addPrestamo";
-    console.log(numUsuario);
+    //console.log(numUsuario);
     $.ajax({
         url: rutaAjaxPrestamo,
         type:'POST',
@@ -276,9 +281,9 @@ function addPrestamo(numUsuario,building,classroom,exitDate,returnDate,objects){
                 
             }
             disableDisponibleUser(numUsuario);
-            alertify.success("Se creo un nuevo prestamo");
             getIdUsuario();
-            getTablePrestamo("loan-tbody");
+            setTimeout(function(){ getTablePrestamo("loan-tbody"), alertify.success("Se creo un nuevo prestamo")}, 2000);
+            
         }
     })
 

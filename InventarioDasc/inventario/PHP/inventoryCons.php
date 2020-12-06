@@ -485,16 +485,29 @@
             echo $result;          
         break;
 
-        case "deleteProducto":
+        case "verificarPrestamosProducto":
             $productVal = $_POST["productVal"];
-            $result = mysqli_query($conexion,"DELETE FROM objeto WHERE idTipoProducto = '$productVal' ");
-            if(!$result){
-                //echo die("error");
-            }
-            $result = mysqli_query($conexion,"DELETE FROM tipoproducto WHERE idTipoProducto = '$productVal' ");
-            if(!$result){
-                //echo die("error");
-            }
+            $result = mysqli_query($conexion,"SELECT `prestamo_has_objeto`.`idPrestamo` from
+            prestamo_has_objeto,prestamo,objeto
+            where `prestamo_has_objeto`.`idObjeto`=`objeto`.`idObjeto` and `objeto`.`idTipoProducto` = '$productVal' and
+            `prestamo_has_objeto`.`idPrestamo`=`prestamo`.`idPrestamo` and
+            `prestamo`.`entregado`='false'");
+
+            $consCont = $result->num_rows;
+            echo $consCont;
+        break;
+
+        case "deleteProducto":
+            //Crear consulta delete
+            $productVal = $_POST["productVal"];
+            $result = mysqli_query($conexion,"DELETE FROM aula_has_objeto WHERE idObjeto = (SELECT idObjeto from objeto where idTipoProducto = '$productVal')");
+
+            $result = mysqli_query($conexion,"DELETE FROM prestamo_has_objeto WHERE idObjeto = (SELECT idObjeto from objeto where idTipoProducto = '$productVal')");
+
+            $result = mysqli_query($conexion,"DELETE FROM objeto WHERE idTipoProducto = '$productVal'");
+
+
+
             
         break;
 
