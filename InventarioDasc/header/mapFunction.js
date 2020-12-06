@@ -87,9 +87,14 @@
                     type: 'POST',
                     data: {option,idEdificio},
                     success: function(response){
-                        console.log(response);
-                        getEdificios(true,"clickDelete");
-                        getAula("showAulaPorPiso",$(comboboxPlanta).val(),"delete");
+                        alertify.confirm(`¿Seguro que desea eliminar este edificio?. Al eliminarlo tambien se eliminaran sus aulas`,function(e){
+                            if(e) {
+                                getEdificios(true,"clickDelete");
+                                getAula("showAulaPorPiso",$(comboboxPlanta).val(),"delete");
+                            }
+                        })
+                 
+                        
                   
 
                     }
@@ -99,22 +104,28 @@
         }
 
         aulaClickDelete(){
+            
             var idAula = this.idPolygon;
             var poly = this.poly;
             this.poly.on('click',function(){
-                var option = "deletePolyAula";
-                $.ajax({
-                    url: rutaAjaxMapa,
-                    type: 'POST',
-                    data: {option,idAula},
-                    success: function(response){
-                        mapUabcs.removeLayer(poly);
-                        poly.off();
+                alertify.confirm(`¿Seguro que desea eliminar esta aula?`,function(e){
+                    if(e) {
+                        var option = "deletePolyAula";
+                        $.ajax({
+                            url: rutaAjaxMapa,
+                            type: 'POST',
+                            data: {option,idAula},
+                            success: function(response){
+                                mapUabcs.removeLayer(poly);
+                                poly.off();
 
+                            }
+                                
+                        })
                     }
-                        
                 })
             })
+            
         }
 
        
@@ -345,23 +356,24 @@
         if(polyArray[0].length==numSide){
             
             mapUabcs.addLayer(capaEdit);
+            var numC = 0;
+            for(let i =0; i<polyArray[0].length;i++){
+                console.log(polyArray[0][i]);
+                var polyArrayC = Object.values(polyArray[0][i]);
+                xyCoord[numC] = polyArrayC[0];
+                numC++;
+
+                xyCoord[numC] = polyArrayC[1];
+                numC++;
+            
+            
+                
+            }
             
         }else{
             alert("El poligono tiene que ser de 4 lados");
         }
-        var numC = 0;
-        for(let i =0; i<polyArray[0].length;i++){
-            console.log(polyArray[0][i]);
-            var polyArrayC = Object.values(polyArray[0][i]);
-            xyCoord[numC] = polyArrayC[0];
-            numC++;
-
-            xyCoord[numC] = polyArrayC[1];
-            numC++;
         
-        
-            
-        }
         })
     }   
 

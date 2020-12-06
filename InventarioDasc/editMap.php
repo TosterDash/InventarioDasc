@@ -32,7 +32,7 @@
                         <option disabled selected hidden value="">Seleccionar</option>
                         <option value="add">Agregar</option>
                         <option value="delete">Eliminar</option>
-                        <option value="mod">Modificar</option>
+                        
                     </select>
 
                 <div id="tipo-combobox">

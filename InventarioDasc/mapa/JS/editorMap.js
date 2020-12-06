@@ -147,7 +147,8 @@ function addPoly(nombre,seleccionTipo,plantaMap,edificioMap){
         data: {option,xyCoord,nombre,seleccionTipo,plantaMap,edificioMap},
     
     }).done(function(response){
-        console.log(response);
+        //console.log(response);
+        xyCoord = [];
         //removeAll();
         removeLayer();
         getComboboxMap("planta-select","idPlanta","planta","planta","Seleccione una planta");
