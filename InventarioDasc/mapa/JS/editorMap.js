@@ -95,7 +95,7 @@ $(comboboxOptionAction).on('change',function(){
                             var edificioMap = $("#edificio-select").val();
                             addPoly(nombre,seleccionTipo,plantaMap,edificioMap);
                         }else{
-                            alertify.warning("Necesita crear un poligono en el mapa")
+                            alertify.warning("Necesita añadir un poligono en el mapa")
                         }
                     }else{
                         alertify.warning("Seleccione un edificio al aula")
@@ -124,7 +124,7 @@ $(comboboxOptionAction).on('change',function(){
             $(comboboxTipo).off('change');
             getEdificios(true,"clickDelete");
             
-
+            
             $(comboboxPlanta).on('change',function(){
                 getAula("showAulaPorPiso",$(comboboxPlanta).val(),"delete");
             })

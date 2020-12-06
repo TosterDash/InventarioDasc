@@ -326,7 +326,7 @@
                 allowIntersection: false, // polygons cannot intersect thenselves
                 drawError: {
                   color: 'red', // color the shape will turn when intersects
-                  message: 'No puedes Realizar una intersección' 
+                  message: 'No puedes realizar una intersección' 
                 }
               }
             }

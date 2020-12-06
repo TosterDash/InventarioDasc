@@ -75,7 +75,7 @@ describir cada método
 				<div class="map-container" >
 					<div class="map-size">
 						<div class="row-form" id="map-box" class="center-text map-box">
-							<div id="mapid"></div>
+							<div class="consmap" id="mapid"></div>
 						</div>
 					</div>
 				<!--CAJA DEL MAPA-->

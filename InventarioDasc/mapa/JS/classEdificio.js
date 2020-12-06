@@ -30,7 +30,7 @@ class Edificio {
     clickToDelete(cont,edificiosArray){
         this.poly.on('click',function(event) {
             
-            var option = confirm("Seguro que desea eliminar el edificio "+edificiosArray[cont].nombre  +"? Los edificios eliminaran las aulas que tengan.");
+            var option = confirm("Seguro que desea eliminar el edificio "+edificiosArray[cont].nombre  +"? Se eliminarán sus aulas.");
             if(option){
                 var idEdificio = edificiosArray[cont].idEdificio;
                 var op = "edificio";

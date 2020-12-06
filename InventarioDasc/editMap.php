@@ -29,38 +29,41 @@
             <form action="" class="add-field-box" id="form-edit">
                     <label for="" id="label-option">Opciones de gestión</label>
                     <select id="accion-select" name="accion-select">
-                        <option value="">SELECCIONE UNA ACCIÓN</option>
-                        <option value="add">Agregar Edificio</option>
-                        <option value="delete">Eliminar Edificio</option>
-                        <option value="mod">Modificar Edificio</option>
+                        <option disabled selected hidden value="">Seleccionar</option>
+                        <option value="add">Agregar</option>
+                        <option value="delete">Eliminar</option>
+                        <option value="mod">Modificar</option>
                     </select>
-                <div id="nombre-placeholder">
-                    <label id= "nombre-label" for="">NOMBRE</label>
-                    <input type="text" id="nombre-map" name="nombre-map" placeholder="Escriba un nombre para Edificio/Aula" require>
-                </div>
+
                 <div id="tipo-combobox">
                     <!--comboboggs-->
-                    <label for="">TIPO</label>
+                    <label for="">Tipo</label>
                     <select id="tipo-select" name="tipo-select">
-                        <option value="">SELECCIONE UNA OPCIÓN</option>
-                        <option value="edificio">EDIFICIO</option>
-                        <option value="aula">AULA</option>
+                        <option disabled selected hidden value="">Seleccionar</option>
+                        <option value="edificio">Edificio</option>
+                        <option value="aula">Aula</option>
                     </select>
-                    </div>
+                </div>
+
+                <div id="nombre-placeholder">
+                    <label id= "nombre-label" for="">Nombre</label>
+                    <input type="text" id="nombre-map" name="nombre-map" placeholder="" require>
+                </div>
+                
                 <div id="planta-combobox">
                     <!--comboboggs-->
-                    <label for="">PLANTA</label>
+                    <label for="">Planta</label>
                     <select id="planta-select" name="planta-select" placeholder="baja, alta">
-                        <option value="BAJA">BAJA</option>
-                        <option value="ALTA">ALTA</option>
+                        <option value="BAJA">Baja</option>
+                        <option value="ALTA">Alta</option>
                     </select>
                     </div>
                     <div id="edificio-combobox">
                     <!--comboboggs llenarlos con la bdd?-->
-                    <label for="" id="label-edificio">EDIFICIO</label>
+                    <label for="" id="label-edificio">Edificio</label>
                     
                     <select id="edificio-select" name="edificio-select" placeholder="En que edificio">
-                        <option value="" >SELECCIONE UNA OPCIÓN</option>
+                        <option value="" disabled selected hidden >Seleccionar</option>
                     </select>
                     </div>
                     <div  id= "descripcion-label">
@@ -68,17 +71,18 @@
                     </div>
 
                     <!--BOTON ACEPTAR-->
-                    <input type="submit" name="boton-edificioPlanta" id="boton-edificioPlanta" value="Insertar Poligono">
+                    <input type="submit" name="boton-edificioPlanta" id="boton-edificioPlanta" value="Añadir">
             </form> 
         </div>
         <!--CAJA DEL MAPA-->
             <div class="disp-flexRow" >
-                <div style="background-color: pink;" class="map-size">
+                <div class="editmap-size">
                     <div class="row-form" id="map-box" class="center-text map-box">
-                        <div id="mapid"></div>
+                        <div class="editmap" id="mapid"></div>
                     </div>
                 </div>
             </div>
+    </div>
     <script src="mapa/JS/classAula.js"></script>
     <script src="mapa/JS/classEdificio.js"></script>
     <script src="mapa/JS/editorMap.js"></script>

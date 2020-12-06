@@ -25,7 +25,7 @@
 }
 
 .info-size{
-	width:40%;
+	width:40vw;
 }
 
 /*sidebar menu*/
@@ -34,7 +34,7 @@
 	position:sticky;
 	top: 0;
 	height: 100vh;
-	width: 30%;
+	width: 20%;
 	padding: 1%;
 	border-top:1px solid black;
 	background-color: #333E49;
@@ -71,6 +71,12 @@ th, td {
 }
 /*EDIT MAP*/
 
+.editmap-size{
+	width: 60%;
+	height: 65vh;
+	margin-left: 15%;
+}
+
 .background-img{
 	background-image: url('../resources/campus_mapa.jpg');
 	background-repeat: no-repeat, repeat;
@@ -94,6 +100,7 @@ th, td {
   /* For mobile phones: */
 
 }
+
 @media only screen and (max-width: 768px) {
   /* For mobile phones: */
 
@@ -101,9 +108,9 @@ th, td {
 
 @media only screen and (max-width: 425px) {
   /* For mobile phones: */
-/*CONSLOAN*/
+	/*CONSLOAN*/
 
-/*sidebar*/
+	/*sidebar*/
  	.cons-nav-bar {
 	    color: white;
 	    position: initial;
@@ -136,13 +143,15 @@ th, td {
 		flex-direction: row;
 	}
 
-/*map*/
+	/*map*/
 	.map-size {
 	    width: 100vw;
 	    height: 60vh;
+	    margin-left: 5%;
 	}
+
 	#mapid { 
-		width: 100vw;
+		width: 80vw;
 		height: 60vh;
 	}
 
@@ -151,7 +160,7 @@ th, td {
 		width: 100vw;
 	}
 
-/*table map*/
+	/*table map*/
 	.table-container{
 		width: 100vw;
 	}
@@ -160,16 +169,21 @@ th, td {
 		width: 100vw;
 	}
 
-/*ADDLOAN*/
 	.form-background{
 		background-color: white;
 		border: 1px solid white;
 		border-radius: 10px;
-		width: 100%;
+		width: 85vw;
 		margin-left: 0%;
 	}
 
-
+	.master-box{
+		display: flex;
+		flex-direction: column;
+	}
+	.editmap-size{
+	margin-left: 5%;
+}
 }
 
 @media only screen and (max-width: 320px) {

@@ -38,6 +38,16 @@ body{
 	padding: 2%;
 }
 
+.index-icons{
+	display:inline-block;
+	vertical-align: middle;
+	color: white;
+}
+
+.index-icons h2{
+	margin-left: 25%;
+}
+
 /*REEEESSSSSSSSSSSPOOOOOONSIVEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE*/
 
 @media only screen and (max-width: 1024px) {
@@ -63,10 +73,15 @@ body{
 		display: flex;
 		justify-content: center;
 		flex-direction: column;
+		top: 0;
 	}
 
 	.btn-container img{
-		margin-left: 120px;
+		margin-left: 18px;
+	}
+
+	.index-icons h2{
+		margin-left: 7%;
 	}
 }
 
@@ -75,6 +90,8 @@ body{
   .btn-container img{
 		margin-left: 80px;
 	}
+	
+	
 }
 
 /*REEEESSSSSSSSSSSPOOOOOONSIVEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE*/
