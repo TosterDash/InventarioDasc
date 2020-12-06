@@ -187,7 +187,7 @@ $(document).ready(function(){
         }else{
             alertify.warning("Seleccione una clasificación");
         }
-        location.reload();
+        
     });
 
 

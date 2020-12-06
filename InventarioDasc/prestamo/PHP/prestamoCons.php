@@ -1,5 +1,5 @@
 <?php
-include ('conexion.php');
+include ('../../baseConexion/conexion.php');
 $option = $_POST['option'];
 
 switch($option){

@@ -56,7 +56,6 @@
                 $("#map-edificio").val(idPolygon);
                 updateInfo($("#map-edificio").find("option:selected").text() , $("#map-piso").find("option:selected").text(),  " ----" );
                 removeAllAula();
-                //document.getElementById("name-edif").innerHTML = this.nombre;
                 showAulas(idPolygon,$("#map-piso").val());
                 
             })
@@ -374,17 +373,21 @@
         data: {idAula,option},
         success: function(response){
             var cons = JSON.parse(response);
-            var template = "";
+            var template = ``;
             var cont=0;
             cons.forEach(task =>{
-                rowTableEquipo[cont] = new rowTable(`${task.idObjeto}`,"Equipo",1);
-                template += ``;
+               template = `<tr >
+                                <th >${task.etiqueta}</th>
+                                <th >${task.producto}</th>
+                                <th >${task.nombre}</th>
+                                
+                            </tr>`;
                 
                 
                 cont++;
             
             })
-            $('#tbody-info').html(template);
+            $('#map-tbody').html(template);
             
         }
     })

@@ -841,7 +841,7 @@ function getTableObjeto(typeTabla,insertName,updateFile,idObjeto){
                         template += `<th id="prestamo${task.idObjeto}"><label id="prestamo${task.idObjeto}"> No disponible</label></th>`;
                     
                     }
-                    template += `<th id="option ${task.idObjeto}">
+                    template += `<th id="option${task.idObjeto}">
                                     <div class="btn-group">
                                         <image src="../resources/delete.png" style="height:30px" id="delete${task.idObjeto}"></image>
                                         <image src="../resources/edit.png" style="height:30px" class="dropdown-toggle" data-toggle="dropdown" id="edit${task.idObjeto}"></image> 
@@ -875,7 +875,7 @@ function getTableObjeto(typeTabla,insertName,updateFile,idObjeto){
                     template += `<th id="nombre${task.idObjeto}">${task.nombre}</th>`;
                     template += `<th id="descripcion${task.idObjeto}">${task.descripcion}</th>`;
                     template += `<th id="cantidad${task.idObjeto}">${task.cantidad}</th>`;
-                    template += `<th id="option ${task.idObjeto}">
+                    template += `<th id="option${task.idObjeto}">
                                     <div class="btn-group">
                                         <image src="../resources/delete.png" style="height:30px" id="delete${task.idObjeto}"></image>
                                         <image src="../resources/edit.png" style="height:30px" class="dropdown-toggle" data-toggle="dropdown" id="edit${task.idObjeto}"></image> 

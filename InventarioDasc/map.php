@@ -55,18 +55,21 @@ describir cada método
 							
 						</select>
 		            </div >
+					<!--
 		            <div class="row-form search-col">
 		                <div class="disp-flexRow">
 		                    <input type="text" placeholder="Buscar..." id="search" class="search-input">
 		                </div>
 		            </div>
+					-->
                </div>
-                
+                <!--
                 <div class=" row-form search-col">
                     <label>Mostrar por:</label>
                     <select name="combobox-category" id="combobox-category">
                     </select>
                 </div>
+				-->
             </div>
             <!--Barra de busqueda-->
 
@@ -100,18 +103,16 @@ describir cada método
 							
 							<div >
 								<table class="map-table">
-										<tr class="map-tableTitle">
-										    <th>Nombre</th>
-										    <td>Laptop acer</td>
-										</tr>
-										<tr class="map-tableTitle">
-										   <th>Descripción</th>
-										   <td>Laptop acer</td>
-										</tr>
-										<tr class="map-tableTitle">
-										   <th>Cantidad</th>
-										   <td>Laptop acer</td>
-										</tr>
+									<thead>
+									<tr class="cons-tableTitle">
+										<th >Identificador</th>
+										<th >Producto</th>
+										<th >Nombre</th>
+										
+									</tr>
+									</thead>
+									<tbody id="map-tbody">
+									</tbody>
 
 								</table>
 							</div>

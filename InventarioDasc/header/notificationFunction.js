@@ -107,11 +107,15 @@ class rowNotification{
         var nextMant = this.nextMant;
         var etiqueta = this.etiqueta;
         $(document).on('click',"#confirm-"+tipoNotificacion+id,function(){
-            
-            $.when(mantenimientoHecho(id,nextMant)).done(function(){
-                alertify.success(etiqueta+": Mantenimiento realizado");
-            
+            alertify.confirm(`¿Dar por hecho el mantenimiento?`,function(e){
+                if(e) {
+                    $.when(mantenimientoHecho(id,nextMant)).done(function(){
+                        alertify.success(etiqueta+": Mantenimiento realizado");
+                    
+                    })
+                }
             })
+           
                    
                 
         });
@@ -136,7 +140,7 @@ function getNotificationNum(enableCrear){
     $.when(getDate(),getPrestamoDate()).done(function(respDate,respPrest){
         var totalNotification = getCantidadMantenimiento(respDate[0],enableCrear);
         totalNotification += getCantidadPrestamo(respPrest[0],enableCrear)
-        console.log(totalNotification);
+        //console.log(totalNotification);
         // console.log(totalNotification);
         if (totalNotification == 0) {
             //comente esto para ver el pinshi tenplei c:
@@ -168,14 +172,17 @@ function getNotificationNum(enableCrear){
 }
 //funciones get para saber que se necesita hacer (ligadas a getNotificationNUM)
 function getCantidadMantenimiento(response,enableCrear){
+    
     var cons = JSON.parse(response);
+    
     var cont = 0;
     var template = ``;
     var dateNow = new Date();
     var dateMant;
     cons.forEach(task =>{
+        //console.log(task.idObjeto);
         dateMant = new Date(`${task.nextMant}`);
-   
+        
         
         if(dateNow.getTime() > dateMant.getTime()){
             mantenimientoNotification[cont] = new rowNotification(`${task.idObjeto}`,`${task.etiqueta}`,`${task.producto}`,`${task.nombreRol}`,`${task.nextMant}`,`${task.Nombre}`,`${task.nombreAula}`,`${task.tipoNotificacion}`);
@@ -279,7 +286,7 @@ function mantenimientoHecho(id,lastMant){
     //nextMant as a date object (Tue May 25 2021 23:55:00 GMT-0600 (hora de verano del Pacífico de México))
     //nextMant = nextMant.setMonth(nextMant.getMonth()+6);
     //nextMant = new Date(nextMant)
-    console.log("lastMant = " + lastMant + " nextMant = " + nextMant)
+    //console.log("lastMant = " + lastMant + " nextMant = " + nextMant)
     $.ajax({
         url: rutaAjax,
         type: 'POST',
