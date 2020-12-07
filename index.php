@@ -48,7 +48,7 @@ if(!isset($_SESSION['nombre']))
 				<h2 class="center-title">MAPA</h2>
 			</div>
 			<div class="center-title hvr-float index-icons">
-				<a class="center-title" href="consInventory.php"><img class="index-image" src="resources/1x/inven_icon.png"></a>
+				<a class="center-title" href="consinventory.php"><img class="index-image" src="resources/1x/inven_icon.png"></a>
 				<h2>INVENTARIO</h2>
 			</div>
 			<div class="center-title hvr-float index-icons">

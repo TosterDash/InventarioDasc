@@ -49,13 +49,16 @@ body{
 }
 
 /*REEEESSSSSSSSSSSPOOOOOONSIVEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE*/
-
+@media only screen and (max-width: 2560px) {
+	.carousel-item> img {
+		height: 1300px;	
+	}
+}
 @media only screen and (max-width: 1024px) {
   /* For mobile phones: */
 
 }
 @media only screen and (max-width: 768px) {
-  /* For mobile phones: */
 
 	.index-image{
 		height: 150px;
