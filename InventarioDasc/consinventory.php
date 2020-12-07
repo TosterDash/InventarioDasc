@@ -10,7 +10,7 @@
         
         <script src="header/inventoryFunction.js"></script>
         <script src="inventario/JS/consinventory.js"></script>
-        <title>CONSULTA | Inventario</title>
+        <title>Inventario | Consulta</title>
         
     </head>
     <body>
