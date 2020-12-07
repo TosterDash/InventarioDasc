@@ -103,8 +103,7 @@
 			<div class="">
 			    <a id="inventory-menu" class="menu-list dropdown-toggle item-menu" data-toggle="dropdown"><img style="height: 30px;" src="resources/login_icon.png"></a>
 			    <div class="dropdown-menu">
-			    	<!--si ya estás logeado esta cosa debería decir "SALIR"-->
-				    <a class="dropdown-item" href="login/PHP/cerrar.php">Cerrar sesión</a>
+				    <a class="dropdown-item" href="login/PHP/cerrar.php">SALIR</a>
 			    </div>
 			</div>
 	    <!--item de menu-->

@@ -17,14 +17,14 @@ hojas de estilo van en carpeta "styles"
 nombres de variables, métodos y clases con camelCase si es mas de una palabra
 describir cada método
 -->
+<?php include ('header.php');?>
 
 <!DOCTYPE html>
 <html>
-	
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <?php include ('header.php');?>
+ 
 
 	<!--MAP RESOURCES-->
 	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="crossorigin=""/>
