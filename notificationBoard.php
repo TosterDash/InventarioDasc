@@ -6,10 +6,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<?php include ('header.php');?>
 	<script src="inventario/JS/notificationBoard.js"></script>
-	<link rel="stylesheet" href="../styles/normalize.css">
-	<link rel="stylesheet" href="../styles/hover.css">
-	<link rel="stylesheet" href="../styles/generalStyle.css">
-	<link rel="stylesheet" href="../styles/notificationBoardStyle.css">
+	<link rel="stylesheet" href="styles/normalize.css">
+	<link rel="stylesheet" href="styles/hover.css">
+	<link rel="stylesheet" href="styles/generalStyle.css">
+	<link rel="stylesheet" href="styles/notificationBoardStyle.css">
 	<title>Notificaciones | DASC</title>
 <head>
 </head>

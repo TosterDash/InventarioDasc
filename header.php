@@ -86,8 +86,6 @@
 			$(document).ready(function(){
 
 			getNotificationNum(true);
-					
-				
 			});
 			
 		</script>

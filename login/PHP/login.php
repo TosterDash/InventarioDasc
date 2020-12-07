@@ -14,10 +14,10 @@
         if($consCont!=0){
             session_start();
             $_SESSION['user'] = $username;
-            echo die("success");;
+            //echo die("success");;
             
         }else{
-            echo die("incorrecto");
+            //echo die("incorrecto");
         }
     }
     

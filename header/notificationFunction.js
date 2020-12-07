@@ -42,10 +42,10 @@ class rowNotification{
                                     <td class="table-data">
                                         `+this.tipoNotificacion+`
                                         <a class="show-info" id="`+this.tipoNotificacion+this.id+`">
-                                            <img src="../resources/info_icon.png">
+                                            <img src="resources/info_icon.png">
                                         </a>
                                         <a>
-                                            <img id="confirm-`+this.tipoNotificacion+this.id+`" src="../resources/confirm.png">
+                                            <img id="confirm-`+this.tipoNotificacion+this.id+`" src="resources/confirm.png">
                                         </a>
                                     </td>
                                 </tr>
@@ -74,7 +74,7 @@ class rowNotification{
                                     <td class="table-data">
                                         `+this.tipoNotificacion+`
                                         <a class="show-info" id="`+this.tipoNotificacion+this.id+`">
-                                            <img src="../resources/info_icon.png">
+                                            <img src="resources/info_icon.png">
                                         </a>
                                         
                                     </td>
@@ -144,7 +144,7 @@ function getNotificationNum(enableCrear){
         // console.log(totalNotification);
         if (totalNotification == 0) {
             //comente esto para ver el pinshi tenplei c:
-        $("#notification").html(`<a class="menu-list dropdown-toggle item-menu" data-toggle="dropdown"><img style="height: 30px;" src="../resources/notif_icon.png"></a>
+        $("#notification").html(`<a class="menu-list dropdown-toggle item-menu" data-toggle="dropdown"><img style="height: 30px;" src="resources/notif_icon.png"></a>
                                         <div class="dropdown-menu notification-dropdown">
                                             <div class="notification-area">
                                                 <a href="notificationBoard.php"><span>
@@ -155,7 +155,7 @@ function getNotificationNum(enableCrear){
         }
         else{
             $("#notification").html(`<span class="badge">`+totalNotification+`</span></a>
-                                    <a class="menu-list dropdown-toggle item-menu" data-toggle="dropdown"><img style="height: 30px;" src="../resources/notif_icon.png"></a>
+                                    <a class="menu-list dropdown-toggle item-menu" data-toggle="dropdown"><img style="height: 30px;" src="resources/notif_icon.png"></a>
                                         <div class="dropdown-menu notification-dropdown">
                                             <div class="notification-area">
                                                 <a href="notificationBoard.php"><span>

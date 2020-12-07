@@ -2,6 +2,6 @@
 
 session_start();
 session_destroy();
-header("Location:http://localhost/colection/InventarioDasc/login-registro.php");
+header("Location:http://localhost/colection/login-registro.php");
 
 ?>

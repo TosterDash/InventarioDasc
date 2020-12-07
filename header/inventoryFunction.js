@@ -42,8 +42,8 @@ class rowTable{
             console.log("aaaaaaaaaaa")
             var templateImg = ` <form method="POST" id="formSend`+idObjeto+`" enctype="multipart/form-data">
                                 <input type="file" class="form-control-file" name="img"></input>
-                                <input type="image"  style="height: 30px;" src="../resources/confirm.png" id="confirmEdit`+idObjeto+` name="confirmar"></image>
-                                <input type="image"  style="height: 30px;" src="../resources/cancel.png"></image>
+                                <input type="image"  style="height: 30px;" src="resources/confirm.png" id="confirmEdit`+idObjeto+` name="confirmar"></image>
+                                <input type="image"  style="height: 30px;" src="resources/cancel.png"></image>
                                 
                                 </form>`;
             $("#img"+idObjeto).html(templateImg);
@@ -96,8 +96,8 @@ class rowTable{
         $(document).on('click',"#editProducto"+idObjeto,function(){
             var template = ` <form method="POST" id="formSend`+idObjeto+`">
                                 <select class="form-control-file" name="editInput`+idObjeto+`" id="editInput`+idObjeto+`"></select>
-                                <input type="image"  style="height: 30px;" src="../resources/confirm.png" id="confirmEdit`+idObjeto+` name="confirmar"></image> 
-                                <input type="image" style="height: 30px;" src="../resources/cancel.png"></image>
+                                <input type="image"  style="height: 30px;" src="resources/confirm.png" id="confirmEdit`+idObjeto+` name="confirmar"></image> 
+                                <input type="image" style="height: 30px;" src="resources/cancel.png"></image>
                                 </form>`;
             $("#producto"+idObjeto).html(template);
             optionsEquipo("hide");
@@ -152,7 +152,7 @@ class rowTable{
             
             var template = ` <form method="POST" id="formSend`+idObjeto+`">
                                 <input type="text" class="form-control-file" name="editInput" id="editInput" required></input>
-                                <input type="image"  style="height: 30px;" src="../resources/confirm.png" id="confirmEdit`+idObjeto+` name="confirmar"></image>
+                                <input type="image"  style="height: 30px;" src="resources/confirm.png" id="confirmEdit`+idObjeto+` name="confirmar"></image>
                                 </form>`;
             $("#nombre"+idObjeto).html(template);
             optionsEquipo("hide");
@@ -203,7 +203,7 @@ class rowTable{
        
             var template = ` <form method="POST" id="formSend`+idObjeto+`">
                                 <input type="text" class="form-control-file" name="editInput" id="editInput" required></input>
-                                <input type="image"  style="height: 30px;" src="../resources/confirm.png" id="confirmEdit`+idObjeto+` name="confirmar"></image>
+                                <input type="image"  style="height: 30px;" src="resources/confirm.png" id="confirmEdit`+idObjeto+` name="confirmar"></image>
                                 </form>`;
             $("#descripcion"+idObjeto).html(template);
             optionsEquipo("hide");
@@ -251,7 +251,7 @@ class rowTable{
        
             var template = ` <form method="POST" id="formSend`+idObjeto+`">
                                 <input type="number" class="form-control-file" name="editInput" id="editInput" required></input>
-                                <input type="image"  style="height: 30px;" src="../resources/confirm.png" id="confirmEdit`+idObjeto+` name="confirmar"></image>
+                                <input type="image"  style="height: 30px;" src="resources/confirm.png" id="confirmEdit`+idObjeto+` name="confirmar"></image>
                                 </form>`;
             $("#cantidad"+idObjeto).html(template);
             optionsEquipo("hide");
@@ -302,7 +302,7 @@ class rowTable{
             console.log("-.-------------------------");
             var template = `<form method="POST" id="formSend`+idObjeto+`">
                                 <select class="form-control-file" name="editInput`+idObjeto+`" id="editInput`+idObjeto+`"></select>
-                                <input type="image"  style="height: 30px;" src="../resources/confirm.png" id="confirmEdit`+idObjeto+` name="confirmar"></image>
+                                <input type="image"  style="height: 30px;" src="resources/confirm.png" id="confirmEdit`+idObjeto+` name="confirmar"></image>
                                 <button type="button" class="btn" id="cancelEdit`+idObjeto+`">Dejar sin mantenimiento</button>
                             </form>`;
             $("#mantResp"+idObjeto).html(template);
@@ -400,7 +400,7 @@ class rowTable{
         $(document).on('click',"#editPrestamo"+idObjeto,function(){
             var template = ` <form method="POST" id="formSend`+idObjeto+`">
             <input type="checkbox" class="form-control-file" name="editInput" id="editInput"></input>
-            <input type="image"  style="height: 30px;" src="../resources/confirm.png" id="confirmEdit`+idObjeto+` name="confirmar"></image>
+            <input type="image"  style="height: 30px;" src="resources/confirm.png" id="confirmEdit`+idObjeto+` name="confirmar"></image>
             </form>`;
             $("#prestamo"+idObjeto).html(template);
             optionsEquipo("hide");
@@ -554,8 +554,8 @@ function updateFile(typeTabla,idObjeto){
                     }
                     template += `<th id="option ${task.idObjeto}">
                                     <div class="btn-group">
-                                        <image src="../resources/delete.png" style="height:30px" id="delete${task.idObjeto}"></image>
-                                        <image src="../resources/edit.png" style="height:30px" class="dropdown-toggle" data-toggle="dropdown" id="edit${task.idObjeto}"></image> 
+                                        <image src="resources/delete.png" style="height:30px" id="delete${task.idObjeto}"></image>
+                                        <image src="resources/edit.png" style="height:30px" class="dropdown-toggle" data-toggle="dropdown" id="edit${task.idObjeto}"></image> 
                                             <div class="dropdown-menu" style?"overflow-y:auto;">
                                                 <a class="dropdown-item" id="editImg${task.idObjeto}">Imagen</a>
                                                 <a class="dropdown-item" id="editProducto${task.idObjeto}">Producto</a>
@@ -584,8 +584,8 @@ function updateFile(typeTabla,idObjeto){
                     template += `<th id="cantidad${task.idObjeto}">${task.cantidad}</th>`;
                     template += `<th id="option ${task.idObjeto}">
                                     <div class="btn-group">
-                                        <image src="../resources/delete.png" style="height:30px" id="delete${task.idObjeto}"></image>
-                                        <image src="../resources/edit.png" style="height:30px" class="dropdown-toggle" data-toggle="dropdown" id="edit${task.idObjeto}"></image> 
+                                        <image src="resources/delete.png" style="height:30px" id="delete${task.idObjeto}"></image>
+                                        <image src="resources/edit.png" style="height:30px" class="dropdown-toggle" data-toggle="dropdown" id="edit${task.idObjeto}"></image> 
                                             <div class="dropdown-menu" style?"overflow-y:auto;">
                                                 <a class="dropdown-item" id="editImg${task.idObjeto}">Imagen</a>
                                                 <a class="dropdown-item" id="editProducto${task.idObjeto}">Producto</a>
@@ -672,9 +672,9 @@ function updateFileEquipo(idObjeto){
                             template += 
                             `<th id="option${task.idObjeto}">
                                     <div class="btn-group">
-                                        <image src="../resources/delete.png" style="height:30px" id="delete${task.idObjeto}"></image>
+                                        <image src="resources/delete.png" style="height:30px" id="delete${task.idObjeto}"></image>
                                             
-                                            <image src="../resources/edit.png" style="height:30px" class="dropdown-toggle" data-toggle="dropdown" id="edit${task.idObjeto}"></image> 
+                                            <image src="resources/edit.png" style="height:30px" class="dropdown-toggle" data-toggle="dropdown" id="edit${task.idObjeto}"></image> 
                                             <div class="dropdown-menu">
                                                 <a class="dropdown-item" id="editImg${task.idObjeto}">Imagen</a>
                                                 <a class="dropdown-item" id="editProducto${task.idObjeto}">Producto</a>
@@ -721,10 +721,10 @@ function updateFileConsumible(idObjeto){
                 
                     <th id="option${task.idObjeto}">
                         <div class="btn-group">
-                             <image src="../resources/delete.png" style="height:30px" id="delete${task.idObjeto}"></image>
+                             <image src="resources/delete.png" style="height:30px" id="delete${task.idObjeto}"></image>
                                 
                             <div class="btn-group">       
-                                <image src="../resources/edit.png" style="height:30px" class="dropdown-toggle" data-toggle="dropdown" id="edit${task.idObjeto}"></image> 
+                                <image src="resources/edit.png" style="height:30px" class="dropdown-toggle" data-toggle="dropdown" id="edit${task.idObjeto}"></image> 
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" id="editImg${task.idObjeto}">Imagen</a>
                                     <a class="dropdown-item" id="editProducto${task.idObjeto}">Producto</a>
@@ -843,8 +843,8 @@ function getTableObjeto(typeTabla,insertName,updateFile,idObjeto){
                     }
                     template += `<th id="option${task.idObjeto}">
                                     <div class="btn-group">
-                                        <image src="../resources/delete.png" style="height:30px" id="delete${task.idObjeto}"></image>
-                                        <image src="../resources/edit.png" style="height:30px" class="dropdown-toggle" data-toggle="dropdown" id="edit${task.idObjeto}"></image> 
+                                        <image src="resources/delete.png" style="height:30px" id="delete${task.idObjeto}"></image>
+                                        <image src="resources/edit.png" style="height:30px" class="dropdown-toggle" data-toggle="dropdown" id="edit${task.idObjeto}"></image> 
                                             <div class="dropdown-menu" style?"overflow-y:auto;">
                                                 <a class="dropdown-item" id="editImg${task.idObjeto}">Imagen</a>
                                                 <a class="dropdown-item" id="editProducto${task.idObjeto}">Producto</a>
@@ -877,8 +877,8 @@ function getTableObjeto(typeTabla,insertName,updateFile,idObjeto){
                     template += `<th id="cantidad${task.idObjeto}">${task.cantidad}</th>`;
                     template += `<th id="option${task.idObjeto}">
                                     <div class="btn-group">
-                                        <image src="../resources/delete.png" style="height:30px" id="delete${task.idObjeto}"></image>
-                                        <image src="../resources/edit.png" style="height:30px" class="dropdown-toggle" data-toggle="dropdown" id="edit${task.idObjeto}"></image> 
+                                        <image src="resources/delete.png" style="height:30px" id="delete${task.idObjeto}"></image>
+                                        <image src="resources/edit.png" style="height:30px" class="dropdown-toggle" data-toggle="dropdown" id="edit${task.idObjeto}"></image> 
                                             <div class="dropdown-menu" style?"overflow-y:auto;">
                                                 <a class="dropdown-item" id="editImg${task.idObjeto}">Imagen</a>
                                                 <a class="dropdown-item" id="editProducto${task.idObjeto}">Producto</a>
@@ -977,10 +977,10 @@ function getTableEquipo(){
             template += 
             `<th id="option${task.idObjeto}">
                 <div class="btn-group">
-                     <image src="../resources/delete.png" style="height:30px" id="delete${task.idObjeto}"></image>
+                     <image src="resources/delete.png" style="height:30px" id="delete${task.idObjeto}"></image>
 
                     <div class="btn-group">       
-                        <image src="../resources/edit.png" style="height:30px" class="dropdown-toggle" data-toggle="dropdown" id="edit${task.idObjeto}"></image> 
+                        <image src="resources/edit.png" style="height:30px" class="dropdown-toggle" data-toggle="dropdown" id="edit${task.idObjeto}"></image> 
                         <div class="dropdown-menu">
                             <a class="dropdown-item" id="editImg${task.idObjeto}">Imagen</a>
                             <a class="dropdown-item" id="editProducto${task.idObjeto}">Producto</a>
@@ -1035,9 +1035,9 @@ function getTableConsumible(){
                   
                     <th id="option${task.idObjeto}">
                         <div class="btn-group">
-                            <image src="../resources/delete.png" style="height:30px" id="delete${task.idObjeto}"></image>
+                            <image src="resources/delete.png" style="height:30px" id="delete${task.idObjeto}"></image>
                             <div class="btn-group">       
-                                <image src="../resources/edit.png" style="height:30px" class="dropdown-toggle" data-toggle="dropdown" id="edit${task.idObjeto}"></image> 
+                                <image src="resources/edit.png" style="height:30px" class="dropdown-toggle" data-toggle="dropdown" id="edit${task.idObjeto}"></image> 
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" id="editImg${task.idObjeto}">Imagen</a>
                                     <a class="dropdown-item" id="editProducto${task.idObjeto}">Producto</a>

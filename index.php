@@ -9,13 +9,14 @@ if(!isset($_SESSION['nombre']))
 }
 */
 ?>
+<?php include ('header.php');?>
 <!DOCTYPE html>
 <html>
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<?php include ('header.php');?>
+	
 
 	<link rel="stylesheet" href="styles/normalize.css">
 	<link rel="stylesheet" href="styles/indexStyle.css">
