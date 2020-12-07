@@ -21,7 +21,7 @@ if(!isset($_SESSION['nombre']))
 	<link rel="stylesheet" href="../styles/indexStyle.css">
 	<link rel="stylesheet" href="../styles/generalStyle.css">
 	<link rel="stylesheet" href="../styles/hover.css">
-	<title>INVENTARIO DASC</title>
+	<title>INICIO</title>
 <head>
 </head>
 <body>

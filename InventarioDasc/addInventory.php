@@ -1,5 +1,5 @@
 <html>
-    
+    <title>AÑADIR ARTICULO | Inventario</title>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -11,7 +11,6 @@
     
     <script src="header/inventoryFunction.js"></script>
     <script src="inventario/JS/addinventory.js"></script>
-    <title>Inventario | Administrar</title>
 </head>
 
 <body class="background-img">

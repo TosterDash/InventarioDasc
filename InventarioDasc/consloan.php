@@ -15,7 +15,7 @@
             src="prestamo/JS/consloan.js">
         </script>
 
-        <title>Préstamo | Consulta</title>
+        <title>Prestamos</title>
 
     </head>
     <body>

@@ -20,7 +20,7 @@ describir cada método
 
 <!DOCTYPE html>
 <html>
-	
+	<title>MAPA</title>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -35,7 +35,6 @@ describir cada método
 	<link rel="stylesheet" href="../styles/generalStyle.css">
 	<link rel="stylesheet" href="../styles/mapStyle.css">
 	
-	<title>Mapa | Consulta</title>
 	
 <head>
 <script src="mapa/JS/map.js"></script>	

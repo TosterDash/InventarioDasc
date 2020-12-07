@@ -54,7 +54,7 @@
 			<a id="tablet-img" href="index.php"><img src="../resources/uabcs_mobile_img.png" class="mobile-size" alt=""></a>
 		</div>
 		<div id="menuHeader" class="header-menu">
-			<a id="home-menu" class="menu-list item-menu" href="../index.php">INICIO</a>
+			<a id="home-menu" class="menu-list item-menu" href="index.php">INICIO</a>
 
 			<!--item de menu-->
 			<div class="">

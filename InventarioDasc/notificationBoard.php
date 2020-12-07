@@ -10,7 +10,7 @@
 	<link rel="stylesheet" href="../styles/hover.css">
 	<link rel="stylesheet" href="../styles/generalStyle.css">
 	<link rel="stylesheet" href="../styles/notificationBoardStyle.css">
-	<title>Notificaciones | DASC</title>
+	<title>NOTIFICACIONES | INVENTARIO</title>
 <head>
 </head>
 <body>

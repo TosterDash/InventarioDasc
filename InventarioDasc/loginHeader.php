@@ -42,6 +42,8 @@
 	<link rel="stylesheet" href="../styles/generalStyle.css">
 	<link rel="stylesheet" href="alertify/css/alertify.css">
 	<script src="alertify/alertify.js"></script>
+	
+
 </head>
 <body>
 	<div class="header-style">

@@ -13,7 +13,7 @@
     <script 
         src="prestamo/JS/addloan.js">
     </script>
-    <title>Préstamo | Administrar</title>
+    <title></title>
 </head>
     <body class="background-img">
         

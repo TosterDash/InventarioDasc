@@ -20,7 +20,7 @@
         <link rel="stylesheet" href="../styles/loanStyle.css">
         <link rel="stylesheet" href="../styles/generalStyle.css">
         
-        <title>Historial | Préstamo</title>
+        <title>Historial de préstamos</title>
 
     </head>
     <body>
