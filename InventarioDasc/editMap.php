@@ -19,7 +19,7 @@
 
   <script src="header/mapFunction.js"></script>
     
-    <title>AÑADIR AL MAPA</title>
+    <title>Mapa | Administrar</title>
 </head>
 <body class="background-img">
     <div class="master-box">

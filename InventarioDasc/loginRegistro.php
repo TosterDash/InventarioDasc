@@ -17,7 +17,7 @@
 
 <html lang="en">
 <html>
-	<title>LOGIN|REGISTRO</title>
+	
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <?php include ('loginHeader.php');?>
 	<meta charset="UTF-8">
@@ -43,6 +43,7 @@
 <head>
 </head>
 
+	<title>Login | DASC</title>
 <body class="background-img">
 
 	<div class="form-background form-size"> 
