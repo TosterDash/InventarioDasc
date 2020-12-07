@@ -7,7 +7,6 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<?php include ('header.php');?>
 	<script src="inventario/JS/notificationBoard.js"></script>
 	<link rel="stylesheet" href="styles/normalize.css">
 	<link rel="stylesheet" href="styles/hover.css">
