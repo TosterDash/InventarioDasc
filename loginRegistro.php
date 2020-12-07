@@ -28,18 +28,18 @@
     src="Jquery/Jquery.js">
     </script>
     
-    <link rel="stylesheet" type="text/css" href="../styles/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="styles/bootstrap.min.css">
 	<script src="Jquery/Jquery.js"></script>
-	<script type="text/javascript" src="../styles/popper.js"></script>
-	<script type="text/javascript" src="../styles/bootstrap.min.js"></script>
+	<script type="text/javascript" src="styles/popper.js"></script>
+	<script type="text/javascript" src="styles/bootstrap.min.js"></script>
 	<script src="login/JS/login.js"></script>
 
-	<link rel="stylesheet" href="../styles/normalize.css">
-	<link rel="stylesheet" href="../styles/generalStyle.css">
+	<link rel="stylesheet" href="styles/normalize.css">
+	<link rel="stylesheet" href="styles/generalStyle.css">
 
 	<link rel="stylesheet" href="alertify/css/alertify.css">
 	<script src="alertify/alertify.js"></script>
-	<link rel="stylesheet" href="../styles/loginStyle.css">
+	<link rel="stylesheet" href="styles/loginStyle.css">
 <head>
 </head>
 

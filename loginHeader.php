@@ -22,12 +22,12 @@
 	
 	<link rel="stylesheet" type="text/css" href="../styles/bootstrap.min.css">
 	<script src="Jquery/Jquery.js"></script>
-	<script type="text/javascript" src="../styles/popper.js"></script>
-	<script type="text/javascript" src="../styles/bootstrap.min.js"></script>
+	<script type="text/javascript" src="styles/popper.js"></script>
+	<script type="text/javascript" src="styles/bootstrap.min.js"></script>
 
-	<link rel="stylesheet" href="../styles/normalize.css">
-	<link rel="stylesheet" href="../styles/headerFooterStyle.css">
-	<link rel="stylesheet" href="../styles/generalStyle.css">
+	<link rel="stylesheet" href="styles/normalize.css">
+	<link rel="stylesheet" href="styles/headerFooterStyle.css">
+	<link rel="stylesheet" href="styles/generalStyle.css">
 
 	<link rel="stylesheet" href="alertify/css/alertify.css">
 	<script src="alertify/alertify.js"></script>
@@ -46,8 +46,8 @@
 <body>
 	<div class="header-style">
 		<div>
-			<a id="pc-img" style="cursor: default;"><img src="../resources/uabcs_pc_img.png" class="" alt=""></a>
-			<a id="tablet-img"style="cursor: default;"><img src="../resources/uabcs_mobile_img.png" class="mobile-size" alt=""></a>
+			<a id="pc-img" style="cursor: default;"><img src="resources/uabcs_pc_img.png" class="" alt=""></a>
+			<a id="tablet-img"style="cursor: default;"><img src="resources/uabcs_mobile_img.png" class="mobile-size" alt=""></a>
 		</div>
 		 
 	</div>

@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <?php include ('header.php');?>
     
-    <link rel="stylesheet" href="../styles/normalize.css">
-    <link rel="stylesheet" href="../styles/generalStyle.css">
-    <link rel="stylesheet" href="../styles/inventoryStyle.css">
+    <link rel="stylesheet" href="styles/normalize.css">
+    <link rel="stylesheet" href="styles/generalStyle.css">
+    <link rel="stylesheet" href="styles/inventoryStyle.css">
     
     <script src="header/inventoryFunction.js"></script>
     <script src="inventario/JS/addinventory.js"></script>
@@ -51,7 +51,7 @@
                             </div>
                             <div class="disp-flexRow" style="margin-right:18px">
                                 <label style="width:60px;">Eliminar</label>
-                                <img src="../resources/delete.png" class="icon-size" id="btn-producto-delete" value="delete"></img>
+                                <img src="resources/delete.png" class="icon-size" id="btn-producto-delete" value="delete"></img>
                             </div>
                             
                             

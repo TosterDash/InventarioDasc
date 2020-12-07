@@ -23,7 +23,7 @@ $(document).ready(function(){
                     break;
 
                     case "success":
-                        location.href = "index.php";
+                        location.href = "../index.php";
                     break;
 
                     default:
@@ -36,7 +36,7 @@ $(document).ready(function(){
        
     });
     $('#login-cancel').on('click',function(){
-        location.href = "index.php";
+        location.href = "../index.php";
     });
 
 

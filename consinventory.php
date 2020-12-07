@@ -4,9 +4,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <?php include ('header.php');?>
         
-        <link rel="stylesheet" href="../styles/normalize.css">
-        <link rel="stylesheet" href="../styles/generalStyle.css">
-        <link rel="stylesheet" href="../styles/inventoryStyle.css">  
+        <link rel="stylesheet" href="styles/normalize.css">
+        <link rel="stylesheet" href="styles/generalStyle.css">
+        <link rel="stylesheet" href="styles/inventoryStyle.css">  
         
         <script src="header/inventoryFunction.js"></script>
         <script src="inventario/JS/consinventory.js"></script>

@@ -17,10 +17,10 @@ if(!isset($_SESSION['nombre']))
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<?php include ('header.php');?>
 
-	<link rel="stylesheet" href="../styles/normalize.css">
-	<link rel="stylesheet" href="../styles/indexStyle.css">
-	<link rel="stylesheet" href="../styles/generalStyle.css">
-	<link rel="stylesheet" href="../styles/hover.css">
+	<link rel="stylesheet" href="styles/normalize.css">
+	<link rel="stylesheet" href="styles/indexStyle.css">
+	<link rel="stylesheet" href="styles/generalStyle.css">
+	<link rel="stylesheet" href="styles/hover.css">
 	<title>INVENTARIO DASC</title>
 <head>
 </head>
@@ -30,28 +30,28 @@ if(!isset($_SESSION['nombre']))
   	<!-- The slideshow -->
 	  <div class="carousel-inner">
 	    <div class="carousel-item active img-slider">
-	      <img src="../resources/campus_mapa.jpg" alt="Campus UABCS">
+	      <img src="resources/campus_mapa.jpg" alt="Campus UABCS">
 	    </div>
 	    <div class="carousel-item">
-	      <img src="../resources/campus_mapa.jpg" alt="Campus UABCS">
+	      <img src="resources/campus_mapa.jpg" alt="Campus UABCS">
 	    </div>
 	    <div class="carousel-item">
-	      <img src="../resources/campus_mapa.jpg" alt="Campus UABCS">
+	      <img src="resources/campus_mapa.jpg" alt="Campus UABCS">
 	    </div>
 	</div>
     <!-- The menu-->
   	<div class=" center-title">
 		<div id="btn-cont" class="btn-container">
 			<div class="center-title hvr-float index-icons">
-				<a href="map.php"><img class="index-image" src="../resources/1x/mapa_icon.png"></a> 
+				<a href="map.php"><img class="index-image" src="resources/1x/mapa_icon.png"></a> 
 				<h2 class="center-title">MAPA</h2>
 			</div>
 			<div class="center-title hvr-float index-icons">
-				<a class="center-title" href="consInventory.php"><img class="index-image" src="../resources/1x/inven_icon.png"></a>
+				<a class="center-title" href="consInventory.php"><img class="index-image" src="resources/1x/inven_icon.png"></a>
 				<h2>INVENTARIO</h2>
 			</div>
 			<div class="center-title hvr-float index-icons">
-				<a class="center-title" href="consloan.php"><img class="index-image" src="../resources/1x/prest_icon.png"></a>
+				<a class="center-title" href="consloan.php"><img class="index-image" src="resources/1x/prest_icon.png"></a>
 				<h2>PRÉSTAMOS</h2>
 			</div>				
 		</div>	
